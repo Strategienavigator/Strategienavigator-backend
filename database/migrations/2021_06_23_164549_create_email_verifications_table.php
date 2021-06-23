@@ -16,7 +16,7 @@ class CreateEmailVerificationsTable extends Migration
         Schema::create('email_verifications', function (Blueprint $table) {
             $table->id();
             $table->string("email");
-            $table->foreignId("user_id")->constrained(\App\Models\User::class)->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

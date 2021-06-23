@@ -17,7 +17,7 @@ class CreateInvitationLinksTable extends Migration
             $table->id();
             $table->date("expiry_date");
             $table->integer("permission");
-            $table->foreignId("save_id")->constrained(\App\Models\Save::class);
+            $table->foreignId("save_id")->constrained();
             $table->timestamps();
         });
     }

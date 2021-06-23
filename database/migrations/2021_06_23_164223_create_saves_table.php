@@ -17,9 +17,9 @@ class CreateSavesTable extends Migration
             $table->id();
             $table->timestamp('last_opened')->nullable();
             $table->jsonb('data')->nullable();
-            $table->foreignId('tool_id')->constrained(\App\Models\Tool::class);
-            $table->foreignId('owner_id')->constrained(\App\Models\User::class);
-            $table->foreignId('locked_by_id')->nullable()->constrained(\App\Models\User::class);
+            $table->foreignId('tool_id')->constrained();
+            $table->foreignId('owner_id')->constrained('users');
+            $table->foreignId('locked_by_id')->nullable()->constrained('users');
             $table->timestamp('last_locked')->nullable();
             $table->timestamps();
         });

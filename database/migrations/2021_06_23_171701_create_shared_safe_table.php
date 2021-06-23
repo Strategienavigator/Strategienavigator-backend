@@ -15,8 +15,8 @@ class CreateSharedSafeTable extends Migration
     {
         Schema::create('shared_safe', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained(\App\Models\User::class);
-            $table->foreignId("save_id")->constrained(\App\Models\Save::class);
+            $table->foreignId("user_id")->constrained();
+            $table->foreignId("save_id")->constrained();
             $table->integer("permission");
             $table->timestamps();
         });
