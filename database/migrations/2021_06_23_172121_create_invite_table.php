@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSaveTable extends Migration
+class CreateInviteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSaveTable extends Migration
      */
     public function up()
     {
-        Schema::create('save', function (Blueprint $table) {
+        Schema::create('invite', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('last_opened')->nullable();
-            $table->jsonb('data')->nullable();
-            $table->foreignId('tool_id')->constrained();
+            $table->foreignId('user_id')->constrained(\App\Models\User::class);
+            $table->foreignId('save_id')->constrained(\App\Models\Save::class);
+            $table->integer("permission");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSaveTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('save');
+        Schema::dropIfExists('invite');
     }
 }
