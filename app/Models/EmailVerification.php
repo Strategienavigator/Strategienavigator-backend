@@ -52,4 +52,7 @@ class EmailVerification extends Model
      */
     protected $casts = [
     ];
+
+
+
 }

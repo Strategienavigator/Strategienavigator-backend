@@ -65,4 +65,40 @@ class Save extends Model
         'last_locked' => 'datetime',
         'last_opened' => 'datetime',
     ];
+
+
+    public function owner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function locker(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'locked_by_id');
+    }
+
+    public function tool(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Tool::class);
+    }
+
+    public function invited(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'invite')->using(Invite::class)->as("invitation")->withPivot(["permission"])->withTimestamps();
+    }
+
+    public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Invite::class);
+    }
+
+    public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_safe')->using(SharedSave::class)->withPivot(["permission"])->withTimestamps();
+    }
+
+    public function invitationLinks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(InvitationLink::class);
+    }
 }

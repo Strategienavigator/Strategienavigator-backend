@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class SharedSave extends Pivot
 {
 
+    public $incrementing = true;
+
     /**
      * The attributes that are mass assignable.
      *
