@@ -17,9 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username');
             $table->boolean('anonym');
-            $table->date('joined_at');
             $table->date('last_login')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamps();
