@@ -18,6 +18,7 @@ class CreateSharedSafeTable extends Migration
             $table->foreignId("user_id")->constrained();
             $table->foreignId("save_id")->constrained();
             $table->integer("permission");
+            $table->boolean("accepted")->default(false);
             $table->timestamps();
         });
     }

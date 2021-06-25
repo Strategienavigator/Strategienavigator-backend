@@ -84,17 +84,23 @@ class Save extends Model
 
     public function invited(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'invite')->using(Invite::class)->as("invitation")->withPivot(["permission"])->withTimestamps();
+        return $this->belongsToMany(User::class, 'invite')->using(SharedSave::class)->as("invitation")
+            ->withPivot(["permission","accepted"])
+            ->withPivotValue("accepted",false)
+            ->withTimestamps();
     }
 
     public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Invite::class);
+        return $this->hasMany(SharedSave::class)->where("accepted" , '=',false);
     }
 
     public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'shared_safe')->using(SharedSave::class)->withPivot(["permission"])->withTimestamps();
+        return $this->belongsToMany(User::class, 'shared_safe')->using(SharedSave::class)
+            ->withPivot(["permission","accepted"])
+            ->withPivotValue("accepted",true)
+            ->withTimestamps();
     }
 
     public function invitationLinks(): \Illuminate\Database\Eloquent\Relations\HasMany

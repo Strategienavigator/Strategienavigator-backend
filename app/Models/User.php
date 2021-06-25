@@ -89,17 +89,25 @@ class User extends Authenticatable
 
     public function invitedSaves(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Save::class, 'invite')->using(Invite::class)->as("invitation")->withPivot(["permission"])->withTimestamps();
+        //TODO check if withPivot must contain "accepted" to make withPivotValue work
+        return $this->belongsToMany(Save::class, 'invite')->using(SharedSave::class)->as("invitation")
+            ->withPivot(["permission","accepted"])
+            ->withPivotValue("accepted",false)
+            ->withTimestamps();
     }
 
     public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Invite::class);
+        return $this->hasMany(SharedSave::class)->where('accepted','=',true);
     }
 
     public function accessibleShares(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Save::class, 'shared_safe')->using(SharedSave::class)->withPivot(["permission"])->withTimestamps();
+        //TODO check if withPivot must contain "accepted" to make withPivotValue work
+        return $this->belongsToMany(Save::class, 'shared_safe')->using(SharedSave::class)
+            ->withPivot(["permission","accepted"])
+            ->withPivotValue("accepted",true)
+            ->withTimestamps();
     }
 
 
