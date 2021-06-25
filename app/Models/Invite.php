@@ -55,4 +55,18 @@ class Invite extends Pivot
      */
     protected $casts = [
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * renamed because of function overloading
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Save::class);
+    }
 }

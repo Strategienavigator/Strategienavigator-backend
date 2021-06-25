@@ -55,4 +55,13 @@ class InvitationLink extends Model
     protected $casts = [
         'expiry_date' => 'datetime',
     ];
+
+    /**
+     * renamed because of function overloading
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Save::class);
+    }
 }

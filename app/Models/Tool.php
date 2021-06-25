@@ -48,4 +48,10 @@ class Tool extends Model
      */
     protected $casts = [
     ];
+
+
+    public function saves(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Save::class);
+    }
 }

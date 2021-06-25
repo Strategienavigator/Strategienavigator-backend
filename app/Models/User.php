@@ -72,5 +72,35 @@ class User extends Authenticatable
         'last_login' => 'datetime',
     ];
 
+    public function saves(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Save::class, 'owner_id');
+    }
+
+    public function isLocking(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Save::class, 'locked_by_id');
+    }
+
+    public function emailVerification(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(EmailVerification::class);
+    }
+
+    public function invitedSaves(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Save::class, 'invite')->using(Invite::class)->as("invitation")->withPivot(["permission"])->withTimestamps();
+    }
+
+    public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Invite::class);
+    }
+
+    public function accessibleShares(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Save::class, 'shared_safe')->using(SharedSave::class)->withPivot(["permission"])->withTimestamps();
+    }
+
 
 }
