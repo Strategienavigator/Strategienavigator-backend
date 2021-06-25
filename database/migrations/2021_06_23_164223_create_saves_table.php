@@ -22,6 +22,7 @@ class CreateSavesTable extends Migration
             $table->foreignId('locked_by_id')->nullable()->constrained('users');
             $table->timestamp('last_locked')->nullable();
             $table->timestamp('last_opened')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
