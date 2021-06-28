@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave query()
  * @mixin \Eloquent
+ * @property-read \App\Models\Save $safe
+ * @property-read \App\Models\User $user
  */
 class SharedSave extends Pivot
 {

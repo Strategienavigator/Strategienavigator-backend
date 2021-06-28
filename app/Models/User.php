@@ -37,6 +37,17 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $accessibleShares
+ * @property-read int|null $accessible_shares_count
+ * @property-read \App\Models\EmailVerification|null $emailVerification
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $invitations
+ * @property-read int|null $invitations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $invitedSaves
+ * @property-read int|null $invited_saves_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $isLocking
+ * @property-read int|null $is_locking_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $saves
+ * @property-read int|null $saves_count
  */
 class User extends Authenticatable
 {

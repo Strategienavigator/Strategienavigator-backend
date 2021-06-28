@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Tool whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tool whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $saves
+ * @property-read int|null $saves_count
  */
 class Tool extends Model
 {

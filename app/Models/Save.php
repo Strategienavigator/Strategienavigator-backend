@@ -31,6 +31,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Save whereToolId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Save whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
+ * @property-read int|null $contributors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\InvitationLink[] $invitationLinks
+ * @property-read int|null $invitation_links_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $invitations
+ * @property-read int|null $invitations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $invited
+ * @property-read int|null $invited_count
+ * @property-read \App\Models\User|null $locker
+ * @property-read \App\Models\User $owner
+ * @property-read \App\Models\Tool $tool
+ * @method static \Illuminate\Database\Query\Builder|Save onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Save whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Save withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()
  */
 class Save extends Model
 {
