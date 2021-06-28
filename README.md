@@ -74,6 +74,10 @@ php artisan ide-helper:models -W
 - Alle Dokumentationen sollten in der deutschen Sprache angefertigt werden.
 - Variablen- und Methodenbezeichnungen werden in Camelcase geschrieben.
 
+## Bugs
+
+Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository erstellen.
+
 ## Lizenz
 [GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html) 
 
