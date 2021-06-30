@@ -84,4 +84,5 @@ Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbo
 ## Autoren
 - [Gesit](https://github.com/Geist5000)
 - [Rico Meiner](https://github.com/ricom)
+
 Weiterhin kann auf die Liste der Projektteilnehmer in Github verwiesen werden.
