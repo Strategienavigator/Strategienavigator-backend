@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ToolController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResources([
+    "tools"=>ToolController::class,
+    "saves"=>SaveController::class,
+    "users"=>UserController::class,
+    "sharedsaves"=>SharedSaveController::class,
+]);
