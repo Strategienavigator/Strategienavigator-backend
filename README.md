@@ -104,7 +104,7 @@ php artisan ide-helper:models -W
 Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository erstellen.
 
 ## Lizenz
-[GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html)
+[GNU GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html) 
 
 ## Autoren
 - [Gesit](https://github.com/Geist5000)
