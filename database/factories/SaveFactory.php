@@ -33,8 +33,7 @@ class SaveFactory extends Factory
                     'number4' => $this->faker->randomNumber()
                 ]
             ]),
-            'owner_id'=>User::all()->random()->id,
-            'tool_id'=>Tool::all()->random()->id
+            'tool_id'=>Tool::all()->random(),
         ];
     }
 }

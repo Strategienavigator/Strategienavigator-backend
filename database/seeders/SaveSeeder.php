@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Save;
+use App\Models\User;
+use Doctrine\DBAL\Schema\Sequence;
 use Illuminate\Database\Seeder;
 
 class SaveSeeder extends Seeder
@@ -14,6 +16,9 @@ class SaveSeeder extends Seeder
      */
     public function run()
     {
-        Save::factory()->count(5)->create();
+        for($i = 0;$i<5;$i++){
+            // manual lopp got get a random user for each save
+            Save::factory()->for(User::all()->random(),'owner')->create();
+        }
     }
 }
