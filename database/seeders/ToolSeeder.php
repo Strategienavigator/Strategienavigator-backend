@@ -15,19 +15,20 @@ class ToolSeeder extends Seeder
      */
     public function run()
     {
+        $now = Carbon::now();
         Tool::insert([
             [
                 "id"=>1,
                 "name"=>"Nutzwertanalyse",
-                "created_at"=>Carbon::now(),
-                "updated_at"=>Carbon::now()
+                "created_at"=>$now,
+                "updated_at"=>$now
 
             ],
             [
                 "id"=>2,
                 "name"=>"SWOT-Analyse",
-                "created_at"=>Carbon::now(),
-                "updated_at"=>Carbon::now()
+                "created_at"=>$now,
+                "updated_at"=>$now
             ],
         ]);
     }
