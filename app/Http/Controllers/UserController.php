@@ -54,7 +54,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->fill($request->toArray());
-        return response();
+        $user->save();
+        return response()->noContent(200);
     }
 
     /**
@@ -66,6 +67,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return response();
+        return response()->noContent(200);
     }
 }
