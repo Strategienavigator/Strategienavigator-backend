@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         ResponseFactory::macro('created', function (string $route_name, Model $model):Response {
             return \Illuminate\Support\Facades\Response::noContent(
                 Response::HTTP_CREATED,
-                ['Location' => route($route_name . '.show', ['user' => $model->id],false)]);
+                ['Location' => route($route_name . '.show', $model->id,false)]);
         });
 
     }

@@ -62,7 +62,8 @@ class Save extends Model
         'last_locked',
         'locked_by_id',
         'data',
-
+        'tool_id',
+        'owner_id'
     ];
 
     /**

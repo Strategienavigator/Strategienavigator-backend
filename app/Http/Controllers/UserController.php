@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -55,7 +56,7 @@ class UserController extends Controller
     {
         $user->fill($request->toArray());
         $user->save();
-        return response()->noContent(200);
+        return response()->noContent(Response::HTTP_OK);
     }
 
     /**
@@ -67,6 +68,6 @@ class UserController extends Controller
     public function destroy(User $user): \Illuminate\Http\Response
     {
         $user->delete();
-        return response()->noContent(200);
+        return response()->noContent(Response::HTTP_OK);
     }
 }
