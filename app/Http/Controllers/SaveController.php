@@ -59,6 +59,6 @@ class SaveController extends Controller
      */
     public function destroy(Save $save)
     {
-        //
+        
     }
 }
