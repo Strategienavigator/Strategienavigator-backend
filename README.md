@@ -1,6 +1,6 @@
 # Strategietools-Backend
 ## Projekt
-Das Projekt Strategietools basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesonders ist der Einsatz Hochschule geplant. Aber auch allen Interessierten stehen die Werkzeuge zur Verfügung.
+Das Projekt Strategietools basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesonders ist der Einsatz in der Hochschule geplant. Aber auch allen Interessierten stehen die Werkzeuge zur Verfügung.
 
 Das Projekt wird an der Jade Hochschule in Wilhelmshaven am Fachbereich Management Information Technologie entwickelt.
 
@@ -27,7 +27,7 @@ Für den Anfang sind folgende Strategietools geplant:
 ## Einrichtung
 
 1. Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download](https://www.apachefriends.org/de/index.html)  
-2. Installiere Composer2: [Download](https://getcomposer.org/download/)
+2. Installiere Composer >= 2.0: [Download](https://getcomposer.org/download/)
  - Bei der Auswahl der PHP version den Haken bei "Zur PATH variable hinzufügen" setzten 
 3. Installiere Git: [Download](https://git-scm.com/downloads)
 
@@ -49,7 +49,7 @@ Um alle Abhängigkeiten zu installieren, muss folgendes Kommando eingegeben werd
 ```shell
 composer install
 ```
-Falls fehler bei diesem Kommando auftreten kann `composer update` eingegeben wird.
+Falls Fehler bei diesem Kommando auftreten kann `composer update` eingegeben wird.
 Anschließend muss die `.env` Datei erstellt und ausgefüllt werden. Zum Erstellen, folgendes Kommando eingeben:
 
 Windows:
@@ -62,10 +62,14 @@ cp .env.example .env
 ```
 
 In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD` ausgefüllt werden.  
-Anschließend sollte Apache und Mysql von XAMPP aus gestartet werden.  
-Nun musst du in der Datenbank die tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
+Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
+Nun musst du in der Datenbank die Tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
 
+<<<<<<< HEAD
 Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit folgenden Kommando erstellt werden: 
+=======
+Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden: 
+>>>>>>> 04a5940236a58a625e4b32467531a805dd176a5c
 ```shell
 php artisan key:generate
 ```
@@ -77,7 +81,7 @@ Um die Tabellen zum Erstellen muss folgendes Kommando eingegeben werden:
 php artisan migrate:fresh --seed
 ```
 
-### Pasport
+### Passport
 Um für Passport die Keys zu erstellen, muss folgendes Kommando eingegeben werden:
 ```shell
 php artisan passport:install
@@ -92,14 +96,14 @@ php artisan ide-helper:models -W
 
 [PHP-Doc:link:](https://www.phpdoc.org/) als Werkzeug zur Dokumentation.
 
-## Guidlines für Beteiligte
+## Guidelines für Beteiligte
 - Alles was keine Dokumentation oder Kommentare sind, muss in der englischen Sprache angefertigt werden.
 - Alle Dokumentationen sollten in der deutschen Sprache angefertigt werden.
 - Variablen- und Methodenbezeichnungen werden in Camelcase geschrieben.
 
 ## Bugs
 
-Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository erstellen.>
+Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository erstellen.
 
 ## Lizenz
 [GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html) 
