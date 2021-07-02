@@ -54,6 +54,7 @@ Um alle Abhängigkeiten zu installieren, muss folgendes Kommando eingegeben werd
 ```shell
 composer install
 ```
+Falls fehler bei diesem Kommando auftreten kann `composer update` eingegeben wird.
 Anschließend muss die `.env` Datei erstellt und ausgefüllt werden. Zum Erstellen, folgendes Kommando eingeben:
 
 Windows:
@@ -65,11 +66,9 @@ Linux:
 cp .env.example .env
 ```
 
-In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD` ausgefüllt werden.
-Es wird davon ausgegangen, dass der User Zugriff auf eine Datenbank mit dem Namen `toolbox` Zugriff hat und diese existiert.
-```sql
-CREATE DATABASE toolbox;
-```
+In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD` ausgefüllt werden.  
+Anschließend sollte Apache und Mysql von XAMPP aus gestartet werden.  
+Nun musst du in der Datenbank die tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
 
 Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit folgended Kommando erstellt werden: 
 ```shell
