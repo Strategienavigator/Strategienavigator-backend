@@ -31,9 +31,16 @@ Laravel:
 
 ## Einrichtung
 
-Installiere Composer2: [Download](https://getcomposer.org/download/)  
-Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download](https://www.apachefriends.org/de/index.html)  
-Installiere Git: [Download](https://git-scm.com/downloads)
+1. Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download](https://www.apachefriends.org/de/index.html)  
+2. Installiere Composer2: [Download](https://getcomposer.org/download/)
+ - Bei der Auswahl der PHP version den Haken bei "Zur PATH variable hinzufügen" setzten 
+3. Installiere Git: [Download](https://git-scm.com/downloads)
+
+Zum Navigieren in der Kommandozeile können folgende Kommandos verwendet werden:
+```shell
+cd <Pfad> -- um in den nächsten Ordner zu navigieren: .. eingeben um einen Ordner nach oben zu navigieren
+dir -- um den Inhalt des Ordners aufzulisten 
+```
 
 Dieses Projekt muss in das web root Verzeichnis des Webservers geladen werden:
 ```shell
@@ -42,12 +49,6 @@ cd toolbox-backend
 ```
 
 Die folgenden Kommandos müssen alle in dem von git erstellten Ordner ausgeführt werden.
-
-Zum Navigieren in der Kommandozeile können folgende Kommandos verwendet werden:
-```shell
-cd <Pfad> -- um in den nächsten Ordner zu navigieren: .. eingeben um einen Ordner nach oben zu navigieren
-dir -- um den Inhalt des Ordners aufzulisten 
-```
 
 Um alle Abhängigkeiten zu installieren, muss folgendes Kommando eingegeben werden:
 ```shell
