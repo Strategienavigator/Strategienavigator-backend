@@ -14,7 +14,7 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(User::all());
     }
@@ -25,7 +25,7 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\Response
     {
         $u = new User($request->toArray());
         $u->password = Hash::make($request['password']);
@@ -39,7 +39,7 @@ class UserController extends Controller
      * @param \App\Models\User $user
      * @return JsonResponse
      */
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
         return response()->json($user);
     }
@@ -51,7 +51,7 @@ class UserController extends Controller
      * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): \Illuminate\Http\Response
     {
         $user->fill($request->toArray());
         $user->save();
@@ -64,7 +64,7 @@ class UserController extends Controller
      * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user): \Illuminate\Http\Response
     {
         $user->delete();
         return response()->noContent(200);
