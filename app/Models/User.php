@@ -82,6 +82,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login' => 'datetime',
+        'anonym' => 'boolean'
     ];
 
     public function saves(): \Illuminate\Database\Eloquent\Relations\HasMany
