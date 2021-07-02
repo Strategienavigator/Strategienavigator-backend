@@ -42,7 +42,7 @@ cd <Pfad> -- um in den nächsten Ordner zu navigieren: .. eingeben um einen Ordn
 dir -- um den Inhalt des Ordners aufzulisten 
 ```
 
-Dieses Projekt muss in das web root Verzeichnis des Webservers geladen werden:
+Dieses Projekt muss in das web root Verzeichnis des Webservers geladen werden (bei xampp ist das web-root Verzeichnis `htdocs`):
 ```shell
 git clone https://github.com/ricom/toolbox-backend.git
 cd toolbox-backend
