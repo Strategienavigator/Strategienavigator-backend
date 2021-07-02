@@ -18,7 +18,7 @@ Für den Anfang sind folgende Strategietools geplant:
 [Intere Projektinformationen:link:](https://moodle.jade-hs.de/moodle/course/view.php?id=521&section=4)
 
 
-## Einrichtung
+## Versionen
 
 Composer: 
  - min Composer2 ([Download](https://getcomposer.org/download/))
@@ -29,10 +29,30 @@ PHP:
 Laravel:
  - 8.x 
 
+## Einrichtung
+
+Installiere Composer2: [Download](https://getcomposer.org/download/)  
+Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download](https://www.apachefriends.org/de/index.html)  
+Installiere Git: [Download](https://git-scm.com/downloads)
+
+Dieses Projekt muss in das web root Verzeichnis des Webservers geladen werden:
+```shell
+git clone https://github.com/ricom/toolbox-backend.git
+cd toolbox-backend
+```
+
+Die folgenden Kommandos müssen alle in dem von git erstellten Ordner ausgeführt werden.
+
+Zum Navigieren in der Kommandozeile können folgende Kommandos verwendet werden:
+```shell
+cd <Pfad> -- um in den nächsten Ordner zu navigieren: .. eingeben um einen Ordner nach oben zu navigieren
+dir -- um den Inhalt des Ordners aufzulisten 
+```
+
 Um alle Abhängigkeiten zu installieren, muss folgendes Kommando eingegeben werden:
 ```shell
 composer install
-```  
+```
 Anschließend muss die `.env` Datei erstellt und ausgefüllt werden. Zum Erstellen, folgendes Kommando eingeben:
 
 Windows:
