@@ -19,15 +19,10 @@ Für den Anfang sind folgende Strategietools geplant:
 
 
 ## Versionen
-
-Composer: 
- - min Composer2 ([Download](https://getcomposer.org/download/))
- 
-PHP:
- - 7.0
-
-Laravel:
- - 8.x 
+- Composer: min Composer2 ([Download](https://getcomposer.org/download/))
+- PHP: 7.0  
+- Laravel: 8.x
+- MySQL: min 5.7.X  
 
 ## Einrichtung
 
@@ -70,10 +65,12 @@ In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD
 Anschließend sollte Apache und Mysql von XAMPP aus gestartet werden.  
 Nun musst du in der Datenbank die tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
 
-Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit folgended Kommando erstellt werden: 
+Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit folgenden Kommando erstellt werden: 
 ```shell
 php artisan key:generate
 ```
+
+Die Einrichtung ist nun abgeschlossen
 ### Datenbanktabellen erstellen
 Um die Tabellen zum Erstellen muss folgendes Kommando eingegeben werden:
 ```shell
