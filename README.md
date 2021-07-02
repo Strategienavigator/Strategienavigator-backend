@@ -19,17 +19,17 @@ Für den Anfang sind folgende Strategietools geplant:
 
 
 ## Versionen
-- Composer: min Composer2 ([Download](https://getcomposer.org/download/))
+- Composer: min Composer 2.0 ([Download:link:](https://getcomposer.org/download/))
 - PHP: 7.0  
 - Laravel: 8.x
 - MySQL: min 5.7.X  
 
 ## Einrichtung
 
-1. Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download](https://www.apachefriends.org/de/index.html)  
-2. Installiere Composer >= 2.0: [Download](https://getcomposer.org/download/)
- - Bei der Auswahl der PHP version den Haken bei "Zur PATH variable hinzufügen" setzten 
-3. Installiere Git: [Download](https://git-scm.com/downloads)
+1. Installiere XAMPP oder einen anderen PHP-Webserver mit MySQL: [Download:link:](https://www.apachefriends.org/de/index.html)  
+2. Installiere Composer >= 2.0: [Download:link:](https://getcomposer.org/download/)
+ - Bei der Auswahl der PHP Version den Haken bei "Zur PATH variable hinzufügen" setzen 
+3. Installiere Git: [Download:link:](https://git-scm.com/downloads)
 
 Zum Navigieren in der Kommandozeile können folgende Kommandos verwendet werden:
 ```shell
@@ -37,20 +37,21 @@ cd <Pfad> -- um in den nächsten Ordner zu navigieren: .. eingeben um einen Ordn
 dir -- um den Inhalt des Ordners aufzulisten 
 ```
 
-Dieses Projekt muss in das web root Verzeichnis des Webservers geladen werden (bei xampp ist das web-root Verzeichnis `htdocs`):
+Dieses Projekt muss in das web-root Verzeichnis des Webservers geladen werden (bei XAMPP ist das web-root Verzeichnis `htdocs`):
 ```shell
 git clone https://github.com/ricom/toolbox-backend.git
 cd toolbox-backend
 ```
 
-Die folgenden Kommandos müssen alle in dem von git erstellten Ordner ausgeführt werden.
+Die folgenden Kommandos müssen alle in dem von Git erstellten Ordner ausgeführt werden.
 
 Um alle Abhängigkeiten zu installieren, muss folgendes Kommando eingegeben werden:
 ```shell
 composer install
 ```
-Falls Fehler bei diesem Kommando auftreten kann `composer update` eingegeben wird.
-Anschließend muss die `.env` Datei erstellt und ausgefüllt werden. Zum Erstellen, folgendes Kommando eingeben:
+Falls Fehler bei diesem Kommando auftreten kann `composer update` eingegeben werden.
+Anschließend muss die `.env` Datei erstellt und ausgefüllt werden. In der `.env` Datei werden systemspezifische Konfigurationen festgelegt.   
+Zum Erstellen sollte folgendes Kommando eingeben werden:
 
 Windows:
 ``` shell
@@ -63,26 +64,27 @@ cp .env.example .env
 
 In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD` ausgefüllt werden.  
 Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
-Nun musst du in der Datenbank die Tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
+Nun muss in der Datenbank die Tabelle `toolbox` erstellt werden. Am leichtesten geht dies mit [phpmyadmin:link:](http://localhost/phpmyadmin)
 
 Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden:
 ```shell
 php artisan key:generate
 ```
 
-Die Einrichtung ist nun abgeschlossen
+
 ### Datenbanktabellen erstellen
-Um die Tabellen zum Erstellen muss folgendes Kommando eingegeben werden:
+Um die Tabellen zu erstellen, muss folgendes Kommando eingegeben werden:
 ```shell
 php artisan migrate:fresh --seed
 ```
 
 ### Passport
-Um für Passport die Keys zu erstellen, muss folgendes Kommando eingegeben werden:
+Um für Passport(OAuth2 Bibliothek) die Keys zu erstellen, muss folgendes Kommando eingegeben werden:
 ```shell
 php artisan passport:install
 ```
-
+Die Einrichtung ist nun abgeschlossen.  
+Zum Testen kann die [Webseite:link:](http://localhost/toolbox-backend/public/) lokal aufgerufen werden.
 
 ## Dokumentation
 Zu diesem Projekt wurde [barryvdh/laravel-ide-helper:link:](https://github.com/barryvdh/laravel-ide-helper) hinzugefügt. Es wurden beim Erstellen der Model-Klassen die Dokumentation erstellt. Sollten die Model-Klassen bearbeitet werden, kann die Dokumentation, wie folgt, automatisch aktualisiert werden:
@@ -102,7 +104,7 @@ php artisan ide-helper:models -W
 Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository erstellen.
 
 ## Lizenz
-[GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html) 
+[GNU GPL 3.0:link:](https://www.gnu.org/licenses/gpl-3.0.de.html) 
 
 ## Autoren
 - [Gesit](https://github.com/Geist5000)
