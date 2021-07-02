@@ -65,11 +65,7 @@ In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD
 Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
 Nun musst du in der Datenbank die Tabelle `toolbox` erstellen. Am leichtesten geht das mit phpmyadmin(`localhost/phpmyadmin`)
 
-<<<<<<< HEAD
-Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit folgenden Kommando erstellt werden: 
-=======
-Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden: 
->>>>>>> 04a5940236a58a625e4b32467531a805dd176a5c
+Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden:
 ```shell
 php artisan key:generate
 ```
