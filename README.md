@@ -21,7 +21,7 @@ Für den Anfang sind folgende Strategietools geplant:
 ## Einrichtung
 
 Composer: 
- - min Composer2
+ - min Composer2 ([Download](https://getcomposer.org/download/))
  
 PHP:
  - 7.0
