@@ -61,7 +61,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        'last_login'
+        'last_login',
+        'anonym'
     ];
 
     /**
@@ -82,6 +83,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login' => 'datetime',
+        'anonym' => 'boolean'
     ];
 
     public function saves(): \Illuminate\Database\Eloquent\Relations\HasMany
