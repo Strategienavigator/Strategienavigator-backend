@@ -54,12 +54,18 @@ Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit
 ```shell
 php artisan key:generate
 ```
-
 ### Datenbanktabellen erstellen
 Um die Tabellen zum Erstellen muss folgendes Kommando eingegeben werden:
 ```shell
-php artisan migrate --seed
+php artisan migrate:fresh --seed
 ```
+
+### Pasport
+Um für Passport die Keys zu erstellen, muss folgendes Kommando eingegeben werden:
+```shell
+php artisan passport:install
+```
+
 
 ## Dokumentation
 Zu diesem Projekt wurde [barryvdh/laravel-ide-helper:link:](https://github.com/barryvdh/laravel-ide-helper) hinzugefügt. Es wurden beim Erstellen der Model-Klassen die Dokumentation erstellt. Sollten die Model-Klassen bearbeitet werden, kann die Dokumentation, wie folgt, automatisch aktualisiert werden:
