@@ -23,12 +23,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request): \Illuminate\Http\Response
+    public function store(Request $request): Response
     {
         $u = new User($request->toArray());
+        $u->anonym = false;
         $u->password = Hash::make($request['password']);
         $u->save();
         return response()->created('users',$u);
@@ -37,7 +38,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return JsonResponse
      */
     public function show(User $user): JsonResponse
@@ -48,11 +49,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
-    public function update(Request $request, User $user): \Illuminate\Http\Response
+    public function update(Request $request, User $user): Response
     {
         $user->fill($request->toArray());
         $user->save();
@@ -62,10 +63,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
-    public function destroy(User $user): \Illuminate\Http\Response
+    public function destroy(User $user): Response
     {
         $user->delete();
         return response()->noContent(Response::HTTP_OK);

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\EmailVerification;
 use App\Models\EmailVerificationLink;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -13,7 +14,7 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,11 +25,11 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\EmailVerificationLink  $emailVerificationLink
+     * @param User $user
+     * @param EmailVerification $emailVerificationLink
      * @return mixed
      */
-    public function view(User $user, EmailVerificationLink $emailVerificationLink)
+    public function view(User $user, EmailVerification $emailVerificationLink)
     {
         //
     }
@@ -36,7 +37,7 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @return mixed
      */
     public function create(User $user)
@@ -47,11 +48,11 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\EmailVerificationLink  $emailVerificationLink
+     * @param User $user
+     * @param  EmailVerification  $emailVerificationLink
      * @return mixed
      */
-    public function update(User $user, EmailVerificationLink $emailVerificationLink)
+    public function update(User $user, EmailVerification $emailVerificationLink)
     {
         //
     }
@@ -59,11 +60,11 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\EmailVerificationLink  $emailVerificationLink
+     * @param User $user
+     * @param  EmailVerification  $emailVerificationLink
      * @return mixed
      */
-    public function delete(User $user, EmailVerificationLink $emailVerificationLink)
+    public function delete(User $user, EmailVerification $emailVerificationLink)
     {
         //
     }
@@ -71,11 +72,11 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\EmailVerificationLink  $emailVerificationLink
+     * @param User $user
+     * @param  EmailVerification  $emailVerificationLink
      * @return mixed
      */
-    public function restore(User $user, EmailVerificationLink $emailVerificationLink)
+    public function restore(User $user, EmailVerification $emailVerificationLink)
     {
         //
     }
@@ -83,11 +84,11 @@ class EmailVerificationPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\EmailVerificationLink  $emailVerificationLink
+     * @param User $user
+     * @param  EmailVerification  $emailVerificationLink
      * @return mixed
      */
-    public function forceDelete(User $user, EmailVerificationLink $emailVerificationLink)
+    public function forceDelete(User $user, EmailVerification $emailVerificationLink)
     {
         //
     }
