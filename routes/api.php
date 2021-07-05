@@ -24,3 +24,5 @@ Route::apiResources([
     "users"=>UserController::class,
     "sharedsaves"=>SharedSaveController::class,
 ]);
+
+Route::get('users/{user}/saves','App\Http\Controllers\UserSavesController@index');
