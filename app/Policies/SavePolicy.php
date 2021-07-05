@@ -15,9 +15,9 @@ class SavePolicy
      * Determine whether the user can view any models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return true;
     }
@@ -27,9 +27,9 @@ class SavePolicy
      *
      * @param User $user
      * @param Save $save
-     * @return mixed
+     * @return boolean
      */
-    public function view(User $user, Save $save)
+    public function view(User $user, Save $save): bool
     {
         return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
     }
@@ -38,9 +38,9 @@ class SavePolicy
      * Determine whether the user can create models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return true;
     }
@@ -50,9 +50,9 @@ class SavePolicy
      *
      * @param User $user
      * @param Save $save
-     * @return mixed
+     * @return boolean
      */
-    public function update(User $user, Save $save)
+    public function update(User $user, Save $save): bool
     {
         return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_WRITE);
     }
@@ -62,9 +62,9 @@ class SavePolicy
      *
      * @param User $user
      * @param Save $save
-     * @return mixed
+     * @return boolean
      */
-    public function delete(User $user, Save $save)
+    public function delete(User $user, Save $save): bool
     {
         return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
@@ -74,9 +74,9 @@ class SavePolicy
      *
      * @param User $user
      * @param Save $save
-     * @return mixed
+     * @return boolean
      */
-    public function restore(User $user, Save $save)
+    public function restore(User $user, Save $save): bool
     {
         //TODO
         return false;
@@ -87,9 +87,9 @@ class SavePolicy
      *
      * @param User $user
      * @param Save $save
-     * @return mixed
+     * @return boolean
      */
-    public function forceDelete(User $user, Save $save)
+    public function forceDelete(User $user, Save $save): bool
     {
         //TODO
         return false;

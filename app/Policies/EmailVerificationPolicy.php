@@ -15,9 +15,9 @@ class EmailVerificationPolicy
      * Determine whether the user can view any models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         //
     }
@@ -27,9 +27,9 @@ class EmailVerificationPolicy
      *
      * @param User $user
      * @param EmailVerification $emailVerificationLink
-     * @return mixed
+     * @return boolean
      */
-    public function view(User $user, EmailVerification $emailVerificationLink)
+    public function viewboolean(User $user, EmailVerification $emailVerificationLink): bool
     {
         //
     }
@@ -38,9 +38,9 @@ class EmailVerificationPolicy
      * Determine whether the user can create models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         //
     }
@@ -50,9 +50,9 @@ class EmailVerificationPolicy
      *
      * @param User $user
      * @param  EmailVerification  $emailVerificationLink
-     * @return mixed
+     * @return boolean
      */
-    public function update(User $user, EmailVerification $emailVerificationLink)
+    public function update(User $user, EmailVerification $emailVerificationLink): bool
     {
         //
     }
@@ -62,9 +62,9 @@ class EmailVerificationPolicy
      *
      * @param User $user
      * @param  EmailVerification  $emailVerificationLink
-     * @return mixed
+     * @return boolean
      */
-    public function delete(User $user, EmailVerification $emailVerificationLink)
+    public function delete(User $user, EmailVerification $emailVerificationLink): bool
     {
         //
     }
@@ -74,9 +74,9 @@ class EmailVerificationPolicy
      *
      * @param User $user
      * @param  EmailVerification  $emailVerificationLink
-     * @return mixed
+     * @return boolean
      */
-    public function restore(User $user, EmailVerification $emailVerificationLink)
+    public function restore(User $user, EmailVerification $emailVerificationLink): bool
     {
         //
     }
@@ -86,9 +86,9 @@ class EmailVerificationPolicy
      *
      * @param User $user
      * @param  EmailVerification  $emailVerificationLink
-     * @return mixed
+     * @return boolean
      */
-    public function forceDelete(User $user, EmailVerification $emailVerificationLink)
+    public function forceDelete(User $user, EmailVerification $emailVerificationLink): bool
     {
         //
     }
