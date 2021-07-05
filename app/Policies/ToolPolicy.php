@@ -18,7 +18,7 @@ class ToolPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class ToolPolicy
      */
     public function view(User $user, Tool $tool)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class ToolPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +53,7 @@ class ToolPolicy
      */
     public function update(User $user, Tool $tool)
     {
-        //
+        return false;
     }
 
     /**
@@ -65,7 +65,7 @@ class ToolPolicy
      */
     public function delete(User $user, Tool $tool)
     {
-        //
+        return false;
     }
 
     /**
@@ -77,7 +77,7 @@ class ToolPolicy
      */
     public function restore(User $user, Tool $tool)
     {
-        //
+        return false;
     }
 
     /**
@@ -89,6 +89,6 @@ class ToolPolicy
      */
     public function forceDelete(User $user, Tool $tool)
     {
-        //
+        return false;
     }
 }

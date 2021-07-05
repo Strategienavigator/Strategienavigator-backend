@@ -66,7 +66,7 @@ class SavePolicy
      */
     public function delete(User $user, Save $save)
     {
-        //
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
