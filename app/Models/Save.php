@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helper\PermissionHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -124,5 +125,23 @@ class Save extends Model
     public function invitationLinks(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(InvitationLink::class);
+    }
+
+    /**
+     * checks if the given user and save combination has at leas the given permission
+     * @param User $user
+     * @param Save $save
+     */
+    public function hasAtLeasPermission(User $user, int $permission){
+        if ($user->id === $this->owner_id) {
+            return true;
+        } else if (($contributor = $this->contributors()->firstWhere('user_id', '=', $user->id)) !== null) {
+            $hasPermission = $contributor->pivot->permission;
+            if(PermissionHelper::isAtLeastPermission($hasPermission, $permission)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

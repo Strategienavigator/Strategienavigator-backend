@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Helper\PermissionHelper;
 use App\Models\Save;
-use App\Models\SharedSave;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,7 +19,7 @@ class SavePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -32,7 +31,7 @@ class SavePolicy
      */
     public function view(User $user, Save $save)
     {
-        return $this->hasAtLeasPermission($user,$save,PermissionHelper::$PERMISSION_READ);
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
     }
 
     /**
@@ -55,7 +54,7 @@ class SavePolicy
      */
     public function update(User $user, Save $save)
     {
-        return $this->hasAtLeasPermission($user,$save,PermissionHelper::$PERMISSION_WRITE);
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_WRITE);
     }
 
     /**
@@ -68,24 +67,6 @@ class SavePolicy
     public function delete(User $user, Save $save)
     {
         //
-    }
-
-    /**
-     * checks if the given user and save combination has at leas the given permission
-     * @param User $user
-     * @param Save $save
-     */
-    private function hasAtLeasPermission(User $user, Save $save, int $permission){
-        if ($user->id === $save->owner_id) {
-            return true;
-        } else if (($contributor = $save->contributors()->firstWhere('user_id', '=', $user->id)) !== null) {
-            $hasPermission = $contributor->pivot->permission;
-            if(PermissionHelper::isAtLeastPermission($hasPermission, $permission)){
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**

@@ -13,7 +13,7 @@ use Laravel\Passport\HasApiTokens;
  *
  * @property int $id
  * @property string $username
- * @property int $anonym
+ * @property boolean $anonym
  * @property string $joined_at
  * @property string|null $last_login
  * @property string $email

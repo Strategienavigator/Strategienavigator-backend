@@ -2,7 +2,9 @@
 
 namespace App\Policies;
 
+use App\Helper\PermissionHelper;
 use App\Models\InvitationLink;
+use App\Models\Save;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -14,11 +16,11 @@ class InvitationLinkPolicy
      * Determine whether the user can view any models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user):bool
     {
-        //
+        return false;
     }
 
     /**
@@ -26,22 +28,22 @@ class InvitationLinkPolicy
      *
      * @param User $user
      * @param InvitationLink $invitationLink
-     * @return mixed
+     * @return boolean
      */
-    public function view(User $user, InvitationLink $invitationLink)
+    public function view(User $user, InvitationLink $invitationLink):bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param User $user
-     * @return mixed
+     * @return boolean
      */
-    public function create(User $user)
+    public function create(User $user, Save $save):bool
     {
-        //
+        return !$user->anonym && $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -49,11 +51,11 @@ class InvitationLinkPolicy
      *
      * @param User $user
      * @param InvitationLink $invitationLink
-     * @return mixed
+     * @return boolean
      */
-    public function update(User $user, InvitationLink $invitationLink)
+    public function update(User $user, InvitationLink $invitationLink):bool
     {
-        //
+        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -61,34 +63,10 @@ class InvitationLinkPolicy
      *
      * @param User $user
      * @param InvitationLink $invitationLink
-     * @return mixed
+     * @return boolean
      */
-    public function delete(User $user, InvitationLink $invitationLink)
+    public function delete(User $user, InvitationLink $invitationLink): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param User $user
-     * @param InvitationLink $invitationLink
-     * @return mixed
-     */
-    public function restore(User $user, InvitationLink $invitationLink)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param User $user
-     * @param InvitationLink $invitationLink
-     * @return mixed
-     */
-    public function forceDelete(User $user, InvitationLink $invitationLink)
-    {
-        //
+        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 }
