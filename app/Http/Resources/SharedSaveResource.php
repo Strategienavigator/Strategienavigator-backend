@@ -14,6 +14,10 @@ class SharedSaveResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "user"=>$this->user_id,
+            "save"=>$this->save_id,
+            "permission"=>$this->permission,
+        ];
     }
 }

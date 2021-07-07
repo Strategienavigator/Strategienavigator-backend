@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SaveResource;
 use App\Models\Save;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class SaveController extends Controller
@@ -12,11 +14,11 @@ class SaveController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return AnonymousResourceCollection
      */
-    public function index(): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        return response()->json(Save::all());
+        return SaveResource::collection(Save::all());
     }
 
     /**
@@ -36,11 +38,11 @@ class SaveController extends Controller
      * Display the specified resource.
      *
      * @param Save $save
-     * @return JsonResponse
+     * @return SaveResource
      */
-    public function show(Save $save): JsonResponse
+    public function show(Save $save): SaveResource
     {
-        return response()->json($save);
+        return new SaveResource($save);
     }
 
     /**
