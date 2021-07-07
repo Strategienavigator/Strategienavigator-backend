@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSharedSafeTable extends Migration
+class CreateSharedSaveTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSharedSafeTable extends Migration
      */
     public function up()
     {
-        Schema::create('shared_safe', function (Blueprint $table) {
+        Schema::create('shared_save', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained();
             $table->foreignId("save_id")->constrained();
@@ -30,6 +30,6 @@ class CreateSharedSafeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shared_safe');
+        Schema::dropIfExists('shared_save');
     }
 }

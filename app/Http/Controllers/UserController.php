@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,11 +15,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(): JsonResponse
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return response()->json(User::all());
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -39,11 +41,11 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return JsonResponse
+     * @return UserResource
      */
-    public function show(User $user): JsonResponse
+    public function show(User $user): UserResource
     {
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     /**

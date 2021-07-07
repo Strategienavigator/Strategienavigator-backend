@@ -18,8 +18,22 @@ class UserResource extends JsonResource
             "id" => $this->id,
             "username" => $this->username,
             "anonym" => $this->anonym,
-            "email" => $this->when($request->user()->id === $this->id, $this->email),
+            //"email" => $this->when($request->user()->id === $this->id, $this->email),
+            "email" => $this->email,
             "created_at" => $this->created_at,
+            "owned_saves"=>$this->saves->map(function($s){
+                return $s->id;
+            })->toArray(),
+            "shared_saves" =>$this->accessibleShares->map(function($s){
+                return $s->id;
+            })->toArray(),
+            /*"invitations" => $this->when($request->user()->id === $this->id,$this->invitations->map(function($inv){
+                return $inv->id;
+            })->toArray())*/
+            "invitations" => $this->invitations->map(function($inv){
+                return $inv->id;
+            })->toArray()
+
         ];
     }
 }

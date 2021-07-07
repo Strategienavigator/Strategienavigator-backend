@@ -117,7 +117,7 @@ class User extends Authenticatable
     public function accessibleShares(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         //TODO check if withPivot must contain "accepted" to make withPivotValue work
-        return $this->belongsToMany(Save::class, 'shared_safe')->using(SharedSave::class)
+        return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission","accepted"])
             ->withPivotValue("accepted",true)
             ->withTimestamps();

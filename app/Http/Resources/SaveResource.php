@@ -21,6 +21,9 @@ class SaveResource extends JsonResource
             "last_locked"=>$this->last_locked,
             "owner_id"=>$this->owner_id,
             "tool_id"=>$this->tool_id,
+            "contributors"=>$this->contributors->map(function($c){
+                return $c->id;
+            })->toArray()
         ];
     }
 }

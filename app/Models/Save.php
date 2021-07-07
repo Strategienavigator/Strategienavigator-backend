@@ -116,7 +116,7 @@ class Save extends Model
 
     public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'shared_safe')->using(SharedSave::class)
+        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission","accepted"])
             ->withPivotValue("accepted",true)
             ->withTimestamps();
