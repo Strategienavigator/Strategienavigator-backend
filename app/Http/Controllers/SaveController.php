@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\SaveResource;
 use App\Models\Save;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -18,6 +19,8 @@ class SaveController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
+        $this->authorize("viewAny",Save::class);
+
         return SaveResource::collection(Save::all());
     }
 
@@ -29,7 +32,18 @@ class SaveController extends Controller
      */
     public function store(Request $request): Response
     {
-        $s = new Save($request->toArray());
+
+        $this->authorize("create",Save::class);
+
+        $validate = $request->validate([
+            "data"=>"nullable|json",
+            "tool_id"=>"required|exists:tools,id"
+        ]);
+
+
+        $s = new Save($validate);
+        $s->tool_id = $validate["tool_id"];
+        $s->owner_id = $request->user()->id;
         $s->save();
         return response()->created('saves',$s);
     }
@@ -42,6 +56,8 @@ class SaveController extends Controller
      */
     public function show(Save $save): SaveResource
     {
+        $save->last_opened = Carbon::now();
+        $save->save();
         return new SaveResource($save);
     }
 

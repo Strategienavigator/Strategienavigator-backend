@@ -59,12 +59,7 @@ class Save extends Model
      * @var array
      */
     protected $fillable = [
-        'last_opened',
-        'last_locked',
-        'locked_by_id',
         'data',
-        'tool_id',
-        'owner_id'
     ];
 
     /**
