@@ -49,6 +49,10 @@ use Laravel\Passport\HasApiTokens;
  * @property-read int|null $is_locking_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $saves
  * @property-read int|null $saves_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read int|null $clients_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read int|null $tokens_count
  */
 class User extends Authenticatable
 {

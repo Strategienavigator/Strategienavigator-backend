@@ -13,6 +13,20 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @mixin \Eloquent
  * @property-read \App\Models\Save $safe
  * @property-read \App\Models\User $user
+ * @property int $id
+ * @property int $user_id
+ * @property int $save_id
+ * @property int $permission
+ * @property int $accepted
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereAccepted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave wherePermission($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereSaveId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUserId($value)
  */
 class SharedSave extends Pivot
 {

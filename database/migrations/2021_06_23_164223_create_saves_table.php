@@ -17,6 +17,7 @@ class CreateSavesTable extends Migration
             $table->id();
 
             $table->jsonb('data')->nullable();
+            $table->string("name");
             $table->foreignId('tool_id')->constrained('tools')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreignId('owner_id')->constrained('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreignId('locked_by_id')->nullable()->constrained('users')->onUpdate('CASCADE')->onDelete('SET NULL');

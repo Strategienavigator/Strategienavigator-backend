@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * App\Models\Save
  *
  * @property int $id
+ * @property string $name
  * @property string|null $last_opened
  * @property mixed|null $data
  * @property int $tool_id
@@ -48,6 +49,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Save whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Save withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()
+ * @method static \Database\Factories\SaveFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Save whereName($value)
  */
 class Save extends Model
 {
@@ -60,6 +63,7 @@ class Save extends Model
      */
     protected $fillable = [
         'data',
+        'name',
     ];
 
     /**
