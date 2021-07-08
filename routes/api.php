@@ -23,4 +23,7 @@ Route::group(["middleware"=>"auth:api"],function (){
         "saves"=>SaveController::class,
         "users"=>UserController::class,
     ]);
+    Route::get('users/{user}/saves','App\Http\Controllers\UserSavesController@index');
 });
+
+
