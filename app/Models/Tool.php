@@ -33,6 +33,7 @@ class Tool extends Model
      * @var array
      */
     protected $fillable = [
+        "name"
     ];
 
     /**

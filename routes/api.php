@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::apiResources([
-    "tools"=>ToolController::class,
-    "saves"=>SaveController::class,
-    "users"=>UserController::class,
-    "sharedsaves"=>SharedSaveController::class,
-]);
+Route::group(["middleware"=>"auth:api"],function (){
+    Route::apiResources([
+        "tools"=>ToolController::class,
+        "saves"=>SaveController::class,
+        "users"=>UserController::class,
+    ]);
+});

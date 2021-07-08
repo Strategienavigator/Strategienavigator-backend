@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
+use Laravel\Passport\RouteRegistrar;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,7 +29,14 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         if(! $this->app->routesAreCached()){
-            Passport::routes();
+            Passport::routes(function(RouteRegistrar $router){
+                // manuelle registrierung, da die restlichen nicht benötigt werden
+                Route::post('/token', [
+                    'uses' => 'AccessTokenController@issueToken',
+                    'as' => 'passport.token',
+                    'middleware' => 'throttle',
+                ]);
+            });
         }
 
         //
