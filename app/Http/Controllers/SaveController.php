@@ -19,7 +19,7 @@ class SaveController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $this->authorize("viewAny",Save::class);
+        $this->authorize("viewAny", Save::class);
 
         return SaveResource::collection(Save::all());
     }
@@ -33,11 +33,11 @@ class SaveController extends Controller
     public function store(Request $request): Response
     {
 
-        $this->authorize("create",Save::class);
+        $this->authorize("create", Save::class);
 
         $validate = $request->validate([
-            "data"=>"nullable|json",
-            "tool_id"=>"required|exists:tools,id"
+            "data" => "nullable|json",
+            "tool_id" => "required|exists:tools,id"
         ]);
 
 
@@ -45,7 +45,7 @@ class SaveController extends Controller
         $s->tool_id = $validate["tool_id"];
         $s->owner_id = $request->user()->id;
         $s->save();
-        return response()->created('saves',$s);
+        return response()->created('saves', $s);
     }
 
     /**
@@ -56,6 +56,7 @@ class SaveController extends Controller
      */
     public function show(Save $save): SaveResource
     {
+        $this->authorize("view", $save);
         $save->last_opened = Carbon::now();
         $save->save();
         return new SaveResource($save);
@@ -70,7 +71,29 @@ class SaveController extends Controller
      */
     public function update(Request $request, Save $save): Response
     {
-        $save->fill($request->toArray());
+        $this->authorize("update", $save);
+        $validated = $request->validate([
+            "data" => "json",
+            "name" => "string",
+            "locked_by_id" => "exists:users,id",
+        ]);
+
+        if (key_exists("locked_by_id", $validated)) {
+
+            if (is_null($save->locked_by_id) || $save->owner_id === $request->user()->id) {
+                $save->last_locked = Carbon::now();
+                $save->locked_by_id = $validated["locked_by_id"];
+            } else {
+                return response()->noContent(Response::HTTP_FAILED_DEPENDENCY);
+            }
+        }
+
+        if(is_null($save->locked_by_id) || $save->locked_by_id === $request->user()->id){
+            $save->fill($validated);
+        }else{
+            return response()->noContent(Response::HTTP_FAILED_DEPENDENCY);
+        }
+
         $save->save();
         return response()->noContent(Response::HTTP_OK);
     }

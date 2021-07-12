@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Save extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -81,7 +81,7 @@ class Save extends Model
      */
     protected $casts = [
         'last_locked' => 'datetime',
-        'last_opened' => 'datetime',
+        'last_opened' => 'datetime'
     ];
 
 
@@ -103,21 +103,21 @@ class Save extends Model
     public function invited(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'invite')->using(SharedSave::class)->as("invitation")
-            ->withPivot(["permission","accepted"])
-            ->withPivotValue("accepted",false)
+            ->withPivot(["permission", "accepted"])
+            ->withPivotValue("accepted", false)
             ->withTimestamps();
     }
 
     public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(SharedSave::class)->where("accepted" , '=',false);
+        return $this->hasMany(SharedSave::class)->where("accepted", '=', false);
     }
 
     public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission","accepted"])
-            ->withPivotValue("accepted",true)
+            ->withPivot(["permission", "accepted"])
+            ->withPivotValue("accepted", true)
             ->withTimestamps();
     }
 
@@ -131,12 +131,13 @@ class Save extends Model
      * @param User $user
      * @param Save $save
      */
-    public function hasAtLeasPermission(User $user, int $permission){
+    public function hasAtLeasPermission(User $user, int $permission)
+    {
         if ($user->id === $this->owner_id) {
             return true;
         } else if (($contributor = $this->contributors()->firstWhere('user_id', '=', $user->id)) !== null) {
             $hasPermission = $contributor->pivot->permission;
-            if(PermissionHelper::isAtLeastPermission($hasPermission, $permission)){
+            if (PermissionHelper::isAtLeastPermission($hasPermission, $permission)) {
                 return true;
             }
         }

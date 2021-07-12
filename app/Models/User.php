@@ -15,7 +15,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $username
  * @property boolean $anonym
  * @property string $joined_at
- * @property string|null $last_login
+ * @property string|null $last_activity
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -64,8 +64,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username',
-        'last_login'
+        'username'
     ];
 
     /**
@@ -75,7 +74,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'last_login',
+        'last_activity',
     ];
 
     /**
@@ -85,7 +84,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'last_login' => 'datetime',
+        'last_activity' => 'datetime',
         'anonym' => 'boolean'
     ];
 
