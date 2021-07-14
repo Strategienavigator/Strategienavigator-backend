@@ -67,35 +67,49 @@ class SaveController extends Controller
      *
      * @param Request $request
      * @param Save $save
-     * @return Response
+     * @return Response|JsonResponse
      */
     public function update(Request $request, Save $save): Response
     {
         $this->authorize("update", $save);
-        $validated = $request->validate([
-            "data" => "json",
-            "name" => "string",
-            "locked_by_id" => "exists:users,id",
-        ]);
+        $user = $request->user()->id;
 
-        if (key_exists("locked_by_id", $validated)) {
+        if ($request->has("lock")) {
 
-            if (is_null($save->locked_by_id) || $save->owner_id === $request->user()->id) {
-                $save->last_locked = Carbon::now();
-                $save->locked_by_id = $validated["locked_by_id"];
+            $validated = $request->validate([
+                "lock" => "required|boolean",
+                "data" => "prohibited",
+                "name" => "prohibited"
+            ]);
+
+            if (is_null($save->locked_by_id) || $save->owner_id === $user->id) {
+                if($validated["lock"]){
+                    $save->locked_by_id = $user->id;
+                    $save->last_locked = Carbon::now();
+                }else{
+                    $save->locked_by_id = null;
+                }
+
+                $save->save();
+                return response()->noContent(Response::HTTP_OK);
+            }else{
+                return response()->noContent(Response::HTTP_CONFLICT);
+            }
+        } else {
+            $validated = $request->validate([
+                "data" => "nullable|json",
+                "name" => "string",
+                "lock" => "prohibited"
+            ]);
+
+            if ($save->locked_by_id === $user->id) {
+                $save->fill($validated);
+                $save->save();
+                return response()->noContent(Response::HTTP_OK);
             } else {
-                return response()->noContent(Response::HTTP_FAILED_DEPENDENCY);
+                return response()->noContent(Response::HTTP_CONFLICT);
             }
         }
-
-        if(is_null($save->locked_by_id) || $save->locked_by_id === $request->user()->id){
-            $save->fill($validated);
-        }else{
-            return response()->noContent(Response::HTTP_FAILED_DEPENDENCY);
-        }
-
-        $save->save();
-        return response()->noContent(Response::HTTP_OK);
     }
 
     /**
@@ -104,8 +118,10 @@ class SaveController extends Controller
      * @param Save $save
      * @return Response
      */
-    public function destroy(Save $save): Response
+    public
+    function destroy(Save $save): Response
     {
+        $this->authorize("delete", $save);
         $save->delete();
         return response()->noContent(Response::HTTP_OK);
     }
