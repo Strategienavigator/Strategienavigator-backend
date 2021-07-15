@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\EmailVerification;
 use App\Models\User;
+use App\Services\EmailService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,7 @@ class UserController extends Controller
      */
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $this->authorize("viewAny",User::class);
+        $this->authorize("viewAny", User::class);
         return UserResource::collection(User::simplePaginate());
     }
 
@@ -29,13 +36,22 @@ class UserController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request, EmailService $emailService): Response
     {
-        $u = new User($request->toArray());
-        $u->anonym = false;
-        $u->password = Hash::make($request['password']);
-        $u->save();
-        return response()->created('users',$u);
+        $this->authorize("create", User::class);
+
+        $validated = \Validator::validate($request->all(), [
+            "username" => ["required", "string", "unique:users"],
+            // regex from https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ (added some back slashes)
+            "password" => ["required", "string", "min:7", "regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?\/~_+-=\|]).+$/"],
+            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+        ], [
+            "password.regex" => __("passwords.invalid_regex")
+        ]);
+
+        $u = new User();
+        $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+        return response()->created('users', $u);
     }
 
     /**
@@ -46,6 +62,8 @@ class UserController extends Controller
      */
     public function show(User $user): UserResource
     {
+        $this->authorize("view",$user);
+
         return new UserResource($user);
     }
 
@@ -56,10 +74,20 @@ class UserController extends Controller
      * @param User $user
      * @return Response
      */
-    public function update(Request $request, User $user): Response
+    public function update(Request $request, User $user, EmailService $emailService): Response
     {
-        $user->fill($request->toArray());
-        $user->save();
+        $this->authorize("update", $user);
+
+        $validated = \Validator::validate($request->all(), [
+            "username" => ["string", "unique:users"],
+            // regex from https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ (added some back slashes)
+            "password" => ["string", "min:7", "regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?\/~_+-=\|]).+$/"],
+            "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+        ], [
+            "password.regex" => __("passwords.invalid_regex")
+        ]);
+
+        $this->updateUser($user, $validated, $emailService);
         return response()->noContent(Response::HTTP_OK);
     }
 
@@ -71,7 +99,34 @@ class UserController extends Controller
      */
     public function destroy(User $user): Response
     {
+        $this->authorize("delete",$user);
         $user->delete();
         return response()->noContent(Response::HTTP_OK);
+    }
+
+
+    /**
+     * does update the given user model with the given data. If the email is changed
+     * @param User $u a user model
+     * @param array $data array with the new data
+     * @param EmailService $emailService the email service
+     */
+    private function updateUser(User $u, array $data, EmailService $emailService)
+    {
+        $u->fill($data);
+        if (key_exists("password", $data)) {
+            $u->password = $data["password"];
+        }
+
+        if (key_exists("anonym", $data)) {
+            $u->anonym = $data["anonym"];
+        }
+
+        $u->save();
+        if (key_exists("email", $data)) {
+            $emailService->requestEmailChangeOfUser($u, $data["email"]);
+        }
+
+
     }
 }

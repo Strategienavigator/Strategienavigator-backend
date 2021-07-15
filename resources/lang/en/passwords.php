@@ -18,5 +18,6 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
+    'invalid_regex' => 'The password must contain at least one lower case letter, one upper case letter, one number and one special character.'
 
 ];

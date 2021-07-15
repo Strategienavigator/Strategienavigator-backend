@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -88,41 +92,45 @@ class User extends Authenticatable
         'anonym' => 'boolean'
     ];
 
-    public function saves(): \Illuminate\Database\Eloquent\Relations\HasMany
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes["password"] = Hash::make($value);
+    }
+
+    public function saves(): HasMany
     {
         return $this->hasMany(Save::class, 'owner_id');
     }
 
-    public function isLocking(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function isLocking(): HasMany
     {
         return $this->hasMany(Save::class, 'locked_by_id');
     }
 
-    public function emailVerification(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function emailVerification(): HasOne
     {
         return $this->hasOne(EmailVerification::class);
     }
 
-    public function invitedSaves(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function invitedSaves(): BelongsToMany
     {
-        //TODO check if withPivot must contain "accepted" to make withPivotValue work
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission","accepted"])
-            ->withPivotValue("accepted",false)
+            ->withPivot(["permission"])
+            ->withPivotValue("accepted", false)
             ->withTimestamps();
     }
 
-    public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function invitations(): HasMany
     {
-        return $this->hasMany(SharedSave::class)->where('accepted','=',false);
+        return $this->hasMany(SharedSave::class)->where('accepted', '=', false);
     }
 
-    public function accessibleShares(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function accessibleShares(): BelongsToMany
     {
-        //TODO check if withPivot must contain "accepted" to make withPivotValue work
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission","accepted"])
-            ->withPivotValue("accepted",true)
+            ->withPivot(["permission"])
+            ->withPivotValue("accepted", true)
             ->withTimestamps();
     }
 

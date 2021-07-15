@@ -35,7 +35,6 @@ class EmailVerification extends Model
      * @var array
      */
     protected $fillable = [
-        'email',
     ];
 
     /**
