@@ -10,8 +10,8 @@ class UserSavesController extends Controller
     public function index(User $user)
     {
 
-        $saves = $user->saves;
-        foreach ($saves as $s) {
+        $saves = $user->saves()->simplePaginate();
+        foreach ($saves->items() as $s) {
             $this->authorize("view", $s);
         }
         return SimpleSaveResource::collection($saves);

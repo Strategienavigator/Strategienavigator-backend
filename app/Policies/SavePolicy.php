@@ -19,7 +19,7 @@ class SavePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return env('APP_DEBUG'); // TODO change to false
     }
 
     /**

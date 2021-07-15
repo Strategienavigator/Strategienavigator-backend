@@ -19,7 +19,8 @@ class UserController extends Controller
      */
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return UserResource::collection(User::all());
+        $this->authorize("viewAny",User::class);
+        return UserResource::collection(User::simplePaginate());
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\SaveResource;
+use App\Http\Resources\SimpleSaveResource;
 use App\Models\Save;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +22,7 @@ class SaveController extends Controller
     {
         $this->authorize("viewAny", Save::class);
 
-        return SaveResource::collection(Save::all());
+        return SimpleSaveResource::collection(Save::simplePaginate());
     }
 
     /**

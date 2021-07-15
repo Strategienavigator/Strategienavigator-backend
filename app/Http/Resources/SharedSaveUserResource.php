@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SharedSaveResource extends JsonResource
+class SharedSaveUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,8 @@ class SharedSaveResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "user"=>$this->user_id,
-            "save"=>$this->save_id,
-            "permission"=>$this->permission,
-            "accepted" => $this->accepted,
+            "save_id"=>$this->id,
+            "permission"=>$this->pivot->permission,
         ];
     }
 }
