@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationLinkController;
 use App\Http\Controllers\SaveController;
 use App\Http\Controllers\SharedSaveController;
 use App\Http\Controllers\ToolController;
@@ -22,6 +23,7 @@ Route::group(["middleware"=>"auth:api"],function (){
         "tools"=>ToolController::class,
         "saves"=>SaveController::class,
         "users"=>UserController::class,
+        "invitation_link"=>InvitationLinkController::class,
     ]);
     Route::get('users/{user}/saves','App\Http\Controllers\UserSavesController@index');
     Route::get("checkUsername", 'App\Http\Controllers\UserController@checkUsername');
