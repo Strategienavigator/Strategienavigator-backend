@@ -22,7 +22,7 @@ class SaveController extends Controller
     {
         $this->authorize("viewAny", Save::class);
 
-        return SimpleSaveResource::collection(Save::simplePaginate());
+        return SimpleSaveResource::collection(Save::with("contributorss")->simplePaginate());
     }
 
     /**

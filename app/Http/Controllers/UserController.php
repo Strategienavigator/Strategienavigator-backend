@@ -7,13 +7,9 @@ use App\Http\Resources\UserResource;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Services\EmailService;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -27,7 +23,7 @@ class UserController extends Controller
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $this->authorize("viewAny", User::class);
-        return UserResource::collection(User::simplePaginate());
+        return UserResource::collection(User::with(['saves','invitedSaves','accessibleShares'])->whereNotNull("email_verified_at")->simplePaginate());
     }
 
     /**
@@ -105,6 +101,17 @@ class UserController extends Controller
     }
 
 
+    public function checkUsername(Request $request):JsonResponse{
+        $validated = $request->validate([
+            "username" => ["string","required"]
+        ]);
+        return response()->json(["data" =>[
+            "available" => User::whereUsername($validated["username"])->count()==0
+        ]]);
+
+    }
+
+
     /**
      * does update the given user model with the given data. If the email is changed
      * @param User $u a user model
@@ -126,7 +133,5 @@ class UserController extends Controller
         if (key_exists("email", $data)) {
             $emailService->requestEmailChangeOfUser($u, $data["email"]);
         }
-
-
     }
 }

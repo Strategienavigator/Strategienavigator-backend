@@ -10,7 +10,7 @@ class UserSavesController extends Controller
     public function index(User $user)
     {
 
-        $saves = $user->saves()->simplePaginate();
+        $saves = $user->saves()->with(["contributors"])->simplePaginate();
         foreach ($saves->items() as $s) {
             $this->authorize("view", $s);
         }
