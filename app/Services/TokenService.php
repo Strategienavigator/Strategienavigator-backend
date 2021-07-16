@@ -8,7 +8,7 @@ class TokenService
 {
 
 
-    public function getToken():string{
+    public function createToken():string{
 
     }
 

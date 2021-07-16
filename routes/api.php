@@ -22,11 +22,14 @@ Route::group(["middleware"=>"auth:api"],function (){
     Route::apiResources([
         "tools"=>ToolController::class,
         "saves"=>SaveController::class,
-        "users"=>UserController::class,
         "invitation_link"=>InvitationLinkController::class,
     ]);
+
+
+    // Users
     Route::get('users/{user}/saves','App\Http\Controllers\UserSavesController@index');
     Route::get("checkUsername", 'App\Http\Controllers\UserController@checkUsername');
+    Route::apiResource('users',UserController::class);
 });
 
 

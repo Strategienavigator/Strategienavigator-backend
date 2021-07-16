@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\AuthTokenController;
+use App\Policies\AuthTokenPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RouteRegistrar;
+use Laravel\Passport\Token;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Token::class => AuthTokenPolicy::class
     ];
 
     /**
@@ -28,14 +32,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        if(! $this->app->routesAreCached()){
-            Passport::routes(function(RouteRegistrar $router){
+        if (!$this->app->routesAreCached()) {
+            Passport::routes(function (RouteRegistrar $router) {
                 // manuelle registrierung, da die restlichen nicht benötigt werden
                 Route::post('/token', [
                     'uses' => 'AccessTokenController@issueToken',
                     'as' => 'passport.token',
                     'middleware' => 'throttle',
                 ]);
+
+                Route::delete('/token/{token_id}', [AuthTokenController::class, 'delete'])
+                    ->middleware('auth:api')
+                    ->name('passport.token.delete');
             });
         }
 
