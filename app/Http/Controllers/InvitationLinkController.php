@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
+use App\Models\Save;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -38,15 +39,13 @@ class InvitationLinkController extends Controller
 
         $validate = $request->validate([
             "expiry_date" => "required|date",
-            "permission" => "required|numeric",
-            "save_id" => "required|numeric"
+            "permission" => "required|numeric|min:0|max:2",
+            "save_id" => "required|exists:saves,id"
         ]);
 
 
         $invitation_link = new InvitationLink($validate);
-        $invitation_link->expiry_date = $request->expiry_date;
-        $invitation_link->permission = $request->permission;
-        $invitation_link->save_id = $request->save_id;
+        $invitation_link->save_id = $validate["save_id"];
         $invitation_link->save();
         return response()->created('invitation_link', $invitation_link);
     }
@@ -76,9 +75,8 @@ class InvitationLinkController extends Controller
         $this->authorize("update", $invitation_link);
 
         $validate = $request->validate([
-            "expiry_date" => "required|date",
-            "permission" => "required|numeric",
-            "save_id" => "required|numeric"
+            "expiry_date" => "date",
+            "permission" => "numeric|min:1|max:2"
         ]);
 
         $invitation_link->fill($validate);
