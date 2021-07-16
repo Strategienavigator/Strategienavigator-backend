@@ -20,7 +20,7 @@ class InvitationLinkPolicy
      */
     public function viewAny(User $user):bool
     {
-        return false;
+        return env("APP_DEBUG");
     }
 
     /**
