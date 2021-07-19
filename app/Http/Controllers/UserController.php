@@ -78,7 +78,7 @@ class UserController extends Controller
             "username" => ["string", "unique:users"],
             // regex from https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ (added some back slashes)
             "password" => ["string", "min:7", "regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?\/~_+-=\|]).+$/"],
-            "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+            // "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);

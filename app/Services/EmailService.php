@@ -26,8 +26,9 @@ class EmailService
         $emailVerification = new EmailVerification();
         $emailVerification->email = $email;
 
-        // TODO create token and send email to user
-        // $emailVerification->token = $this->tokenService->getToken();
+        $emailVerification->token = $this->tokenService->createToken();
+
+
         $user->emailVerification()->save($emailVerification);
     }
 }

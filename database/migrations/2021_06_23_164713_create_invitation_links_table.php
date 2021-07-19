@@ -15,6 +15,7 @@ class CreateInvitationLinksTable extends Migration
     {
         Schema::create('invitation_links', function (Blueprint $table) {
             $table->id();
+            $table->string("token")->unique()->index();
             $table->date("expiry_date");
             $table->integer("permission");
             $table->foreignId("save_id")->constrained();
