@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
 use App\Models\Save;
+use App\Models\SharedSave;
+use App\Models\User;
+use App\Services\TokenService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,9 +37,9 @@ class InvitationLinkController extends Controller
      */
     public function store(Request $request): Response
     {
-
-        $this->authorize("create", InvitationLink::class);
-
+        // TODO Bitte die authorisierung prüfen
+        // $this->authorize("create", InvitationLink::class);
+        $tokenService = new TokenService();
         $validate = $request->validate([
             "expiry_date" => "required|date",
             "permission" => "required|numeric|min:0|max:2",
@@ -46,6 +49,7 @@ class InvitationLinkController extends Controller
 
         $invitation_link = new InvitationLink($validate);
         $invitation_link->save_id = $validate["save_id"];
+        $invitation_link->token = $tokenService->createToken();
         $invitation_link->save();
         return response()->created('invitation_link', $invitation_link);
     }
@@ -86,14 +90,42 @@ class InvitationLinkController extends Controller
 
     }
 
+    public function saveIndex(Save $save): AnonymousResourceCollection {
+
+        // TODO Bitte die authorisierung prüfen
+        $this->authorize("view", $save);
+
+
+        return InvitationLinkResource::collection($save->invitationLinks);
+    }
+
+    public function acceptInvite(Request $request): Response {
+
+        $user = $request->user();
+        $invitationLink = InvitationLink::where('token', '=', '' . $request->token)->firstOrFail();
+        $save = Save::find($invitationLink->save_id);
+
+        $sharedSave = new SharedSave();
+        $sharedSave->user_id = $user->id;
+        $sharedSave->save_id = $save->id;
+
+        $sharedSave->permission = $invitationLink->permission;
+
+        $sharedSave->accepted = true;
+        $sharedSave->save();
+
+        $invitationLink->delete();
+
+        return response()->noContent(Response::HTTP_OK);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param InvitationLink $invitation_link
      * @return Response
      */
-    public
-    function destroy(InvitationLink $invitation_link): Response
+    public function destroy(InvitationLink $invitation_link): Response
     {
         $this->authorize("delete", $invitation_link);
         $invitation_link->delete();

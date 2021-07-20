@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $expiry_date
  * @property int $permission
  * @property int $save_id
+ * @property string $token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|InvitationLink newModelQuery()
