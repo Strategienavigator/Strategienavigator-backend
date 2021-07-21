@@ -22,6 +22,7 @@ class CreateSharedSaveTable extends Migration
             $table->integer("permission");
             $table->boolean("accepted")->default(false);
             $table->boolean("declined")->default(false);
+            $table->boolean("revoked")->default(false);
             $table->timestamps();
         });
     }

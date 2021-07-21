@@ -19,20 +19,22 @@ class SharedSaveController extends Controller
      */
     public function index()
     {
-        $this->authorize("viewAny",SharedSave::class);
+        $this->authorize("viewAny", SharedSave::class);
 
         return SharedSaveResource::collection(SharedSave::simplePaginate());
     }
 
 
-    public function indexSave(Save $save){
-        $this->authorize("viewOfSave", [SharedSave::class,$save]);
+    public function indexSave(Save $save)
+    {
+        $this->authorize("viewOfSave", [SharedSave::class, $save]);
         return SharedSaveResource::collection($save->sharedSaves()->simplePaginate());
     }
 
 
-    public function indexUser(User $user, User $model){
-        $this->authorize("viewOfUser",[SharedSave::class,$model]);
+    public function indexUser(User $user, User $model)
+    {
+        $this->authorize("viewOfUser", [SharedSave::class, $model]);
         return SharedSaveResource::collection($user->sharedSaves()->simplePaginate());
     }
 
@@ -42,21 +44,22 @@ class SharedSaveController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request,Save $save, User $user)
+    public function store(Request $request, Save $save, User $user)
     {
         $validated = $request->validate([
-            "permission" => ["required","integer","min:0","max:2"]
+            "permission" => ["required", "integer", "min:0", "max:2"]
         ]);
-        $this->authorize("create",[SharedSave::class,$save]);
+        $this->authorize("create", [SharedSave::class, $save]);
         $shared_save = new SharedSave($validated);
         $shared_save->user_id = $user->id;
         $shared_save->accepted = false;
         $save->invitations()->save($shared_save);
-        return response()->created("contribution",$shared_save);
+        return response()->created("contribution", $shared_save);
     }
 
-    public function storeReverse(Request $request,User $user, Save $save){
-        return $this->store($request,$save,$user);
+    public function storeReverse(Request $request, User $user, Save $save)
+    {
+        return $this->store($request, $save, $user);
     }
 
     /**
@@ -67,7 +70,7 @@ class SharedSaveController extends Controller
      */
     public function show(SharedSave $sharedSave)
     {
-        $this->authorize("view",$sharedSave);
+        $this->authorize("view", $sharedSave);
 
         return new SharedSaveResource($sharedSave);
     }
@@ -81,13 +84,37 @@ class SharedSaveController extends Controller
      */
     public function update(Request $request, SharedSave $sharedSave)
     {
-        $this->authorize("update",$sharedSave);
+        $this->authorize("update", $sharedSave);
         $validated = $request->validate([
-            "permission" => ["integer","min:0","min:2"]
+            "permission" => ["integer", "min:0", "min:2"],
+            "revoked" => ["boolean"],
         ]);
         $sharedSave->fill($validated);
         $sharedSave->save();
         return \response()->noContent(Response::HTTP_OK);
+    }
+
+
+    public function accept(Request $request, SharedSave $sharedSave)
+    {
+        $this->authorize("acceptDecline", $sharedSave);
+        if (!$sharedSave->revoked) {
+            $sharedSave->declined = false;
+            $sharedSave->accepted = true;
+            $sharedSave->save();
+            return \response()->noContent(Response::HTTP_OK);
+        } else {
+            return \response(null, Response::HTTP_CONFLICT);
+        }
+    }
+
+    public function decline(Request $request, SharedSave $sharedSave)
+    {
+        $this->authorize("acceptDecline", $sharedSave);
+        $sharedSave->accepted = false;
+        $sharedSave->declined = true;
+        $sharedSave->save();
+        return \response(null, Response::HTTP_OK);
     }
 
     /**
@@ -98,7 +125,7 @@ class SharedSaveController extends Controller
      */
     public function destroy(SharedSave $sharedSave)
     {
-        $this->authorize("delete",$sharedSave);
+        $this->authorize("delete", $sharedSave);
         $sharedSave->delete();
         return \response()->noContent(Response::HTTP_OK);
     }

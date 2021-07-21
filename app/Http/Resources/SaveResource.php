@@ -23,7 +23,10 @@ class SaveResource extends JsonResource
             "tool_id"=>$this->tool_id,
             "contributors"=>$this->contributors->map(function($c){
                 return $c->id;
-            })->toArray()
+            })->toArray(),
+            "invited"=>$this->invited->map(function($c){
+                return $c->id;
+            })->toArray(),
         ];
     }
 }

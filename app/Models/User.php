@@ -58,6 +58,8 @@ use Laravel\Passport\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastActivity($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $sharedSaves
+ * @property-read int|null $shared_saves_count
  */
 class User extends Authenticatable
 {
@@ -119,12 +121,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission"])
             ->withPivotValue("accepted", false)
+            ->withPivotValue("declined", false)
             ->withTimestamps();
     }
 
     public function invitations(): HasMany
     {
-        return $this->hasMany(SharedSave::class)->where('accepted', '=', false);
+        return $this->hasMany(SharedSave::class)
+            ->where('accepted', '=', false)
+            ->where('declined', '=', false);
     }
 
     public function sharedSaves(): HasMany
@@ -137,6 +142,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission"])
             ->withPivotValue("accepted", true)
+            ->withPivotValue("declined",false)
             ->withTimestamps();
     }
 

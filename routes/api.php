@@ -30,6 +30,9 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::apiResource("contribution", SharedSaveController::class, [
         "except" => ["store"]
     ])->parameter("contribution","sharedSave");
+    Route::put("/contribution/{sharedSave}/accept", [SharedSaveController::class,"accept"]);
+    Route::put("/contribution/{sharedSave}/decline", [SharedSaveController::class, "decline"]);
+
     Route::get("/users/{user}/contributions", [SharedSaveController::class, "indexUser"])->name("contributions.index.user");
     Route::get("/saves/{save}/contributors", [SharedSaveController::class, "indexSave"])->name("contributions.index.save");
     Route::post("/saves/{save}/contributors/{user}", [SharedSaveController::class, "store"])->name("contribution.store.save");

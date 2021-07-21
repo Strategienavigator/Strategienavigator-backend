@@ -52,6 +52,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()
  * @method static \Database\Factories\SaveFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Save whereName($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $sharedSaves
+ * @property-read int|null $shared_saves_count
  */
 class Save extends Model
 {
@@ -108,22 +110,25 @@ class Save extends Model
 
     public function invited(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'invite')->using(SharedSave::class)->as("invitation")
-            ->withPivot(["permission", "accepted"])
+        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
+            ->withPivot(["permission", "accepted", "declined", "revoked"])
             ->withPivotValue("accepted", false)
             ->withTimestamps();
     }
 
     public function invitations(): HasMany
     {
-        return $this->hasMany(SharedSave::class)->where("accepted", '=', false);
+        return $this->hasMany(SharedSave::class)
+            ->where("accepted", '=', false);
     }
 
     public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission", "accepted"])
+            ->withPivot(["permission", "accepted", "declined", "revoked"])
             ->withPivotValue("accepted", true)
+            ->withPivotValue("declined", false)
+            ->withPivotValue("revoked", false)
             ->withTimestamps();
     }
 

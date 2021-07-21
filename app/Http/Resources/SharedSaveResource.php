@@ -15,10 +15,13 @@ class SharedSaveResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id" => $this->id,
             "user"=>$this->user_id,
             "save"=>$this->save_id,
             "permission"=>$this->permission,
             "accepted" => $this->accepted,
+            "declined" => $this->declined,
+            "revoked" => $this->revoked
         ];
     }
 }
