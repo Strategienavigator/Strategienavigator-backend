@@ -8,6 +8,7 @@ use App\Models\Save;
 use App\Models\SharedSave;
 use App\Models\User;
 use App\Services\TokenService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -37,14 +38,14 @@ class InvitationLinkController extends Controller
      */
     public function store(Request $request): Response
     {
-        // TODO Bitte die authorisierung prüfen
-        // $this->authorize("create", InvitationLink::class);
         $tokenService = new TokenService();
         $validate = $request->validate([
             "expiry_date" => "required|date",
             "permission" => "required|numeric|min:0|max:2",
             "save_id" => "required|exists:saves,id"
         ]);
+        $save = Save::findOrFail($validate["save_id"]);
+        $this->authorize("create", [InvitationLink::class,$save]);
 
 
         $invitation_link = new InvitationLink($validate);
@@ -80,7 +81,7 @@ class InvitationLinkController extends Controller
 
         $validate = $request->validate([
             "expiry_date" => "date",
-            "permission" => "numeric|min:1|max:2"
+            "permission" => "numeric|min:0|max:2"
         ]);
 
         $invitation_link->fill($validate);
@@ -92,7 +93,6 @@ class InvitationLinkController extends Controller
 
     public function saveIndex(Save $save): AnonymousResourceCollection {
 
-        // TODO Bitte die authorisierung prüfen
         $this->authorize("view", $save);
 
 
