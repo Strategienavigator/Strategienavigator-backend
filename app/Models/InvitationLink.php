@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * App\Models\InvitationLink
  *
  * @property int $id
- * @property string $expiry_date
+ * @property \Illuminate\Support\Carbon $expiry_date
  * @property int $permission
  * @property int $save_id
  * @property string $token
@@ -64,6 +64,6 @@ class InvitationLink extends Model
      */
     public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Save::class);
+        return $this->belongsTo(Save::class,"save_id");
     }
 }

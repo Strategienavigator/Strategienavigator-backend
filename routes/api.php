@@ -36,6 +36,7 @@ Route::group(["middleware"=>"auth:api"],function (){
     Route::get('invitation_link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
 
     // PasswordReset
+    Route::get('password_reset/{token}', 'App\Http\Controllers\PasswordController@show');
     Route::post('password_reset', 'App\Http\Controllers\PasswordController@forgotPassword');
     Route::put('password_reset/{token}', 'App\Http\Controllers\PasswordController@updatePassword');
 

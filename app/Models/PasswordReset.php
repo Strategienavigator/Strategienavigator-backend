@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\PasswordReset
  * @property int $user_id
- * @property string $expiry_date
+ * @property \Illuminate\Support\Carbon $expiry_date
  * @property string $token
  * @property boolean $password_changed
  * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $password_changed_at
  * @mixin \Eloquent
  */
 class PasswordReset extends Model
@@ -36,6 +37,15 @@ class PasswordReset extends Model
      * @var array
      */
     protected $hidden = [
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'password_changed' => 'boolean',
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -40,7 +40,7 @@ class InvitationLinkController extends Controller
     {
         $tokenService = new TokenService();
         $validate = $request->validate([
-            "expiry_date" => "required|date",
+            "expiry_date" => "required|timestamp",
             "permission" => "required|numeric|min:0|max:2",
             "save_id" => "required|exists:saves,id"
         ]);
@@ -80,7 +80,7 @@ class InvitationLinkController extends Controller
         $this->authorize("update", $invitation_link);
 
         $validate = $request->validate([
-            "expiry_date" => "date",
+            "expiry_date" => "timestamp",
             "permission" => "numeric|min:0|max:2"
         ]);
 
@@ -103,20 +103,22 @@ class InvitationLinkController extends Controller
 
         $user = $request->user();
         $invitationLink = InvitationLink::where('token', '=', '' . $request->token)->firstOrFail();
-        $save = Save::find($invitationLink->save_id);
 
-        $sharedSave = new SharedSave();
-        $sharedSave->user_id = $user->id;
-        $sharedSave->save_id = $save->id;
+        if(Carbon::now() < $invitationLink->expiry_date) {
 
-        $sharedSave->permission = $invitationLink->permission;
+            $save = $invitationLink->safe;
 
-        $sharedSave->accepted = true;
-        $sharedSave->save();
+            $sharedSave = new SharedSave();
+            $sharedSave->user_id = $user->id;
+            $sharedSave->save_id = $save->id;
 
-        $invitationLink->delete();
+            $save->contributors()->attach($user,["permission"=>$invitationLink->permission]);
 
-        return response()->noContent(Response::HTTP_OK);
+            return response()->noContent(Response::HTTP_OK);
+        } else {
+            return response()->noContent(Response::HTTP_FORBIDDEN);
+        }
+
     }
 
     /**
