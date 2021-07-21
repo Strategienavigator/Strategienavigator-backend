@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SharedSaveResource;
 use App\Models\Save;
 use App\Models\SharedSave;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class SharedSaveController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        $this->authorize("viewAny",SharedSave::class);
+
+        return SharedSaveResource::collection(SharedSave::simplePaginate());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request,Save $save, User $user)
     {
@@ -45,34 +50,44 @@ class SharedSaveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SharedSave  $sharedSave
-     * @return \Illuminate\Http\Response
+     * @param SharedSave $sharedSave
+     * @return SharedSaveResource
      */
     public function show(SharedSave $sharedSave)
     {
-        //
+        $this->authorize("view",$sharedSave);
+
+        return new SharedSaveResource($sharedSave);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SharedSave  $sharedSave
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param SharedSave $sharedSave
+     * @return Response
      */
     public function update(Request $request, SharedSave $sharedSave)
     {
-        //
+        $this->authorize("update",$sharedSave);
+        $validated = $request->validate([
+            "permission" => ["integer","min:0","min:2"]
+        ]);
+        $sharedSave->fill($validated);
+        $sharedSave->save();
+        return \response()->noContent(Response::HTTP_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SharedSave  $sharedSave
-     * @return \Illuminate\Http\Response
+     * @param SharedSave $sharedSave
+     * @return Response
      */
     public function destroy(SharedSave $sharedSave)
     {
-        //
+        $this->authorize("delete",$sharedSave);
+        $sharedSave->delete();
+        return \response()->noContent(Response::HTTP_OK);
     }
 }

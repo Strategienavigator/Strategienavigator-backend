@@ -20,7 +20,7 @@ class SharedSavePolicy
      */
     public function viewAny(User $user)
     {
-        return false;
+        return env("APP_DEBUG");
     }
 
     /**

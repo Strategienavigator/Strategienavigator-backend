@@ -17,8 +17,11 @@ class CreateSharedSaveTable extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained();
             $table->foreignId("save_id")->constrained();
+            $table->unique(["user_id","save_id"]);
+
             $table->integer("permission");
             $table->boolean("accepted")->default(false);
+            $table->boolean("declined")->default(false);
             $table->timestamps();
         });
     }
