@@ -57,6 +57,7 @@ use Laravel\Passport\HasApiTokens;
  * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLastActivity($value)
  */
 class User extends Authenticatable
 {
@@ -124,6 +125,11 @@ class User extends Authenticatable
     public function invitations(): HasMany
     {
         return $this->hasMany(SharedSave::class)->where('accepted', '=', false);
+    }
+
+    public function sharedSaves(): HasMany
+    {
+        return $this->hasMany(SharedSave::class);
     }
 
     public function accessibleShares(): BelongsToMany

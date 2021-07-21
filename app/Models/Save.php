@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helper\PermissionHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -100,6 +101,11 @@ class Save extends Model
         return $this->belongsTo(Tool::class);
     }
 
+    public function sharedSaves(): HasMany
+    {
+        return $this->hasMany(SharedSave::class);
+    }
+
     public function invited(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'invite')->using(SharedSave::class)->as("invitation")
@@ -108,7 +114,7 @@ class Save extends Model
             ->withTimestamps();
     }
 
-    public function invitations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function invitations(): HasMany
     {
         return $this->hasMany(SharedSave::class)->where("accepted", '=', false);
     }
@@ -121,7 +127,7 @@ class Save extends Model
             ->withTimestamps();
     }
 
-    public function invitationLinks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function invitationLinks(): HasMany
     {
         return $this->hasMany(InvitationLink::class);
     }

@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|InvitationLink whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Save $safe
+ * @property string $token
+ * @method static \Illuminate\Database\Eloquent\Builder|InvitationLink whereToken($value)
  */
 class InvitationLink extends Model
 {

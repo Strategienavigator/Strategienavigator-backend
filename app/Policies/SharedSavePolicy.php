@@ -36,6 +36,25 @@ class SharedSavePolicy
         return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
     }
 
+
+    /**
+     * Determine whether the user can view the model of the given save
+     * @param User $user
+     * @param Save $save
+     */
+    public function viewOfSave(User $user, Save $save){
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
+    }
+
+    /**
+     * Determine whether the user can view the model of the given user
+     * @param User $user
+     * @param Save $model
+     */
+    public function viewOfUser(User $user, User $model){
+        return $model->id === $user->id;
+    }
+
     /**
      * Determine whether the user can create models.
      *

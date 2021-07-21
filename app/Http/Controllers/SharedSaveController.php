@@ -24,6 +24,18 @@ class SharedSaveController extends Controller
         return SharedSaveResource::collection(SharedSave::simplePaginate());
     }
 
+
+    public function indexSave(Save $save){
+        $this->authorize("viewOfSave", [SharedSave::class,$save]);
+        return SharedSaveResource::collection($save->sharedSaves()->simplePaginate());
+    }
+
+
+    public function indexUser(User $user, User $model){
+        $this->authorize("viewOfUser",[SharedSave::class,$model]);
+        return SharedSaveResource::collection($user->sharedSaves()->simplePaginate());
+    }
+
     /**
      * Store a newly created resource in storage.
      *
