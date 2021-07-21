@@ -37,6 +37,7 @@ class SaveController extends Controller
         $this->authorize("create", Save::class);
 
         $validate = $request->validate([
+            "name" => ["string"],
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id"
         ]);
@@ -84,16 +85,16 @@ class SaveController extends Controller
             ]);
 
             if (is_null($save->locked_by_id) || $save->owner_id === $user->id) {
-                if($validated["lock"]){
+                if ($validated["lock"]) {
                     $save->locked_by_id = $user->id;
                     $save->last_locked = Carbon::now();
-                }else{
+                } else {
                     $save->locked_by_id = null;
                 }
 
                 $save->save();
                 return response()->noContent(Response::HTTP_OK);
-            }else{
+            } else {
                 return response()->noContent(Response::HTTP_CONFLICT);
             }
         } else {
