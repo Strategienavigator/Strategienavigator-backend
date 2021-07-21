@@ -57,11 +57,6 @@ class SharedSaveController extends Controller
         return response()->created("contribution", $shared_save);
     }
 
-    public function storeReverse(Request $request, User $user, Save $save)
-    {
-        return $this->store($request, $save, $user);
-    }
-
     /**
      * Display the specified resource.
      *
@@ -127,6 +122,6 @@ class SharedSaveController extends Controller
     {
         $this->authorize("delete", $sharedSave);
         $sharedSave->delete();
-        return \response()->noContent(Response::HTTP_OK);
+        return \response(null, Response::HTTP_OK);
     }
 }
