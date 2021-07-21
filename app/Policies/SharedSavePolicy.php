@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Helper\PermissionHelper;
+use App\Models\Save;
 use App\Models\SharedSave;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -18,7 +20,7 @@ class SharedSavePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -30,7 +32,8 @@ class SharedSavePolicy
      */
     public function view(User $user, SharedSave $sharedSave)
     {
-        //
+        $save = $sharedSave->safe;
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
     }
 
     /**
@@ -39,9 +42,9 @@ class SharedSavePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Save $save)
     {
-        //
+        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -53,7 +56,7 @@ class SharedSavePolicy
      */
     public function update(User $user, SharedSave $sharedSave)
     {
-        //
+        return $sharedSave->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -65,7 +68,7 @@ class SharedSavePolicy
      */
     public function delete(User $user, SharedSave $sharedSave)
     {
-        //
+        return $sharedSave->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -77,7 +80,7 @@ class SharedSavePolicy
      */
     public function restore(User $user, SharedSave $sharedSave)
     {
-        //
+        return false;
     }
 
     /**
@@ -89,6 +92,6 @@ class SharedSavePolicy
      */
     public function forceDelete(User $user, SharedSave $sharedSave)
     {
-        //
+        return false;
     }
 }

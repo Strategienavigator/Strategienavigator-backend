@@ -33,8 +33,13 @@ class SharedSaveController extends Controller
         $this->authorize("create",[SharedSave::class,$save]);
         $shared_save = new SharedSave($validated);
         $shared_save->user_id = $user->id;
+        $shared_save->accepted = false;
         $save->invitations()->save($shared_save);
         return response()->created("contribution",$shared_save);
+    }
+
+    public function storeReverse(Request $request,User $user, Save $save){
+        return $this->store($request,$save,$user);
     }
 
     /**

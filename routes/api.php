@@ -25,12 +25,13 @@ Route::group(["middleware" => "auth:api"], function () {
         "invitation_link" => InvitationLinkController::class,
     ]);
 
+
+    // contributors
     Route::apiResource("contribution", SharedSaveController::class, [
         "except" => ["store"]
-    ]);
-
+    ])->parameter("contribution","sharedSave");
     Route::post("/saves/{save}/contributors/{user}", [SharedSaveController::class, "store"])->name("contribution.store");
-    Route::post("/users/{user}/contributions/{save}", [SharedSaveController::class, "store"])->name("contribution.store");
+    Route::post("/users/{user}/contributions/{save}", [SharedSaveController::class, "storeReverse"])->name("contribution.store");
 
 
     // Users
