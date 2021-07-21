@@ -108,10 +108,6 @@ class InvitationLinkController extends Controller
 
             $save = $invitationLink->safe;
 
-            $sharedSave = new SharedSave();
-            $sharedSave->user_id = $user->id;
-            $sharedSave->save_id = $save->id;
-
             $save->contributors()->attach($user,["permission"=>$invitationLink->permission]);
 
             return response()->noContent(Response::HTTP_OK);
