@@ -18,18 +18,25 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(["middleware"=>"auth:api"],function (){
+Route::group(["middleware" => "auth:api"], function () {
     Route::apiResources([
-        "tools"=>ToolController::class,
-        "saves"=>SaveController::class,
-        "invitation_link"=>InvitationLinkController::class,
+        "tools" => ToolController::class,
+        "saves" => SaveController::class,
+        "invitation_link" => InvitationLinkController::class,
     ]);
+
+    Route::apiResource("contribution", SharedSaveController::class, [
+        "except" => ["store"]
+    ]);
+
+    Route::post("/saves/{save}/contributors/{user}", [SharedSaveController::class, "store"])->name("contribution.store");
+    Route::post("/users/{user}/contributions/{save}", [SharedSaveController::class, "store"])->name("contribution.store");
 
 
     // Users
-    Route::get('users/{user}/saves','App\Http\Controllers\UserSavesController@index');
+    Route::get('users/{user}/saves', 'App\Http\Controllers\UserSavesController@index');
     Route::get("checkUsername", 'App\Http\Controllers\UserController@checkUsername');
-    Route::apiResource('users',UserController::class);
+    Route::apiResource('users', UserController::class);
 });
 
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Save;
 use App\Models\SharedSave;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SharedSaveController extends Controller
@@ -23,9 +25,16 @@ class SharedSaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Save $save, User $user)
     {
-        //
+        $validated = $request->validate([
+            "permission" => ["required","integer","min:0","max:2"]
+        ]);
+        $this->authorize("create",[SharedSave::class,$save]);
+        $shared_save = new SharedSave($validated);
+        $shared_save->user_id = $user->id;
+        $save->invitations()->save($shared_save);
+        return response()->created("contribution",$shared_save);
     }
 
     /**
