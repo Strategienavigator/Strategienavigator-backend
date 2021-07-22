@@ -29,8 +29,7 @@ class PasswordController extends Controller
     }
 
 
-    function forgotPassword(Request $request) {
-        $tokenService = new TokenService();
+    function forgotPassword(Request $request, TokenService $tokenService) {
 
         $validate = $request->validate([
             "username" => "required|exists:users,username"
