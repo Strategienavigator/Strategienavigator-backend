@@ -95,7 +95,7 @@ class SaveController extends Controller
                 $save->save();
                 return response()->noContent(Response::HTTP_OK);
             } else {
-                return response(["message"=>"The save needs to get locked in advance"],Response::HTTP_CONFLICT);
+                return response(["message"=>"The save needs to get locked in advance"],Response::HTTP_FAILED_DEPENDENCY);
             }
         } else {
             $validated = $request->validate([
