@@ -41,7 +41,20 @@ Route::group(["middleware" => "auth:api"], function () {
     // Users
     Route::get('users/{user}/saves', 'App\Http\Controllers\UserSavesController@index');
     Route::get("checkUsername", 'App\Http\Controllers\UserController@checkUsername');
-    Route::apiResource('users', UserController::class);
+
+    Route::apiResource('users',UserController::class);
+
+    // InvitationLink
+    Route::get('invitation_link/save/{save}', 'App\Http\Controllers\InvitationLinkController@saveIndex');
+    Route::get('invitation_link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
+
+    // PasswordReset
+    Route::get('password_reset/{token}', 'App\Http\Controllers\PasswordController@show');
+    Route::post('password_reset', 'App\Http\Controllers\PasswordController@forgotPassword');
+    Route::put('password_reset/{token}', 'App\Http\Controllers\PasswordController@updatePassword');
+
+    //Email
+    Route::put('email/{token}/verify', 'App\Http\Controllers\EmailController@verify');
 });
 
 

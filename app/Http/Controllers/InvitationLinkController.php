@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
 use App\Models\Save;
+use App\Models\SharedSave;
+use App\Models\User;
+use App\Services\TokenService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,18 +38,19 @@ class InvitationLinkController extends Controller
      */
     public function store(Request $request): Response
     {
-
-        $this->authorize("create", InvitationLink::class);
-
+        $tokenService = new TokenService();
         $validate = $request->validate([
-            "expiry_date" => "required|date",
+            "expiry_date" => "required|timestamp",
             "permission" => "required|numeric|min:0|max:2",
             "save_id" => "required|exists:saves,id"
         ]);
+        $save = Save::findOrFail($validate["save_id"]);
+        $this->authorize("create", [InvitationLink::class,$save]);
 
 
         $invitation_link = new InvitationLink($validate);
         $invitation_link->save_id = $validate["save_id"];
+        $invitation_link->token = $tokenService->createToken();
         $invitation_link->save();
         return response()->created('invitation_link', $invitation_link);
     }
@@ -75,8 +80,8 @@ class InvitationLinkController extends Controller
         $this->authorize("update", $invitation_link);
 
         $validate = $request->validate([
-            "expiry_date" => "date",
-            "permission" => "numeric|min:1|max:2"
+            "expiry_date" => "timestamp",
+            "permission" => "numeric|min:0|max:2"
         ]);
 
         $invitation_link->fill($validate);
@@ -86,14 +91,39 @@ class InvitationLinkController extends Controller
 
     }
 
+    public function saveIndex(Save $save): AnonymousResourceCollection {
+
+        $this->authorize("view", $save);
+
+
+        return InvitationLinkResource::collection($save->invitationLinks);
+    }
+
+    public function acceptInvite(Request $request): Response {
+
+        $user = $request->user();
+        $invitationLink = InvitationLink::where('token', '=', '' . $request->token)->firstOrFail();
+
+        if(Carbon::now() < $invitationLink->expiry_date) {
+
+            $save = $invitationLink->safe;
+
+            $save->contributors()->attach($user,["permission"=>$invitationLink->permission]);
+
+            return response()->noContent(Response::HTTP_OK);
+        } else {
+            return response()->noContent(Response::HTTP_FORBIDDEN);
+        }
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param InvitationLink $invitation_link
      * @return Response
      */
-    public
-    function destroy(InvitationLink $invitation_link): Response
+    public function destroy(InvitationLink $invitation_link): Response
     {
         $this->authorize("delete", $invitation_link);
         $invitation_link->delete();
