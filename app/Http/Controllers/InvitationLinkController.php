@@ -36,11 +36,10 @@ class InvitationLinkController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request, TokenService $tokenService): Response
     {
-        $tokenService = new TokenService();
         $validate = $request->validate([
-            "expiry_date" => "required|timestamp",
+            "expiry_date" => "required|date",
             "permission" => "required|numeric|min:0|max:2",
             "save_id" => "required|exists:saves,id"
         ]);
@@ -80,7 +79,7 @@ class InvitationLinkController extends Controller
         $this->authorize("update", $invitation_link);
 
         $validate = $request->validate([
-            "expiry_date" => "timestamp",
+            "expiry_date" => "date",
             "permission" => "numeric|min:0|max:2"
         ]);
 
