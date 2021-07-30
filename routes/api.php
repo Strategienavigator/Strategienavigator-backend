@@ -49,3 +49,13 @@ Route::group(["middleware"=>"auth:api"],function (){
 
 //Email
 Route::put('email/{token}/verify', 'App\Http\Controllers\EmailController@verify');
+
+Route::get('password-template', function () {
+    return view('password-reset', ['token' => 'TEST_TOKEN']);
+});
+Route::get('email-template', function () {
+    return view('email-verification', ['token' => 'TEST_TOKEN']);
+});
+Route::get('invitation-template', function () {
+    return view('save-invitation', ['invite_user' => 'Tester', 'token' => 'TEST_TOKEN']);
+});
