@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereSaveId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUserId($value)
+ * @property int $declined
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereDeclined($value)
  */
 class SharedSave extends Pivot
 {
@@ -40,6 +42,7 @@ class SharedSave extends Pivot
      */
     protected $fillable = [
         'permission',
+        'revoked'
     ];
 
     /**
@@ -69,7 +72,7 @@ class SharedSave extends Pivot
      */
     public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Save::class);
+        return $this->belongsTo(Save::class,"save_id");
     }
 
 }
