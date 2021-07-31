@@ -31,7 +31,7 @@ class SavePolicy
      */
     public function view(User $user, Save $save): bool
     {
-        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_READ);
+        return $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_READ);
     }
 
     /**
@@ -54,7 +54,7 @@ class SavePolicy
      */
     public function update(User $user, Save $save): bool
     {
-        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_WRITE);
+        return $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_WRITE);
     }
 
     /**
@@ -66,7 +66,7 @@ class SavePolicy
      */
     public function delete(User $user, Save $save): bool
     {
-        return $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
+        return $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**

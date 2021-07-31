@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
 use App\Models\Save;
-use App\Models\SharedSave;
-use App\Models\User;
 use App\Services\TokenService;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -44,7 +41,7 @@ class InvitationLinkController extends Controller
             "save_id" => "required|exists:saves,id"
         ]);
         $save = Save::findOrFail($validate["save_id"]);
-        $this->authorize("create", [InvitationLink::class,$save]);
+        $this->authorize("create", [InvitationLink::class, $save]);
 
 
         $invitation_link = new InvitationLink($validate);
@@ -90,7 +87,8 @@ class InvitationLinkController extends Controller
 
     }
 
-    public function saveIndex(Save $save): AnonymousResourceCollection {
+    public function saveIndex(Save $save): AnonymousResourceCollection
+    {
 
         $this->authorize("view", $save);
 
@@ -98,16 +96,17 @@ class InvitationLinkController extends Controller
         return InvitationLinkResource::collection($save->invitationLinks);
     }
 
-    public function acceptInvite(Request $request): Response {
+    public function acceptInvite(Request $request): Response
+    {
 
         $user = $request->user();
         $invitationLink = InvitationLink::where('token', '=', '' . $request->token)->firstOrFail();
 
-        if(Carbon::now() < $invitationLink->expiry_date) {
+        if (Carbon::now() < $invitationLink->expiry_date) {
 
             $save = $invitationLink->safe;
 
-            $save->contributors()->attach($user,["permission"=>$invitationLink->permission]);
+            $save->contributors()->attach($user, ["permission" => $invitationLink->permission]);
 
             return response()->noContent(Response::HTTP_OK);
         } else {

@@ -122,16 +122,6 @@ class Save extends Model
             ->where("accepted", '=', false);
     }
 
-    public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission", "accepted", "declined", "revoked"])
-            ->withPivotValue("accepted", true)
-            ->withPivotValue("declined", false)
-            ->withPivotValue("revoked", false)
-            ->withTimestamps();
-    }
-
     public function invitationLinks(): HasMany
     {
         return $this->hasMany(InvitationLink::class);
@@ -154,5 +144,15 @@ class Save extends Model
         }
 
         return false;
+    }
+
+    public function contributors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
+            ->withPivot(["permission", "accepted", "declined", "revoked"])
+            ->withPivotValue("accepted", true)
+            ->withPivotValue("declined", false)
+            ->withPivotValue("revoked", false)
+            ->withTimestamps();
     }
 }

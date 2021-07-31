@@ -66,6 +66,6 @@ class InvitationLink extends Model
      */
     public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Save::class,"save_id");
+        return $this->belongsTo(Save::class, "save_id");
     }
 }

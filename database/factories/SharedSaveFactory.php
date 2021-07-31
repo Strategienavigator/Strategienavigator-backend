@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\SharedSave;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SharedSaveFactory extends Factory
@@ -23,8 +22,8 @@ class SharedSaveFactory extends Factory
     public function definition()
     {
         return [
-            'permission'=>$this->faker->numberBetween(0,3),
-            'accepted'=>$this->faker->boolean(70),
+            'permission' => $this->faker->numberBetween(0, 3),
+            'accepted' => $this->faker->boolean(70),
         ];
     }
 }

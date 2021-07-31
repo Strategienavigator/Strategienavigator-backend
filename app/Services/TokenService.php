@@ -20,7 +20,7 @@ class TokenService
             $randomBytes = random_bytes($strong ? 32 : 16);
             return bin2hex($randomBytes);
         } catch (\Exception $e) {
-            Log::critical("couldn't create random bytes to create a token",$e);
+            Log::critical("couldn't create random bytes to create a token", $e);
         }
         return false;
     }
@@ -31,7 +31,7 @@ class TokenService
      * @param string $token token welcher sicher richtig ist
      * @return bool true wenn beide token übereinstimmen
      */
-    public function checkToken(string $toCheck, string $token):bool
+    public function checkToken(string $toCheck, string $token): bool
     {
         return $toCheck === $token;
     }

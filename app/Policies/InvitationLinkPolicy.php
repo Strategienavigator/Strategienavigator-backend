@@ -18,7 +18,7 @@ class InvitationLinkPolicy
      * @param User $user
      * @return boolean
      */
-    public function viewAny(User $user):bool
+    public function viewAny(User $user): bool
     {
         return env("APP_DEBUG");
     }
@@ -30,7 +30,7 @@ class InvitationLinkPolicy
      * @param InvitationLink $invitationLink
      * @return boolean
      */
-    public function view(User $user, InvitationLink $invitationLink):bool
+    public function view(User $user, InvitationLink $invitationLink): bool
     {
         return true;
     }
@@ -41,9 +41,9 @@ class InvitationLinkPolicy
      * @param User $user
      * @return boolean
      */
-    public function create(User $user, Save $save):bool
+    public function create(User $user, Save $save): bool
     {
-        return !$user->anonym && $save->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonym && $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -53,9 +53,9 @@ class InvitationLinkPolicy
      * @param InvitationLink $invitationLink
      * @return boolean
      */
-    public function update(User $user, InvitationLink $invitationLink):bool
+    public function update(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -67,6 +67,6 @@ class InvitationLinkPolicy
      */
     public function delete(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user,PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 }

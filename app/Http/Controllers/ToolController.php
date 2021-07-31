@@ -17,7 +17,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $this->authorize("viewAny",Tool::class);
+        $this->authorize("viewAny", Tool::class);
 
         return ToolResource::collection(Tool::all());
     }
@@ -30,7 +30,7 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize("create",Tool::class);
+        $this->authorize("create", Tool::class);
 
         $tool = new Tool($request->input());
         $tool->save();
@@ -46,7 +46,7 @@ class ToolController extends Controller
      */
     public function show(Tool $tool)
     {
-        $this->authorize("view",$tool);
+        $this->authorize("view", $tool);
 
         return new ToolResource($tool);
     }
@@ -60,7 +60,7 @@ class ToolController extends Controller
      */
     public function update(Request $request, Tool $tool)
     {
-        $this->authorize("update",$tool);
+        $this->authorize("update", $tool);
 
         return response()->noContent(Response::HTTP_OK);
     }
@@ -73,7 +73,7 @@ class ToolController extends Controller
      */
     public function destroy(Tool $tool)
     {
-        $this->authorize("destroy",$tool);
+        $this->authorize("destroy", $tool);
 
         return response()->noContent(Response::HTTP_OK);
     }

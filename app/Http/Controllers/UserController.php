@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $this->authorize("viewAny", User::class);
-        return UserResource::collection(User::with(['saves','invitedSaves','accessibleShares'])->whereNotNull("email_verified_at")->simplePaginate());
+        return UserResource::collection(User::with(['saves', 'invitedSaves', 'accessibleShares'])->whereNotNull("email_verified_at")->simplePaginate());
     }
 
     /**
@@ -51,6 +51,29 @@ class UserController extends Controller
     }
 
     /**
+     * does update the given user model with the given data. If the email is changed
+     * @param User $u a user model
+     * @param array $data array with the new data
+     * @param EmailService $emailService the email service
+     */
+    private function updateUser(User $u, array $data, EmailService $emailService)
+    {
+        $u->fill($data);
+        if (key_exists("password", $data)) {
+            $u->password = $data["password"];
+        }
+
+        if (key_exists("anonym", $data)) {
+            $u->anonym = $data["anonym"];
+        }
+
+        $u->save();
+        if (key_exists("email", $data)) {
+            $emailService->requestEmailChangeOfUser($u, $data["email"]);
+        }
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param User $user
@@ -58,7 +81,7 @@ class UserController extends Controller
      */
     public function show(User $user): UserResource
     {
-        $this->authorize("view",$user);
+        $this->authorize("view", $user);
 
         return new UserResource($user);
     }
@@ -95,43 +118,19 @@ class UserController extends Controller
      */
     public function destroy(User $user): Response
     {
-        $this->authorize("delete",$user);
+        $this->authorize("delete", $user);
         $user->delete();
         return response()->noContent(Response::HTTP_OK);
     }
 
-
-    public function checkUsername(Request $request):JsonResponse{
+    public function checkUsername(Request $request): JsonResponse
+    {
         $validated = $request->validate([
-            "username" => ["string","required"]
+            "username" => ["string", "required"]
         ]);
-        return response()->json(["data" =>[
-            "available" => User::whereUsername($validated["username"])->count()==0
+        return response()->json(["data" => [
+            "available" => User::whereUsername($validated["username"])->count() == 0
         ]]);
 
-    }
-
-
-    /**
-     * does update the given user model with the given data. If the email is changed
-     * @param User $u a user model
-     * @param array $data array with the new data
-     * @param EmailService $emailService the email service
-     */
-    private function updateUser(User $u, array $data, EmailService $emailService)
-    {
-        $u->fill($data);
-        if (key_exists("password", $data)) {
-            $u->password = $data["password"];
-        }
-
-        if (key_exists("anonym", $data)) {
-            $u->anonym = $data["anonym"];
-        }
-
-        $u->save();
-        if (key_exists("email", $data)) {
-            $emailService->requestEmailChangeOfUser($u, $data["email"]);
-        }
     }
 }

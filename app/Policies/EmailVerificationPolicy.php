@@ -49,7 +49,7 @@ class EmailVerificationPolicy
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param  EmailVerification  $emailVerificationLink
+     * @param EmailVerification $emailVerificationLink
      * @return boolean
      */
     public function update(User $user, EmailVerification $emailVerificationLink): bool
@@ -61,7 +61,7 @@ class EmailVerificationPolicy
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param  EmailVerification  $emailVerificationLink
+     * @param EmailVerification $emailVerificationLink
      * @return boolean
      */
     public function delete(User $user, EmailVerification $emailVerificationLink): bool
@@ -73,7 +73,7 @@ class EmailVerificationPolicy
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param  EmailVerification  $emailVerificationLink
+     * @param EmailVerification $emailVerificationLink
      * @return boolean
      */
     public function restore(User $user, EmailVerification $emailVerificationLink): bool
@@ -85,7 +85,7 @@ class EmailVerificationPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param  EmailVerification  $emailVerificationLink
+     * @param EmailVerification $emailVerificationLink
      * @return boolean
      */
     public function forceDelete(User $user, EmailVerification $emailVerificationLink): bool

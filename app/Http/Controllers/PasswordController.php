@@ -20,7 +20,8 @@ class PasswordController extends Controller
      * @param Request $request
      * @return PasswordResetResource
      */
-    function show(Request $request) {
+    function show(Request $request)
+    {
         $password_reset = PasswordReset::where('token', '=', $request->token)->firstOrFail();
         // TODO PasswordPolicy implementieren
         // $this->authorize('view', $password_reset);
@@ -29,7 +30,8 @@ class PasswordController extends Controller
     }
 
 
-    function forgotPassword(Request $request, TokenService $tokenService) {
+    function forgotPassword(Request $request, TokenService $tokenService)
+    {
 
         $validate = $request->validate([
             "username" => "required|exists:users,username"
@@ -52,7 +54,8 @@ class PasswordController extends Controller
         return response()->noContent(Response::HTTP_OK);
     }
 
-    function updatePassword(Request $request) {
+    function updatePassword(Request $request)
+    {
 
         $validate = $request->validate([
             "password" => "required|string"

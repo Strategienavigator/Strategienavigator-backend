@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Http\Controllers\AuthTokenController;
 use App\Policies\AuthTokenPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RouteRegistrar;

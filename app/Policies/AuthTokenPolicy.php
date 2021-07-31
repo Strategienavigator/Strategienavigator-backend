@@ -20,7 +20,8 @@ class AuthTokenPolicy
         //
     }
 
-    public function delete(User $user ,Token $token){
+    public function delete(User $user, Token $token)
+    {
         return $user->id === $token->user_id;
     }
 }

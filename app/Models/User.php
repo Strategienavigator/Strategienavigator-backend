@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -142,7 +141,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission"])
             ->withPivotValue("accepted", true)
-            ->withPivotValue("declined",false)
+            ->withPivotValue("declined", false)
             ->withTimestamps();
     }
 

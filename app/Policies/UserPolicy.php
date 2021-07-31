@@ -50,7 +50,7 @@ class UserPolicy
      * @param User $model
      * @return boolean
      */
-    public function update(User $user, User $model):bool
+    public function update(User $user, User $model): bool
     {
         return $user->id === $model->id;
     }
@@ -62,7 +62,7 @@ class UserPolicy
      * @param User $model
      * @return boolean
      */
-    public function delete(User $user, User $model):bool
+    public function delete(User $user, User $model): bool
     {
         return $user->id === $model->id;
     }

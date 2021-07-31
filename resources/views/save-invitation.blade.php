@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -17,17 +16,17 @@
 </head>
 <body class="antialiased">
 <div>
-    Hallo,<br />
-    <br />
-    Sie wurden von {{$invite_user}} eingeladen an einem Strategietool mitzuarbeiten.<br />
-    Bitte klicken Sie auf folgenden Link, um diese Einladung anzunehmen:<br />
+    Hallo,<br/>
+    <br/>
+    Sie wurden von {{$invite_user}} eingeladen an einem Strategietool mitzuarbeiten.<br/>
+    Bitte klicken Sie auf folgenden Link, um diese Einladung anzunehmen:<br/>
     <a href={{ config('app.frontend_url').'/'.$token}}>{{ config('app.frontend_url').'/'.$token}}</a>
-    <br />
-    <br />
+    <br/>
+    <br/>
     Wenn Sie diese Einladung nicht annehmen wollen ignorieren Sie einfach diese E-Mail.
-    <br />
-    <br />
-    Mit freundlichen Grüßen<br />
+    <br/>
+    <br/>
+    Mit freundlichen Grüßen<br/>
     Das Strategietool-Team
 </div>
 </body>

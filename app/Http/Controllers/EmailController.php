@@ -11,7 +11,8 @@ class EmailController extends Controller
 {
     //
 
-    function verify(Request $request) {
+    function verify(Request $request)
+    {
 
         $email_verification = EmailVerification::where('token', '=', $request->token)->firstOrFail();
         $user = $email_verification->user;

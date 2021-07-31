@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Save;
 use App\Models\Tool;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaveFactory extends Factory
@@ -34,7 +33,7 @@ class SaveFactory extends Factory
                     'number4' => $this->faker->randomNumber()
                 ]
             ]),
-            'tool_id'=>Tool::all()->random(),
+            'tool_id' => Tool::all()->random(),
         ];
     }
 }

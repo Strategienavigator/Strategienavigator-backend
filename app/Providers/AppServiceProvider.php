@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public $singletons = [
 
     ];
+
     /**
      * Register any application services.
      *

@@ -16,6 +16,6 @@ class PermissionHelper
      */
     public static function isAtLeastPermission(int $permission, int $neededPermission)
     {
-        return $permission>=$neededPermission;
+        return $permission >= $neededPermission;
     }
 }
