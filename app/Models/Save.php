@@ -83,6 +83,7 @@ class Save extends Model
      * @var array
      */
     protected $casts = [
+        'name' => "string",
         'last_locked' => 'datetime',
         'last_opened' => 'datetime'
     ];

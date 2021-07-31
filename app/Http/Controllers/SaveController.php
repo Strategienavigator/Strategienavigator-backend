@@ -37,11 +37,10 @@ class SaveController extends Controller
         $this->authorize("create", Save::class);
 
         $validate = $request->validate([
-            "name" => ["string"],
+            "name" => "string",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id"
         ]);
-
 
         $s = new Save($validate);
         $s->tool_id = $validate["tool_id"];

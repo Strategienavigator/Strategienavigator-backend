@@ -17,6 +17,7 @@ class SimpleSaveResource extends JsonResource
         return [
             "id" => $this->id,
             "locked_by" => $this->locked_by_id,
+            "name" => $this->name,
             "last_locked" => $this->last_locked,
             "owner_id" => $this->owner_id,
             "tool_id" => $this->tool_id,

@@ -17,6 +17,7 @@ class SaveResource extends JsonResource
         return [
             "id" => $this->id,
             "data" => $this->data,
+            "name" => $this->name,
             "locked_by" => $this->locked_by_id,
             "last_locked" => $this->last_locked,
             "owner_id" => $this->owner_id,
