@@ -25,7 +25,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::apiResources([
         "tools" => ToolController::class,
         "saves" => SaveController::class,
-        "invitation_link" => InvitationLinkController::class,
+        "invitation-link" => InvitationLinkController::class,
     ]);
 
 
@@ -48,13 +48,13 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::apiResource('users', UserController::class)->except('store');
 
     // InvitationLink
-    Route::get('invitation_link/save/{save}', 'App\Http\Controllers\InvitationLinkController@saveIndex');
-    Route::get('invitation_link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
+    Route::get('invitation-link/save/{save}', 'App\Http\Controllers\InvitationLinkController@saveIndex');
+    Route::get('invitation-link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
 
     // PasswordReset
-    Route::get('password_reset/{token}', 'App\Http\Controllers\PasswordController@show');
-    Route::post('password_reset', 'App\Http\Controllers\PasswordController@forgotPassword');
-    Route::put('password_reset/{token}', 'App\Http\Controllers\PasswordController@updatePassword');
+    Route::get('password-reset/{token}', 'App\Http\Controllers\PasswordController@show');
+    Route::post('password-reset', 'App\Http\Controllers\PasswordController@forgotPassword');
+    Route::put('password-reset/{token}', 'App\Http\Controllers\PasswordController@updatePassword');
 
 
 });
