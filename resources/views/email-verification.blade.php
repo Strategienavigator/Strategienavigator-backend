@@ -16,7 +16,7 @@
 </head>
 <body class="antialiased">
 <div>
-    Hallo,<br/>
+    Hallo {{$username}},<br/>
     <br/>
     wir haben eine Anfrage zur Erstellung eines Benutzerkontos für die Strategietoolanwendung erhalten.<br/>
     Bitte klicken Sie auf folgenden Link, um Ihre Registrierung abzuschließen:<br/>

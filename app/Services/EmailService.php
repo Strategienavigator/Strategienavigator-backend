@@ -35,6 +35,6 @@ class EmailService
 
 
         // is queued because of the ShouldQueue interface of EmailVerificationEmail
-        Mail::to($emailVerification->email)->send(new EmailVerificationEmail($emailVerification->token));
+        Mail::to($emailVerification->email)->send(new EmailVerificationEmail($emailVerification->token,$user->username));
     }
 }
