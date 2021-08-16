@@ -20,7 +20,7 @@
     <br/>
     wir haben eine Anfrage auf Zurücksetzung des Passwortes für Ihr Benutzerkonto erhalten.<br/>
     Bitte klicken Sie auf folgenden Link, um Ihr Passwort zurückzusetzen:<br/>
-    <a href={{ config('app.frontend_url').'/'.$token}}>{{ config('app.frontend_url').'/'.$token}}</a>
+    <a href={{ config('frontend.url').'/'.$token}}>{{ config('frontend.url').'/'.$token}}</a>
     <br/>
     <br/>
     Dieser Link ist für eine Stunde gültig.<br/>

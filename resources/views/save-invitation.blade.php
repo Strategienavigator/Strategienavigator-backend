@@ -20,7 +20,7 @@
     <br/>
     Sie wurden von {{$invite_user}} eingeladen an einem Strategietool mitzuarbeiten.<br/>
     Bitte klicken Sie auf folgenden Link, um diese Einladung anzunehmen:<br/>
-    <a href={{ config('app.frontend_url').'/'.$token}}>{{ config('app.frontend_url').'/'.$token}}</a>
+    <a href={{ config('frontend.url').'/'.$token}}>{{ config('frontend.url').'/'.$token}}</a>
     <br/>
     <br/>
     Wenn Sie diese Einladung nicht annehmen wollen ignorieren Sie einfach diese E-Mail.

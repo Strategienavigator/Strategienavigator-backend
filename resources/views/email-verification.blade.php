@@ -20,7 +20,7 @@
     <br/>
     wir haben eine Anfrage zur Erstellung eines Benutzerkontos für die Strategietoolanwendung erhalten.<br/>
     Bitte klicken Sie auf folgenden Link, um Ihre Registrierung abzuschließen:<br/>
-    <a href={{ config('app.frontend_url').'/'.$token}}>{{ config('app.frontend_url').'/'.$token}}</a>
+    <a href={{ config('frontend.url').'/'.config('frontend.email_verify_page').'/'.$token}}>{{ config('frontend.url').'/'.config('frontend.email_verify_page').'/'.$token}}</a>
     <br/>
     <br/>
     Mit freundlichen Grüßen<br/>

@@ -61,7 +61,7 @@ Route::group(["middleware" => "auth:api"], function () {
 
 
 //Email
-Route::put('email/{token}/verify', 'App\Http\Controllers\EmailController@verify');
+Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
 
 
 // DEBUG
