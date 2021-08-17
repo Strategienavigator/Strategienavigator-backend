@@ -22,15 +22,20 @@ class PurgeAnonymousUsersCommand extends Command
      */
     protected $description = 'Does delete all user database entries, which are anonymous and had no activity for a long time';
 
-    public static $purgedAfter;
+    public static $purgedBefore;
 
-    public static function userGetPurgedAfter(Carbon $date)
+    /**
+     * Alle anonymen nutzer, welche vor dem übergebenen datum ihre letzte aktivität hatten, werden gelöscht
+     * @param Carbon $date lösch timestamp. Muss in der vergangenheit liegen
+     */
+    public static function userPurgedBefore(Carbon $date)
     {
-        static::$purgedAfter = $date;
+        if($date->isPast())
+            static::$purgedBefore = $date;
     }
 
-    public static function getUserGetPurgedAfterTime(){
-        return static::$purgedAfter?static::$purgedAfter:Carbon::now()->addMonth();
+    public static function getUserPurgedBeforeTime(){
+        return static::$purgedBefore?static::$purgedBefore:Carbon::now()->subMonth();
     }
 
     /**
@@ -50,6 +55,6 @@ class PurgeAnonymousUsersCommand extends Command
      */
     public function handle()
     {
-        return User::whereAnonym(true)->where('last_activity', '<', static::getUserGetPurgedAfterTime())->forceDelete();
+        return User::whereAnonym(true)->where('last_activity', '<', static::getUserPurgedBeforeTime())->forceDelete();
     }
 }

@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
 
         if(array_key_exists("anonymous", $validated) && $validated["anonymous"] === True){
-            $password = "anoPassword"; // TODO change to random strong password
+            $password = md5(microtime());
             $u = $this->createAnonymousUser($password);
             $u->save();
             return \response()->created('users', $u)->setContent(["username"=>$u->username,"password"=>$password]);
