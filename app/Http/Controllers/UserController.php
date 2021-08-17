@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Services\EmailService;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -65,7 +66,10 @@ class UserController extends Controller
      */
     private function updateUser(User $u, array $data, EmailService $emailService)
     {
+
         $u->fill($data);
+        if(is_null($u->last_activity))
+            $u->last_activity = Carbon::now();
         if (key_exists("password", $data)) {
             $u->password = $data["password"];
         }
@@ -99,6 +103,7 @@ class UserController extends Controller
         $u = new User();
         $u->anonym = true;
         $u->password = $password;
+        $u->last_activity = Carbon::now();
         do{
             $u->username = "anonymous". random_int(1000,1000000);
         }while(User::whereUsername($u->username)->exists());

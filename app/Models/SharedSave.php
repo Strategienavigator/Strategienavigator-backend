@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUserId($value)
  * @property int $declined
  * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereDeclined($value)
+ * @property int $revoked
+ * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereRevoked($value)
  */
 class SharedSave extends Pivot
 {

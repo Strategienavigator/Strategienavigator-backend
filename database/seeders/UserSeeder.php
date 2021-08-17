@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             "email" => "max@test.test",
             "anonym" => false,
             "email_verified_at" => Carbon::now(),
+            "last_activity" => Carbon::now(),
             "password" => "password"
         ]);
         $user->save();

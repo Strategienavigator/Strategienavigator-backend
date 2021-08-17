@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\PurgeAnonymousUsersCommand;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
 use Illuminate\Routing\ResponseFactory;
@@ -42,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
         DB::listen(function ($querry) {
             Log::info($querry->sql . "\t" . $querry->time, $querry->bindings);
         });
+
+        PurgeAnonymousUsersCommand::userGetPurgedAfter(Carbon::now()->addMinute());
 
     }
 }
