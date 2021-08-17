@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->boolean('anonym')->default(false);
-            $table->date('last_activity')->nullable();
+            $table->timestamp('last_activity')->useCurrent();
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //User
 Route::apiResource('users', UserController::class)->only('store');
 
-Route::group(["middleware" => "auth:api"], function () {
+Route::group(["middleware" => "auth:api,activityLog"], function () {
     Route::apiResources([
         "tools" => ToolController::class,
         "saves" => SaveController::class,
