@@ -45,7 +45,5 @@ class AppServiceProvider extends ServiceProvider
             Log::info($querry->sql . "\t" . $querry->time, $querry->bindings);
         });
 
-        PurgeAnonymousUsersCommand::userGetPurgedAfter(Carbon::now()->addMinute());
-
     }
 }
