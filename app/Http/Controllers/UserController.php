@@ -7,12 +7,15 @@ use App\Http\Resources\UserResource;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Services\EmailService;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
+
+    private static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
 
 
     /**
@@ -30,24 +33,29 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return Response|JsonResponse
      */
     public function store(Request $request, EmailService $emailService): Response
     {
-        // $this->authorize("create", User::class);
-
         $validated = \Validator::validate($request->all(), [
-            "username" => ["required", "string", "unique:users"],
-            // regex from https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ (added some back slashes)
-            "password" => ["required", "string", "min:7", "regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?\/~_+-=\|]).+$/"],
-            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+            "anonymous" => ["boolean"],
+            "username" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "string", "unique:users"],
+            "password" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
+            "email" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
 
-        $u = new User();
-        $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
-        return response()->created('users', $u);
+        if(array_key_exists("anonymous", $validated) && $validated["anonymous"] === True){
+            $password = md5(microtime());
+            $u = $this->createAnonymousUser($password);
+            $u->save();
+            return \response()->created('users', $u)->setContent(["username"=>$u->username,"password"=>$password]);
+        }else{
+            $u = new User();
+            $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+            return \response()->created('users', $u);
+        }
     }
 
     /**
@@ -58,19 +66,49 @@ class UserController extends Controller
      */
     private function updateUser(User $u, array $data, EmailService $emailService)
     {
+
         $u->fill($data);
+        if(is_null($u->last_activity))
+            $u->last_activity = Carbon::now();
         if (key_exists("password", $data)) {
             $u->password = $data["password"];
-        }
-
-        if (key_exists("anonym", $data)) {
-            $u->anonym = $data["anonym"];
         }
 
         $u->save();
         if (key_exists("email", $data)) {
             $emailService->requestEmailChangeOfUser($u, $data["email"]);
         }
+    }
+
+    /**
+     * @param User $u the anonymous user which gets upgraded
+     * @param array $data array with username, password and email fields
+     * @param EmailService $emailService
+     */
+    private function upgradeAnonymousUser(User $u, array $data, EmailService $emailService){
+        if($u->anonym){
+            $u->anonym = false;
+            $u->fill($data);
+            $u->password = $data["password"];
+            $emailService->requestEmailChangeOfUser($u,$data["email"]);
+            $u->save();
+        }
+    }
+
+    /**
+     * @return User
+     * @throws \Exception
+     */
+    private function createAnonymousUser(string $password){
+        $u = new User();
+        $u->anonym = true;
+        $u->password = $password;
+        $u->last_activity = Carbon::now();
+        do{
+            $u->username = "anonymous". random_int(1000,1000000);
+        }while(User::whereUsername($u->username)->exists());
+
+        return $u;
     }
 
     /**
@@ -99,8 +137,7 @@ class UserController extends Controller
 
         $validated = \Validator::validate($request->all(), [
             "username" => ["string", "unique:users"],
-            // regex from https://www.ocpsoft.org/tutorials/regular-expressions/password-regular-expression/ (added some back slashes)
-            "password" => ["string", "min:7", "regex:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}\[\]:;<>,.?\/~_+-=\|]).+$/"],
+            "password" => ["string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
             // "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")

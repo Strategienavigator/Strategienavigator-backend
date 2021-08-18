@@ -94,6 +94,18 @@ class User extends Authenticatable
         'anonym' => 'boolean'
     ];
 
+    /**
+     * Find the user instance for the given username.
+     *
+     * @param string $username
+     * @return User the user, could be an anonymous user or a normal one
+     */
+    public function findForPassport(string $username)
+    {
+        return $this->where('email', $username)->where('anonym', false)
+            ->orWhere('username', $username)->where('anonym', true)
+            ->first();
+    }
 
     public function setPasswordAttribute($value)
     {

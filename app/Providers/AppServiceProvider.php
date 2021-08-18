@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\PurgeAnonymousUsersCommand;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Response;
 use Illuminate\Routing\ResponseFactory;

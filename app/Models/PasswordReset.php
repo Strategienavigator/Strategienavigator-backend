@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\PasswordReset
+ *
  * @property int $user_id
  * @property \Illuminate\Support\Carbon $expiry_date
  * @property string $token
@@ -14,6 +15,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $password_changed_at
  * @mixin \Eloquent
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereExpiryDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset wherePasswordChanged($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset wherePasswordChangedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereUserId($value)
  */
 class PasswordReset extends Model
 {
