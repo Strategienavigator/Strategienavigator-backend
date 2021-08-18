@@ -11,6 +11,9 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Laravel\Passport\Bridge\AccessTokenRepository;
+use Laravel\Passport\Bridge\ClientRepository;
+use League\OAuth2\Server\AuthorizationServer;
 
 class UserController extends Controller
 {
@@ -38,24 +41,26 @@ class UserController extends Controller
     public function store(Request $request, EmailService $emailService): Response
     {
         $validated = \Validator::validate($request->all(), [
-            "anonymous" => ["boolean"],
-            "username" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "string", "unique:users"],
-            "password" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
-            "email" => ["prohibited_if:anonymous,true", "required_unless:anonymous,true", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+            "username" => ["required", "string", "unique:users"],
+            "password" => [ "required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
+            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
 
-        if(array_key_exists("anonymous", $validated) && $validated["anonymous"] === True){
-            $password = md5(microtime());
-            $u = $this->createAnonymousUser($password);
-            $u->save();
-            return \response()->created('users', $u)->setContent(["username"=>$u->username,"password"=>$password]);
-        }else{
-            $u = new User();
-            $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
-            return \response()->created('users', $u);
-        }
+        $u = new User();
+        $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+        return \response()->created('users', $u);
+    }
+
+
+    public function storeAnonymous()
+    {
+        $password = md5(microtime());
+        $u = $this->createAnonymousUser($password);
+        $u->save();
+
+        return \response()->created('users', $u)->setContent(["username" => $u->username, "password" => $password]);
     }
 
     /**
@@ -68,7 +73,7 @@ class UserController extends Controller
     {
 
         $u->fill($data);
-        if(is_null($u->last_activity))
+        if (is_null($u->last_activity))
             $u->last_activity = Carbon::now();
         if (key_exists("password", $data)) {
             $u->password = $data["password"];
@@ -85,12 +90,13 @@ class UserController extends Controller
      * @param array $data array with username, password and email fields
      * @param EmailService $emailService
      */
-    private function upgradeAnonymousUser(User $u, array $data, EmailService $emailService){
-        if($u->anonym){
+    private function upgradeAnonymousUser(User $u, array $data, EmailService $emailService)
+    {
+        if ($u->anonym) {
             $u->anonym = false;
             $u->fill($data);
             $u->password = $data["password"];
-            $emailService->requestEmailChangeOfUser($u,$data["email"]);
+            $emailService->requestEmailChangeOfUser($u, $data["email"]);
             $u->save();
         }
     }
@@ -99,14 +105,15 @@ class UserController extends Controller
      * @return User
      * @throws \Exception
      */
-    private function createAnonymousUser(string $password){
+    private function createAnonymousUser(string $password)
+    {
         $u = new User();
         $u->anonym = true;
         $u->password = $password;
         $u->last_activity = Carbon::now();
-        do{
-            $u->username = "anonymous". random_int(1000,1000000);
-        }while(User::whereUsername($u->username)->exists());
+        do {
+            $u->username = "anonymous" . random_int(1000, 1000000);
+        } while (User::whereUsername($u->username)->exists());
 
         return $u;
     }

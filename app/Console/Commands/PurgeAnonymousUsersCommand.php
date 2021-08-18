@@ -35,7 +35,7 @@ class PurgeAnonymousUsersCommand extends Command
     }
 
     public static function getUserPurgedBeforeTime(){
-        return static::$purgedBefore?static::$purgedBefore:Carbon::now()->subMonth();
+        return static::$purgedBefore?:Carbon::now()->subMonth();
     }
 
     /**

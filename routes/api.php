@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 //User
 Route::apiResource('users', UserController::class)->only('store');
+Route::post('users/anonymous', [UserController::class,"storeAnonymous"]);
 
 Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::apiResources([
