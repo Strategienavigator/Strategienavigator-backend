@@ -4,8 +4,10 @@
 namespace App\Services;
 
 
+use App\Mail\EmailVerificationEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class EmailService
 {
@@ -30,5 +32,9 @@ class EmailService
 
 
         $user->emailVerification()->save($emailVerification);
+
+
+        // is queued because of the ShouldQueue interface of EmailVerificationEmail
+        Mail::to($emailVerification->email)->send(new EmailVerificationEmail($emailVerification->token,$user->username));
     }
 }
