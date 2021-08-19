@@ -1,0 +1,35 @@
+# ENV-Datei
+Folgende Env Einträge müssen beim Einrichten ausgefüllt werden:
+
+- APP_URL
+  - URL unter dem das Backend im Browser erreicht wird.
+- FRONTEND_URL
+  - URL unter der das Frontend im Browser erreicht wird.
+- EMAIL_VERIFY_PAGE
+  - Relativer path von der FRONTEND_URL zu der Email verifizierungs Seite. Beginnender und endender Slash müssen weg gelassen werden.
+- DB_CONNECTION
+  - Welches DBMS verwendet werden soll
+- DB_HOST
+  - IP-Adresse oder Hostname der Datenbank.
+- DB_PORT
+  - Port der Datenbank
+- DB_DATABASE
+  - Name der Datenbank im DBMS. Diese Datenbank muss manuell erstellt werden.
+- DB_USERNAME
+  - Username eines Datenbank-Nutzers, welche rechte auf die festgelegte Datenbank hat.
+- DB_PASSWORD
+  - Password des Datenbank-Nutzers.
+- MAIL_HOST
+  - IP-Adresse oder Hostname zu dem Mail-Server
+- MAIL_PORT
+  - Port des Email-Servers
+- MAIL_USERNAME
+  - Username des Email Kontos
+- MAIL_PASSWORD
+  - Password des Email Kontos
+- MAIL_ENCRIPTION
+  - Verschlüsselung der Verbindung (meist ssl)
+- MAIL_FROM_ADDRESS
+  - Welche Email Adresse als abesende Adresse angezeigt werdensoll
+- MAIL_FROM_NAME
+  - Welcher Name als Absender angezeigt werden soll

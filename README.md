@@ -79,7 +79,7 @@ Linux:
 cp .env.example .env
 ```
 
-In der `.env` Datei müssen auf jeden Fall die Punkte: `DB_USERNAME, DB_PASSWORD` ausgefüllt werden.  
+Welche Einstellungen in der .env Datei getroffen werden müssen, ist [hier](ENV.md) dokumentiert.   
 Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
 Nun muss in der Datenbank die Tabelle `toolbox` erstellt werden. Am leichtesten geht dies
 mit [phpmyadmin:link:](http://localhost/phpmyadmin)
@@ -106,8 +106,47 @@ Um für Passport(OAuth2 Bibliothek) die Keys zu erstellen, muss folgendes Komman
 php artisan passport:install
 ```
 
+### Queue-Worker
+(Dieser Schritt kann übersprungen werden, falls die Funktionen eines Queue-Workers nicht benötigt wird)
+
+Für manche Funktionen des Backends (z.B. verschicken von Emails) wird ein Queue-Worker benötigt.
+Ein Queue-Worker ist ein Programm, welches unabhängig vom Request und Response Lifecycle des PHP-Servers läuft.
+
+Dadurch kann dieser dafür verwendet werden um Aufgaben zu erledigen, welche keine Response des Servers verzögern.
+
+Ein Queue-Worker muss mit folgendem Kommando gestartet werden:
+```shell
+php artisan queue:work
+```
+
+Dieser läuft solange bis er gestoppt wird. Bei Änderungen im Quellcode oder in der [.env](ENV.md) Datei muss der Queue-Worker neu gestartet werden.
+
 Die Einrichtung ist nun abgeschlossen.  
 Zum Testen kann die [Webseite:link:](http://localhost/toolbox-backend/public/) lokal aufgerufen werden.
+
+## Datenbank migrieren
+
+Wenn bereits `php artisan passport:install` ausgeführt wurde und die Datenbank neu migriert
+ werden muss, kann das Composer Kommando 
+ ```shell
+ php artisan migrate:persistClients
+ ``` 
+ ausgeführt werden. Das Composer Kommando löscht die komplette Datenbank und erstellt sie neue und erstellt einen password Grant Client.
+
+## Anonyme Konten Löschen
+
+Um alte nicht mehr benötigte anoynyme User Konten aus der Datenbank zu entfernen muss das Kommand
+
+```shell
+php artisan users:purge
+```
+
+Standartmäßig werden alle anonymen Konten gelöscht, bei denen die letzte Aktivität älter als einen Monat ist.
+Dieser Zeitraum kann angepasst werden. Im AppServiceProvider kann folgende methode aufgerufen werden:
+
+```php
+PurgeAnonymousUsersCommand::userPurgedBefore(Carbon::now()->subWeek());
+```
 
 ## Dokumentation
 
