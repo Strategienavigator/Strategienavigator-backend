@@ -73,7 +73,7 @@ class SaveController extends Controller
     public function update(Request $request, Save $save): Response
     {
         $this->authorize("update", $save);
-        $user = $request->user()->id;
+        $user = $request->user();
 
         if ($request->has("lock")) {
 
