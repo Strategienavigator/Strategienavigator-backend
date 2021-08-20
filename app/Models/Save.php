@@ -54,6 +54,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Save whereName($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
+ * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|Save whereDescription($value)
  */
 class Save extends Model
 {
