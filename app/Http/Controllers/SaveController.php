@@ -37,7 +37,8 @@ class SaveController extends Controller
         $this->authorize("create", Save::class);
 
         $validate = $request->validate([
-            "name" => "string",
+            "name" => "required|string",
+            "description"=>"string",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id"
         ]);
@@ -80,7 +81,8 @@ class SaveController extends Controller
             $validated = $request->validate([
                 "lock" => "required|boolean",
                 "data" => "prohibited",
-                "name" => "prohibited"
+                "name" => "prohibited",
+                "description"=>"prohibited"
             ]);
 
             if (is_null($save->locked_by_id) || $save->owner_id === $user->id) {
@@ -100,6 +102,7 @@ class SaveController extends Controller
             $validated = $request->validate([
                 "data" => "nullable|json",
                 "name" => "string",
+                "description" => "string",
                 "lock" => "prohibited"
             ]);
 
