@@ -25,7 +25,7 @@ class SaveFactory extends Factory
         return [
             'last_opened' => now(),
             'name' => $this->faker->state,
-            'description' => $this->faker->words(15),
+            'description' => $this->faker->words(15,true),
             'data' => json_encode([
                 'number1' => $this->faker->randomNumber(),
                 'number2' => $this->faker->randomNumber(),
