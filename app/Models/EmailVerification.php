@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereUserId($value)
  * @mixin \Eloquent
  * @property-read \App\Models\User $user
- * @property string $token
  * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereToken($value)
  */
 class EmailVerification extends Model

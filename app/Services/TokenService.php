@@ -10,7 +10,7 @@ class TokenService
 {
 
     /**
-     * Erstellt eine zufällige hexadezimal nummer, welche als string zurück gegeben wird
+     * Erstellt eine zufällige hexadezimal nummer, welche als string zurückgegeben wird
      * @param bool $strong definiert ob die Zufallszahl 16 (false) oder 32 (true) bytes lang ist
      * @return string|bool Gibt den Token zurück wenn er generiert wurde. Gibt false zurück wenn kein token generiert werden konnte.
      */
@@ -26,7 +26,7 @@ class TokenService
     }
 
 
-    /** prüft ob beide übergebenen token übereinstimmen
+    /** prüft, ob beide übergebenen token übereinstimmen
      * @param string $toCheck token welcher geprüft werden soll
      * @param string $token token welcher sicher richtig ist
      * @return bool true wenn beide token übereinstimmen

@@ -177,4 +177,17 @@ class UserController extends Controller
         ]]);
 
     }
+
+    public function checkEmail(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            "email" => ["string", "required"]
+        ]);
+        return response()->json(["data" => [
+            "available" =>
+                User::whereEmail($validated["email"])->count() == 0 &&
+                EmailVerification::whereEmail($validated["email"])->count() == 0
+        ]]);
+
+    }
 }

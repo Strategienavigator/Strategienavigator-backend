@@ -19,7 +19,7 @@ class EmailService
         $this->tokenService = $tokenService;
     }
 
-    /** Does create a new email validation entry and sends an email with a token.
+    /** Erstellt einen email_verification eintrag und schickt eine email an die angegebene email.
      * @param User $user the user which is affected
      * @param string $email the new email
      */

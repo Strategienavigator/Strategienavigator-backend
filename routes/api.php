@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('users', UserController::class)->only('store');
 Route::post('users/anonymous', [UserController::class,"storeAnonymous"]);
 
+Route::get("checkUsername", [UserController::class,"checkUsername"]);
+Route::get("checkEmail", [UserController::class,"checkEmail"]);
+
+//Email
+Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
+
 Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::apiResources([
         "tools" => ToolController::class,
@@ -44,7 +50,6 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
 
     // Users
     Route::get('users/{user}/saves', 'App\Http\Controllers\UserSavesController@index');
-    Route::get("checkUsername", 'App\Http\Controllers\UserController@checkUsername');
 
     Route::apiResource('users', UserController::class)->except('store');
 
@@ -59,11 +64,6 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
 
 
 });
-
-
-//Email
-Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
-
 
 // DEBUG
 Route::get('password-template', function () {
