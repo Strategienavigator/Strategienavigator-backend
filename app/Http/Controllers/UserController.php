@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Services\EmailService;
+use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class UserController extends Controller
      * @param Request $request
      * @return Response|JsonResponse
      */
-    public function store(Request $request, EmailService $emailService): Response
+    public function store(Request $request, EmailService $emailService, UserService $userService): Response
     {
         $validated = \Validator::validate($request->all(), [
             "username" => ["required", "string", "unique:users"],
@@ -49,7 +50,7 @@ class UserController extends Controller
         ]);
 
         $u = new User();
-        $this->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+        $userService->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
         return \response()->created('users', $u);
     }
 
@@ -61,28 +62,6 @@ class UserController extends Controller
         $u->save();
 
         return \response()->created('users', $u)->setContent(["username" => $u->username, "password" => $password]);
-    }
-
-    /**
-     * does update the given user model with the given data. If the email is changed
-     * @param User $u a user model
-     * @param array $data array with the new data
-     * @param EmailService $emailService the email service
-     */
-    private function updateUser(User $u, array $data, EmailService $emailService)
-    {
-
-        $u->fill($data);
-        if (is_null($u->last_activity))
-            $u->last_activity = Carbon::now();
-        if (key_exists("password", $data)) {
-            $u->password = $data["password"];
-        }
-
-        $u->save();
-        if (key_exists("email", $data)) {
-            $emailService->requestEmailChangeOfUser($u, $data["email"]);
-        }
     }
 
     /**
@@ -138,7 +117,7 @@ class UserController extends Controller
      * @param User $user
      * @return Response
      */
-    public function update(Request $request, User $user, EmailService $emailService): Response
+    public function update(Request $request, User $user, EmailService $emailService, UserService $userService): Response
     {
         $this->authorize("update", $user);
 
@@ -150,7 +129,7 @@ class UserController extends Controller
             "password.regex" => __("passwords.invalid_regex")
         ]);
 
-        $this->updateUser($user, $validated, $emailService);
+        $userService->updateUser($user, $validated, $emailService);
         return response()->noContent(Response::HTTP_OK);
     }
 
@@ -167,26 +146,24 @@ class UserController extends Controller
         return response()->noContent(Response::HTTP_OK);
     }
 
-    public function checkUsername(Request $request): JsonResponse
+    public function checkUsername(Request $request, UserService $userService): JsonResponse
     {
         $validated = $request->validate([
             "username" => ["string", "required"]
         ]);
         return response()->json(["data" => [
-            "available" => User::whereUsername($validated["username"])->count() == 0
+            "available" => $userService->checkUsername($validated["username"])
         ]]);
 
     }
 
-    public function checkEmail(Request $request): JsonResponse
+    public function checkEmail(Request $request, UserService $userService): JsonResponse
     {
         $validated = $request->validate([
             "email" => ["string", "required"]
         ]);
         return response()->json(["data" => [
-            "available" =>
-                User::whereEmail($validated["email"])->count() == 0 &&
-                EmailVerification::whereEmail($validated["email"])->count() == 0
+            "available" => $userService->checkEmail($validated["email"])
         ]]);
 
     }
