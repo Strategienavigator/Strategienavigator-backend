@@ -60,14 +60,14 @@ class PasswordController extends Controller
         return response()->noContent(Response::HTTP_OK);
     }
 
-    function updatePassword(Request $request)
+    function updatePassword(String $token, Request $request)
     {
 
         $validate = $request->validate([
             "password" => "required|string"
         ]);
 
-        $password_reset = PasswordReset::whereToken($validate["password"])->firstOrFail();
+        $password_reset = PasswordReset::whereToken($token)->firstOrFail();
 
         if (Carbon::now() < $password_reset->expiry_date && $password_reset->password_changed === false) {
 
