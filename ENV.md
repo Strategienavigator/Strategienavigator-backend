@@ -7,6 +7,8 @@ Folgende Env Einträge müssen beim Einrichten ausgefüllt werden:
   - URL unter der das Frontend im Browser erreicht wird.
 - EMAIL_VERIFY_PAGE
   - Relativer path von der FRONTEND_URL zu der Email verifizierungs Seite. Beginnender und endender Slash müssen weg gelassen werden.
+- PASSWORD_RESET_PAGE
+  - Relativer path von der FRONTEND_URL zu der Passwort reset Seite. Beginnender und endender Slash müssen weg gelassen werden.
 - DB_CONNECTION
   - Welches DBMS verwendet werden soll
 - DB_HOST

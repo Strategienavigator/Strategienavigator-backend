@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PasswordResetResource;
+use App\Mail\EmailVerificationEmail;
+use App\Mail\PasswordResetEmail;
 use App\Models\PasswordReset;
 use App\Models\User;
 use App\Services\TokenService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class PasswordController extends Controller
 {
@@ -34,21 +37,24 @@ class PasswordController extends Controller
     {
 
         $validate = $request->validate([
-            "username" => "required|exists:users,username"
+            "email" => ["required","exists:users,email"]
         ]);
 
         $password_reset = new PasswordReset();
-        $password_reset->user_id = User::where('username', '=', $validate["username"])->firstOrFail()->id;
+        $u = User::whereEmail($validate["email"])->firstOrFail();
+        $password_reset->user_id = $u->id;
 
         $password_reset->expiry_date = Carbon::now()->addHour();
 
-        $password_reset->token = $tokenService->createToken();
+        $password_reset->token = $tokenService->createToken(true);
+        Log::debug($password_reset->token);
         $password_reset->password_changed = false;
         $password_reset->created_at = Carbon::now();
 
+
         $password_reset->save();
 
-        // TODO Email versenden implementieren
+        \Mail::to($u->email)->send(new PasswordResetEmail($password_reset->token,$u->username));
 
 
         return response()->noContent(Response::HTTP_OK);

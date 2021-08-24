@@ -31,6 +31,8 @@ class PasswordReset extends Model
     use HasFactory;
 
     public $timestamps = false;
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $primaryKey = "token";
 
     /**
@@ -57,6 +59,7 @@ class PasswordReset extends Model
      */
     protected $casts = [
         'password_changed' => 'boolean',
+        'token'=>'string'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -16,11 +16,11 @@
 </head>
 <body class="antialiased">
 <div>
-    Hallo,<br/>
+    Hallo {{$username}},<br/>
     <br/>
     wir haben eine Anfrage auf Zurücksetzung des Passwortes für Ihr Benutzerkonto erhalten.<br/>
     Bitte klicken Sie auf folgenden Link, um Ihr Passwort zurückzusetzen:<br/>
-    <a href={{ config('frontend.url').'/'.$token}}>{{ config('frontend.url').'/'.$token}}</a>
+    <a href={{ config('frontend.url').'/'.config('frontend.password_reset_page').'/'.$token}}>{{ config('frontend.url').'/'.config('frontend.password_reset_page').'/'.$token}}</a>
     <br/>
     <br/>
     Dieser Link ist für eine Stunde gültig.<br/>

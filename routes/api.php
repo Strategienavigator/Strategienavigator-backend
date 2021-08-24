@@ -28,6 +28,11 @@ Route::get("checkEmail", [UserController::class,"checkEmail"]);
 //Email
 Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
 
+// PasswordReset
+Route::get('password/{token}', [\App\Http\Controllers\PasswordController::class,'show']);
+Route::post('password-reset', [\App\Http\Controllers\PasswordController::class,'forgotPassword']);
+Route::put('update-password/{token}', [\App\Http\Controllers\PasswordController::class,'updatePassword']);
+
 Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::apiResources([
         "tools" => ToolController::class,
@@ -56,11 +61,6 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     // InvitationLink
     Route::get('invitation-link/save/{save}', 'App\Http\Controllers\InvitationLinkController@saveIndex');
     Route::get('invitation-link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
-
-    // PasswordReset
-    Route::get('password-reset/{token}', 'App\Http\Controllers\PasswordController@show');
-    Route::post('password-reset', 'App\Http\Controllers\PasswordController@forgotPassword');
-    Route::put('password-reset/{token}', 'App\Http\Controllers\PasswordController@updatePassword');
 
 
 });
