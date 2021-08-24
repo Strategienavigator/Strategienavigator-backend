@@ -61,11 +61,11 @@ class PasswordController extends Controller
             "password" => "required|string"
         ]);
 
-        $password_reset = PasswordReset::where('token', '=', $request->token)->firstOrFail();
+        $password_reset = PasswordReset::whereToken($validate["password"])->firstOrFail();
 
         if (Carbon::now() < $password_reset->expiry_date && $password_reset->password_changed === false) {
 
-            $user = User::findOrFail($password_reset->user_id);
+            $user = $password_reset->user;
 
             $user->password = $validate["password"];
             $password_reset->password_changed = true;

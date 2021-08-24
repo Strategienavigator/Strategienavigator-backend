@@ -22,7 +22,10 @@ class UserService
     }
 
     /**
-     * does update the given user model with the given data. If the email is changed
+     * Ändert die Daten der Felder des übergebenen User-Objekts.
+     *
+     * Wenn es einen "email" Eintrag in dem $data array gibt, wird eine confirmation "email" verschickt.
+     *
      * @param User $u a user model
      * @param array $data array with the new data
      * @param EmailService $emailService the email service

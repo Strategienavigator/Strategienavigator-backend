@@ -91,7 +91,7 @@ class UserController extends Controller
         $u->password = $password;
         $u->last_activity = Carbon::now();
         do {
-            $u->username = "anonymous" . random_int(1000, 1000000);
+            $u->username = "anonymous" . random_int(1000, 1000000); // TODO maybe change username generation method (could end up in infinitive loop)
         } while (User::whereUsername($u->username)->exists());
 
         return $u;
