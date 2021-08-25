@@ -127,7 +127,7 @@ Zum Testen kann die [Webseite:link:](http://localhost/toolbox-backend/public/) l
 ## Datenbank migrieren
 
 Wenn bereits `php artisan passport:install` ausgeführt wurde und die Datenbank neu migriert
- werden muss, kann das Composer Kommando 
+ werden muss, kann das Kommando 
  ```shell
  php artisan migrate:persistClients
  ``` 
