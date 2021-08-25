@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\EmailVerification
@@ -12,19 +16,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $token
  * @property int $user_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification query()
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereUserId($value)
- * @mixin \Eloquent
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|EmailVerification whereToken($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|EmailVerification newModelQuery()
+ * @method static Builder|EmailVerification newQuery()
+ * @method static Builder|EmailVerification query()
+ * @method static Builder|EmailVerification whereCreatedAt($value)
+ * @method static Builder|EmailVerification whereEmail($value)
+ * @method static Builder|EmailVerification whereId($value)
+ * @method static Builder|EmailVerification whereUpdatedAt($value)
+ * @method static Builder|EmailVerification whereUserId($value)
+ * @mixin Eloquent
+ * @property-read User $user
+ * @method static Builder|EmailVerification whereToken($value)
  */
 class EmailVerification extends Model
 {
@@ -56,7 +60,7 @@ class EmailVerification extends Model
     ];
 
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

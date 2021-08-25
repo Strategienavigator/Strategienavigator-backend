@@ -34,7 +34,7 @@ class UserFactory extends Factory
     /**
      * Sorgt dafür, dass die email nicht verifiziert ist
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
     public function unverified()
     {

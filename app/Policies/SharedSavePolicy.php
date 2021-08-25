@@ -15,7 +15,7 @@ class SharedSavePolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -26,8 +26,8 @@ class SharedSavePolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\SharedSave $sharedSave
+     * @param User $user
+     * @param SharedSave $sharedSave
      * @return mixed
      */
     public function view(User $user, SharedSave $sharedSave)
@@ -59,7 +59,7 @@ class SharedSavePolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param \App\Models\User $user
+     * @param User $user
      * @return mixed
      */
     public function create(User $user, Save $save)
@@ -70,8 +70,8 @@ class SharedSavePolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\SharedSave $sharedSave
+     * @param User $user
+     * @param SharedSave $sharedSave
      * @return mixed
      */
     public function update(User $user, SharedSave $sharedSave)
@@ -88,8 +88,8 @@ class SharedSavePolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\SharedSave $sharedSave
+     * @param User $user
+     * @param SharedSave $sharedSave
      * @return mixed
      */
     public function delete(User $user, SharedSave $sharedSave)
@@ -100,8 +100,8 @@ class SharedSavePolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\SharedSave $sharedSave
+     * @param User $user
+     * @param SharedSave $sharedSave
      * @return mixed
      */
     public function restore(User $user, SharedSave $sharedSave)
@@ -112,8 +112,8 @@ class SharedSavePolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\SharedSave $sharedSave
+     * @param User $user
+     * @param SharedSave $sharedSave
      * @return mixed
      */
     public function forceDelete(User $user, SharedSave $sharedSave)

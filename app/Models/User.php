@@ -2,15 +2,24 @@
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\Token;
 
 /**
  * App\Models\User
@@ -21,44 +30,44 @@ use Laravel\Passport\HasApiTokens;
  * @property string $joined_at
  * @property string|null $last_activity
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property string $password
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static \Database\Factories\UserFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereAnonym($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereJoinedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereLastLogin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
- * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $accessibleShares
+ * @method static UserFactory factory(...$parameters)
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereAnonym($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereJoinedAt($value)
+ * @method static Builder|User whereLastLogin($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereUsername($value)
+ * @mixin Eloquent
+ * @property-read Collection|Save[] $accessibleShares
  * @property-read int|null $accessible_shares_count
- * @property-read \App\Models\EmailVerification|null $emailVerification
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $invitations
+ * @property-read EmailVerification|null $emailVerification
+ * @property-read Collection|SharedSave[] $invitations
  * @property-read int|null $invitations_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $invitedSaves
+ * @property-read Collection|Save[] $invitedSaves
  * @property-read int|null $invited_saves_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $isLocking
+ * @property-read Collection|Save[] $isLocking
  * @property-read int|null $is_locking_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Save[] $saves
+ * @property-read Collection|Save[] $saves
  * @property-read int|null $saves_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read Collection|Client[] $clients
  * @property-read int|null $clients_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read Collection|Token[] $tokens
  * @property-read int|null $tokens_count
- * @method static \Illuminate\Database\Eloquent\Builder|User whereLastActivity($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SharedSave[] $sharedSaves
+ * @method static Builder|User whereLastActivity($value)
+ * @property-read Collection|SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
  */
 class User extends Authenticatable

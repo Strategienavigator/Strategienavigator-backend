@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Mail;
 
 class PasswordController extends Controller
 {
@@ -54,7 +55,7 @@ class PasswordController extends Controller
 
         $password_reset->save();
 
-        \Mail::to($u->email)->send(new PasswordResetEmail($password_reset->token,$u->username));
+        Mail::to($u->email)->send(new PasswordResetEmail($password_reset->token,$u->username));
 
 
         return response()->noContent(Response::HTTP_OK);

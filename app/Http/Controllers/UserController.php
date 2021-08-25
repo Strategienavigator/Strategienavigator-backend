@@ -9,12 +9,15 @@ use App\Models\User;
 use App\Services\EmailService;
 use App\Services\UserService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Laravel\Passport\Bridge\AccessTokenRepository;
 use Laravel\Passport\Bridge\ClientRepository;
 use League\OAuth2\Server\AuthorizationServer;
+use Validator;
 
 class UserController extends Controller
 {
@@ -25,9 +28,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         $this->authorize("viewAny", User::class);
         return UserResource::collection(User::with(['saves', 'invitedSaves', 'accessibleShares'])->whereNotNull("email_verified_at")->simplePaginate());
@@ -41,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request, EmailService $emailService, UserService $userService): Response
     {
-        $validated = \Validator::validate($request->all(), [
+        $validated = Validator::validate($request->all(), [
             "username" => ["required", "string", "unique:users"],
             "password" => [ "required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
             "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
@@ -82,7 +85,7 @@ class UserController extends Controller
 
     /**
      * @return User
-     * @throws \Exception
+     * @throws Exception
      */
     private function createAnonymousUser(string $password)
     {
@@ -121,7 +124,7 @@ class UserController extends Controller
     {
         $this->authorize("update", $user);
 
-        $validated = \Validator::validate($request->all(), [
+        $validated = Validator::validate($request->all(), [
             "username" => ["string", "unique:users"],
             "password" => ["string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
             // "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]

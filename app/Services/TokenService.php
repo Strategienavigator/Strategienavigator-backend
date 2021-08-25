@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 class TokenService
@@ -19,7 +20,7 @@ class TokenService
         try {
             $randomBytes = random_bytes($strong ? 32 : 16);
             return bin2hex($randomBytes);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::critical("couldn't create random bytes to create a token", $e);
         }
         return false;

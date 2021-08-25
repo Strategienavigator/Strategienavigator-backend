@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InvitationLinkController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SaveController;
 use App\Http\Controllers\SharedSaveController;
 use App\Http\Controllers\ToolController;
@@ -29,9 +30,9 @@ Route::get("checkEmail", [UserController::class,"checkEmail"]);
 Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
 
 // PasswordReset
-Route::get('password/{token}', [\App\Http\Controllers\PasswordController::class,'show']);
-Route::post('password-reset', [\App\Http\Controllers\PasswordController::class,'forgotPassword']);
-Route::put('update-password/{token}', [\App\Http\Controllers\PasswordController::class,'updatePassword']);
+Route::get('password/{token}', [PasswordController::class,'show']);
+Route::post('password-reset', [PasswordController::class,'forgotPassword']);
+Route::put('update-password/{token}', [PasswordController::class,'updatePassword']);
 
 Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::apiResources([

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Artisan;
 use Illuminate\Console\Command;
 use Laravel\Passport\Client;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -40,7 +41,7 @@ class freshMigrateCommand extends Command
 
         $clients = Client::all();
 
-        \Artisan::call("migrate:fresh", ["--seed"=>true], $this->output);
+        Artisan::call("migrate:fresh", ["--seed"=>true], $this->output);
 
         foreach ($clients as $c) {
             $n = $c->replicate();

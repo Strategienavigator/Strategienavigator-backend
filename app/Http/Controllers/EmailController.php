@@ -6,12 +6,17 @@ use App\Models\EmailVerification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class EmailController extends Controller
 {
     //
 
-    function verify(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    function verify(Request $request): Response
     {
 
         $email_verification = EmailVerification::where('token', '=', $request->token)->firstOrFail();
@@ -21,6 +26,6 @@ class EmailController extends Controller
         $user->save();
 
 
-        return response()->noContent(Response::HTTP_OK);
+        return response()->noContent(ResponseAlias::HTTP_OK);
     }
 }

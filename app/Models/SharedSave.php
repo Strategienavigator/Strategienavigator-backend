@@ -2,35 +2,39 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\SharedSave
  *
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave query()
- * @mixin \Eloquent
- * @property-read \App\Models\Save $safe
- * @property-read \App\Models\User $user
+ * @method static Builder|SharedSave newModelQuery()
+ * @method static Builder|SharedSave newQuery()
+ * @method static Builder|SharedSave query()
+ * @mixin Eloquent
+ * @property-read Save $safe
+ * @property-read User $user
  * @property int $id
  * @property int $user_id
  * @property int $save_id
  * @property int $permission
  * @property int $accepted
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereAccepted($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave wherePermission($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereSaveId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereUserId($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|SharedSave whereAccepted($value)
+ * @method static Builder|SharedSave whereCreatedAt($value)
+ * @method static Builder|SharedSave whereId($value)
+ * @method static Builder|SharedSave wherePermission($value)
+ * @method static Builder|SharedSave whereSaveId($value)
+ * @method static Builder|SharedSave whereUpdatedAt($value)
+ * @method static Builder|SharedSave whereUserId($value)
  * @property int $declined
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereDeclined($value)
+ * @method static Builder|SharedSave whereDeclined($value)
  * @property int $revoked
- * @method static \Illuminate\Database\Eloquent\Builder|SharedSave whereRevoked($value)
+ * @method static Builder|SharedSave whereRevoked($value)
  */
 class SharedSave extends Pivot
 {
@@ -63,16 +67,16 @@ class SharedSave extends Pivot
     protected $casts = [
     ];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     /**
      * renamed because of function overloading
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function safe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function safe(): BelongsTo
     {
         return $this->belongsTo(Save::class, "save_id");
     }
