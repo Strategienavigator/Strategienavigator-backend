@@ -6,14 +6,17 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\EmailVerification;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use App\Services\EmailService;
 use App\Services\UserService;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Laravel\Passport\Bridge\AccessTokenRepository;
 use Laravel\Passport\Bridge\ClientRepository;
 use League\OAuth2\Server\AuthorizationServer;
@@ -22,13 +25,20 @@ use Validator;
 class UserController extends Controller
 {
 
+    /**
+     * Das regex, welches Benutzt wird um sicherzustellen, dass das User Password
+     * @var string
+     */
     private static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return AnonymousResourceCollection
+     * Zeigt alle User an
+     * @return AnonymousResourceCollection Alle User als ResourceCollection
+     * @throws AuthorizationException Wenn der User keine Berechtigung zum Ansehen aller User besitzt
+     * @see User
+     * @see UserPolicy::viewAny()
+     * @see UserResource
      */
     public function index(): AnonymousResourceCollection
     {
@@ -37,10 +47,13 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Erstellt einen neuen User
      *
-     * @param Request $request
-     * @return Response|JsonResponse
+     * @param Request $request Die aktuelle Request instanz
+     * @param EmailService $emailService Dependency Injection
+     * @param UserService $userService Dependency Injection
+     * @return Response Code 201, wenn ein User erstellt wurde
+     * @throws ValidationException Wenn die Eingabedaten nicht valide sind
      */
     public function store(Request $request, EmailService $emailService, UserService $userService): Response
     {
@@ -58,53 +71,31 @@ class UserController extends Controller
     }
 
 
-    public function storeAnonymous()
+    /**
+     * Erstellt einen Anonymen User.
+     *
+     * Username und Password des neuen Users werden im Body zurückgegeben
+     *
+     * @return Response Code 201, wenn das erstellten erfolgreich war. Response enthält username und password im Body
+     * @throws Exception Wenn es ein Problem beim Erstellen des Users gab
+     */
+    public function storeAnonymous(UserService $userService): Response
     {
         $password = md5(microtime());
-        $u = $this->createAnonymousUser($password);
+        $u = $userService->createAnonymousUser($password);
         $u->save();
 
-        return \response()->created('users', $u)->setContent(["username" => $u->username, "password" => $password]);
+        return response()->created('users', $u)->setContent(["username" => $u->username, "password" => $password]);
     }
 
     /**
-     * @param User $u the anonymous user which gets upgraded
-     * @param array $data array with username, password and email fields
-     * @param EmailService $emailService
-     */
-    private function upgradeAnonymousUser(User $u, array $data, EmailService $emailService)
-    {
-        if ($u->anonym) {
-            $u->anonym = false;
-            $u->fill($data);
-            $u->password = $data["password"];
-            $emailService->requestEmailChangeOfUser($u, $data["email"]);
-            $u->save();
-        }
-    }
-
-    /**
-     * @return User
-     * @throws Exception
-     */
-    private function createAnonymousUser(string $password)
-    {
-        $u = new User();
-        $u->anonym = true;
-        $u->password = $password;
-        $u->last_activity = Carbon::now();
-        do {
-            $u->username = "anonymous" . random_int(1000, 1000000); // TODO maybe change username generation method (could end up in infinitive loop)
-        } while (User::whereUsername($u->username)->exists());
-
-        return $u;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param User $user
-     * @return UserResource
+     * Zeigt einen ausgewählten User an
+     * @param User $user Der in der Url definierte User
+     * @return UserResource Der ausgewählte User als UserResource
+     * @throws AuthorizationException Wenn der User keine Berechtigung den ausgewählten User anzusehen
+     * @see User
+     * @see UserPolicy::view()
+     * @see UserResource
      */
     public function show(User $user): UserResource
     {
@@ -114,11 +105,17 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param User $user
-     * @return Response
+     * Ändert eines ausgewählten Nutzers zu den übergebenen Attributen
+     * @param Request $request Die aktuelle Request Instanz
+     * @param User $user Der in der Url definierte User
+     * @param EmailService $emailService Dependency Injection
+     * @param UserService $userService Dependency Injection
+     * @return Response Code 200, wenn der User aktualisiert wurde
+     * @throws AuthorizationException Wenn der aktuelle User keine Berechtigung hat den ausgewählten User zu verändern
+     * @throws ValidationException Wenn die Eingabeparameter nicht valide sind
+     * @see User
+     * @see UserPolicy::update()
+     * @see UserResource
      */
     public function update(Request $request, User $user, EmailService $emailService, UserService $userService): Response
     {
@@ -136,11 +133,10 @@ class UserController extends Controller
         return response()->noContent(Response::HTTP_OK);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param User $user
-     * @return Response
+    /** Löscht den ausgewählten User
+     * @param User $user Den in der Url definierten User
+     * @return Response Code 200, wenn das Löschen erfolgreich war
+     * @throws AuthorizationException Wenn der User keine Berechtigung besitzt den
      */
     public function destroy(User $user): Response
     {
@@ -149,6 +145,12 @@ class UserController extends Controller
         return response()->noContent(Response::HTTP_OK);
     }
 
+    /**
+     * Gibt zurück ob der angefragte Username bereits benutzt wird
+     * @param Request $request Die aktuelle Request instanz
+     * @param UserService $userService Dependency Injection
+     * @return JsonResponse Body enthält available attribut, welches angibt ob der Username bereits benutzt wird
+     */
     public function checkUsername(Request $request, UserService $userService): JsonResponse
     {
         $validated = $request->validate([
@@ -160,6 +162,14 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Gibt zurück, ob die angefragte E-Mail bereits benutzt wird
+     *
+     * Es werden auch die noch nicht bestätigten E-Mail-Adressen berücksichtigt
+     * @param Request $request Die aktuelle Request instanz
+     * @param UserService $userService Dependency Injection
+     * @return JsonResponse Body enthält available attribut, welches angibt, ob die E-Mail bereits benutzt wird
+     */
     public function checkEmail(Request $request, UserService $userService): JsonResponse
     {
         $validated = $request->validate([

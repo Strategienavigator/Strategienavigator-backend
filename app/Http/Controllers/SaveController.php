@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SaveResource;
 use App\Http\Resources\SimpleSaveResource;
 use App\Models\Save;
+use App\Policies\SavePolicy;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -14,9 +16,11 @@ use Illuminate\Http\Response;
 class SaveController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return AnonymousResourceCollection
+     * Zeigt alle Speicherstände an
+     * @return AnonymousResourceCollection Speicherstände als ResourceCollection
+     * @throws AuthorizationException Wenn der User keine Berechtigung zum Ansehen aller Speicherstände hat
+     * @see Save
+     * @see SavePolicy
      */
     public function index(): AnonymousResourceCollection
     {
@@ -25,11 +29,12 @@ class SaveController extends Controller
         return SimpleSaveResource::collection(Save::with("contributors")->simplePaginate());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
+    /** Erstellt einen neuen Speicherstand
+     * @param Request $request Die aktuelle Request instanz
+     * @return Response Code 201, wenn der Speicherstand erfolgreich erstellt wurde
+     * @throws AuthorizationException Wenn der User keine Berechtigung zum Erstellen von Speicherständen hat
+     * @see Save
+     * @see SavePolicy
      */
     public function store(Request $request): Response
     {
@@ -51,10 +56,16 @@ class SaveController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Gibt den ausgewählten Speicherstand zurück
      *
-     * @param Save $save
-     * @return SaveResource
+     * Das <code>last_opened</code> Attribut wird auf die aktuelle Zeit gesetzt.
+     *
+     * @param Save $save Der in der Url definierte Speicherstand
+     * @return SaveResource Die Resource des in der Url definierten Speicherstandes
+     * @throws AuthorizationException Wenn der User keine Berechtigung zum Anschauen des Speicherstandes hat
+     * @see Save
+     * @see SavePolicy
+     * @see Save::$last_opened
      */
     public function show(Save $save): SaveResource
     {
@@ -64,12 +75,19 @@ class SaveController extends Controller
         return new SaveResource($save);
     }
 
-    /**
-     * Update the specified resource in storage.
+    /** Aktualisiert den ausgewählten Speicherstand mit den übergebenen Daten
      *
-     * @param Request $request
-     * @param Save $save
-     * @return Response|JsonResponse
+     *  Response-Codes:
+     *  - 200: Änderungen übernomen
+     *  - 424: Speicherstand muss vorher gesperrt werden
+     *  - 423: Speicherstand ist gerade von einem anderen User gesperrt
+     *
+     * @param Request $request Die aktuelle Request instanz
+     * @param Save $save Der in der Url definierte Speicherstand
+     * @return Response Gibt einen passenden Response-Code zurück
+     * @throws AuthorizationException Wenn der User keine Berechtigung hat den Speicherstand zu überschreiben
+     * @see Save
+     * @see SavePolicy
      */
     public function update(Request $request, Save $save): Response
     {
@@ -117,10 +135,10 @@ class SaveController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param Save $save
-     * @return Response
+     * Löschten den ausgewählten Speicherstand
+     * @param Save $save Den Speicherstand, welcher in der Url definiert wurde
+     * @return Response code 200, wenn der Speicherstand gelöscht wurde
+     * @throws AuthorizationException Wenn der User keine Berechtigung besitzt den Speicherstand zu löschen
      */
     public
     function destroy(Save $save): Response
