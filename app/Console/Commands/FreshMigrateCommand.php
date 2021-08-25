@@ -7,34 +7,27 @@ use Illuminate\Console\Command;
 use Laravel\Passport\Client;
 use Symfony\Component\Console\Output\BufferedOutput;
 
-class freshMigrateCommand extends Command
+/**
+ * Kommando, welches die Datenbank neu migriert und dabei die Oauth-Clients nicht löscht
+ */
+class FreshMigrateCommand extends Command
 {
     /**
-     * The name and signature of the console command.
+     * Name des Kommandos
      *
      * @var string
      */
     protected $signature = 'migrate:persistClients';
 
     /**
-     * The console command description.
+     * Beschreibungd des Kommandos
      *
      * @var string
      */
     protected $description = 'Does run migrate:fresh --seed but persists the oauth-clients';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
+     * Führt das Kommando aus
      */
     public function handle()
     {

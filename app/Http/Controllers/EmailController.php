@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * Controller welche funktionen für die Routen der E-Mail Verifikation implementiert.
+ */
 class EmailController extends Controller
 {
-    //
 
     /**
-     * @param Request $request
-     * @return Response
+     * Übernimmt die E-Mail aus der EmailVerification-Tabelle in die User-Tabelle
+     * @param string $token token des E-Mail verifikation Prozesses
+     * @return Response Code 200 bei erfolgreicher Übernahme
      */
-    function verify(Request $request): Response
+    function verify(string $token): Response
     {
 
-        $email_verification = EmailVerification::where('token', '=', $request->token)->firstOrFail();
+        $email_verification = EmailVerification::whereToken($token)->firstOrFail();
         $user = $email_verification->user;
         $user->email_verified_at = Carbon::now();
         $user->email = $email_verification->email;

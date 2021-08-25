@@ -16,25 +16,29 @@ use Mail;
 
 class PasswordController extends Controller
 {
-    //
 
     /**
-     * Display the specified resource.
+     * Zeigt Metadaten des angeforderten Password resets an
      *
-     * @param Request $request
-     * @return PasswordResetResource
+     * @param string $token Der Token von der PasswordReset Resource
+     * @return PasswordResetResource Resource mit der angeforderten PasswordReset instanz
      */
-    function show(Request $request)
+    function show(string $token): PasswordResetResource
     {
-        $password_reset = PasswordReset::where('token', '=', $request->token)->firstOrFail();
-        // TODO PasswordPolicy implementieren
-        // $this->authorize('view', $password_reset);
+        $password_reset = PasswordReset::whereToken($token)->firstOrFail();
 
         return new PasswordResetResource($password_reset);
     }
 
 
-    function forgotPassword(Request $request, TokenService $tokenService)
+    /**
+     * Erstellt eine PasswordReset instanz und schickt eine E-Mail an den Nutzer
+     * @param Request $request die aktuelle Request instanz
+     * @param TokenService $tokenService Dependency Injection
+     * @return Response Code 201 wenn resource erstellt wurde
+     * @see PasswordReset
+     */
+    function forgotPassword(Request $request, TokenService $tokenService): Response
     {
 
         $validate = $request->validate([
@@ -48,7 +52,6 @@ class PasswordController extends Controller
         $password_reset->expiry_date = Carbon::now()->addHour();
 
         $password_reset->token = $tokenService->createToken(true);
-        Log::debug($password_reset->token);
         $password_reset->password_changed = false;
         $password_reset->created_at = Carbon::now();
 
@@ -58,10 +61,16 @@ class PasswordController extends Controller
         Mail::to($u->email)->send(new PasswordResetEmail($password_reset->token,$u->username));
 
 
-        return response()->noContent(Response::HTTP_OK);
+        return response()->noContent(Response::HTTP_CREATED);
     }
 
-    function updatePassword(String $token, Request $request)
+    /**
+     * Aktualisiert das Password des Users, welcher mit der PasswordReset Resource verknüpft ist
+     * @param String $token Der token der PasswordReset Resource
+     * @param Request $request Die aktuelle Request instanz
+     * @return Response Code 200, wenn das Password erfolgreich geändert wurde, Code 403, wenn der PasswordReset Link angelaufen ist oder bereits benutzt wurde
+     */
+    function updatePassword(String $token, Request $request): Response
     {
 
         $validate = $request->validate([

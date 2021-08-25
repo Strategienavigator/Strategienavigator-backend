@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Policies\AuthTokenPolicy;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
@@ -10,14 +11,18 @@ use Laravel\Passport\TokenRepository;
 
 class AuthTokenController extends Controller
 {
+
     /**
-     * @param string $token_id
-     * @param TokenRepository $tokenRepository
-     * @param RefreshTokenRepository $refreshTokenRepository
-     * @return Response
-     * @throws AuthorizationException
+     * Löscht die
+     *
+     * @param string $token_id id des Token
+     * @param TokenRepository $tokenRepository Dependency Injection
+     * @param RefreshTokenRepository $refreshTokenRepository Dependency Injection
+     * @return Response Code 200 beim erfolgreicher löschen
+     * @throws AuthorizationException|ModelNotFoundException Wenn der Token nicht existiert oder der User nicht autorisiert ist.
+     * @see AuthTokenPolicy::delete()
      */
-    public function delete(string $token_id, TokenRepository $tokenRepository, RefreshTokenRepository $refreshTokenRepository)
+    public function delete(string $token_id, TokenRepository $tokenRepository, RefreshTokenRepository $refreshTokenRepository): Response
     {
         $t = $tokenRepository->find($token_id);
         if ($t) {
