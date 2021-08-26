@@ -16,11 +16,11 @@
 </head>
 <body class="antialiased">
 <div>
-    Hallo,<br/>
+    Hallo {{$username}},<br/>
     <br/>
-    Sie wurden von {{$invite_user}} eingeladen an einem Strategietool mitzuarbeiten.<br/>
+    Sie wurden eingeladen an "{{$saveName}}" mitzuarbeiten.<br/>
     Bitte klicken Sie auf folgenden Link, um diese Einladung anzunehmen:<br/>
-    <a href={{ config('frontend.url').'/'.$token}}>{{ config('frontend.url').'/'.$token}}</a>
+    <a href={{ $fullUrl.'?accepted=true'}}>{{ $fullUrl.'?accepted=true'}}</a>
     <br/>
     <br/>
     Wenn Sie diese Einladung nicht annehmen wollen ignorieren Sie einfach diese E-Mail.

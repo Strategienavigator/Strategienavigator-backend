@@ -5,10 +5,14 @@ namespace App\Http\Middleware;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 
+/**
+ * Identifiziert den aktuellen User und überprüft ob der Access-Token Valide ist
+ * @package App\Http\Middleware
+ */
 class Authenticate extends Middleware
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Führt die Weiterleitung durch, wenn kein User angemeldeted ist
      *
      * @param Request $request
      * @return string|null
