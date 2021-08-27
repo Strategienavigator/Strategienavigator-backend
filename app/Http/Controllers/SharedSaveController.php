@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\SharedSaveResource;
+use App\Mail\SaveInvitationEmail;
 use App\Models\Save;
 use App\Models\SharedSave;
 use App\Models\User;
@@ -13,7 +14,12 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
+/**
+ * Controller, welcher Routen zum Verwalten von Freigegebenen Speicherständen implementiert
+ * @package App\Http\Controllers
+ */
 class SharedSaveController extends Controller
 {
     /**
@@ -87,6 +93,9 @@ class SharedSaveController extends Controller
         $shared_save->user_id = $user->id;
         $shared_save->accepted = false;
         $save->invitations()->save($shared_save);
+
+        Mail::to($user->email)->send(new SaveInvitationEmail($save->name,$shared_save->id));
+
         return response()->created("contribution", $shared_save);
     }
 

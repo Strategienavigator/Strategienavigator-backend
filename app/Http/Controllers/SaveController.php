@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
+/**
+ * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
+ * @package App\Http\Controllers
+ */
 class SaveController extends Controller
 {
     /**

@@ -6,6 +6,10 @@ use App\Http\Resources\SimpleSaveResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * Controller, eine Route zum Anzeigen aller Speicherstände eins zugehörigen Users
+ * @package App\Http\Controllers
+ */
 class UserSavesController extends Controller
 {
     public function index(Request $request , User $user)

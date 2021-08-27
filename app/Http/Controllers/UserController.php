@@ -22,6 +22,10 @@ use Laravel\Passport\Bridge\ClientRepository;
 use League\OAuth2\Server\AuthorizationServer;
 use Validator;
 
+/**
+ * Controller, welcher Routen zum Verwalten von Usern implementiert
+ * @package App\Http\Controllers
+ */
 class UserController extends Controller
 {
 

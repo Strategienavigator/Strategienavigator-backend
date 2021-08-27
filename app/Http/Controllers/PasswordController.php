@@ -14,6 +14,10 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Mail;
 
+/**
+ * Controller, welcher Routen zum Verwalten von PasswordReset Ressourcen implementiert
+ * @package App\Http\Controllers
+ */
 class PasswordController extends Controller
 {
 
