@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Artisan;
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 use Laravel\Passport\Client;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -34,7 +36,26 @@ class FreshMigrateCommand extends Command
 
         $clients = Client::all();
 
-        Artisan::call("migrate:fresh", ["--seed"=>true], $this->output);
+        $success = false;
+        $tries = 0;
+        $MAX_TRIES = 5;
+
+        while(!$success && $tries++ < $MAX_TRIES){
+
+            try {
+                Artisan::call("migrate:fresh", ["--seed"=>true], $this->output);
+                $success = true;
+            }catch (QueryException $e){
+                $mes = "Migration konnte nicht abgeschlossen werden, Versuch " . $tries . " von " . $MAX_TRIES;
+                if($tries == $MAX_TRIES){
+                    $mes .= "\n Es wird abgebrochen";
+                }
+                $this->getOutput()->error($mes);
+
+            }
+        }
+
+
 
         foreach ($clients as $c) {
             $n = $c->replicate();

@@ -70,7 +70,7 @@ class UserController extends Controller
         ]);
 
         $u = new User();
-        $userService->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+        $userService->updateUser($u, array_merge(["anonymous" => false,], $validated), $emailService);
         return \response()->created('users', $u);
     }
 

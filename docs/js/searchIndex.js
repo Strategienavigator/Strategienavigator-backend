@@ -183,7 +183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\PasswordController",
             "name": "PasswordController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020PasswordReset\u0020Ressourcen\u0020implementiert",
             "url": "classes/App-Http-Controllers-PasswordController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\PasswordController\u003A\u003Ashow\u0028\u0029",
@@ -203,7 +203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SaveController",
             "name": "SaveController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Speicherst\u00E4nden\u0020implementiert",
             "url": "classes/App-Http-Controllers-SaveController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SaveController\u003A\u003Aindex\u0028\u0029",
@@ -233,7 +233,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SharedSaveController",
             "name": "SharedSaveController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Freigegebenen\u0020Speicherst\u00E4nden\u0020implementiert",
             "url": "classes/App-Http-Controllers-SharedSaveController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SharedSaveController\u003A\u003Aindex\u0028\u0029",
@@ -283,7 +283,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\ToolController",
             "name": "ToolController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Routen\u0020implementiert",
             "url": "classes/App-Http-Controllers-ToolController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\ToolController\u003A\u003Aindex\u0028\u0029",
@@ -313,7 +313,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserController",
             "name": "UserController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Usern\u0020implementiert",
             "url": "classes/App-Http-Controllers-UserController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserController\u003A\u003Aindex\u0028\u0029",
@@ -363,7 +363,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserSavesController",
             "name": "UserSavesController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020eine\u0020Route\u0020zum\u0020Anzeigen\u0020aller\u0020Speicherst\u00E4nde\u0020eins\u0020zugeh\u00F6rigen\u0020Users",
             "url": "classes/App-Http-Controllers-UserSavesController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserSavesController\u003A\u003Aindex\u0028\u0029",
@@ -393,32 +393,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Middleware\\Authenticate",
             "name": "Authenticate",
-            "summary": "",
+            "summary": "Identifiziert\u0020den\u0020aktuellen\u0020User\u0020und\u0020\u00FCberpr\u00FCft\u0020ob\u0020der\u0020Access\u002DToken\u0020Valide\u0020ist",
             "url": "classes/App-Http-Middleware-Authenticate.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\Authenticate\u003A\u003AredirectTo\u0028\u0029",
             "name": "redirectTo",
-            "summary": "Get\u0020the\u0020path\u0020the\u0020user\u0020should\u0020be\u0020redirected\u0020to\u0020when\u0020they\u0020are\u0020not\u0020authenticated.",
+            "summary": "F\u00FChrt\u0020die\u0020Weiterleitung\u0020durch,\u0020wenn\u0020kein\u0020User\u0020angemeldeted\u0020ist",
             "url": "classes/App-Http-Middleware-Authenticate.html#method_redirectTo"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\EncryptCookies",
-            "name": "EncryptCookies",
-            "summary": "",
-            "url": "classes/App-Http-Middleware-EncryptCookies.html"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\EncryptCookies\u003A\u003A\u0024except",
-            "name": "except",
-            "summary": "The\u0020names\u0020of\u0020the\u0020cookies\u0020that\u0020should\u0020not\u0020be\u0020encrypted.",
-            "url": "classes/App-Http-Middleware-EncryptCookies.html#property_except"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\PreventRequestsDuringMaintenance",
             "name": "PreventRequestsDuringMaintenance",
-            "summary": "",
+            "summary": "Klasse\u0020zum\u0020Steuern\u0020des\u0020Wartungsmodus",
             "url": "classes/App-Http-Middleware-PreventRequestsDuringMaintenance.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\PreventRequestsDuringMaintenance\u003A\u003A\u0024except",
             "name": "except",
-            "summary": "The\u0020URIs\u0020that\u0020should\u0020be\u0020reachable\u0020while\u0020maintenance\u0020mode\u0020is\u0020enabled.",
+            "summary": "Routen,\u0020welche\u0020w\u00E4hrend\u0020Wartungsarbeiten\u0020erreichbar\u0020sein\u0020sollen",
             "url": "classes/App-Http-Middleware-PreventRequestsDuringMaintenance.html#property_except"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\RedirectIfAuthenticated",
@@ -1540,6 +1530,36 @@ Search.appendIndex(
             "name": "run",
             "summary": "Run\u0020the\u0020database\u0020seeds.",
             "url": "classes/Database-Seeders-UserSeeder.html#method_run"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail",
+            "name": "SaveInvitationEmail",
+            "summary": "Email,\u0020welche\u0020versand\u0020wird,\u0020wenn\u0020ein\u0020User\u0020einen\u0020anderen\u0020dazu\u0020einl\u00E4dt\u0020an\u0020einem\u0020Speicherstand\u0020mitzuarbeiten",
+            "url": "classes/App-Mail-SaveInvitationEmail.html"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Erstellt\u0020eine\u0020neuen\u0020Mail\u0020Instanz",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Erstellt\u0020die\u0020Mail",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#method_build"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024fullUrl",
+            "name": "fullUrl",
+            "summary": "Url\u0020zu\u0020der\u0020Invitation\u0020Page\u0020im\u0020Frontend",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_fullUrl"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024saveName",
+            "name": "saveName",
+            "summary": "Name\u0020des\u0020Speicherstandes",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_saveName"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024username",
+            "name": "username",
+            "summary": "Nutzername\u0020des\u0020eingeladenen\u0020Nutzers",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_username"
         },                {
             "fqsen": "\\",
             "name": "\\",

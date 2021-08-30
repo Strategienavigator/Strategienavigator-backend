@@ -20,7 +20,7 @@ class UserResource extends JsonResource
         return [
             "id" => $this->id,
             "username" => $this->username,
-            "anonym" => $this->anonym,
+            "anonymous" => $this->anonymous,
             "email" => $this->when($isSameUser, $this->email),
             "created_at" => $this->created_at,
             "owned_saves" => $this->when($isSameUser, $this->saves->map(function ($s) {

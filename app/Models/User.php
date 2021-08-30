@@ -26,12 +26,13 @@ use Laravel\Passport\Token;
  *
  * @property int $id
  * @property string $username
- * @property boolean $anonym
  * @property string $joined_at
  * @property string|null $last_activity
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
+ * @property bool $anonymous
+ * @property Carbon|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
@@ -69,6 +70,11 @@ use Laravel\Passport\Token;
  * @method static Builder|User whereLastActivity($value)
  * @property-read Collection|SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
+ * @method static Builder|User whereAnonymous($value)
+ * @method static Builder|User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 class User extends Authenticatable
 {
@@ -102,7 +108,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_activity' => 'datetime',
-        'anonym' => 'boolean'
+        'anonymous' => 'boolean'
     ];
 
     /**
@@ -113,8 +119,8 @@ class User extends Authenticatable
      */
     public function findForPassport(string $username)
     {
-        return $this->where('email', $username)->where('anonym', false)
-            ->orWhere('username', $username)->where('anonym', true)
+        return $this->where('email', $username)->where('anonymous', false)
+            ->orWhere('username', $username)->where('anonymous', true)
             ->first();
     }
 

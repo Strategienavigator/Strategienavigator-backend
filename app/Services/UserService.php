@@ -54,7 +54,7 @@ class UserService
     public function createAnonymousUser(string $password): User
     {
         $u = new User();
-        $u->anonym = true;
+        $u->anonymous = true;
         $u->password = $password;
         $u->last_activity = Carbon::now();
         do {
@@ -72,8 +72,8 @@ class UserService
      */
     public function upgradeAnonymousUser(User $u, array $data, EmailService $emailService)
     {
-        if ($u->anonym) {
-            $u->anonym = false;
+        if ($u->anonymous) {
+            $u->anonymous = false;
             $u->fill($data);
             $u->password = $data["password"];
             $emailService->requestEmailChangeOfUser($u, $data["email"]);

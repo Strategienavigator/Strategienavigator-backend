@@ -43,7 +43,7 @@ class InvitationLinkPolicy
      */
     public function create(User $user, Save $save): bool
     {
-        return !$user->anonym && $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -55,7 +55,7 @@ class InvitationLinkPolicy
      */
     public function update(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
@@ -67,6 +67,6 @@ class InvitationLinkPolicy
      */
     public function delete(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 }
