@@ -78,7 +78,7 @@ class PasswordController extends Controller
     {
 
         $validate = $request->validate([
-            "password" => "required|string"
+            "password" => ["required","string","min:8", "max:120", "regex:" . UserController::$passwordRegex]
         ]);
 
         $password_reset = PasswordReset::whereToken($token)->firstOrFail();

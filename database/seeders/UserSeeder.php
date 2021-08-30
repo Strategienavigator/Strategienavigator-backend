@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $user = new User([
             "username" => "test_user",
             "email" => "max@test.test",
-            "anonym" => false,
+            "anonymous" => false,
             "email_verified_at" => Carbon::now(),
             "last_activity" => Carbon::now(),
             "password" => "password"

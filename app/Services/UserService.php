@@ -69,15 +69,20 @@ class UserService
      * @param User $u the anonymous user which gets upgraded
      * @param array $data array with username, password and email fields
      * @param EmailService $emailService
+     * @return bool Ob die funktion erfolgreich war.
      */
-    public function upgradeAnonymousUser(User $u, array $data, EmailService $emailService)
+    public function upgradeAnonymousUser(User $u, array $data, EmailService $emailService): bool
     {
         if ($u->anonymous) {
             $u->anonymous = false;
             $u->fill($data);
             $u->password = $data["password"];
+            $u->last_activity = Carbon::now();
             $emailService->requestEmailChangeOfUser($u, $data["email"]);
             $u->save();
+            return true;
+        }else{
+            return false;
         }
     }
 
