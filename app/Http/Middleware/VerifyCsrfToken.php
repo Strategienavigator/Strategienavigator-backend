@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
+/**
+ * @ignore
+ */
 class VerifyCsrfToken extends Middleware
 {
     /**

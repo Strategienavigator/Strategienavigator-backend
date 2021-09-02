@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Email, welche versand wird, wenn ein User einen anderen dazu einlädt an einem Speicherstand mitzuarbeiten
+ * E-Mail, welche versand wird, wenn ein User einen anderen dazu einlädt an einem Speicherstand mitzuarbeiten
  * @package App\Mail
  */
 class SaveInvitationEmail extends Mailable implements ShouldQueue
@@ -32,9 +32,9 @@ class SaveInvitationEmail extends Mailable implements ShouldQueue
     public $username;
 
     /**
-     * Erstellt eine neuen Mail Instanz
+     * Erstellt eine neue instanz
      *
-     * @param string $username Username des Eingeladenen Users
+     * @param string $username Username des eingeladenen Users
      * @param string $saveName Name des Speicherstandes
      * @param int $invitationId Id der SharedSave Instanz
      */

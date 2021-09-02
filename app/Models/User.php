@@ -24,19 +24,16 @@ use Laravel\Passport\Token;
 /**
  * App\Models\User
  *
- * @property int $id
- * @property string $username
- * @property string $joined_at
- * @property string|null $last_activity
- * @property string $email
- * @property Carbon|null $email_verified_at
- * @property string $password
- * @property bool $anonymous
- * @property Carbon|null $deleted_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
+ * @property int $id Id des Users
+ * @property string $username Benutzername des Users
+ * @property string|null $last_activity Zeitpunkt der letzten aktivität
+ * @property string $email Verifizierte E-Mail des Users
+ * @property Carbon|null $email_verified_at Zeitpunkt an dem die E-Mail verifiziert wurde
+ * @property string $password Passwort des Users, gehasht und gesalted
+ * @property bool $anonymous Ob das Konto ein anonymes ist oder nicht
+ * @property Carbon|null $deleted_at Zeitpunkt, an dem der User gelöscht wurde
+ * @property Carbon|null $created_at Zeitpunkt, an dem der User erstellt wurde, bei einem vorherigen anonymen Konto ist es der Zeitpunkt als das Konto hochgestuft wurde
+ * @property Carbon|null $updated_at Zeitpunkt, an dem der User das letzte man geändert wurde
  * @method static UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -51,37 +48,29 @@ use Laravel\Passport\Token;
  * @method static Builder|User wherePassword($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereUsername($value)
- * @mixin Eloquent
- * @property-read Collection|Save[] $accessibleShares
- * @property-read int|null $accessible_shares_count
- * @property-read EmailVerification|null $emailVerification
- * @property-read Collection|SharedSave[] $invitations
- * @property-read int|null $invitations_count
- * @property-read Collection|Save[] $invitedSaves
- * @property-read int|null $invited_saves_count
- * @property-read Collection|Save[] $isLocking
- * @property-read int|null $is_locking_count
- * @property-read Collection|Save[] $saves
- * @property-read int|null $saves_count
- * @property-read Collection|Client[] $clients
- * @property-read int|null $clients_count
- * @property-read Collection|Token[] $tokens
- * @property-read int|null $tokens_count
  * @method static Builder|User whereLastActivity($value)
- * @property-read Collection|SharedSave[] $sharedSaves
- * @property-read int|null $shared_saves_count
- * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static Builder|User whereAnonymous($value)
  * @method static Builder|User whereDeletedAt($value)
+ *
+ * @mixin Eloquent
+ *
+ * @property-read Collection|Save[] $accessibleShares alle geteilten Speicherstände, auf die der User Zugriff hat
+ * @property-read EmailVerification|null $emailVerification die zum User gehörenden EmailVerification einträge
+ * @property-read Collection|SharedSave[] $invitations
+ * @property-read Collection|Save[] $invitedSaves alle geteilten Speicherstände, welche noch nicht revoked sind und noch nicht angenommen
+ * @property-read Collection|Save[] $isLocking alle Speicherstände die von diesem User gesperrt werden
+ * @property-read Collection|Save[] $saves alle Speicherstände die diesem User gehören
+ *
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
+    use HasFactory, HasApiTokens, SoftDeletes;
 
     /**
-     * The attributes that are mass assignable.
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -91,7 +80,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Attribute, welche beim Konvertieren in ein array, nicht in das Array hinzugefügt werden
      *
      * @var array
      */
@@ -101,7 +90,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Zugehörigkeit, welche Attribute zu welchen nativen Typen gecastet werden soll.
      *
      * @var array
      */
@@ -112,65 +101,102 @@ class User extends Authenticatable
     ];
 
     /**
-     * Find the user instance for the given username.
+     * Findet die User instanz des übergebenen Usernamen oder E-Mail
      *
-     * @param string $username
+     * @param string $username E-Mail oder Benutzername, E-Mail bei nicht anonymen Nutzern und Benutzername bei anonymen Nutzern
      * @return User the user, could be an anonymous user or a normal one
      */
     public function findForPassport(string $username)
     {
+        //TODO User nicht als return type hinzufügen, da querry null returnen könnte und dann eine exception geworfen wird, die passport nicht erwartet
         return $this->where('email', $username)->where('anonymous', false)
             ->orWhere('username', $username)->where('anonymous', true)
             ->first();
     }
 
+    /**
+     * Setter des Passwort attributes
+     *
+     * Hashed das passwort
+     * @param $value
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes["password"] = Hash::make($value);
     }
 
+    /**
+     * Beschreibt die Beziehung zu den Speicherständen die diesem User gehören
+     *
+     * @return HasMany
+     */
     public function saves(): HasMany
     {
         return $this->hasMany(Save::class, 'owner_id');
     }
 
+    /**Beschreibt die Beziehung zu den Speicherständen die von diesem User gesperrt werden
+     * @return HasMany
+     */
     public function isLocking(): HasMany
     {
         return $this->hasMany(Save::class, 'locked_by_id');
     }
 
+    /**Beziehung zu der EmailVerification Tabelle
+     * @return HasOne
+     */
     public function emailVerification(): HasOne
     {
         return $this->hasOne(EmailVerification::class);
     }
 
+    /**
+     * Beziehung zu den Speicherständen, zu denen der User eingeladen wurde aber diese noch nicht angenommen hat
+     * @return BelongsToMany
+     */
     public function invitedSaves(): BelongsToMany
     {
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission"])
             ->withPivotValue("accepted", false)
             ->withPivotValue("declined", false)
+            ->withPivotValue("revoked", false)
             ->withTimestamps();
     }
 
+    /**
+     * Alle SharedSave Einträge, die noch nicht revoked oder angenomemn sind
+     * @return HasMany
+     */
     public function invitations(): HasMany
     {
         return $this->hasMany(SharedSave::class)
             ->where('accepted', '=', false)
-            ->where('declined', '=', false);
+            ->where('declined', '=', false)
+            ->where('revoked', '=', false);
     }
 
+    /**
+     * Alle SharedSave Einträge die zu diesem User gehören
+     * @return HasMany
+     */
     public function sharedSaves(): HasMany
     {
         return $this->hasMany(SharedSave::class);
     }
 
+    /**
+     * Ale Speicherstände zu den dieser User Zugriff hat
+     * @return BelongsToMany
+     */
     public function accessibleShares(): BelongsToMany
     {
         return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission"])
             ->withPivotValue("accepted", true)
             ->withPivotValue("declined", false)
+            ->withPivotValue("revoked", false)
             ->withTimestamps();
     }
 

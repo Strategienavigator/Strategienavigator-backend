@@ -16,32 +16,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Save
+ * Speicherstand eines Tools
  *
- * @property int $id
- * @property string $name
- * @property string|null $last_opened
- * @property mixed|null $data
- * @property int $tool_id
- * @property int $owner_id
- * @property int|null $locked_by_id
- * @property string|null $last_locked
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @method static Builder|Save newModelQuery()
- * @method static Builder|Save newQuery()
- * @method static Builder|Save query()
- * @method static Builder|Save whereCreatedAt($value)
- * @method static Builder|Save whereData($value)
- * @method static Builder|Save whereId($value)
- * @method static Builder|Save whereLastLocked($value)
- * @method static Builder|Save whereLastOpened($value)
- * @method static Builder|Save whereLockedById($value)
- * @method static Builder|Save whereOwnerId($value)
- * @method static Builder|Save whereToolId($value)
- * @method static Builder|Save whereUpdatedAt($value)
- * @mixin Eloquent
- * @property Carbon|null $deleted_at
+ * @property int $id id des Speicherstandes
+ * @property string $name Name des Speicherstandes
+ * @property string|null $description Beschreibung des Speicherstandes
+ * @property string|null $last_opened Zeitpunkt an dem der Speicherstand zum letzten Mal geöffnet wurde
+ * @property mixed|null $data Daten des Tools
+ * @property int $tool_id Id des zugehörigen Tools
+ * @property int $owner_id Id des Users, welcher Eigentümer des Speicherstandes ist
+ * @property int|null $locked_by_id Id des Users, welcher diesen Speicherstand aktuell bearbeitet
+ * @property string|null $last_locked Zeitpunkt an dem das letzte Mal der Speicherstand gelockt wurde
+ * @property Carbon|null $created_at Timestamp des Zeitpunktes der Erstellung
+ * @property Carbon|null $updated_at Timestamp des Zeitpunktes der letzten Änderung
+ * @property Carbon|null $deleted_at Timestamp des Zeitpunktes der Löschung
+ *
  * @property-read Collection|User[] $contributors
  * @property-read int|null $contributors_count
  * @property-read Collection|InvitationLink[] $invitationLinks
@@ -53,23 +42,38 @@ use Illuminate\Support\Carbon;
  * @property-read User|null $locker
  * @property-read User $owner
  * @property-read Tool $tool
- * @method static \Illuminate\Database\Query\Builder|Save onlyTrashed()
- * @method static Builder|Save whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|Save withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()
- * @method static SaveFactory factory(...$parameters)
- * @method static Builder|Save whereName($value)
  * @property-read Collection|SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
- * @property string|null $description
+ *
+ * @method static Builder|Save newModelQuery()
+ * @method static Builder|Save newQuery()
+ * @method static Builder|Save query()
+ *
+ * @method static Builder|Save whereCreatedAt($value)
+ * @method static Builder|Save whereData($value)
+ * @method static Builder|Save whereId($value)
+ * @method static Builder|Save whereLastLocked($value)
+ * @method static Builder|Save whereLastOpened($value)
+ * @method static Builder|Save whereLockedById($value)
+ * @method static Builder|Save whereOwnerId($value)
+ * @method static Builder|Save whereToolId($value)
+ * @method static Builder|Save whereUpdatedAt($value)
+ * @method static Builder|Save whereDeletedAt($value)
+ * @method static Builder|Save whereName($value)
  * @method static Builder|Save whereDescription($value)
+ *
+ * @method static SaveFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Query\Builder|Save withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Save onlyTrashed()
+ * @mixin Eloquent
  */
 class Save extends Model
 {
     use HasFactory, SoftDeletes;
 
     /**
-     * The attributes that are mass assignable.
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -79,15 +83,7 @@ class Save extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
+     * Zugehörigkeit, welche Attribute zu welchen nativen Typen gecastet werden soll.
      *
      * @var array
      */
@@ -98,49 +94,98 @@ class Save extends Model
     ];
 
 
+    /**
+     * Beschreibt die Beziehung zu der users Tabelle zum Owner
+     * @return BelongsTo
+     */
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
 
+    /**
+     * Beschreibt die Beziehung zu der users Tabelle zu dem User der den Speicherstand sperrt
+     * @return BelongsTo
+     */
     public function locker(): BelongsTo
     {
         return $this->belongsTo(User::class, 'locked_by_id');
     }
 
+    /**
+     * Beschreibt die Beziehung zu dem Tool
+     * @return BelongsTo
+     */
     public function tool(): BelongsTo
     {
         return $this->belongsTo(Tool::class);
     }
 
+    /**
+     * Beschreibt die Beziehung zu der sharedSaves Tabelle
+     * @return HasMany
+     */
     public function sharedSaves(): HasMany
     {
         return $this->hasMany(SharedSave::class);
     }
 
+    /**
+     * Beschreibt die Beziehung zu den Mitwirkenden Usern, welche die Einladung noch nicht angenommen haben
+     *
+     * Von der Pivot Tabelle werden die permission, accepted, declined und revoked attribute geladen
+     * @return BelongsToMany
+     */
     public function invited(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission", "accepted", "declined", "revoked"])
             ->withPivotValue("accepted", false)
+            ->withPivotValue("revoked",false)
             ->withTimestamps();
     }
 
+    /**
+     * Beschreibt die Beziehung zu den Einladungen, welche noch nicht angenommen wurden
+     *
+     * @return HasMany
+     */
     public function invitations(): HasMany
     {
         return $this->hasMany(SharedSave::class)
             ->where("accepted", '=', false);
     }
 
+    /**
+     * Beschreibt die Beziehung zu den Einladungslinks
+     * @return HasMany
+     */
     public function invitationLinks(): HasMany
     {
         return $this->hasMany(InvitationLink::class);
     }
 
     /**
-     * checks if the given user and save combination has at leas the given permission
-     * @param User $user
-     * @param Save $save
+     * Beschreibt die Beziehung zu den Mitwirkenden Usern, welche die Einladung bereits angenommen haben.
+     *
+     * Von der Pivot Tabelle werden die permission, accepted, declined und revoked attribute geladen
+     * @return BelongsToMany
+     */
+    public function contributors(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
+            ->withPivot(["permission", "accepted", "declined", "revoked"])
+            ->withPivotValue("accepted", true)
+            ->withPivotValue("declined", false)
+            ->withPivotValue("revoked", false)
+            ->withTimestamps();
+    }
+
+    /**
+     * Prüft, ob der übergebene User mindestens die angegebene Berechtigung bei diesem Speicherstand besitzt
+     * @param User $user Der zu überprüfende User
+     * @param int $permission Die zu überprüfende Berechtigung
+     * @return bool Ob der User die Berechtigung besitzt
      */
     public function hasAtLeasPermission(User $user, int $permission)
     {
@@ -154,15 +199,5 @@ class Save extends Model
         }
 
         return false;
-    }
-
-    public function contributors(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission", "accepted", "declined", "revoked"])
-            ->withPivotValue("accepted", true)
-            ->withPivotValue("declined", false)
-            ->withPivotValue("revoked", false)
-            ->withTimestamps();
     }
 }

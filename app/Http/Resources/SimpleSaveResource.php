@@ -5,10 +5,15 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Klasse, welche eine Save instanz in ein Array umwandelt.
+ *
+ * Es werden nur ids der Mitwirkenden angezeigt
+ */
 class SimpleSaveResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Erstellt ein Array aus mit den Attributen von dem Speicherstand
      *
      * @param Request $request
      * @return array

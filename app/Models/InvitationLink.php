@@ -12,13 +12,14 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\InvitationLink
  *
- * @property int $id
- * @property Carbon $expiry_date
- * @property int $permission
- * @property int $save_id
- * @property string $token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int $id id des Eintrags
+ * @property Carbon $expiry_date Zeitpunkt an dem der Link abläuft
+ * @property int $permission Rechte die ein User kriegt, wenn er mit dem Link auf den Speicherstand zugreift
+ * @property int $save_id id des zugehörigen Speicherstands
+ * @property string $token Token des Einladungslinks
+ * @property Carbon|null $created_at Timestamp des Zeitpunktes der Erstellung
+ * @property Carbon|null $updated_at Timestamp des Zeitpunktes der letzten Änderung
+ * @property-read Save $safe zugehöriger Speicherstand
  * @method static Builder|InvitationLink newModelQuery()
  * @method static Builder|InvitationLink newQuery()
  * @method static Builder|InvitationLink query()
@@ -28,16 +29,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|InvitationLink wherePermission($value)
  * @method static Builder|InvitationLink whereSaveId($value)
  * @method static Builder|InvitationLink whereUpdatedAt($value)
- * @mixin Eloquent
- * @property-read Save $safe
  * @method static Builder|InvitationLink whereToken($value)
+ * @mixin Eloquent
+ *
+ *
  */
 class InvitationLink extends Model
 {
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -47,15 +49,7 @@ class InvitationLink extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
+     * Zugehörigkeit, welche Attribute zu welchen nativen Typen gecastet werden soll.
      *
      * @var array
      */
@@ -64,7 +58,9 @@ class InvitationLink extends Model
     ];
 
     /**
-     * renamed because of function overloading
+     * Beschreibt die Beziehung zur save Tabelle
+     *
+     * safe mit f geschrieben, weil eine save methode bereits existiert
      * @return BelongsTo
      */
     public function safe(): BelongsTo

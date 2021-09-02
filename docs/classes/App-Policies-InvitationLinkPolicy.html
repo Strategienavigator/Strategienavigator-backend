@@ -165,7 +165,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -190,35 +190,35 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can create models.</dd>
+<dd>Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-InvitationLinkPolicy.html#method_delete">delete()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can delete the model.</dd>
+<dd>Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-InvitationLinkPolicy.html#method_update">update()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can update the model.</dd>
+<dd>Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-InvitationLinkPolicy.html#method_view">view()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can view the model.</dd>
+<dd>Alle user dürfen einzelne Einladungs-Links anschauen</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-InvitationLinkPolicy.html#method_viewAny">viewAny()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can view any models.</dd>
+<dd>Nur im Debug-Modus dürfen alle Einträge gelesen werden</dd>
 
         </dl>
 
@@ -246,11 +246,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can create models.</p>
+        <p class="phpdocumentor-summary">Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -264,14 +264,17 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuell authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$save</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-Save.html"><abbr title="\App\Models\Save">Save</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Der Speicherstand für den der Einladungslink erstellt werden soll</p>
+</section>
 
             </dd>
             </dl>
@@ -281,7 +284,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User einen Einladungs-Link erstellen darf</p>
+</section>
+
     
 </article>
                     <article
@@ -297,11 +302,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can delete the model.</p>
+        <p class="phpdocumentor-summary">Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -315,14 +320,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuell authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$invitationLink</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-InvitationLink.html"><abbr title="\App\Models\InvitationLink">InvitationLink</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der Einladungslink, welcher gelöscht werden soll</p>
+</section>
+
             </dd>
             </dl>
 
@@ -331,7 +340,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User den Einladungs-Link löschen darf</p>
+</section>
+
     
 </article>
                     <article
@@ -347,11 +358,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can update the model.</p>
+        <p class="phpdocumentor-summary">Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -365,14 +376,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuell authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$invitationLink</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-InvitationLink.html"><abbr title="\App\Models\InvitationLink">InvitationLink</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der Einladungs-Link, welcher bearbeitet werden soll</p>
+</section>
+
             </dd>
             </dl>
 
@@ -381,7 +396,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User einen Einladungs-Link erstellen darf</p>
+</section>
+
     
 </article>
                     <article
@@ -397,11 +414,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can view the model.</p>
+        <p class="phpdocumentor-summary">Alle user dürfen einzelne Einladungs-Links anschauen</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -415,14 +432,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuell authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$invitationLink</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-InvitationLink.html"><abbr title="\App\Models\InvitationLink">InvitationLink</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der zu überprüfende Einladungs-Link</p>
+</section>
+
             </dd>
             </dl>
 
@@ -431,7 +452,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User den angegebenen Einladungslink gelesen werden soll</p>
+</section>
+
     
 </article>
                     <article
@@ -447,11 +470,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Policies/InvitationLinkPolicy.php"><a href="files/app-policies-invitationlinkpolicy.html"><abbr title="app/Policies/InvitationLinkPolicy.php">InvitationLinkPolicy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can view any models.</p>
+        <p class="phpdocumentor-summary">Nur im Debug-Modus dürfen alle Einträge gelesen werden</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -465,7 +488,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuell authentifizierte User</p>
+</section>
+
             </dd>
             </dl>
 
@@ -474,7 +499,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User alle InvitationLink Einträge lesen darf</p>
+</section>
+
     
 </article>
             </section>

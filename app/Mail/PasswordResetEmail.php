@@ -7,6 +7,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Passwort Reset E-Mail
+ *
+ * Enthält den Token des Passwort Resets und den Benutzernamen.
+ * Wird immer gequeued
+ */
 class PasswordResetEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
@@ -24,7 +30,7 @@ class PasswordResetEmail extends Mailable implements ShouldQueue
     }
 
     /**
-     * password reset token
+     * Token des Passwort Resets
      * @var string
      */
     public $token;
@@ -36,7 +42,7 @@ class PasswordResetEmail extends Mailable implements ShouldQueue
     public $username;
 
     /**
-     * Build the message.
+     * Erstellt die E-Mail
      *
      * @return $this
      */

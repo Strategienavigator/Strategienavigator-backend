@@ -7,16 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Email Verifications Email.
+ *
+ * Zeigt den token und username in der Email an.
+ * Die E-Mails werden immer gequeueed.
+ */
 class EmailVerificationEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
 
-
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * @param string $token den token der EmailVerification instanz
+     * @param string $username der Username des Users, bei dem die E-Mail bestätigt werden soll
      */
     public function __construct(string $token, string $username)
     {
@@ -25,19 +29,19 @@ class EmailVerificationEmail extends Mailable implements ShouldQueue
     }
 
     /**
-     * token of the connected user verification
+     * den token der EmailVerification instanz
      * @var string
      */
     public $token;
 
     /**
-     * username of the connected user account
+     * Username des verknüpften Users Konto
      * @var string
      */
     public $username;
 
     /**
-     * Build the message.
+     * Erstellt die E-Mail
      *
      * @return $this
      */

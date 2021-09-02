@@ -162,12 +162,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Methoden zum Verwalten von Usern</p>
+
 
 
 
@@ -187,14 +187,14 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Überprüft ob die E-Mail bereits verwendet wird</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Services-UserService.html#method_checkUsername">checkUsername()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Überprüft ob der Username bereits verwendet wird</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Services-UserService.html#method_createAnonymousUser">createAnonymousUser()</a>
@@ -213,9 +213,9 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Services-UserService.html#method_upgradeAnonymousUser">upgradeAnonymousUser()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Stuft ein anonymes Konto auf ein normales Konto hoch</dd>
 
         </dl>
 
@@ -243,16 +243,18 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Überprüft ob die E-Mail bereits verwendet wird</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">checkEmail</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>zu verifizierende E-Mail-Adressen gelten auch als verwendet</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -261,7 +263,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Zu überprüfende E-Mail</p>
+</section>
 
             </dd>
             </dl>
@@ -271,7 +274,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True, wenn die E-Mail noch verfügbar ist</p>
+</section>
+
     
 </article>
                     <article
@@ -287,17 +292,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Überprüft ob der Username bereits verwendet wird</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">checkUsername</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$username</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -305,7 +310,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Der zu überprüfende Username</p>
+</section>
 
             </dd>
             </dl>
@@ -315,7 +321,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True, wenn der übergebene Benutzername noch nicht verwendet wird</p>
+</section>
+
     
 </article>
                     <article
@@ -331,7 +339,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -394,7 +402,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -459,14 +467,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/UserService.php"><a href="files/app-services-userservice.html"><abbr title="app/Services/UserService.php">UserService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Stuft ein anonymes Konto auf ein normales Konto hoch</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">upgradeAnonymousUser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$u</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Services-EmailService.html"><abbr title="\App\Services\EmailService">EmailService</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emailService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">upgradeAnonymousUser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$u</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Services-EmailService.html"><abbr title="\App\Services\EmailService">EmailService</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$emailService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -476,7 +485,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>the anonymous user which gets upgraded</p>
+                    <section class="phpdocumentor-description"><p>das anonyme Konto, welches hoch gestuft wird</p>
 </section>
 
             </dd>
@@ -485,7 +494,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>array with username, password and email fields</p>
+                    <section class="phpdocumentor-description"><p>array mit username, password und email einträge</p>
 </section>
 
             </dd>
@@ -494,16 +503,20 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Services-EmailService.html"><abbr title="\App\Services\EmailService">EmailService</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>der EmailService</p>
+</section>
+
             </dd>
             </dl>
 
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob die funktion erfolgreich war.</p>
+</section>
+
     
 </article>
             </section>

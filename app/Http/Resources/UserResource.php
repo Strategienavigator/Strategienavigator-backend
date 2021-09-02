@@ -4,7 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+/**
+ * Klasse, welche eine User instanz in ein Array umwandelt
+ */
 class UserResource extends JsonResource
 {
     /**

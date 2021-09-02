@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @ignore
+ */
 class AppServiceProvider extends ServiceProvider
 {
 

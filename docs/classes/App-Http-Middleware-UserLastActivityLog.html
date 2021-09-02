@@ -163,14 +163,28 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Middleware/UserLastActivityLog.php"><a href="files/app-http-middleware-userlastactivitylog.html"><abbr title="app/Http/Middleware/UserLastActivityLog.php">UserLastActivityLog.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Middleware um das last_activity Feld des authentifizierten Users auf die aktuelle Uhrzeit zu setzten</p>
 
 
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\App\Models\User::$last_activity">User::$last_activity</abbr></span>
+                                        
+                                             
+                                    </dd>
+                        </dl>
 
 
 
@@ -188,7 +202,7 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Handle an incoming request.</dd>
+<dd>Setzt last_activity des authentifizierten Nutzers auf die aktuelle Uhrzeit</dd>
 
         </dl>
 
@@ -216,11 +230,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Middleware/UserLastActivityLog.php"><a href="files/app-http-middleware-userlastactivitylog.html"><abbr title="app/Http/Middleware/UserLastActivityLog.php">UserLastActivityLog.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Handle an incoming request.</p>
+        <p class="phpdocumentor-summary">Setzt last_activity des authentifizierten Nutzers auf die aktuelle Uhrzeit</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -234,14 +248,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Illuminate\Http\Request">Request</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Aktuelle Request instanz</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$next</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Closure">Closure</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Callback um den Request weiterzuverarbeiten</p>
+</section>
+
             </dd>
             </dl>
 
@@ -250,7 +268,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>return value des übergebenen $next callbacks</p>
+</section>
+
     
 </article>
             </section>

@@ -11,12 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Tool
+ * Ein Tool wie "SWOT-Analyse", welches im Frontend implementiert ist
  *
- * @property int $id
- * @property string $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int $id id des Tools
+ * @property string $name Name des Tools
+ * @property Carbon|null $created_at Zeitpunkt an dem das Tool erstellt wurde
+ * @property Carbon|null $updated_at Zeitpunkt an dem das Tool das letzte Mal geändert wurde.
+ *
  * @method static Builder|Tool newModelQuery()
  * @method static Builder|Tool newQuery()
  * @method static Builder|Tool query()
@@ -24,16 +25,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Tool whereId($value)
  * @method static Builder|Tool whereName($value)
  * @method static Builder|Tool whereUpdatedAt($value)
+ *
+ * @property-read Collection|Save[] $saves Alle Speicherstände, die zu diesem Tool gehören
+ *
  * @mixin Eloquent
- * @property-read Collection|Save[] $saves
- * @property-read int|null $saves_count
  */
 class Tool extends Model
 {
     use HasFactory;
 
     /**
-     * No value is mass assignable because toll data doesn't change and is read only
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -41,23 +43,11 @@ class Tool extends Model
         "name"
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * Beschreibt die Beziehung zu der saves Tabelle
+     * @return HasMany
      */
-    protected $casts = [
-    ];
-
-
     public function saves(): HasMany
     {
         return $this->hasMany(Save::class);

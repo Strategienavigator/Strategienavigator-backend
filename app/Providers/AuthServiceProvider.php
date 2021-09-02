@@ -13,7 +13,7 @@ use Laravel\Passport\Token;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * The policy mappings for the application.
+     * Nicht implizierte Policy Zuweisungen
      *
      * @var array
      */
@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Register any authentication / authorization services.
+     * Registriert die nötigen passport routen.
      *
      * @return void
      */

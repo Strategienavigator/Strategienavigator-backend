@@ -6,15 +6,29 @@ use App\Models\EmailVerification;
 use App\Models\User;
 use Carbon\Carbon;
 
+/**
+ * Methoden zum Verwalten von Usern
+ */
 class UserService
 {
 
 
+    /** Überprüft ob der Username bereits verwendet wird
+     * @param string $username Der zu überprüfende Username
+     * @return bool True, wenn der übergebene Benutzername noch nicht verwendet wird
+     */
     public function checkUsername(string $username): bool
     {
         return !User::whereUsername($username)->exists();
     }
 
+    /**
+     * Überprüft ob die E-Mail bereits verwendet wird
+     *
+     * zu verifizierende E-Mail-Adressen gelten auch als verwendet
+     * @param string $email Zu überprüfende E-Mail
+     * @return bool True, wenn die E-Mail noch verfügbar ist
+     */
     public function checkEmail(string $email): bool
     {
         return !(User::whereEmail($email)->exists() ||
@@ -66,9 +80,11 @@ class UserService
 
 
     /**
-     * @param User $u the anonymous user which gets upgraded
-     * @param array $data array with username, password and email fields
-     * @param EmailService $emailService
+     * Stuft ein anonymes Konto auf ein normales Konto hoch
+     *
+     * @param User $u das anonyme Konto, welches hoch gestuft wird
+     * @param array $data array mit username, password und email einträge
+     * @param EmailService $emailService der EmailService
      * @return bool Ob die funktion erfolgreich war.
      */
     public function upgradeAnonymousUser(User $u, array $data, EmailService $emailService): bool
@@ -78,6 +94,7 @@ class UserService
             $u->fill($data);
             $u->password = $data["password"];
             $u->last_activity = Carbon::now();
+            $u->created_at = Carbon::now();
             $emailService->requestEmailChangeOfUser($u, $data["email"]);
             $u->save();
             return true;
