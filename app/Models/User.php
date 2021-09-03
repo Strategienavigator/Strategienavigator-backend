@@ -16,6 +16,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
@@ -188,16 +189,25 @@ class User extends Authenticatable
 
     /**
      * Ale Speicherstände zu den dieser User Zugriff hat
+     * @param bool $withPivot Ob die Pivot Tabelle mitgeladen werden soll
      * @return BelongsToMany
      */
-    public function accessibleShares(): BelongsToMany
+    public function accessibleShares(bool $withPivot = true): BelongsToMany
     {
-        return $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
-            ->withPivot(["permission"])
+        $q = $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivotValue("accepted", true)
             ->withPivotValue("declined", false)
             ->withPivotValue("revoked", false)
-            ->withTimestamps();
+            ->select('saves.*');
+
+        if ($withPivot) {
+            $q
+                ->withPivot(["permission"])
+                ->withTimestamps();
+        }
+
+
+        return $q;
     }
 
 
