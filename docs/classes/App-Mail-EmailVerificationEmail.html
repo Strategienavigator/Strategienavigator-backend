@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -147,12 +171,15 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Mail/EmailVerificationEmail.php"><a href="files/app-mail-emailverificationemail.html"><abbr title="app/Mail/EmailVerificationEmail.php">EmailVerificationEmail.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Email Verifications Email.</p>
+
+    <section class="phpdocumentor-description"><p>Zeigt den token und username in der Email an.
+Die E-Mails werden immer gequeueed.</p>
+</section>
 
 
 
@@ -183,28 +210,28 @@
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>token of the connected user verification</dd>
+<dd>den token der EmailVerification instanz</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Mail-EmailVerificationEmail.html#property_username">$username</a>
     <span>
                 &nbsp;: string            </span>
 </dt>
-<dd>username of the connected user account</dd>
+<dd>Username des verknüpften Users Konto</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Mail-EmailVerificationEmail.html#method___construct">__construct()</a>
     <span>
-                        &nbsp;: void    </span>
+                        &nbsp;: mixed    </span>
 </dt>
-<dd>Create a new message instance.</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Mail-EmailVerificationEmail.html#method_build">build()</a>
     <span>
                         &nbsp;: $this    </span>
 </dt>
-<dd>Build the message.</dd>
+<dd>Erstellt die E-Mail</dd>
 
         </dl>
 
@@ -234,11 +261,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Mail/EmailVerificationEmail.php"><a href="files/app-mail-emailverificationemail.html"><abbr title="app/Mail/EmailVerificationEmail.php">EmailVerificationEmail.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">token of the connected user verification</p>
+        <p class="phpdocumentor-summary">den token der EmailVerification instanz</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -267,11 +294,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Mail/EmailVerificationEmail.php"><a href="files/app-mail-emailverificationemail.html"><abbr title="app/Mail/EmailVerificationEmail.php">EmailVerificationEmail.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">username of the connected user account</p>
+        <p class="phpdocumentor-summary">Username des verknüpften Users Konto</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -304,15 +331,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Mail/EmailVerificationEmail.php"><a href="files/app-mail-emailverificationemail.html"><abbr title="app/Mail/EmailVerificationEmail.php">EmailVerificationEmail.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Create a new message instance.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$token</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$username</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$token</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$username</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -322,7 +348,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>den token der EmailVerification instanz</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -330,7 +357,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>der Username des Users, bei dem die E-Mail bestätigt werden soll</p>
+</section>
 
             </dd>
             </dl>
@@ -338,7 +366,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -356,11 +384,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Mail/EmailVerificationEmail.php"><a href="files/app-mail-emailverificationemail.html"><abbr title="app/Mail/EmailVerificationEmail.php">EmailVerificationEmail.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Build the message.</p>
+        <p class="phpdocumentor-summary">Erstellt die E-Mail</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>

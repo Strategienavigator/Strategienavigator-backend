@@ -10,22 +10,22 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Nur im Debug Modus dürfen alle User angesehen werden
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @return boolean Ob der User alle User anschauen darf
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return config('app.debug');
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Alle User können jeden User anschauen
      *
-     * @param User $user
-     * @param User $model
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param User $model Der User der angeschaut werden soll
+     * @return boolean Ob der authentifizierte User den User anschauen darf
      */
     public function view(User $user, User $model): bool
     {
@@ -33,10 +33,10 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Jeder darf User erstellen
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @return boolean Ob der User einen User ersetellen darf
      */
     public function create(User $user): bool
     {
@@ -44,23 +44,23 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Wenn der User sich selbst bearbeitet und der User nicht anonym ist, darf er sich bearbeiten
      *
-     * @param User $user
-     * @param User $model
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param User $model Der zu bearbeitende User
+     * @return boolean Ob der authentifizierte User den User bearbeiten darf
      */
     public function update(User $user, User $model): bool
     {
-        return $user->id === $model->id && !$model->anonym;
+        return $user->id === $model->id && !$model->anonymous;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Wenn der User sich selbst löscht, darf er sich löschen
      *
-     * @param User $user
-     * @param User $model
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param User $model Der User der gelöscht werden soll
+     * @return boolean Ob der authentifizierte User gelöscht werden darf
      */
     public function delete(User $user, User $model): bool
     {

@@ -26,12 +26,14 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+/**
+ * Http Kernel mit Middleware Einstellungen
+ */
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+     * Liste von Middlewares, welche bei jedem Request ausgeführt wird
      *
-     * These middleware are run during every request to your application.
      *
      * @var array
      */
@@ -46,7 +48,7 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware groups.
+     * Definiert Middleware Gruppen
      *
      * @var array
      */
@@ -68,9 +70,8 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware.
+     * Middleware aliase
      *
-     * These middleware may be assigned to groups or used individually.
      *
      * @var array
      */

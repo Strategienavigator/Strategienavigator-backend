@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\PasswordReset
+ * Modell um eine Passwort Reset Anfrage zu speichern
  *
- * @property int $user_id
- * @property Carbon $expiry_date
- * @property string $token
- * @property boolean $password_changed
- * @property Carbon|null $created_at
- * @property Carbon|null $password_changed_at
+ * @property int $user_id user id des verknüpften Users
+ * @property Carbon $expiry_date Timestamp an dem der Passwort Reset ablauft
+ * @property string $token Token des Passwort Resets (Primary Key)
+ * @property boolean $password_changed Ob das Passwort bereits geändert wurde
+ * @property Carbon|null $created_at Timestamp des Zeitpunktes der Erstellung
+ * @property Carbon|null $password_changed_at Timestamp des Zeitpunktes der letzten Änderung
+ * @property-read User $user verknüpfte User
  * @mixin Eloquent
- * @property-read User $user
  * @method static Builder|PasswordReset newModelQuery()
  * @method static Builder|PasswordReset newQuery()
  * @method static Builder|PasswordReset query()
@@ -34,13 +34,29 @@ class PasswordReset extends Model
 {
     use HasFactory;
 
+    /**
+     * Das Model hat keine timestamps
+     * @var bool
+     */
     public $timestamps = false;
+    /**
+     * Primary Key zählt nicht automatisch hoch
+     * @var bool
+     */
     public $incrementing = false;
+    /**
+     * Primary Key ist ein string
+     * @var string
+     */
     protected $keyType = 'string';
+    /**
+     * Die Primary Key Spalte ist "token"
+     * @var string
+     */
     protected $primaryKey = "token";
 
     /**
-     * The attributes that are mass assignable.
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -49,15 +65,7 @@ class PasswordReset extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast.
+     * Attribute, welche Massen zuweisbar sind
      *
      * @var array
      */
@@ -66,6 +74,10 @@ class PasswordReset extends Model
         'token'=>'string'
     ];
 
+    /**
+     * Beschreibt die Beziehung zu der users Tabelle
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

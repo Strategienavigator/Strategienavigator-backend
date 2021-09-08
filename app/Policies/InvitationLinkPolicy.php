@@ -7,28 +7,29 @@ use App\Models\InvitationLink;
 use App\Models\Save;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Validation\Rules\In;
 
 class InvitationLinkPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Nur im Debug-Modus dürfen alle Einträge gelesen werden
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuell authentifizierte User
+     * @return boolean Ob der User alle InvitationLink Einträge lesen darf
      */
     public function viewAny(User $user): bool
     {
-        return env("APP_DEBUG");
+        return config('app.debug');
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Alle user dürfen einzelne Einladungs-Links anschauen
      *
-     * @param User $user
-     * @param InvitationLink $invitationLink
-     * @return boolean
+     * @param User $user Der aktuell authentifizierte User
+     * @param InvitationLink $invitationLink Der zu überprüfende Einladungs-Link
+     * @return boolean Ob der User den angegebenen Einladungslink gelesen werden soll
      */
     public function view(User $user, InvitationLink $invitationLink): bool
     {
@@ -36,37 +37,38 @@ class InvitationLinkPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuell authentifizierte User
+     * @param Save $save Der Speicherstand für den der Einladungslink erstellt werden soll
+     * @return boolean Ob der User einen Einladungs-Link erstellen darf
      */
     public function create(User $user, Save $save): bool
     {
-        return !$user->anonym && $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $save->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist
      *
-     * @param User $user
-     * @param InvitationLink $invitationLink
-     * @return boolean
+     * @param User $user Der aktuell authentifizierte User
+     * @param InvitationLink $invitationLink Der Einladungs-Link, welcher bearbeitet werden soll
+     * @return boolean Ob der User einen Einladungs-Link erstellen darf
      */
     public function update(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Einladungs-Links dürfen nur erstellt werden, wenn der User Admin Rechte auf den Speicherstand hat und der User nicht anonym ist
      *
-     * @param User $user
-     * @param InvitationLink $invitationLink
-     * @return boolean
+     * @param User $user Der aktuell authentifizierte User
+     * @param InvitationLink $invitationLink Der Einladungslink, welcher gelöscht werden soll
+     * @return boolean Ob der User den Einladungs-Link löschen darf
      */
     public function delete(User $user, InvitationLink $invitationLink): bool
     {
-        return !$user->anonym && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
+        return !$user->anonymous && $invitationLink->safe->hasAtLeasPermission($user, PermissionHelper::$PERMISSION_ADMIN);
     }
 }

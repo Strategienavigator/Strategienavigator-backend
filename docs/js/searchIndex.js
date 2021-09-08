@@ -183,7 +183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\PasswordController",
             "name": "PasswordController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020PasswordReset\u0020Ressourcen\u0020implementiert",
             "url": "classes/App-Http-Controllers-PasswordController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\PasswordController\u003A\u003Ashow\u0028\u0029",
@@ -203,7 +203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SaveController",
             "name": "SaveController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Speicherst\u00E4nden\u0020implementiert",
             "url": "classes/App-Http-Controllers-SaveController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SaveController\u003A\u003Aindex\u0028\u0029",
@@ -233,7 +233,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SharedSaveController",
             "name": "SharedSaveController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Freigegebenen\u0020Speicherst\u00E4nden\u0020implementiert",
             "url": "classes/App-Http-Controllers-SharedSaveController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\SharedSaveController\u003A\u003Aindex\u0028\u0029",
@@ -283,7 +283,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\ToolController",
             "name": "ToolController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Routen\u0020implementiert",
             "url": "classes/App-Http-Controllers-ToolController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\ToolController\u003A\u003Aindex\u0028\u0029",
@@ -313,7 +313,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserController",
             "name": "UserController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020welcher\u0020Routen\u0020zum\u0020Verwalten\u0020von\u0020Usern\u0020implementiert",
             "url": "classes/App-Http-Controllers-UserController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserController\u003A\u003Aindex\u0028\u0029",
@@ -363,7 +363,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserSavesController",
             "name": "UserSavesController",
-            "summary": "Basis\u0020Klasse\u0020f\u00FCr\u0020alle\u0020Controller",
+            "summary": "Controller,\u0020eine\u0020Route\u0020zum\u0020Anzeigen\u0020aller\u0020Speicherst\u00E4nde\u0020eins\u0020zugeh\u00F6rigen\u0020Users",
             "url": "classes/App-Http-Controllers-UserSavesController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\UserSavesController\u003A\u003Aindex\u0028\u0029",
@@ -373,192 +373,147 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Kernel",
             "name": "Kernel",
-            "summary": "",
+            "summary": "Http\u0020Kernel\u0020mit\u0020Middleware\u0020Einstellungen",
             "url": "classes/App-Http-Kernel.html"
         },                {
             "fqsen": "\\App\\Http\\Kernel\u003A\u003A\u0024middleware",
             "name": "middleware",
-            "summary": "The\u0020application\u0027s\u0020global\u0020HTTP\u0020middleware\u0020stack.",
+            "summary": "Liste\u0020von\u0020Middlewares,\u0020welche\u0020bei\u0020jedem\u0020Request\u0020ausgef\u00FChrt\u0020wird",
             "url": "classes/App-Http-Kernel.html#property_middleware"
         },                {
             "fqsen": "\\App\\Http\\Kernel\u003A\u003A\u0024middlewareGroups",
             "name": "middlewareGroups",
-            "summary": "The\u0020application\u0027s\u0020route\u0020middleware\u0020groups.",
+            "summary": "Definiert\u0020Middleware\u0020Gruppen",
             "url": "classes/App-Http-Kernel.html#property_middlewareGroups"
         },                {
             "fqsen": "\\App\\Http\\Kernel\u003A\u003A\u0024routeMiddleware",
             "name": "routeMiddleware",
-            "summary": "The\u0020application\u0027s\u0020route\u0020middleware.",
+            "summary": "Middleware\u0020aliase",
             "url": "classes/App-Http-Kernel.html#property_routeMiddleware"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\Authenticate",
             "name": "Authenticate",
-            "summary": "",
+            "summary": "Identifiziert\u0020den\u0020aktuellen\u0020User\u0020und\u0020\u00FCberpr\u00FCft\u0020ob\u0020der\u0020Access\u002DToken\u0020Valide\u0020ist",
             "url": "classes/App-Http-Middleware-Authenticate.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\Authenticate\u003A\u003AredirectTo\u0028\u0029",
             "name": "redirectTo",
-            "summary": "Get\u0020the\u0020path\u0020the\u0020user\u0020should\u0020be\u0020redirected\u0020to\u0020when\u0020they\u0020are\u0020not\u0020authenticated.",
+            "summary": "F\u00FChrt\u0020die\u0020Weiterleitung\u0020durch,\u0020wenn\u0020kein\u0020User\u0020angemeldeted\u0020ist",
             "url": "classes/App-Http-Middleware-Authenticate.html#method_redirectTo"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\EncryptCookies",
-            "name": "EncryptCookies",
-            "summary": "",
-            "url": "classes/App-Http-Middleware-EncryptCookies.html"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\EncryptCookies\u003A\u003A\u0024except",
-            "name": "except",
-            "summary": "The\u0020names\u0020of\u0020the\u0020cookies\u0020that\u0020should\u0020not\u0020be\u0020encrypted.",
-            "url": "classes/App-Http-Middleware-EncryptCookies.html#property_except"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\PreventRequestsDuringMaintenance",
             "name": "PreventRequestsDuringMaintenance",
-            "summary": "",
+            "summary": "Klasse\u0020zum\u0020Steuern\u0020des\u0020Wartungsmodus",
             "url": "classes/App-Http-Middleware-PreventRequestsDuringMaintenance.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\PreventRequestsDuringMaintenance\u003A\u003A\u0024except",
             "name": "except",
-            "summary": "The\u0020URIs\u0020that\u0020should\u0020be\u0020reachable\u0020while\u0020maintenance\u0020mode\u0020is\u0020enabled.",
+            "summary": "Routen,\u0020welche\u0020w\u00E4hrend\u0020Wartungsarbeiten\u0020erreichbar\u0020sein\u0020sollen",
             "url": "classes/App-Http-Middleware-PreventRequestsDuringMaintenance.html#property_except"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\RedirectIfAuthenticated",
             "name": "RedirectIfAuthenticated",
-            "summary": "",
+            "summary": "Leitet\u0020einen\u0020User\u0020nach\u0020der\u0020Anmeldung\u0020auf\u0020eine\u0020Route\u0020weiter",
             "url": "classes/App-Http-Middleware-RedirectIfAuthenticated.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\RedirectIfAuthenticated\u003A\u003Ahandle\u0028\u0029",
             "name": "handle",
-            "summary": "Handle\u0020an\u0020incoming\u0020request.",
+            "summary": "Verarbeitet\u0020einen\u0020eingehenden\u0020Request.",
             "url": "classes/App-Http-Middleware-RedirectIfAuthenticated.html#method_handle"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\TrimStrings",
             "name": "TrimStrings",
-            "summary": "",
+            "summary": "Konfiguration\u0020f\u00FCr\u0020die\u0020\u0022TrimStrings\u0022\u0020funktion",
             "url": "classes/App-Http-Middleware-TrimStrings.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\TrimStrings\u003A\u003A\u0024except",
             "name": "except",
-            "summary": "The\u0020names\u0020of\u0020the\u0020attributes\u0020that\u0020should\u0020not\u0020be\u0020trimmed.",
+            "summary": "Attribute,\u0020bei\u0020denen\u0020vorangestellte\u0020und\u0020nachgestellte\u0020Leerzeichen\u0020nicht\u0020entfernt\u0020werden",
             "url": "classes/App-Http-Middleware-TrimStrings.html#property_except"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\TrustHosts",
-            "name": "TrustHosts",
-            "summary": "",
-            "url": "classes/App-Http-Middleware-TrustHosts.html"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\TrustHosts\u003A\u003Ahosts\u0028\u0029",
-            "name": "hosts",
-            "summary": "Get\u0020the\u0020host\u0020patterns\u0020that\u0020should\u0020be\u0020trusted.",
-            "url": "classes/App-Http-Middleware-TrustHosts.html#method_hosts"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\TrustProxies",
-            "name": "TrustProxies",
-            "summary": "",
-            "url": "classes/App-Http-Middleware-TrustProxies.html"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\TrustProxies\u003A\u003A\u0024proxies",
-            "name": "proxies",
-            "summary": "The\u0020trusted\u0020proxies\u0020for\u0020this\u0020application.",
-            "url": "classes/App-Http-Middleware-TrustProxies.html#property_proxies"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\TrustProxies\u003A\u003A\u0024headers",
-            "name": "headers",
-            "summary": "The\u0020headers\u0020that\u0020should\u0020be\u0020used\u0020to\u0020detect\u0020proxies.",
-            "url": "classes/App-Http-Middleware-TrustProxies.html#property_headers"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\UserLastActivityLog",
             "name": "UserLastActivityLog",
-            "summary": "",
+            "summary": "Middleware\u0020um\u0020das\u0020last_activity\u0020Feld\u0020des\u0020authentifizierten\u0020Users\u0020auf\u0020die\u0020aktuelle\u0020Uhrzeit\u0020zu\u0020setzten",
             "url": "classes/App-Http-Middleware-UserLastActivityLog.html"
         },                {
             "fqsen": "\\App\\Http\\Middleware\\UserLastActivityLog\u003A\u003Ahandle\u0028\u0029",
             "name": "handle",
-            "summary": "Handle\u0020an\u0020incoming\u0020request.",
+            "summary": "Setzt\u0020last_activity\u0020des\u0020authentifizierten\u0020Nutzers\u0020auf\u0020die\u0020aktuelle\u0020Uhrzeit",
             "url": "classes/App-Http-Middleware-UserLastActivityLog.html#method_handle"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\VerifyCsrfToken",
-            "name": "VerifyCsrfToken",
-            "summary": "",
-            "url": "classes/App-Http-Middleware-VerifyCsrfToken.html"
-        },                {
-            "fqsen": "\\App\\Http\\Middleware\\VerifyCsrfToken\u003A\u003A\u0024except",
-            "name": "except",
-            "summary": "The\u0020URIs\u0020that\u0020should\u0020be\u0020excluded\u0020from\u0020CSRF\u0020verification.",
-            "url": "classes/App-Http-Middleware-VerifyCsrfToken.html#property_except"
         },                {
             "fqsen": "\\App\\Http\\Resources\\InvitationLinkResource",
             "name": "InvitationLinkResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020InvitationLink\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-InvitationLinkResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\InvitationLinkResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Felder\u0020der\u0020InvitationLink\u0020instanz\u0020ohne\u0020das\u0020Token\u0020und\u0020updated_at\u0020Feld",
             "url": "classes/App-Http-Resources-InvitationLinkResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\PasswordResetResource",
             "name": "PasswordResetResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020PasswordReset\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-PasswordResetResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\PasswordResetResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Felder\u0020der\u0020PasswordReset\u0020instanz\u0020ohne\u0020das\u0020Token\u0020und\u0020password_changed\u0028_at\u0029\u0020Feld",
             "url": "classes/App-Http-Resources-PasswordResetResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SaveResource",
             "name": "SaveResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020Save\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-SaveResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SaveResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Felder\u0020der\u0020Save\u0020instanz",
             "url": "classes/App-Http-Resources-SaveResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SharedSaveResource",
             "name": "SharedSaveResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020SharedSave\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-SharedSaveResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SharedSaveResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Felder\u0020der\u0020SharedSave\u0020instanz",
             "url": "classes/App-Http-Resources-SharedSaveResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SharedSaveUserResource",
             "name": "SharedSaveUserResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020Beziehung\u0020von\u0020einem\u0020Speicherstand\u0020zu\u0020einem\u0020User\u0020darstellt.",
             "url": "classes/App-Http-Resources-SharedSaveUserResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SharedSaveUserResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Erstellt\u0020ein\u0020array\u0020mit\u0020save_id\u0020und\u0020permission\u0020Feld",
             "url": "classes/App-Http-Resources-SharedSaveUserResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SimpleSaveResource",
             "name": "SimpleSaveResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020Save\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt.",
             "url": "classes/App-Http-Resources-SimpleSaveResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\SimpleSaveResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Erstellt\u0020ein\u0020Array\u0020aus\u0020mit\u0020den\u0020Attributen\u0020von\u0020dem\u0020Speicherstand",
             "url": "classes/App-Http-Resources-SimpleSaveResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\ToolResource",
             "name": "ToolResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020Tool\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-ToolResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\ToolResource\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Transform\u0020the\u0020resource\u0020into\u0020an\u0020array.",
+            "summary": "Wandelt\u0020Instanz\u0020in\u0020ein\u0020array\u0020um",
             "url": "classes/App-Http-Resources-ToolResource.html#method_toArray"
         },                {
             "fqsen": "\\App\\Http\\Resources\\UserResource",
             "name": "UserResource",
-            "summary": "",
+            "summary": "Klasse,\u0020welche\u0020eine\u0020User\u0020instanz\u0020in\u0020ein\u0020Array\u0020umwandelt",
             "url": "classes/App-Http-Resources-UserResource.html"
         },                {
             "fqsen": "\\App\\Http\\Resources\\UserResource\u003A\u003AtoArray\u0028\u0029",
@@ -568,32 +523,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Mail\\EmailVerificationEmail",
             "name": "EmailVerificationEmail",
-            "summary": "",
+            "summary": "Email\u0020Verifications\u0020Email.",
             "url": "classes/App-Mail-EmailVerificationEmail.html"
         },                {
             "fqsen": "\\App\\Mail\\EmailVerificationEmail\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Create\u0020a\u0020new\u0020message\u0020instance.",
+            "summary": "",
             "url": "classes/App-Mail-EmailVerificationEmail.html#method___construct"
         },                {
             "fqsen": "\\App\\Mail\\EmailVerificationEmail\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Build\u0020the\u0020message.",
+            "summary": "Erstellt\u0020die\u0020E\u002DMail",
             "url": "classes/App-Mail-EmailVerificationEmail.html#method_build"
         },                {
             "fqsen": "\\App\\Mail\\EmailVerificationEmail\u003A\u003A\u0024token",
             "name": "token",
-            "summary": "token\u0020of\u0020the\u0020connected\u0020user\u0020verification",
+            "summary": "den\u0020token\u0020der\u0020EmailVerification\u0020instanz",
             "url": "classes/App-Mail-EmailVerificationEmail.html#property_token"
         },                {
             "fqsen": "\\App\\Mail\\EmailVerificationEmail\u003A\u003A\u0024username",
             "name": "username",
-            "summary": "username\u0020of\u0020the\u0020connected\u0020user\u0020account",
+            "summary": "Username\u0020des\u0020verkn\u00FCpften\u0020Users\u0020Konto",
             "url": "classes/App-Mail-EmailVerificationEmail.html#property_username"
         },                {
             "fqsen": "\\App\\Mail\\PasswordResetEmail",
             "name": "PasswordResetEmail",
-            "summary": "",
+            "summary": "Passwort\u0020Reset\u0020E\u002DMail",
             "url": "classes/App-Mail-PasswordResetEmail.html"
         },                {
             "fqsen": "\\App\\Mail\\PasswordResetEmail\u003A\u003A__construct\u0028\u0029",
@@ -603,12 +558,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Mail\\PasswordResetEmail\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "Build\u0020the\u0020message.",
+            "summary": "Erstellt\u0020die\u0020E\u002DMail",
             "url": "classes/App-Mail-PasswordResetEmail.html#method_build"
         },                {
             "fqsen": "\\App\\Mail\\PasswordResetEmail\u003A\u003A\u0024token",
             "name": "token",
-            "summary": "password\u0020reset\u0020token",
+            "summary": "Token\u0020des\u0020Passwort\u0020Resets",
             "url": "classes/App-Mail-PasswordResetEmail.html#property_token"
         },                {
             "fqsen": "\\App\\Mail\\PasswordResetEmail\u003A\u003A\u0024username",
@@ -623,23 +578,8 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\EmailVerification\u003A\u003Auser\u0028\u0029",
             "name": "user",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zur\u0020users\u0020Tabelle",
             "url": "classes/App-Models-EmailVerification.html#method_user"
-        },                {
-            "fqsen": "\\App\\Models\\EmailVerification\u003A\u003A\u0024fillable",
-            "name": "fillable",
-            "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
-            "url": "classes/App-Models-EmailVerification.html#property_fillable"
-        },                {
-            "fqsen": "\\App\\Models\\EmailVerification\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-EmailVerification.html#property_hidden"
-        },                {
-            "fqsen": "\\App\\Models\\EmailVerification\u003A\u003A\u0024casts",
-            "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
-            "url": "classes/App-Models-EmailVerification.html#property_casts"
         },                {
             "fqsen": "\\App\\Models\\InvitationLink",
             "name": "InvitationLink",
@@ -648,142 +588,127 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\InvitationLink\u003A\u003Asafe\u0028\u0029",
             "name": "safe",
-            "summary": "renamed\u0020because\u0020of\u0020function\u0020overloading",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zur\u0020save\u0020Tabelle",
             "url": "classes/App-Models-InvitationLink.html#method_safe"
         },                {
             "fqsen": "\\App\\Models\\InvitationLink\u003A\u003A\u0024fillable",
             "name": "fillable",
-            "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-InvitationLink.html#property_fillable"
-        },                {
-            "fqsen": "\\App\\Models\\InvitationLink\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-InvitationLink.html#property_hidden"
         },                {
             "fqsen": "\\App\\Models\\InvitationLink\u003A\u003A\u0024casts",
             "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
+            "summary": "Zugeh\u00F6rigkeit,\u0020welche\u0020Attribute\u0020zu\u0020welchen\u0020nativen\u0020Typen\u0020gecastet\u0020werden\u0020soll.",
             "url": "classes/App-Models-InvitationLink.html#property_casts"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset",
             "name": "PasswordReset",
-            "summary": "App\\Models\\PasswordReset",
+            "summary": "Modell\u0020um\u0020eine\u0020Passwort\u0020Reset\u0020Anfrage\u0020zu\u0020speichern",
             "url": "classes/App-Models-PasswordReset.html"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003Auser\u0028\u0029",
             "name": "user",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020der\u0020users\u0020Tabelle",
             "url": "classes/App-Models-PasswordReset.html#method_user"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024timestamps",
             "name": "timestamps",
-            "summary": "",
+            "summary": "Das\u0020Model\u0020hat\u0020keine\u0020timestamps",
             "url": "classes/App-Models-PasswordReset.html#property_timestamps"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024incrementing",
             "name": "incrementing",
-            "summary": "",
+            "summary": "Primary\u0020Key\u0020z\u00E4hlt\u0020nicht\u0020automatisch\u0020hoch",
             "url": "classes/App-Models-PasswordReset.html#property_incrementing"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024keyType",
             "name": "keyType",
-            "summary": "",
+            "summary": "Primary\u0020Key\u0020ist\u0020ein\u0020string",
             "url": "classes/App-Models-PasswordReset.html#property_keyType"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024primaryKey",
             "name": "primaryKey",
-            "summary": "",
+            "summary": "Die\u0020Primary\u0020Key\u0020Spalte\u0020ist\u0020\u0022token\u0022",
             "url": "classes/App-Models-PasswordReset.html#property_primaryKey"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024fillable",
             "name": "fillable",
-            "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-PasswordReset.html#property_fillable"
-        },                {
-            "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-PasswordReset.html#property_hidden"
         },                {
             "fqsen": "\\App\\Models\\PasswordReset\u003A\u003A\u0024casts",
             "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast.",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-PasswordReset.html#property_casts"
         },                {
             "fqsen": "\\App\\Models\\Save",
             "name": "Save",
-            "summary": "App\\Models\\Save",
+            "summary": "Speicherstand\u0020eines\u0020Tools",
             "url": "classes/App-Models-Save.html"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Aowner\u0028\u0029",
             "name": "owner",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020der\u0020users\u0020Tabelle\u0020zum\u0020Owner",
             "url": "classes/App-Models-Save.html#method_owner"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Alocker\u0028\u0029",
             "name": "locker",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020der\u0020users\u0020Tabelle\u0020zu\u0020dem\u0020User\u0020der\u0020den\u0020Speicherstand\u0020sperrt",
             "url": "classes/App-Models-Save.html#method_locker"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Atool\u0028\u0029",
             "name": "tool",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020dem\u0020Tool",
             "url": "classes/App-Models-Save.html#method_tool"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003AsharedSaves\u0028\u0029",
             "name": "sharedSaves",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020der\u0020sharedSaves\u0020Tabelle",
             "url": "classes/App-Models-Save.html#method_sharedSaves"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Ainvited\u0028\u0029",
             "name": "invited",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020den\u0020Mitwirkenden\u0020Usern,\u0020welche\u0020die\u0020Einladung\u0020noch\u0020nicht\u0020angenommen\u0020haben",
             "url": "classes/App-Models-Save.html#method_invited"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Ainvitations\u0028\u0029",
             "name": "invitations",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020den\u0020Einladungen,\u0020welche\u0020noch\u0020nicht\u0020angenommen\u0020wurden",
             "url": "classes/App-Models-Save.html#method_invitations"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003AinvitationLinks\u0028\u0029",
             "name": "invitationLinks",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020den\u0020Einladungslinks",
             "url": "classes/App-Models-Save.html#method_invitationLinks"
-        },                {
-            "fqsen": "\\App\\Models\\Save\u003A\u003AhasAtLeasPermission\u0028\u0029",
-            "name": "hasAtLeasPermission",
-            "summary": "checks\u0020if\u0020the\u0020given\u0020user\u0020and\u0020save\u0020combination\u0020has\u0020at\u0020leas\u0020the\u0020given\u0020permission",
-            "url": "classes/App-Models-Save.html#method_hasAtLeasPermission"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003Acontributors\u0028\u0029",
             "name": "contributors",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020den\u0020Mitwirkenden\u0020Usern,\u0020welche\u0020die\u0020Einladung\u0020bereits\u0020angenommen\u0020haben.",
             "url": "classes/App-Models-Save.html#method_contributors"
+        },                {
+            "fqsen": "\\App\\Models\\Save\u003A\u003AhasAtLeasPermission\u0028\u0029",
+            "name": "hasAtLeasPermission",
+            "summary": "Pr\u00FCft,\u0020ob\u0020der\u0020\u00FCbergebene\u0020User\u0020mindestens\u0020die\u0020angegebene\u0020Berechtigung\u0020bei\u0020diesem\u0020Speicherstand\u0020besitzt",
+            "url": "classes/App-Models-Save.html#method_hasAtLeasPermission"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003A\u0024fillable",
             "name": "fillable",
-            "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-Save.html#property_fillable"
-        },                {
-            "fqsen": "\\App\\Models\\Save\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-Save.html#property_hidden"
         },                {
             "fqsen": "\\App\\Models\\Save\u003A\u003A\u0024casts",
             "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
+            "summary": "Zugeh\u00F6rigkeit,\u0020welche\u0020Attribute\u0020zu\u0020welchen\u0020nativen\u0020Typen\u0020gecastet\u0020werden\u0020soll.",
             "url": "classes/App-Models-Save.html#property_casts"
         },                {
             "fqsen": "\\App\\Models\\SharedSave",
             "name": "SharedSave",
-            "summary": "App\\Models\\SharedSave",
+            "summary": "Verkn\u00FCpft\u0020Nutzer\u0020und\u0020Speicherst\u00E4nde",
             "url": "classes/App-Models-SharedSave.html"
         },                {
             "fqsen": "\\App\\Models\\SharedSave\u003A\u003Auser\u0028\u0029",
             "name": "user",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020users\u0020Tabelle",
             "url": "classes/App-Models-SharedSave.html#method_user"
         },                {
             "fqsen": "\\App\\Models\\SharedSave\u003A\u003Asafe\u0028\u0029",
@@ -801,40 +726,20 @@ Search.appendIndex(
             "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
             "url": "classes/App-Models-SharedSave.html#property_fillable"
         },                {
-            "fqsen": "\\App\\Models\\SharedSave\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-SharedSave.html#property_hidden"
-        },                {
-            "fqsen": "\\App\\Models\\SharedSave\u003A\u003A\u0024casts",
-            "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
-            "url": "classes/App-Models-SharedSave.html#property_casts"
-        },                {
             "fqsen": "\\App\\Models\\Tool",
             "name": "Tool",
-            "summary": "App\\Models\\Tool",
+            "summary": "Ein\u0020Tool\u0020wie\u0020\u0022SWOT\u002DAnalyse\u0022,\u0020welches\u0020im\u0020Frontend\u0020implementiert\u0020ist",
             "url": "classes/App-Models-Tool.html"
         },                {
             "fqsen": "\\App\\Models\\Tool\u003A\u003Asaves\u0028\u0029",
             "name": "saves",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020der\u0020saves\u0020Tabelle",
             "url": "classes/App-Models-Tool.html#method_saves"
         },                {
             "fqsen": "\\App\\Models\\Tool\u003A\u003A\u0024fillable",
             "name": "fillable",
-            "summary": "No\u0020value\u0020is\u0020mass\u0020assignable\u0020because\u0020toll\u0020data\u0020doesn\u0027t\u0020change\u0020and\u0020is\u0020read\u0020only",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-Tool.html#property_fillable"
-        },                {
-            "fqsen": "\\App\\Models\\Tool\u003A\u003A\u0024hidden",
-            "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
-            "url": "classes/App-Models-Tool.html#property_hidden"
-        },                {
-            "fqsen": "\\App\\Models\\Tool\u003A\u003A\u0024casts",
-            "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
-            "url": "classes/App-Models-Tool.html#property_casts"
         },                {
             "fqsen": "\\App\\Models\\User",
             "name": "User",
@@ -843,17 +748,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AfindForPassport\u0028\u0029",
             "name": "findForPassport",
-            "summary": "Find\u0020the\u0020user\u0020instance\u0020for\u0020the\u0020given\u0020username.",
+            "summary": "Findet\u0020die\u0020User\u0020instanz\u0020des\u0020\u00FCbergebenen\u0020Usernamen\u0020oder\u0020E\u002DMail",
             "url": "classes/App-Models-User.html#method_findForPassport"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AsetPasswordAttribute\u0028\u0029",
             "name": "setPasswordAttribute",
-            "summary": "",
+            "summary": "Setter\u0020des\u0020Passwort\u0020attributes",
             "url": "classes/App-Models-User.html#method_setPasswordAttribute"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Asaves\u0028\u0029",
             "name": "saves",
-            "summary": "",
+            "summary": "Beschreibt\u0020die\u0020Beziehung\u0020zu\u0020den\u0020Speicherst\u00E4nden\u0020die\u0020diesem\u0020User\u0020geh\u00F6ren",
             "url": "classes/App-Models-User.html#method_saves"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AisLocking\u0028\u0029",
@@ -868,37 +773,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AinvitedSaves\u0028\u0029",
             "name": "invitedSaves",
-            "summary": "",
+            "summary": "Beziehung\u0020zu\u0020den\u0020Speicherst\u00E4nden,\u0020zu\u0020denen\u0020der\u0020User\u0020eingeladen\u0020wurde\u0020aber\u0020diese\u0020noch\u0020nicht\u0020angenommen\u0020hat",
             "url": "classes/App-Models-User.html#method_invitedSaves"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003Ainvitations\u0028\u0029",
             "name": "invitations",
-            "summary": "",
+            "summary": "Alle\u0020SharedSave\u0020Eintr\u00E4ge,\u0020die\u0020noch\u0020nicht\u0020revoked\u0020oder\u0020angenomemn\u0020sind",
             "url": "classes/App-Models-User.html#method_invitations"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AsharedSaves\u0028\u0029",
             "name": "sharedSaves",
-            "summary": "",
+            "summary": "Alle\u0020SharedSave\u0020Eintr\u00E4ge\u0020die\u0020zu\u0020diesem\u0020User\u0020geh\u00F6ren",
             "url": "classes/App-Models-User.html#method_sharedSaves"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003AaccessibleShares\u0028\u0029",
             "name": "accessibleShares",
-            "summary": "",
+            "summary": "Ale\u0020Speicherst\u00E4nde\u0020zu\u0020den\u0020dieser\u0020User\u0020Zugriff\u0020hat",
             "url": "classes/App-Models-User.html#method_accessibleShares"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003A\u0024fillable",
             "name": "fillable",
-            "summary": "The\u0020attributes\u0020that\u0020are\u0020mass\u0020assignable.",
+            "summary": "Attribute,\u0020welche\u0020Massen\u0020zuweisbar\u0020sind",
             "url": "classes/App-Models-User.html#property_fillable"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003A\u0024hidden",
             "name": "hidden",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020hidden\u0020for\u0020arrays.",
+            "summary": "Attribute,\u0020welche\u0020beim\u0020Konvertieren\u0020in\u0020ein\u0020array,\u0020nicht\u0020in\u0020das\u0020Array\u0020hinzugef\u00FCgt\u0020werden",
             "url": "classes/App-Models-User.html#property_hidden"
         },                {
             "fqsen": "\\App\\Models\\User\u003A\u003A\u0024casts",
             "name": "casts",
-            "summary": "The\u0020attributes\u0020that\u0020should\u0020be\u0020cast\u0020to\u0020native\u0020types.",
+            "summary": "Zugeh\u00F6rigkeit,\u0020welche\u0020Attribute\u0020zu\u0020welchen\u0020nativen\u0020Typen\u0020gecastet\u0020werden\u0020soll.",
             "url": "classes/App-Models-User.html#property_casts"
         },                {
             "fqsen": "\\App\\Policies\\AuthTokenPolicy",
@@ -906,55 +811,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Policies-AuthTokenPolicy.html"
         },                {
-            "fqsen": "\\App\\Policies\\AuthTokenPolicy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Create\u0020a\u0020new\u0020policy\u0020instance.",
-            "url": "classes/App-Policies-AuthTokenPolicy.html#method___construct"
-        },                {
             "fqsen": "\\App\\Policies\\AuthTokenPolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "",
+            "summary": "Wenn\u0020der\u0020User\u0020der\u0020Eigent\u00FCmer\u0020des\u0020Token\u0020ist,\u0020darf\u0020er\u0020ihn\u0020l\u00F6schen",
             "url": "classes/App-Policies-AuthTokenPolicy.html#method_delete"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy",
-            "name": "EmailVerificationPolicy",
-            "summary": "",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003AviewAny\u0028\u0029",
-            "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_viewAny"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003Aviewboolean\u0028\u0029",
-            "name": "viewboolean",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_viewboolean"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003Acreate\u0028\u0029",
-            "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_create"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003Aupdate\u0028\u0029",
-            "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_update"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003Adelete\u0028\u0029",
-            "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_delete"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003Arestore\u0028\u0029",
-            "name": "restore",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020restore\u0020the\u0020model.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_restore"
-        },                {
-            "fqsen": "\\App\\Policies\\EmailVerificationPolicy\u003A\u003AforceDelete\u0028\u0029",
-            "name": "forceDelete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020permanently\u0020delete\u0020the\u0020model.",
-            "url": "classes/App-Policies-EmailVerificationPolicy.html#method_forceDelete"
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy",
             "name": "InvitationLinkPolicy",
@@ -963,27 +823,27 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy\u003A\u003AviewAny\u0028\u0029",
             "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
+            "summary": "Nur\u0020im\u0020Debug\u002DModus\u0020d\u00FCrfen\u0020alle\u0020Eintr\u00E4ge\u0020gelesen\u0020werden",
             "url": "classes/App-Policies-InvitationLinkPolicy.html#method_viewAny"
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy\u003A\u003Aview\u0028\u0029",
             "name": "view",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
+            "summary": "Alle\u0020user\u0020d\u00FCrfen\u0020einzelne\u0020Einladungs\u002DLinks\u0020anschauen",
             "url": "classes/App-Policies-InvitationLinkPolicy.html#method_view"
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
+            "summary": "Einladungs\u002DLinks\u0020d\u00FCrfen\u0020nur\u0020erstellt\u0020werden,\u0020wenn\u0020der\u0020User\u0020Admin\u0020Rechte\u0020auf\u0020den\u0020Speicherstand\u0020hat\u0020und\u0020der\u0020User\u0020nicht\u0020anonym\u0020ist",
             "url": "classes/App-Policies-InvitationLinkPolicy.html#method_create"
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
+            "summary": "Einladungs\u002DLinks\u0020d\u00FCrfen\u0020nur\u0020erstellt\u0020werden,\u0020wenn\u0020der\u0020User\u0020Admin\u0020Rechte\u0020auf\u0020den\u0020Speicherstand\u0020hat\u0020und\u0020der\u0020User\u0020nicht\u0020anonym\u0020ist",
             "url": "classes/App-Policies-InvitationLinkPolicy.html#method_update"
         },                {
             "fqsen": "\\App\\Policies\\InvitationLinkPolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
+            "summary": "Einladungs\u002DLinks\u0020d\u00FCrfen\u0020nur\u0020erstellt\u0020werden,\u0020wenn\u0020der\u0020User\u0020Admin\u0020Rechte\u0020auf\u0020den\u0020Speicherstand\u0020hat\u0020und\u0020der\u0020User\u0020nicht\u0020anonym\u0020ist",
             "url": "classes/App-Policies-InvitationLinkPolicy.html#method_delete"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy",
@@ -993,37 +853,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003AviewAny\u0028\u0029",
             "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
+            "summary": "Im\u0020Debug\u002DModus\u0020haben\u0020alle\u0020User\u0020zugriff\u0020alle\u0020Speicherst\u00E4nde\u0020anzuschauen",
             "url": "classes/App-Policies-SavePolicy.html#method_viewAny"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003Aview\u0028\u0029",
             "name": "view",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020Leseberechtigung\u0020auf\u0020den\u0020Speicherstand\u0020hat,\u0020kann\u0020er\u0020sie\u0020Anschauen",
             "url": "classes/App-Policies-SavePolicy.html#method_view"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
+            "summary": "Alle\u0020User\u0020d\u00FCrfen\u0020einen\u0020Speicherstand\u0020erstellen",
             "url": "classes/App-Policies-SavePolicy.html#method_create"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
+            "summary": "Alle\u0020User\u0020die\u0020Schreibberechtigungen\u0020auf\u0020den\u0020Speicherstand\u0020haben,\u0020k\u00F6nnen\u0020den\u0020Speicherstand\u0020\u00E4ndern",
             "url": "classes/App-Policies-SavePolicy.html#method_update"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020Adminberechtigungen\u0020hat,\u0020kann\u0020er\u0020den\u0020Speicherstand\u0020l\u00F6schen",
             "url": "classes/App-Policies-SavePolicy.html#method_delete"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003Arestore\u0028\u0029",
             "name": "restore",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020restore\u0020the\u0020model.",
+            "summary": "Kein\u0020User\u0020darf\u0020einen\u0020Speicherstand\u0020wiederherstellen",
             "url": "classes/App-Policies-SavePolicy.html#method_restore"
         },                {
             "fqsen": "\\App\\Policies\\SavePolicy\u003A\u003AforceDelete\u0028\u0029",
             "name": "forceDelete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020permanently\u0020delete\u0020the\u0020model.",
+            "summary": "Kein\u0020User\u0020darf\u0020einen\u0020Speicherstand\u0020komplett\u0020l\u00F6schen",
             "url": "classes/App-Policies-SavePolicy.html#method_forceDelete"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy",
@@ -1033,52 +893,52 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003AviewAny\u0028\u0029",
             "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
+            "summary": "Nur\u0020im\u0020Debug\u0020Modus\u0020d\u00FCrfen\u0020alle\u0020SharedSaves\u0020anschauen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_viewAny"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003Aview\u0028\u0029",
             "name": "view",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020mindestens\u0020die\u0020Leseberechtigung\u0020auf\u0020den\u0020zugeh\u00F6rigen\u0020Speicherstand\u0020hat,\u0020darf\u0020er\u0020ihn\u0020anschauen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_view"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003AviewOfSave\u0028\u0029",
             "name": "viewOfSave",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model\u0020of\u0020the\u0020given\u0020save",
+            "summary": "Wenn\u0020der\u0020User\u0020mindestens\u0020die\u0020Leseberechtigung\u0020auf\u0020den\u0020Speicherstand\u0020hat,\u0020darf\u0020er\u0020ihn\u0020anschauen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_viewOfSave"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003AviewOfUser\u0028\u0029",
             "name": "viewOfUser",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model\u0020of\u0020the\u0020given\u0020user",
+            "summary": "Nur\u0020der\u0020User\u0020selbst\u0020darf\u0020sehen\u0020bei\u0020welchen\u0020Speicherst\u00E4nden\u0020standen\u0020dieser\u0020Mitarbeitet",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_viewOfUser"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
+            "summary": "Wenn\u0020der\u0020User\u0020Adminrechte\u0020auf\u0020den\u0020Speicherstand\u0020hat,\u0020darf\u0020er\u0020eine\u0020Einladung\u0020erstellen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_create"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020Adminrechte\u0020auf\u0020den\u0020zugeh\u00F6rigen\u0020Speicherstand\u0020hat,\u0020darf\u0020er\u0020eine\u0020Einladung\u0020bearbeiten",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_update"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003AacceptDecline\u0028\u0029",
             "name": "acceptDecline",
-            "summary": "",
+            "summary": "Wenn\u0020der\u0020User\u0020mit\u0020der\u0020Einladung\u0020eingeladen\u0020wird,\u0020kann\u0020er\u0020die\u0020Einladung\u0020annehmen\u0020oder\u0020ablehnen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_acceptDecline"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
+            "summary": "Man\u0020darf\u0020keine\u0020Einladung\u0020l\u00F6schen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_delete"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003Arestore\u0028\u0029",
             "name": "restore",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020restore\u0020the\u0020model.",
+            "summary": "Man\u0020darf\u0020keine\u0020Einladung\u0020wieder\u0020herstellen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_restore"
         },                {
             "fqsen": "\\App\\Policies\\SharedSavePolicy\u003A\u003AforceDelete\u0028\u0029",
             "name": "forceDelete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020permanently\u0020delete\u0020the\u0020model.",
+            "summary": "Man\u0020darf\u0020keine\u0020Einladungen\u0020komplett\u0020l\u00F6schen",
             "url": "classes/App-Policies-SharedSavePolicy.html#method_forceDelete"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy",
@@ -1088,37 +948,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003AviewAny\u0028\u0029",
             "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
+            "summary": "Jeder\u0020darf\u0020alle\u0020Tools\u0020anschauen",
             "url": "classes/App-Policies-ToolPolicy.html#method_viewAny"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003Aview\u0028\u0029",
             "name": "view",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
+            "summary": "Alle\u0020User\u0020d\u00FCrfen\u0020alle\u0020Tools\u0020ansehen",
             "url": "classes/App-Policies-ToolPolicy.html#method_view"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
+            "summary": "Keiner\u0020Darf\u0020ein\u0020Tool\u0020erstellen",
             "url": "classes/App-Policies-ToolPolicy.html#method_create"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
+            "summary": "Keiner\u0020Darf\u0020ein\u0020Tool\u0020bearbeiten",
             "url": "classes/App-Policies-ToolPolicy.html#method_update"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
+            "summary": "Keiner\u0020Darf\u0020ein\u0020Tool\u0020l\u00F6schen",
             "url": "classes/App-Policies-ToolPolicy.html#method_delete"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003Arestore\u0028\u0029",
             "name": "restore",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020restore\u0020the\u0020model.",
+            "summary": "Keiner\u0020Darf\u0020ein\u0020Tool\u0020wieder\u0020herstellen",
             "url": "classes/App-Policies-ToolPolicy.html#method_restore"
         },                {
             "fqsen": "\\App\\Policies\\ToolPolicy\u003A\u003AforceDelete\u0028\u0029",
             "name": "forceDelete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020permanently\u0020delete\u0020the\u0020model.",
+            "summary": "Keiner\u0020Darf\u0020ein\u0020Tool\u0020komplett\u0020L\u00F6schen",
             "url": "classes/App-Policies-ToolPolicy.html#method_forceDelete"
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy",
@@ -1128,48 +988,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy\u003A\u003AviewAny\u0028\u0029",
             "name": "viewAny",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020any\u0020models.",
+            "summary": "Nur\u0020im\u0020Debug\u0020Modus\u0020d\u00FCrfen\u0020alle\u0020User\u0020angesehen\u0020werden",
             "url": "classes/App-Policies-UserPolicy.html#method_viewAny"
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy\u003A\u003Aview\u0028\u0029",
             "name": "view",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020view\u0020the\u0020model.",
+            "summary": "Alle\u0020User\u0020k\u00F6nnen\u0020jeden\u0020User\u0020anschauen",
             "url": "classes/App-Policies-UserPolicy.html#method_view"
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020create\u0020models.",
+            "summary": "Jeder\u0020darf\u0020User\u0020erstellen",
             "url": "classes/App-Policies-UserPolicy.html#method_create"
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020update\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020sich\u0020selbst\u0020bearbeitet\u0020und\u0020der\u0020User\u0020nicht\u0020anonym\u0020ist,\u0020darf\u0020er\u0020sich\u0020bearbeiten",
             "url": "classes/App-Policies-UserPolicy.html#method_update"
         },                {
             "fqsen": "\\App\\Policies\\UserPolicy\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Determine\u0020whether\u0020the\u0020user\u0020can\u0020delete\u0020the\u0020model.",
+            "summary": "Wenn\u0020der\u0020User\u0020sich\u0020selbst\u0020l\u00F6scht,\u0020darf\u0020er\u0020sich\u0020l\u00F6schen",
             "url": "classes/App-Policies-UserPolicy.html#method_delete"
-        },                {
-            "fqsen": "\\App\\Providers\\AppServiceProvider",
-            "name": "AppServiceProvider",
-            "summary": "",
-            "url": "classes/App-Providers-AppServiceProvider.html"
-        },                {
-            "fqsen": "\\App\\Providers\\AppServiceProvider\u003A\u003Aregister\u0028\u0029",
-            "name": "register",
-            "summary": "Register\u0020any\u0020application\u0020services.",
-            "url": "classes/App-Providers-AppServiceProvider.html#method_register"
-        },                {
-            "fqsen": "\\App\\Providers\\AppServiceProvider\u003A\u003Aboot\u0028\u0029",
-            "name": "boot",
-            "summary": "Bootstrap\u0020any\u0020application\u0020services.",
-            "url": "classes/App-Providers-AppServiceProvider.html#method_boot"
-        },                {
-            "fqsen": "\\App\\Providers\\AppServiceProvider\u003A\u003A\u0024singletons",
-            "name": "singletons",
-            "summary": "",
-            "url": "classes/App-Providers-AppServiceProvider.html#property_singletons"
         },                {
             "fqsen": "\\App\\Providers\\AuthServiceProvider",
             "name": "AuthServiceProvider",
@@ -1178,72 +1018,27 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Providers\\AuthServiceProvider\u003A\u003Aboot\u0028\u0029",
             "name": "boot",
-            "summary": "Register\u0020any\u0020authentication\u0020\/\u0020authorization\u0020services.",
+            "summary": "Registriert\u0020die\u0020n\u00F6tigen\u0020passport\u0020routen.",
             "url": "classes/App-Providers-AuthServiceProvider.html#method_boot"
         },                {
             "fqsen": "\\App\\Providers\\AuthServiceProvider\u003A\u003A\u0024policies",
             "name": "policies",
-            "summary": "The\u0020policy\u0020mappings\u0020for\u0020the\u0020application.",
+            "summary": "Nicht\u0020implizierte\u0020Policy\u0020Zuweisungen",
             "url": "classes/App-Providers-AuthServiceProvider.html#property_policies"
-        },                {
-            "fqsen": "\\App\\Providers\\BroadcastServiceProvider",
-            "name": "BroadcastServiceProvider",
-            "summary": "",
-            "url": "classes/App-Providers-BroadcastServiceProvider.html"
-        },                {
-            "fqsen": "\\App\\Providers\\BroadcastServiceProvider\u003A\u003Aboot\u0028\u0029",
-            "name": "boot",
-            "summary": "Bootstrap\u0020any\u0020application\u0020services.",
-            "url": "classes/App-Providers-BroadcastServiceProvider.html#method_boot"
-        },                {
-            "fqsen": "\\App\\Providers\\EventServiceProvider",
-            "name": "EventServiceProvider",
-            "summary": "",
-            "url": "classes/App-Providers-EventServiceProvider.html"
-        },                {
-            "fqsen": "\\App\\Providers\\EventServiceProvider\u003A\u003Aboot\u0028\u0029",
-            "name": "boot",
-            "summary": "Register\u0020any\u0020events\u0020for\u0020your\u0020application.",
-            "url": "classes/App-Providers-EventServiceProvider.html#method_boot"
-        },                {
-            "fqsen": "\\App\\Providers\\EventServiceProvider\u003A\u003A\u0024listen",
-            "name": "listen",
-            "summary": "The\u0020event\u0020listener\u0020mappings\u0020for\u0020the\u0020application.",
-            "url": "classes/App-Providers-EventServiceProvider.html#property_listen"
-        },                {
-            "fqsen": "\\App\\Providers\\RouteServiceProvider",
-            "name": "RouteServiceProvider",
-            "summary": "",
-            "url": "classes/App-Providers-RouteServiceProvider.html"
-        },                {
-            "fqsen": "\\App\\Providers\\RouteServiceProvider\u003A\u003Aboot\u0028\u0029",
-            "name": "boot",
-            "summary": "Define\u0020your\u0020route\u0020model\u0020bindings,\u0020pattern\u0020filters,\u0020etc.",
-            "url": "classes/App-Providers-RouteServiceProvider.html#method_boot"
-        },                {
-            "fqsen": "\\App\\Providers\\RouteServiceProvider\u003A\u003AconfigureRateLimiting\u0028\u0029",
-            "name": "configureRateLimiting",
-            "summary": "Configure\u0020the\u0020rate\u0020limiters\u0020for\u0020the\u0020application.",
-            "url": "classes/App-Providers-RouteServiceProvider.html#method_configureRateLimiting"
-        },                {
-            "fqsen": "\\App\\Providers\\RouteServiceProvider\u003A\u003AHOME",
-            "name": "HOME",
-            "summary": "The\u0020path\u0020to\u0020the\u0020\u0022home\u0022\u0020route\u0020for\u0020your\u0020application.",
-            "url": "classes/App-Providers-RouteServiceProvider.html#constant_HOME"
         },                {
             "fqsen": "\\App\\Services\\EmailService",
             "name": "EmailService",
-            "summary": "",
+            "summary": "Methoden\u0020um\u0020die\u0020E\u002DMail\u002DAdresse\u0020eines\u0020Users\u0020zu\u0020verwalten",
             "url": "classes/App-Services-EmailService.html"
         },                {
             "fqsen": "\\App\\Services\\EmailService\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Erstellt\u0020eine\u0020neue\u0020Instanz",
             "url": "classes/App-Services-EmailService.html#method___construct"
         },                {
             "fqsen": "\\App\\Services\\EmailService\u003A\u003ArequestEmailChangeOfUser\u0028\u0029",
             "name": "requestEmailChangeOfUser",
-            "summary": "Erstellt\u0020einen\u0020email_verification\u0020eintrag\u0020und\u0020schickt\u0020eine\u0020email\u0020an\u0020die\u0020angegebene\u0020email.",
+            "summary": "Erstellt\u0020einen\u0020email_verification\u0020eintrag\u0020und\u0020schickt\u0020eine\u0020E\u002DMail\u0020an\u0020die\u0020angegebene\u0020E\u002DMail.",
             "url": "classes/App-Services-EmailService.html#method_requestEmailChangeOfUser"
         },                {
             "fqsen": "\\App\\Services\\EmailService\u003A\u003A\u0024tokenService",
@@ -1253,7 +1048,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Services\\TokenService",
             "name": "TokenService",
-            "summary": "",
+            "summary": "Erstellt\u0020kryptografische\u0020Token",
             "url": "classes/App-Services-TokenService.html"
         },                {
             "fqsen": "\\App\\Services\\TokenService\u003A\u003AcreateToken\u0028\u0029",
@@ -1268,17 +1063,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Services\\UserService",
             "name": "UserService",
-            "summary": "",
+            "summary": "Methoden\u0020zum\u0020Verwalten\u0020von\u0020Usern",
             "url": "classes/App-Services-UserService.html"
         },                {
             "fqsen": "\\App\\Services\\UserService\u003A\u003AcheckUsername\u0028\u0029",
             "name": "checkUsername",
-            "summary": "",
+            "summary": "\u00DCberpr\u00FCft\u0020ob\u0020der\u0020Username\u0020bereits\u0020verwendet\u0020wird",
             "url": "classes/App-Services-UserService.html#method_checkUsername"
         },                {
             "fqsen": "\\App\\Services\\UserService\u003A\u003AcheckEmail\u0028\u0029",
             "name": "checkEmail",
-            "summary": "",
+            "summary": "\u00DCberpr\u00FCft\u0020ob\u0020die\u0020E\u002DMail\u0020bereits\u0020verwendet\u0020wird",
             "url": "classes/App-Services-UserService.html#method_checkEmail"
         },                {
             "fqsen": "\\App\\Services\\UserService\u003A\u003AupdateUser\u0028\u0029",
@@ -1293,8 +1088,283 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Services\\UserService\u003A\u003AupgradeAnonymousUser\u0028\u0029",
             "name": "upgradeAnonymousUser",
-            "summary": "",
+            "summary": "Stuft\u0020ein\u0020anonymes\u0020Konto\u0020auf\u0020ein\u0020normales\u0020Konto\u0020hoch",
             "url": "classes/App-Services-UserService.html#method_upgradeAnonymousUser"
+        },                {
+            "fqsen": "\\Database\\Factories\\SaveFactory",
+            "name": "SaveFactory",
+            "summary": "",
+            "url": "classes/Database-Factories-SaveFactory.html"
+        },                {
+            "fqsen": "\\Database\\Factories\\SaveFactory\u003A\u003Adefinition\u0028\u0029",
+            "name": "definition",
+            "summary": "Define\u0020the\u0020model\u0027s\u0020default\u0020state.",
+            "url": "classes/Database-Factories-SaveFactory.html#method_definition"
+        },                {
+            "fqsen": "\\Database\\Factories\\SaveFactory\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "The\u0020name\u0020of\u0020the\u0020factory\u0027s\u0020corresponding\u0020model.",
+            "url": "classes/Database-Factories-SaveFactory.html#property_model"
+        },                {
+            "fqsen": "\\Database\\Factories\\SharedSaveFactory",
+            "name": "SharedSaveFactory",
+            "summary": "",
+            "url": "classes/Database-Factories-SharedSaveFactory.html"
+        },                {
+            "fqsen": "\\Database\\Factories\\SharedSaveFactory\u003A\u003Adefinition\u0028\u0029",
+            "name": "definition",
+            "summary": "Define\u0020the\u0020model\u0027s\u0020default\u0020state.",
+            "url": "classes/Database-Factories-SharedSaveFactory.html#method_definition"
+        },                {
+            "fqsen": "\\Database\\Factories\\SharedSaveFactory\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "The\u0020name\u0020of\u0020the\u0020factory\u0027s\u0020corresponding\u0020model.",
+            "url": "classes/Database-Factories-SharedSaveFactory.html#property_model"
+        },                {
+            "fqsen": "\\Database\\Factories\\UserFactory",
+            "name": "UserFactory",
+            "summary": "",
+            "url": "classes/Database-Factories-UserFactory.html"
+        },                {
+            "fqsen": "\\Database\\Factories\\UserFactory\u003A\u003Adefinition\u0028\u0029",
+            "name": "definition",
+            "summary": "Define\u0020the\u0020model\u0027s\u0020default\u0020state.",
+            "url": "classes/Database-Factories-UserFactory.html#method_definition"
+        },                {
+            "fqsen": "\\Database\\Factories\\UserFactory\u003A\u003Aunverified\u0028\u0029",
+            "name": "unverified",
+            "summary": "Sorgt\u0020daf\u00FCr,\u0020dass\u0020die\u0020email\u0020nicht\u0020verifiziert\u0020ist",
+            "url": "classes/Database-Factories-UserFactory.html#method_unverified"
+        },                {
+            "fqsen": "\\Database\\Factories\\UserFactory\u003A\u003Aanonymous\u0028\u0029",
+            "name": "anonymous",
+            "summary": "sorgt\u0020daf\u00FCr,\u0020dass\u0020der\u0020user\u0020anonym\u0020ist",
+            "url": "classes/Database-Factories-UserFactory.html#method_anonymous"
+        },                {
+            "fqsen": "\\Database\\Factories\\UserFactory\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "The\u0020name\u0020of\u0020the\u0020factory\u0027s\u0020corresponding\u0020model.",
+            "url": "classes/Database-Factories-UserFactory.html#property_model"
+        },                {
+            "fqsen": "\\CreateUsersTable",
+            "name": "CreateUsersTable",
+            "summary": "",
+            "url": "classes/CreateUsersTable.html"
+        },                {
+            "fqsen": "\\CreateUsersTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateUsersTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateUsersTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateUsersTable.html#method_down"
+        },                {
+            "fqsen": "\\CreatePasswordResetsTable",
+            "name": "CreatePasswordResetsTable",
+            "summary": "",
+            "url": "classes/CreatePasswordResetsTable.html"
+        },                {
+            "fqsen": "\\CreatePasswordResetsTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreatePasswordResetsTable.html#method_up"
+        },                {
+            "fqsen": "\\CreatePasswordResetsTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreatePasswordResetsTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateFailedJobsTable",
+            "name": "CreateFailedJobsTable",
+            "summary": "",
+            "url": "classes/CreateFailedJobsTable.html"
+        },                {
+            "fqsen": "\\CreateFailedJobsTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateFailedJobsTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateFailedJobsTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateFailedJobsTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateToolsTable",
+            "name": "CreateToolsTable",
+            "summary": "",
+            "url": "classes/CreateToolsTable.html"
+        },                {
+            "fqsen": "\\CreateToolsTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateToolsTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateToolsTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateToolsTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateSavesTable",
+            "name": "CreateSavesTable",
+            "summary": "",
+            "url": "classes/CreateSavesTable.html"
+        },                {
+            "fqsen": "\\CreateSavesTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateSavesTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateSavesTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateSavesTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateEmailVerificationsTable",
+            "name": "CreateEmailVerificationsTable",
+            "summary": "",
+            "url": "classes/CreateEmailVerificationsTable.html"
+        },                {
+            "fqsen": "\\CreateEmailVerificationsTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateEmailVerificationsTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateEmailVerificationsTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateEmailVerificationsTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateInvitationLinksTable",
+            "name": "CreateInvitationLinksTable",
+            "summary": "",
+            "url": "classes/CreateInvitationLinksTable.html"
+        },                {
+            "fqsen": "\\CreateInvitationLinksTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateInvitationLinksTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateInvitationLinksTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateInvitationLinksTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateSharedSaveTable",
+            "name": "CreateSharedSaveTable",
+            "summary": "",
+            "url": "classes/CreateSharedSaveTable.html"
+        },                {
+            "fqsen": "\\CreateSharedSaveTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateSharedSaveTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateSharedSaveTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateSharedSaveTable.html#method_down"
+        },                {
+            "fqsen": "\\CreateJobsTable",
+            "name": "CreateJobsTable",
+            "summary": "",
+            "url": "classes/CreateJobsTable.html"
+        },                {
+            "fqsen": "\\CreateJobsTable\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/CreateJobsTable.html#method_up"
+        },                {
+            "fqsen": "\\CreateJobsTable\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/CreateJobsTable.html#method_down"
+        },                {
+            "fqsen": "\\AddDescriptionToSave",
+            "name": "AddDescriptionToSave",
+            "summary": "",
+            "url": "classes/AddDescriptionToSave.html"
+        },                {
+            "fqsen": "\\AddDescriptionToSave\u003A\u003Aup\u0028\u0029",
+            "name": "up",
+            "summary": "Run\u0020the\u0020migrations.",
+            "url": "classes/AddDescriptionToSave.html#method_up"
+        },                {
+            "fqsen": "\\AddDescriptionToSave\u003A\u003Adown\u0028\u0029",
+            "name": "down",
+            "summary": "Reverse\u0020the\u0020migrations.",
+            "url": "classes/AddDescriptionToSave.html#method_down"
+        },                {
+            "fqsen": "\\Database\\Seeders\\DatabaseSeeder",
+            "name": "DatabaseSeeder",
+            "summary": "",
+            "url": "classes/Database-Seeders-DatabaseSeeder.html"
+        },                {
+            "fqsen": "\\Database\\Seeders\\DatabaseSeeder\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Seed\u0020the\u0020application\u0027s\u0020database.",
+            "url": "classes/Database-Seeders-DatabaseSeeder.html#method_run"
+        },                {
+            "fqsen": "\\Database\\Seeders\\SaveSeeder",
+            "name": "SaveSeeder",
+            "summary": "",
+            "url": "classes/Database-Seeders-SaveSeeder.html"
+        },                {
+            "fqsen": "\\Database\\Seeders\\SaveSeeder\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Run\u0020the\u0020database\u0020seeds.",
+            "url": "classes/Database-Seeders-SaveSeeder.html#method_run"
+        },                {
+            "fqsen": "\\Database\\Seeders\\ToolSeeder",
+            "name": "ToolSeeder",
+            "summary": "",
+            "url": "classes/Database-Seeders-ToolSeeder.html"
+        },                {
+            "fqsen": "\\Database\\Seeders\\ToolSeeder\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Run\u0020the\u0020database\u0020seeds.",
+            "url": "classes/Database-Seeders-ToolSeeder.html#method_run"
+        },                {
+            "fqsen": "\\Database\\Seeders\\UserSeeder",
+            "name": "UserSeeder",
+            "summary": "",
+            "url": "classes/Database-Seeders-UserSeeder.html"
+        },                {
+            "fqsen": "\\Database\\Seeders\\UserSeeder\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Run\u0020the\u0020database\u0020seeds.",
+            "url": "classes/Database-Seeders-UserSeeder.html#method_run"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail",
+            "name": "SaveInvitationEmail",
+            "summary": "E\u002DMail,\u0020welche\u0020versand\u0020wird,\u0020wenn\u0020ein\u0020User\u0020einen\u0020anderen\u0020dazu\u0020einl\u00E4dt\u0020an\u0020einem\u0020Speicherstand\u0020mitzuarbeiten",
+            "url": "classes/App-Mail-SaveInvitationEmail.html"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Erstellt\u0020eine\u0020neue\u0020instanz",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Erstellt\u0020die\u0020Mail",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#method_build"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024fullUrl",
+            "name": "fullUrl",
+            "summary": "Url\u0020zu\u0020der\u0020Invitation\u0020Page\u0020im\u0020Frontend",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_fullUrl"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024saveName",
+            "name": "saveName",
+            "summary": "Name\u0020des\u0020Speicherstandes",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_saveName"
+        },                {
+            "fqsen": "\\App\\Mail\\SaveInvitationEmail\u003A\u003A\u0024username",
+            "name": "username",
+            "summary": "Nutzername\u0020des\u0020eingeladenen\u0020Nutzers",
+            "url": "classes/App-Mail-SaveInvitationEmail.html#property_username"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -1370,5 +1440,20 @@ Search.appendIndex(
             "name": "Services",
             "summary": "",
             "url": "namespaces/app-services.html"
+        },                {
+            "fqsen": "\\Database\\Factories",
+            "name": "Factories",
+            "summary": "",
+            "url": "namespaces/database-factories.html"
+        },                {
+            "fqsen": "\\Database",
+            "name": "Database",
+            "summary": "",
+            "url": "namespaces/database.html"
+        },                {
+            "fqsen": "\\Database\\Seeders",
+            "name": "Seeders",
+            "summary": "",
+            "url": "namespaces/database-seeders.html"
         }            ]
 );

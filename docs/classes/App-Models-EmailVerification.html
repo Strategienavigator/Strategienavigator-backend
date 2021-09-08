@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -228,27 +252,6 @@
 </dt>
 <dd></dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Models-EmailVerification.html#property_casts">$casts</a>
-    <span>
-                &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>The attributes that should be cast to native types.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Models-EmailVerification.html#property_fillable">$fillable</a>
-    <span>
-                &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>The attributes that are mass assignable.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Models-EmailVerification.html#property_hidden">$hidden</a>
-    <span>
-                &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>The attributes that should be hidden for arrays.</dd>
-
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-EmailVerification.html#method_newModelQuery">newModelQuery()</a>
     <span>
@@ -275,7 +278,7 @@
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\BelongsTo">BelongsTo</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Beschreibt die Beziehung zur users Tabelle</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-EmailVerification.html#method_whereCreatedAt">whereCreatedAt()</a>
@@ -358,7 +361,9 @@
     <span class="phpdocumentor-signature__name">$created_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Timestamp des Zeitpunktes der Erstellung</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -391,7 +396,9 @@
     <span class="phpdocumentor-signature__name">$email</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>unverifizierte E-Mail des Users</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -424,7 +431,7 @@
     <span class="phpdocumentor-signature__name">$id</span>
     </code>
 
-        <section class="phpdocumentor-description"><p>id of the instance</p>
+        <section class="phpdocumentor-description"><p>id des Datenbank eintrags</p>
 </section>
 
         <section class="phpdocumentor-description"></section>
@@ -459,7 +466,9 @@
     <span class="phpdocumentor-signature__name">$token</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>token welcher zum verifizieren verwendet wird</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -492,7 +501,9 @@
     <span class="phpdocumentor-signature__name">$updated_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Timestamp des Zeitpunktes der letzten Änderung</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -525,7 +536,9 @@
     <span class="phpdocumentor-signature__name">$user</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Der verknüpfte User</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -558,108 +571,11 @@
     <span class="phpdocumentor-signature__name">$user_id</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>id des Users</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_casts">
-        $casts
-        <a href="classes/App-Models-EmailVerification.html#property_casts" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/EmailVerification.php"><a href="files/app-models-emailverification.html"><abbr title="app/Models/EmailVerification.php">EmailVerification.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">59</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The attributes that should be cast to native types.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$casts</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_fillable">
-        $fillable
-        <a href="classes/App-Models-EmailVerification.html#property_fillable" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/EmailVerification.php"><a href="files/app-models-emailverification.html"><abbr title="app/Models/EmailVerification.php">EmailVerification.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The attributes that are mass assignable.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$fillable</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_hidden">
-        $hidden
-        <a href="classes/App-Models-EmailVerification.html#property_hidden" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/EmailVerification.php"><a href="files/app-models-emailverification.html"><abbr title="app/Models/EmailVerification.php">EmailVerification.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">51</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The attributes that should be hidden for arrays.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$hidden</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
     
 
 </article>
@@ -779,17 +695,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/EmailVerification.php"><a href="files/app-models-emailverification.html"><abbr title="app/Models/EmailVerification.php">EmailVerification.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Beschreibt die Beziehung zur users Tabelle</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">user</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\BelongsTo">BelongsTo</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 

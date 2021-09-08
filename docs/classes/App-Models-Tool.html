@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -144,11 +168,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">App\Models\Tool</p>
+            <p class="phpdocumentor-summary">Ein Tool wie &quot;SWOT-Analyse&quot;, welches im Frontend implementiert ist</p>
 
 
 
@@ -208,13 +232,6 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-Tool.html#property_saves_count">$saves_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Models-Tool.html#property_updated_at">$updated_at</a>
     <span>
                 &nbsp;: <abbr title="\Illuminate\Support\Carbon">Carbon</abbr>|null            </span>
@@ -222,25 +239,11 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Models-Tool.html#property_casts">$casts</a>
-    <span>
-                &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>The attributes that should be cast to native types.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Models-Tool.html#property_fillable">$fillable</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>No value is mass assignable because toll data doesn&#039;t change and is read only</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Models-Tool.html#property_hidden">$hidden</a>
-    <span>
-                &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>The attributes that should be hidden for arrays.</dd>
+<dd>Attribute, welche Massen zuweisbar sind</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-Tool.html#method_newModelQuery">newModelQuery()</a>
@@ -268,7 +271,7 @@
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Beschreibt die Beziehung zu der saves Tabelle</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-Tool.html#method_whereCreatedAt">whereCreatedAt()</a>
@@ -337,7 +340,9 @@
     <span class="phpdocumentor-signature__name">$created_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Zeitpunkt an dem das Tool erstellt wurde</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -370,7 +375,9 @@
     <span class="phpdocumentor-signature__name">$id</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>id des Tools</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -403,7 +410,9 @@
     <span class="phpdocumentor-signature__name">$name</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Name des Tools</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -436,40 +445,9 @@
     <span class="phpdocumentor-signature__name">$saves</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Alle Speicherstände, die zu diesem Tool gehören</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_saves_count">
-        $saves_count
-        <a href="classes/App-Models-Tool.html#property_saves_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$saves_count</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -502,42 +480,11 @@
     <span class="phpdocumentor-signature__name">$updated_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Zeitpunkt an dem das Tool das letzte Mal geändert wurde.</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_casts">
-        $casts
-        <a href="classes/App-Models-Tool.html#property_casts" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">57</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The attributes that should be cast to native types.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$casts</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
     
 
 </article>
@@ -557,50 +504,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">No value is mass assignable because toll data doesn&#039;t change and is read only</p>
+        <p class="phpdocumentor-summary">Attribute, welche Massen zuweisbar sind</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$fillable</span>
      = <span class="phpdocumentor-signature__default-value">[&quot;name&quot;]</span></code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_hidden">
-        $hidden
-        <a href="classes/App-Models-Tool.html#property_hidden" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">49</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The attributes that should be hidden for arrays.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$hidden</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
     
     
@@ -723,17 +637,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/Tool.php"><a href="files/app-models-tool.html"><abbr title="app/Models/Tool.php">Tool.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Beschreibt die Beziehung zu der saves Tabelle</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">saves</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 

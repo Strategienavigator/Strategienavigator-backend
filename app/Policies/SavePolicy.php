@@ -12,22 +12,22 @@ class SavePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Im Debug-Modus haben alle User zugriff alle Speicherstände anzuschauen
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @return boolean Ob der User alle Speicherstände anschauen darf
      */
     public function viewAny(User $user): bool
     {
-        return env('APP_DEBUG'); // TODO change to false
+        return config("app.debug"); // TODO change to false
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Wenn der User Leseberechtigung auf den Speicherstand hat, kann er sie Anschauen
      *
-     * @param User $user
-     * @param Save $save
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speichstand, welcher angeschaut werden soll
+     * @return boolean Ob der User den Speicherstand anschauen darf
      */
     public function view(User $user, Save $save): bool
     {
@@ -35,10 +35,10 @@ class SavePolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Alle User dürfen einen Speicherstand erstellen
      *
-     * @param User $user
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @return boolean Ob der User einen Speicherstand erstellen darf
      */
     public function create(User $user): bool
     {
@@ -46,11 +46,11 @@ class SavePolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Alle User die Schreibberechtigungen auf den Speicherstand haben, können den Speicherstand ändern
      *
-     * @param User $user
-     * @param Save $save
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speicherstand, welcher bearbeitet wird
+     * @return boolean Ob der User den Speicherstand bearbeiten darf
      */
     public function update(User $user, Save $save): bool
     {
@@ -58,11 +58,11 @@ class SavePolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Wenn der User Adminberechtigungen hat, kann er den Speicherstand löschen
      *
-     * @param User $user
-     * @param Save $save
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speicherstand, welcher gelöscht werden soll
+     * @return boolean Ob der User den Speicherstand löschen darf
      */
     public function delete(User $user, Save $save): bool
     {
@@ -70,11 +70,11 @@ class SavePolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Kein User darf einen Speicherstand wiederherstellen
      *
-     * @param User $user
-     * @param Save $save
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speicherstand, welcher wiederhergestellt werden soll
+     * @return boolean Ob der User den Speicherstand wiederherstellen darf
      */
     public function restore(User $user, Save $save): bool
     {
@@ -83,11 +83,11 @@ class SavePolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Kein User darf einen Speicherstand komplett löschen
      *
-     * @param User $user
-     * @param Save $save
-     * @return boolean
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speicherstand, welcher komplett gelöscht werden soll
+     * @return boolean Ob der User den Speicherstand komplett löschen darf
      */
     public function forceDelete(User $user, Save $save): bool
     {

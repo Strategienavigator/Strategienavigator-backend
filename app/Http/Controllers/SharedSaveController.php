@@ -94,7 +94,7 @@ class SharedSaveController extends Controller
         $shared_save->accepted = false;
         $save->invitations()->save($shared_save);
 
-        Mail::to($user->email)->send(new SaveInvitationEmail($save->name,$shared_save->id));
+        Mail::to($user->email)->send(new SaveInvitationEmail($user->username, $save->name, $shared_save->id));
 
         return response()->created("contribution", $shared_save);
     }

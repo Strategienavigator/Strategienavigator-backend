@@ -11,15 +11,12 @@ class AuthTokenPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Wenn der User der Eigentümer des Token ist, darf er ihn löschen
      *
-     * @return void
+     * @param User $user Der aktuell authentifizierte User
+     * @param Token $token Der zu überprüfende User
+     * @return bool Ob der User den Token löschen kann
      */
-    public function __construct()
-    {
-        //
-    }
-
     public function delete(User $user, Token $token)
     {
         return $user->id === $token->user_id;

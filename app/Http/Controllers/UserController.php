@@ -33,7 +33,7 @@ class UserController extends Controller
      * Das regex, welches Benutzt wird um sicherzustellen, dass das User Password
      * @var string
      */
-    private static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
+    public static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
 
 
     /**
@@ -63,14 +63,26 @@ class UserController extends Controller
     {
         $validated = Validator::validate($request->all(), [
             "username" => ["required", "string", "unique:users"],
-            "password" => [ "required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
-            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+            "password" => ["required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
+            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"],
+            "anonymous_id" => ["integer", "exists:users,id"],
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
 
-        $u = new User();
-        $userService->updateUser($u, array_merge(["anonym" => false,], $validated), $emailService);
+
+        $u = null;
+        if (array_key_exists("anonymous_id", $validated)) {
+            $u = User::find($validated["anonymous_id"]);
+            if($u->anonymous){
+                $userService->upgradeAnonymousUser($u,$validated,$emailService);
+            }
+
+        } else {
+            $u = new User();
+            $userService->updateUser($u, array_merge(["anonymous" => false,], $validated), $emailService);
+        }
+
         return \response()->created('users', $u);
     }
 

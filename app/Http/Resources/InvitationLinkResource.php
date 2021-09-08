@@ -7,10 +7,13 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Klasse, welche eine InvitationLink instanz in ein Array umwandelt
+ */
 class InvitationLinkResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Felder der InvitationLink instanz ohne das Token und updated_at Feld
      *
      * @param Request $request
      * @return array

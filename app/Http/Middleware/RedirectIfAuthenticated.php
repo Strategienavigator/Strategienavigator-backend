@@ -7,10 +7,13 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Leitet einen User nach der Anmeldung auf eine Route weiter
+ */
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.
+     * Verarbeitet einen eingehenden Request.
      *
      * @param Request $request
      * @param Closure $next

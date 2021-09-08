@@ -23,7 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'username' => $this->faker->firstName(),
-            'anonym' => false,
+            'anonymous' => false,
             'last_activity' => now(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -50,11 +50,11 @@ class UserFactory extends Factory
      * sorgt dafür, dass der user anonym ist
      * @return UserFactory
      */
-    public function anonym()
+    public function anonymous()
     {
         return $this->state(function (array $attributes) {
             return [
-                'anonym' => true,
+                'anonymous' => true,
             ];
         });
     }

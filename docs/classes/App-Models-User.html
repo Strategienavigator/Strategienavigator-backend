@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -138,13 +162,13 @@
     
             <span class="phpdocumentor-element__extends">
             Uses
-                            <abbr title="\Illuminate\Database\Eloquent\Factories\HasFactory">HasFactory</abbr>,                             <abbr title="\Illuminate\Notifications\Notifiable">Notifiable</abbr>,                             <abbr title="\Laravel\Passport\HasApiTokens">HasApiTokens</abbr>,                             <abbr title="\Illuminate\Database\Eloquent\SoftDeletes">SoftDeletes</abbr>                    </span>
+                            <abbr title="\Illuminate\Database\Eloquent\Factories\HasFactory">HasFactory</abbr>,                             <abbr title="\Laravel\Passport\HasApiTokens">HasApiTokens</abbr>,                             <abbr title="\Illuminate\Database\Eloquent\SoftDeletes">SoftDeletes</abbr>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -180,13 +204,6 @@
 
 <dl class="phpdocumentor-table-of-contents">
                 <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_accessible_shares_count">$accessible_shares_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Models-User.html#property_accessibleShares">$accessibleShares</a>
     <span>
                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <a href="classes/App-Models-Save.html"><abbr title="\App\Models\Save">Save</abbr></a>&gt;            </span>
@@ -194,28 +211,21 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_anonym">$anonym</a>
+    <a href="classes/App-Models-User.html#property_anonymous">$anonymous</a>
     <span>
                 &nbsp;: bool            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_clients">$clients</a>
-    <span>
-                &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <abbr title="\Laravel\Passport\Client">Client</abbr>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_clients_count">$clients_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Models-User.html#property_created_at">$created_at</a>
+    <span>
+                &nbsp;: <abbr title="\Illuminate\Support\Carbon">Carbon</abbr>|null            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Models-User.html#property_deleted_at">$deleted_at</a>
     <span>
                 &nbsp;: <abbr title="\Illuminate\Support\Carbon">Carbon</abbr>|null            </span>
 </dt>
@@ -257,30 +267,9 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_invitations_count">$invitations_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_invited_saves_count">$invited_saves_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Models-User.html#property_invitedSaves">$invitedSaves</a>
     <span>
                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <a href="classes/App-Models-Save.html"><abbr title="\App\Models\Save">Save</abbr></a>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_is_locking_count">$is_locking_count</a>
-    <span>
-                &nbsp;: int|null            </span>
 </dt>
 <dd></dd>
 
@@ -292,30 +281,9 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_joined_at">$joined_at</a>
-    <span>
-                &nbsp;: string            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/App-Models-User.html#property_last_activity">$last_activity</a>
     <span>
                 &nbsp;: string|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_notifications">$notifications</a>
-    <span>
-                &nbsp;: <abbr title="\Illuminate\Notifications\DatabaseNotificationCollection">DatabaseNotificationCollection</abbr>|array&lt;string|int, <abbr title="\Illuminate\Notifications\DatabaseNotification">DatabaseNotification</abbr>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_notifications_count">$notifications_count</a>
-    <span>
-                &nbsp;: int|null            </span>
 </dt>
 <dd></dd>
 
@@ -330,41 +298,6 @@
     <a href="classes/App-Models-User.html#property_saves">$saves</a>
     <span>
                 &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <a href="classes/App-Models-Save.html"><abbr title="\App\Models\Save">Save</abbr></a>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_saves_count">$saves_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_shared_saves_count">$shared_saves_count</a>
-    <span>
-                &nbsp;: int|null            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_sharedSaves">$sharedSaves</a>
-    <span>
-                &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <a href="classes/App-Models-SharedSave.html"><abbr title="\App\Models\SharedSave">SharedSave</abbr></a>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_tokens">$tokens</a>
-    <span>
-                &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <abbr title="\Laravel\Passport\Token">Token</abbr>&gt;            </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/App-Models-User.html#property_tokens_count">$tokens_count</a>
-    <span>
-                &nbsp;: int|null            </span>
 </dt>
 <dd></dd>
 
@@ -387,28 +320,28 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The attributes that should be cast to native types.</dd>
+<dd>Zugehörigkeit, welche Attribute zu welchen nativen Typen gecastet werden soll.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Models-User.html#property_fillable">$fillable</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The attributes that are mass assignable.</dd>
+<dd>Attribute, welche Massen zuweisbar sind</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Models-User.html#property_hidden">$hidden</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The attributes that should be hidden for arrays.</dd>
+<dd>Attribute, welche beim Konvertieren in ein array, nicht in das Array hinzugefügt werden</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_accessibleShares">accessibleShares()</a>
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Ale Speicherstände zu den dieser User Zugriff hat</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_emailVerification">emailVerification()</a>
@@ -429,21 +362,21 @@
     <span>
                         &nbsp;: <a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a>    </span>
 </dt>
-<dd>Find the user instance for the given username.</dd>
+<dd>Findet die User instanz des übergebenen Usernamen oder E-Mail</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_invitations">invitations()</a>
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Alle SharedSave Einträge, die noch nicht revoked oder angenomemn sind</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_invitedSaves">invitedSaves()</a>
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Beziehung zu den Speicherständen, zu denen der User eingeladen wurde aber diese noch nicht angenommen hat</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_isLocking">isLocking()</a>
@@ -467,6 +400,13 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Models-User.html#method_onlyTrashed">onlyTrashed()</a>
+    <span>
+                        &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_query">query()</a>
     <span>
                         &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
@@ -478,21 +418,21 @@
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Beschreibt die Beziehung zu den Speicherständen die diesem User gehören</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_setPasswordAttribute">setPasswordAttribute()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Setter des Passwort attributes</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_sharedSaves">sharedSaves()</a>
     <span>
                         &nbsp;: <abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Alle SharedSave Einträge die zu diesem User gehören</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_whereAnonym">whereAnonym()</a>
@@ -502,7 +442,21 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Models-User.html#method_whereAnonymous">whereAnonymous()</a>
+    <span>
+                        &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Models-User.html#method_whereCreatedAt">whereCreatedAt()</a>
+    <span>
+                        &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Models-User.html#method_whereDeletedAt">whereDeletedAt()</a>
     <span>
                         &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
 </dt>
@@ -571,6 +525,20 @@
 </dt>
 <dd></dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Models-User.html#method_withoutTrashed">withoutTrashed()</a>
+    <span>
+                        &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Models-User.html#method_withTrashed">withTrashed()</a>
+    <span>
+                        &nbsp;: <a href=""><abbr title=""></abbr></a>    </span>
+</dt>
+<dd></dd>
+
         </dl>
 
 
@@ -583,39 +551,6 @@
             Properties
             <a href="classes/App-Models-User.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_accessible_shares_count">
-        $accessible_shares_count
-        <a href="classes/App-Models-User.html#property_accessible_shares_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$accessible_shares_count</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
                     <article
         class="
             phpdocumentor-element
@@ -643,7 +578,9 @@
     <span class="phpdocumentor-signature__name">$accessibleShares</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>alle geteilten Speicherstände, auf die der User Zugriff hat</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -656,9 +593,9 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_anonym">
-        $anonym
-        <a href="classes/App-Models-User.html#property_anonym" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_anonymous">
+        $anonymous
+        <a href="classes/App-Models-User.html#property_anonymous" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -673,76 +610,12 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$anonym</span>
+    <span class="phpdocumentor-signature__name">$anonymous</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Ob das Konto ein anonymes ist oder nicht</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_clients">
-        $clients
-        <a href="classes/App-Models-User.html#property_clients" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <abbr title="\Laravel\Passport\Client">Client</abbr>&gt;</span>
-    <span class="phpdocumentor-signature__name">$clients</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_clients_count">
-        $clients_count
-        <a href="classes/App-Models-User.html#property_clients_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$clients_count</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -775,7 +648,44 @@
     <span class="phpdocumentor-signature__name">$created_at</span>
     </code>
 
+        <section class="phpdocumentor-description"><p>Zeitpunkt, an dem der User erstellt wurde, bei einem vorherigen anonymen Konto ist es der Zeitpunkt als das Konto hochgestuft wurde</p>
+</section>
+
+        <section class="phpdocumentor-description"></section>
+
     
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_deleted_at">
+        $deleted_at
+        <a href="classes/App-Models-User.html#property_deleted_at" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Support\Carbon">Carbon</abbr>|null</span>
+    <span class="phpdocumentor-signature__name">$deleted_at</span>
+    </code>
+
+        <section class="phpdocumentor-description"><p>Zeitpunkt, an dem der User gelöscht wurde</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -808,7 +718,9 @@
     <span class="phpdocumentor-signature__name">$email</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Verifizierte E-Mail des Users</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -841,7 +753,9 @@
     <span class="phpdocumentor-signature__name">$email_verified_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Zeitpunkt an dem die E-Mail verifiziert wurde</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -874,7 +788,9 @@
     <span class="phpdocumentor-signature__name">$emailVerification</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>die zum User gehörenden EmailVerification einträge</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -907,7 +823,9 @@
     <span class="phpdocumentor-signature__name">$id</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Id des Users</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -953,72 +871,6 @@
             -public
                                                 -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_invitations_count">
-        $invitations_count
-        <a href="classes/App-Models-User.html#property_invitations_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$invitations_count</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_invited_saves_count">
-        $invited_saves_count
-        <a href="classes/App-Models-User.html#property_invited_saves_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$invited_saves_count</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
     <h4 class="phpdocumentor-element__name" id="property_invitedSaves">
         $invitedSaves
         <a href="classes/App-Models-User.html#property_invitedSaves" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1039,40 +891,9 @@
     <span class="phpdocumentor-signature__name">$invitedSaves</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>alle geteilten Speicherstände, welche noch nicht revoked sind und noch nicht angenommen</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_is_locking_count">
-        $is_locking_count
-        <a href="classes/App-Models-User.html#property_is_locking_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$is_locking_count</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -1105,40 +926,9 @@
     <span class="phpdocumentor-signature__name">$isLocking</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>alle Speicherstände die von diesem User gesperrt werden</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_joined_at">
-        $joined_at
-        <a href="classes/App-Models-User.html#property_joined_at" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$joined_at</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -1171,73 +961,9 @@
     <span class="phpdocumentor-signature__name">$last_activity</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Zeitpunkt der letzten aktivität</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_notifications">
-        $notifications
-        <a href="classes/App-Models-User.html#property_notifications" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Notifications\DatabaseNotificationCollection">DatabaseNotificationCollection</abbr>|array&lt;string|int, <abbr title="\Illuminate\Notifications\DatabaseNotification">DatabaseNotification</abbr>&gt;</span>
-    <span class="phpdocumentor-signature__name">$notifications</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_notifications_count">
-        $notifications_count
-        <a href="classes/App-Models-User.html#property_notifications_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$notifications_count</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -1270,7 +996,9 @@
     <span class="phpdocumentor-signature__name">$password</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Passwort des Users, gehasht und gesalted</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -1303,172 +1031,9 @@
     <span class="phpdocumentor-signature__name">$saves</span>
     </code>
 
-    
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>alle Speicherstände die diesem User gehören</p>
+</section>
 
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_saves_count">
-        $saves_count
-        <a href="classes/App-Models-User.html#property_saves_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$saves_count</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_shared_saves_count">
-        $shared_saves_count
-        <a href="classes/App-Models-User.html#property_shared_saves_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$shared_saves_count</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_sharedSaves">
-        $sharedSaves
-        <a href="classes/App-Models-User.html#property_sharedSaves" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <a href="classes/App-Models-SharedSave.html"><abbr title="\App\Models\SharedSave">SharedSave</abbr></a>&gt;</span>
-    <span class="phpdocumentor-signature__name">$sharedSaves</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_tokens">
-        $tokens
-        <a href="classes/App-Models-User.html#property_tokens" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Database\Eloquent\Collection">Collection</abbr>|array&lt;string|int, <abbr title="\Laravel\Passport\Token">Token</abbr>&gt;</span>
-    <span class="phpdocumentor-signature__name">$tokens</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_tokens_count">
-        $tokens_count
-        <a href="classes/App-Models-User.html#property_tokens_count" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
-    <span class="phpdocumentor-signature__name">$tokens_count</span>
-    </code>
-
-    
         <section class="phpdocumentor-description"></section>
 
     
@@ -1501,7 +1066,9 @@
     <span class="phpdocumentor-signature__name">$updated_at</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Zeitpunkt, an dem der User das letzte man geändert wurde</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -1534,7 +1101,9 @@
     <span class="phpdocumentor-signature__name">$username</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Benutzername des Users</p>
+</section>
+
         <section class="phpdocumentor-description"></section>
 
     
@@ -1556,17 +1125,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The attributes that should be cast to native types.</p>
+        <p class="phpdocumentor-summary">Zugehörigkeit, welche Attribute zu welchen nativen Typen gecastet werden soll.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$casts</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;email_verified_at&#039; =&gt; &#039;datetime&#039;, &#039;last_activity&#039; =&gt; &#039;datetime&#039;, &#039;anonym&#039; =&gt; &#039;boolean&#039;]</span></code>
+     = <span class="phpdocumentor-signature__default-value">[&#039;email_verified_at&#039; =&gt; &#039;datetime&#039;, &#039;last_activity&#039; =&gt; &#039;datetime&#039;, &#039;anonymous&#039; =&gt; &#039;boolean&#039;]</span></code>
 
     
     
@@ -1589,11 +1158,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The attributes that are mass assignable.</p>
+        <p class="phpdocumentor-summary">Attribute, welche Massen zuweisbar sind</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1622,11 +1191,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The attributes that should be hidden for arrays.</p>
+        <p class="phpdocumentor-summary">Attribute, welche beim Konvertieren in ein array, nicht in das Array hinzugefügt werden</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -1659,17 +1228,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">162</span>
+    <span class="phpdocumentor-element-found-in__line">193</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Ale Speicherstände zu den dieser User Zugriff hat</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">accessibleShares</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -1692,7 +1261,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
@@ -1768,11 +1337,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Find the user instance for the given username.</p>
+        <p class="phpdocumentor-summary">Findet die User instanz des übergebenen Usernamen oder E-Mail</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1786,7 +1355,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>E-Mail oder Benutzername, E-Mail bei nicht anonymen Nutzern und Benutzername bei anonymen Nutzern</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1813,17 +1384,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Alle SharedSave Einträge, die noch nicht revoked oder angenomemn sind</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">invitations</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -1846,17 +1417,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">141</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Beziehung zu den Speicherständen, zu denen der User eingeladen wurde aber diese noch nicht angenommen hat</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">invitedSaves</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\BelongsToMany">BelongsToMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -1879,7 +1450,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -1969,6 +1540,38 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_onlyTrashed">
+        onlyTrashed()
+        <a href="classes/App-Models-User.html#method_onlyTrashed" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">onlyTrashed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_query">
         query()
         <a href="classes/App-Models-User.html#method_query" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2008,17 +1611,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Beschreibt die Beziehung zu den Speicherständen die diesem User gehören</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">saves</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -2041,26 +1644,27 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">123</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Setter des Passwort attributes</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setPasswordAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">setPasswordAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Hashed das passwort</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href=""><abbr title=""></abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
@@ -2085,17 +1689,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">157</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Alle SharedSave Einträge die zu diesem User gehören</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">sharedSaves</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Database\Eloquent\Relations\HasMany">HasMany</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -2154,6 +1758,49 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_whereAnonymous">
+        whereAnonymous()
+        <a href="classes/App-Models-User.html#method_whereAnonymous" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">whereAnonymous</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_whereCreatedAt">
         whereCreatedAt()
         <a href="classes/App-Models-User.html#method_whereCreatedAt" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2169,6 +1816,49 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">whereCreatedAt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_whereDeletedAt">
+        whereDeletedAt()
+        <a href="classes/App-Models-User.html#method_whereDeletedAt" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">whereDeletedAt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -2570,6 +2260,70 @@
             </dd>
             </dl>
 
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_withoutTrashed">
+        withoutTrashed()
+        <a href="classes/App-Models-User.html#method_withoutTrashed" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">withoutTrashed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_withTrashed">
+        withTrashed()
+        <a href="classes/App-Models-User.html#method_withTrashed" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Models/User.php"><a href="files/app-models-user.html"><abbr title="app/Models/User.php">User.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">0</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">withTrashed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href=""><abbr title=""></abbr></a></span></code>
+
+    
+    
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>

@@ -7,6 +7,9 @@ namespace App\Services;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Erstellt kryptografische Token
+ */
 class TokenService
 {
 

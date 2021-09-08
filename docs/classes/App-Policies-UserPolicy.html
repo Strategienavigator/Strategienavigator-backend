@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -166,35 +190,35 @@
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can create models.</dd>
+<dd>Jeder darf User erstellen</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-UserPolicy.html#method_delete">delete()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can delete the model.</dd>
+<dd>Wenn der User sich selbst löscht, darf er sich löschen</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-UserPolicy.html#method_update">update()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can update the model.</dd>
+<dd>Wenn der User sich selbst bearbeitet und der User nicht anonym ist, darf er sich bearbeiten</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-UserPolicy.html#method_view">view()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can view the model.</dd>
+<dd>Alle User können jeden User anschauen</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Policies-UserPolicy.html#method_viewAny">viewAny()</a>
     <span>
                         &nbsp;: bool    </span>
 </dt>
-<dd>Determine whether the user can view any models.</dd>
+<dd>Nur im Debug Modus dürfen alle User angesehen werden</dd>
 
         </dl>
 
@@ -226,7 +250,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can create models.</p>
+        <p class="phpdocumentor-summary">Jeder darf User erstellen</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -240,7 +264,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuelle authentifizierte User</p>
+</section>
+
             </dd>
             </dl>
 
@@ -249,7 +275,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User einen User ersetellen darf</p>
+</section>
+
     
 </article>
                     <article
@@ -269,7 +297,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can delete the model.</p>
+        <p class="phpdocumentor-summary">Wenn der User sich selbst löscht, darf er sich löschen</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -283,14 +311,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuelle authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der User der gelöscht werden soll</p>
+</section>
+
             </dd>
             </dl>
 
@@ -299,7 +331,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der authentifizierte User gelöscht werden darf</p>
+</section>
+
     
 </article>
                     <article
@@ -319,7 +353,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can update the model.</p>
+        <p class="phpdocumentor-summary">Wenn der User sich selbst bearbeitet und der User nicht anonym ist, darf er sich bearbeiten</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -333,14 +367,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuelle authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der zu bearbeitende User</p>
+</section>
+
             </dd>
             </dl>
 
@@ -349,7 +387,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der authentifizierte User den User bearbeiten darf</p>
+</section>
+
     
 </article>
                     <article
@@ -369,7 +409,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can view the model.</p>
+        <p class="phpdocumentor-summary">Alle User können jeden User anschauen</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -383,14 +423,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuelle authentifizierte User</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der User der angeschaut werden soll</p>
+</section>
+
             </dd>
             </dl>
 
@@ -399,7 +443,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der authentifizierte User den User anschauen darf</p>
+</section>
+
     
 </article>
                     <article
@@ -419,7 +465,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determine whether the user can view any models.</p>
+        <p class="phpdocumentor-summary">Nur im Debug Modus dürfen alle User angesehen werden</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -433,7 +479,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Der aktuelle authentifizierte User</p>
+</section>
+
             </dd>
             </dl>
 
@@ -442,7 +490,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Ob der User alle User anschauen darf</p>
+</section>
+
     
 </article>
             </section>

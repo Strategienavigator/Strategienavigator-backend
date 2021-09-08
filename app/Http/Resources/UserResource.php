@@ -4,7 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+/**
+ * Klasse, welche eine User instanz in ein Array umwandelt
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -20,7 +22,7 @@ class UserResource extends JsonResource
         return [
             "id" => $this->id,
             "username" => $this->username,
-            "anonym" => $this->anonym,
+            "anonymous" => $this->anonymous,
             "email" => $this->when($isSameUser, $this->email),
             "created_at" => $this->created_at,
             "owned_saves" => $this->when($isSameUser, $this->saves->map(function ($s) {

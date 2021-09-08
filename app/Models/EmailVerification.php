@@ -12,12 +12,13 @@ use Illuminate\Support\Carbon;
 /**
  * App\Models\EmailVerification
  *
- * @property int $id id of the instance
- * @property string $email
- * @property string $token
- * @property int $user_id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int $id id des Datenbank eintrags
+ * @property string $email unverifizierte E-Mail des Users
+ * @property string $token token welcher zum verifizieren verwendet wird
+ * @property int $user_id id des Users
+ * @property Carbon|null $created_at Timestamp des Zeitpunktes der Erstellung
+ * @property Carbon|null $updated_at Timestamp des Zeitpunktes der letzten Änderung
+ * @property-read User $user Der verknüpfte User
  * @method static Builder|EmailVerification newModelQuery()
  * @method static Builder|EmailVerification newQuery()
  * @method static Builder|EmailVerification query()
@@ -26,9 +27,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|EmailVerification whereId($value)
  * @method static Builder|EmailVerification whereUpdatedAt($value)
  * @method static Builder|EmailVerification whereUserId($value)
- * @mixin Eloquent
- * @property-read User $user
  * @method static Builder|EmailVerification whereToken($value)
+ * @mixin Eloquent
  */
 class EmailVerification extends Model
 {
@@ -36,30 +36,9 @@ class EmailVerification extends Model
 
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Beschreibt die Beziehung zur users Tabelle
+     * @return BelongsTo
      */
-    protected $fillable = [
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-    ];
-
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

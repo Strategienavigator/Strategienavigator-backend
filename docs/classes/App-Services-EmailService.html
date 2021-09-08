@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -138,12 +162,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/EmailService.php"><a href="files/app-services-emailservice.html"><abbr title="app/Services/EmailService.php">EmailService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Methoden um die E-Mail-Adresse eines Users zu verwalten</p>
+
 
 
 
@@ -170,14 +194,14 @@
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Erstellt eine neue Instanz</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Services-EmailService.html#method_requestEmailChangeOfUser">requestEmailChangeOfUser()</a>
     <span>
                         &nbsp;: mixed    </span>
 </dt>
-<dd>Erstellt einen email_verification eintrag und schickt eine email an die angegebene email.</dd>
+<dd>Erstellt einen email_verification eintrag und schickt eine E-Mail an die angegebene E-Mail.</dd>
 
         </dl>
 
@@ -207,7 +231,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/EmailService.php"><a href="files/app-services-emailservice.html"><abbr title="app/Services/EmailService.php">EmailService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -245,17 +269,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/EmailService.php"><a href="files/app-services-emailservice.html"><abbr title="app/Services/EmailService.php">EmailService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Erstellt eine neue Instanz</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Services-TokenService.html"><abbr title="\App\Services\TokenService">TokenService</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tokenService</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -263,7 +287,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Services-TokenService.html"><abbr title="\App\Services\TokenService">TokenService</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Dependency Injection</p>
+</section>
 
             </dd>
             </dl>
@@ -289,11 +314,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Services/EmailService.php"><a href="files/app-services-emailservice.html"><abbr title="app/Services/EmailService.php">EmailService.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Erstellt einen email_verification eintrag und schickt eine email an die angegebene email.</p>
+        <p class="phpdocumentor-summary">Erstellt einen email_verification eintrag und schickt eine E-Mail an die angegebene E-Mail.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -307,7 +332,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Models-User.html"><abbr title="\App\Models\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>the user which is affected</p>
+                    <section class="phpdocumentor-description"><p>Der betroffene User</p>
 </section>
 
             </dd>
@@ -316,7 +341,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>the new email</p>
+                    <section class="phpdocumentor-description"><p>Die neue Email</p>
 </section>
 
             </dd>

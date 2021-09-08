@@ -9,21 +9,22 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\SharedSave
+ * Verknüpft Nutzer und Speicherstände
  *
- * @method static Builder|SharedSave newModelQuery()
- * @method static Builder|SharedSave newQuery()
- * @method static Builder|SharedSave query()
- * @mixin Eloquent
- * @property-read Save $safe
- * @property-read User $user
- * @property int $id
- * @property int $user_id
- * @property int $save_id
- * @property int $permission
- * @property int $accepted
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ *
+ * @property int $id Id des SharedSaves Eintrags
+ * @property int $user_id id des Users
+ * @property int $save_id id des Speicherstandes
+ * @property int $permission Berechtigung die dem User zugeschrieben wird
+ * @property int $accepted Ob der User die Einladung akzeptiert hat
+ * @property int $revoked Ob der einladende User die Einladung zurückgenommen hat
+ * @property int $declined Ob der User die Einladung abgelehnt hat
+ * @property Carbon|null $created_at Timestamp an dem der Eintrag erstellt wurde
+ * @property Carbon|null $updated_at Timestamp an dem der Eintrag das letzte Mal geändert wurde
+ *
+ * @property-read Save $safe Speicherstand
+ * @property-read User $user User
+ *
  * @method static Builder|SharedSave whereAccepted($value)
  * @method static Builder|SharedSave whereCreatedAt($value)
  * @method static Builder|SharedSave whereId($value)
@@ -31,10 +32,14 @@ use Illuminate\Support\Carbon;
  * @method static Builder|SharedSave whereSaveId($value)
  * @method static Builder|SharedSave whereUpdatedAt($value)
  * @method static Builder|SharedSave whereUserId($value)
- * @property int $declined
  * @method static Builder|SharedSave whereDeclined($value)
- * @property int $revoked
  * @method static Builder|SharedSave whereRevoked($value)
+ *
+ * @method static Builder|SharedSave newModelQuery()
+ * @method static Builder|SharedSave newQuery()
+ * @method static Builder|SharedSave query()
+ *
+ * @mixin Eloquent
  */
 class SharedSave extends Pivot
 {
@@ -52,21 +57,9 @@ class SharedSave extends Pivot
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * Beschreibt die Beziehung zu users Tabelle
+     * @return BelongsTo
      */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

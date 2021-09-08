@@ -4,11 +4,17 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Klasse, welche eine Save instanz in ein Array umwandelt.
+ *
+ * Es werden nur ids der Mitwirkenden angezeigt
+ */
 class SimpleSaveResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Erstellt ein Array aus mit den Attributen von dem Speicherstand
      *
      * @param Request $request
      * @return array
@@ -19,12 +25,14 @@ class SimpleSaveResource extends JsonResource
             "id" => $this->id,
             "locked_by" => $this->locked_by_id,
             "name" => $this->name,
+            "description" => $this->description,
             "last_locked" => $this->last_locked,
             "owner_id" => $this->owner_id,
+            "owner" => $this->owner_id === Auth::user()->id,
             "tool_id" => $this->tool_id,
-            "contributors" => $this->contributors->map(function ($c) {
+            /*"contributors" => $this->contributors->map(function ($c) {
                 return $c->id;
-            })->toArray()
+            })->toArray()*/
         ];
     }
 }

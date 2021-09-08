@@ -4,32 +4,29 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Klasse, welche eine Save instanz in ein Array umwandelt
+ */
 class SaveResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
+     * Felder der Save instanz
      * @param Request $request
      * @return array
      */
     public function toArray($request)
     {
-        return [
-            "id" => $this->id,
+        $simpleResource = new SimpleSaveResource($this->resource);
+        return array_merge_recursive($simpleResource->toArray($request),[
             "data" => $this->data,
-            "name" => $this->name,
-            "description" => $this->description,
-            "locked_by" => $this->locked_by_id,
-            "last_locked" => $this->last_locked,
-            "owner_id" => $this->owner_id,
-            "tool_id" => $this->tool_id,
             "contributors" => $this->contributors->map(function ($c) {
                 return $c->id;
             })->toArray(),
             "invited" => $this->invited->map(function ($c) {
                 return $c->id;
             })->toArray(),
-        ];
+        ]);
     }
 }

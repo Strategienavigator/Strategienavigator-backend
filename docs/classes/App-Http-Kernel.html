@@ -94,10 +94,34 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/database.html">Database</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/database-factories.html">Factories</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/database-seeders.html">Seeders</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Application.html">Application</a></h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/App.html">App</a></h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/App-Http.html">Http</a>
+                
+            </li>
+                    <li>
+                <a href="packages/App-Mail.html">Mail</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -141,12 +165,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Kernel.php"><a href="files/app-http-kernel.html"><abbr title="app/Http/Kernel.php">Kernel.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Http Kernel mit Middleware Einstellungen</p>
+
 
 
 
@@ -166,21 +190,21 @@
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The application&#039;s global HTTP middleware stack.</dd>
+<dd>Liste von Middlewares, welche bei jedem Request ausgeführt wird</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Http-Kernel.html#property_middlewareGroups">$middlewareGroups</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The application&#039;s route middleware groups.</dd>
+<dd>Definiert Middleware Gruppen</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Http-Kernel.html#property_routeMiddleware">$routeMiddleware</a>
     <span>
                 &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
-<dd>The application&#039;s route middleware.</dd>
+<dd>Middleware aliase</dd>
 
             </dl>
 
@@ -210,11 +234,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Kernel.php"><a href="files/app-http-kernel.html"><abbr title="app/Http/Kernel.php">Kernel.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The application&#039;s global HTTP middleware stack.</p>
+        <p class="phpdocumentor-summary">Liste von Middlewares, welche bei jedem Request ausgeführt wird</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -230,9 +254,7 @@
     IlluminateFoundationHttpMiddlewareConvertEmptyStringsToNull::class,
 ]</span></code>
 
-        <section class="phpdocumentor-description"><p>These middleware are run during every request to your application.</p>
-</section>
-
+    
     
     
 
@@ -253,11 +275,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Kernel.php"><a href="files/app-http-kernel.html"><abbr title="app/Http/Kernel.php">Kernel.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The application&#039;s route middleware groups.</p>
+        <p class="phpdocumentor-summary">Definiert Middleware Gruppen</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -294,11 +316,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Kernel.php"><a href="files/app-http-kernel.html"><abbr title="app/Http/Kernel.php">Kernel.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The application&#039;s route middleware.</p>
+        <p class="phpdocumentor-summary">Middleware aliase</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
@@ -306,9 +328,7 @@
     <span class="phpdocumentor-signature__name">$routeMiddleware</span>
      = <span class="phpdocumentor-signature__default-value">[&#039;auth&#039; =&gt; AppHttpMiddlewareAuthenticate::class, &#039;auth.basic&#039; =&gt; IlluminateAuthMiddlewareAuthenticateWithBasicAuth::class, &#039;cache.headers&#039; =&gt; IlluminateHttpMiddlewareSetCacheHeaders::class, &#039;can&#039; =&gt; IlluminateAuthMiddlewareAuthorize::class, &#039;guest&#039; =&gt; AppHttpMiddlewareRedirectIfAuthenticated::class, &#039;password.confirm&#039; =&gt; IlluminateAuthMiddlewareRequirePassword::class, &#039;signed&#039; =&gt; IlluminateRoutingMiddlewareValidateSignature::class, &#039;throttle&#039; =&gt; IlluminateRoutingMiddlewareThrottleRequests::class, &#039;verified&#039; =&gt; IlluminateAuthMiddlewareEnsureEmailIsVerified::class, &#039;activityLog&#039; =&gt; AppHttpMiddlewareUserLastActivityLog::class]</span></code>
 
-        <section class="phpdocumentor-description"><p>These middleware may be assigned to groups or used individually.</p>
-</section>
-
+    
     
     
 
