@@ -47,7 +47,7 @@ class UserController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $this->authorize("viewAny", User::class);
-        return UserResource::collection(User::with(['saves', 'invitedSaves', 'accessibleShares'])->whereNotNull("email_verified_at")->simplePaginate());
+        return UserResource::collection(User::with(['saves', 'invitedSaves', 'accessibleShares'])->whereNotNull("email_verified_at")->paginate());
     }
 
     /**

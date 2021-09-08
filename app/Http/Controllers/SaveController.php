@@ -30,7 +30,7 @@ class SaveController extends Controller
     {
         $this->authorize("viewAny", Save::class);
 
-        return SimpleSaveResource::collection(Save::with("contributors")->simplePaginate());
+        return SimpleSaveResource::collection(Save::with("contributors")->paginate());
     }
 
     /** Erstellt einen neuen Speicherstand

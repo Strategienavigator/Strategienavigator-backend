@@ -28,7 +28,7 @@ class ToolController extends Controller
     {
         $this->authorize("viewAny", Tool::class);
 
-        return ToolResource::collection(Tool::simplePaginate());
+        return ToolResource::collection(Tool::paginate());
     }
 
     /**

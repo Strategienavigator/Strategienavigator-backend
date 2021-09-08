@@ -21,7 +21,7 @@ class UserSavesController extends Controller
         if(key_exists("tool_id",$validated)){
             $savesQuerry->where("tool_id",$validated["tool_id"]);
         }
-        $saves = $savesQuerry->simplePaginate();
+        $saves = $savesQuerry->paginate();
         foreach ($saves->items() as $s) {
             $this->authorize("view", $s);
         }
