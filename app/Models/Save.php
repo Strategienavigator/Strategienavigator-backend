@@ -79,6 +79,7 @@ class Save extends Model
      */
     protected $fillable = [
         'data',
+        'description',
         'name',
     ];
 
@@ -88,7 +89,8 @@ class Save extends Model
      * @var array
      */
     protected $casts = [
-        'name' => "string",
+        'name' => 'string',
+        'description' => 'string',
         'last_locked' => 'datetime',
         'last_opened' => 'datetime'
     ];
