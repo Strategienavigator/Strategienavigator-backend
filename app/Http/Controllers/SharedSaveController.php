@@ -57,17 +57,16 @@ class SharedSaveController extends Controller
     /**
      * Zeigt alle SharedSave Einträge für den ausgewählten User an
      *
-     * @param User $user der aktuell authentifizierte User
-     * @param User $model der in der Url definierte User
+     * @param User $user der in der Url definierte User
      * @return AnonymousResourceCollection Die SharedSave Einträge, des definierten Users, als ResourceCollection
      * @throws AuthorizationException Wenn der User keine Berechtigung besitzt die SharedSave Einträge des Users anzusehen
      * @see SharedSave
      * @see SharedSavePolicy::viewOfUser()
      * @see SharedSaveResource
      */
-    public function indexUser(User $user, User $model): AnonymousResourceCollection
+    public function indexUser(User $user): AnonymousResourceCollection
     {
-        $this->authorize("viewOfUser", [SharedSave::class, $model]);
+        $this->authorize("viewOfUser", [SharedSave::class, $user]);
         return SharedSaveResource::collection($user->sharedSaves()->paginate());
     }
 

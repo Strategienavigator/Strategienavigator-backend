@@ -50,6 +50,7 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::put("/contribution/{sharedSave}/decline", [SharedSaveController::class, "decline"]);
 
     Route::get("/saves/{save}/contributors", [SharedSaveController::class, "indexSave"])->name("contributions.index.save");
+    Route::get("/users/{user}/contributions", [SharedSaveController::class, "indexUser"])->name("contributions.index.user");
     Route::post("/saves/{save}/contributors/{user}", [SharedSaveController::class, "store"])->name("contribution.store.save");
     Route::post("/users/{user}/contributions/{save}", [SharedSaveController::class, "storeReverse"])->name("contribution.store.user");
 
@@ -60,7 +61,7 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::apiResource('users', UserController::class)->except('store');
 
     // InvitationLink
-    Route::get('invitation-link/save/{save}', 'App\Http\Controllers\InvitationLinkController@saveIndex');
+    Route::get('saves/{save}/invitation-links', [InvitationLinkController::class, "saveIndex"]);
     Route::get('invitation-link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
 
 
