@@ -1,0 +1,38 @@
+# Datenschutz
+
+- Userdaten
+    - Angemeldete Nutzer
+      - E-Mail
+        - wird als Identification verwendet
+        - wird für Benachrichtigungen oder Bestätigungen verwendet (keine unerwünschten Inhalte!)
+        - wird nicht veröffentlicht
+      - Zeitpunkt der Beantragung der Verifizierung
+      - Benutzername
+        - öffentlich Sichtbar
+        - sehen andere Nutzer beim Kollaborativen Arbeiten (kommt bald)
+        - mit diesen Namen man in E-Mails angesprochen
+      - Letzte Aktivität
+        - Zeitpunkt an dem das letzte Mal mit dem Backend kommuniziert wurde
+      - Zeitpunkt der letzten E-Mail Verifikation
+      - Zeitpunkt an dem das User-Konto erstellt wurde
+      - Password wird als hash gespeichert
+    - Nicht angemeldete Nutzer
+      - Es wird eine zufällige Id erstellt, der dem Browser zugeordnet wird. (LocalStorage)
+        - Id wird aus dem Browser nicht automatisch gelöscht
+        - Id wird aus dem Backend nach einiger Zeit ohne Aktivität gelöscht.
+      - Letzte Aktivität
+        - Zeitpunkt an dem das letzte Mal mit dem Backend kommuniziert wurde
+      - Zeitpunkt an dem das Id erstellt wurde
+      - Password wird als hash gespeichert
+        - Password wird von System erstellt und nicht vom User
+    - Speicherstände
+      - Vom User kann ein Speicherstand erstellt werden
+      - Gespeicherte Daten
+        - Eigentümer
+        - Welche User gerade den Speicherstand bearbeitet & wann diese Person angefangen hat zu bearbeiten
+        - Welcher User Zugriff zu welchem Speicherstand haben (Kollaboratives Arbeiten) und welche Berechtigungen haben diese
+    - Passwort Reset
+      - Wenn ein User sein Passwort vergisst, kann er eine Passwort Reset E-Mail beantragen
+      - Gespeicherte Daten
+        - Zeitpunkt der Beantragung
+        - Wann wurde das Passwort durch die E-Mail geändert
