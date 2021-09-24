@@ -20,7 +20,7 @@ class PurgeAnonymousUsersCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'users:purge';
+    protected $signature = 'purge:anonymous';
 
     /**
      * Beschreibung des Kommandos

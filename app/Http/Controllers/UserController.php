@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Mail\AccountDeleteEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Policies\UserPolicy;
@@ -16,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Laravel\Passport\Bridge\AccessTokenRepository;
 use Laravel\Passport\Bridge\ClientRepository;
@@ -157,6 +159,7 @@ class UserController extends Controller
     public function destroy(User $user): Response
     {
         $this->authorize("delete", $user);
+        Mail::to($user->email)->send(new AccountDeleteEmail($user->username));
         $user->delete();
         return response()->noContent(Response::HTTP_OK);
     }
