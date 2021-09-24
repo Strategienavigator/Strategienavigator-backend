@@ -18,7 +18,7 @@ class AccountDeleteEmail extends Mailable implements ShouldQueue
      * Benutzername des Users
      * @var string
      */
-    private $username;
+    public $username;
 
     /**
      * Erstellt eine Instanz
@@ -37,6 +37,6 @@ class AccountDeleteEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('account-delete');
+        return $this->view('account-delete')->subject("Löschung deines Benutzerkontos");
     }
 }

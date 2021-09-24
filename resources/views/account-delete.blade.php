@@ -17,8 +17,7 @@
 <body class="antialiased">
 <div>
 
-    <p>Hallo {{$username}},<br/></p>
-    <br/>
+    <p>Hallo {{$username}},</p>
     <p>
         wir haben eine Anfrage zum löschen Ihres Benutzerkontos bekommen. Um Missbrauch zu vermeiden wird das Konto nach
         30 Tagen gelöscht.<br/>

@@ -52,6 +52,6 @@ class SaveInvitationEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('save-invitation');
+        return $this->view('save-invitation')->subject("Einladung Speicherstand");
     }
 }
