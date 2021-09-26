@@ -19,9 +19,9 @@ Die extra Argumente sorgen dafür, dass Bedingungen die nur in der Entwicklungsu
 Laravel kann bestimmte Dinge Cachen um die Antwortzeit zu verkürzen. Die Caches erzeugt man mit folgenden Befehlen:
 
 ```shell
-php artisan config:cache;
-php artisan route:cache;
-php artisan view:cache;
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 ```
 
 ## .env
