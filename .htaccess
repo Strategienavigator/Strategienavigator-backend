@@ -1,0 +1,8 @@
+<RequireAll>
+	Require ip 139.13.0.0/255.255.0.0
+</RequireAll>
+
+<IfModule mod_rewrite.c >
+RewriteEngine on
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
