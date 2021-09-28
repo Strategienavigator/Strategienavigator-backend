@@ -31,8 +31,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|InvitationLink whereUpdatedAt($value)
  * @method static Builder|InvitationLink whereToken($value)
  * @mixin Eloquent
- *
- *
  */
 class InvitationLink extends Model
 {
