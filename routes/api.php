@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\InvitationLinkController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SaveController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SharedSaveController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,33 +24,38 @@ use Illuminate\Support\Facades\Route;
 
 //User
 Route::apiResource('users', UserController::class)->only('store');
-Route::post('users/anonymous', [UserController::class,"storeAnonymous"]);
+Route::post('users/anonymous', [UserController::class, "storeAnonymous"]);
 
-Route::get("checkUsername", [UserController::class,"checkUsername"]);
-Route::get("checkEmail", [UserController::class,"checkEmail"]);
+Route::get("checkUsername", [UserController::class, "checkUsername"]);
+Route::get("checkEmail", [UserController::class, "checkEmail"]);
 
 //Email
-Route::put('email/verify/{token}', 'App\Http\Controllers\EmailController@verify');
+Route::put('email/verify/{token}', [EmailController::class, 'verify']);
 
 // PasswordReset
-Route::get('password/{token}', [PasswordController::class,'show']);
-Route::post('password-reset', [PasswordController::class,'forgotPassword']);
-Route::put('update-password/{token}', [PasswordController::class,'updatePassword']);
+Route::get('password/{token}', [PasswordController::class, 'show']);
+Route::post('password-reset', [PasswordController::class, 'forgotPassword']);
+Route::put('update-password/{token}', [PasswordController::class, 'updatePassword']);
 
-Route::group(["middleware" => ["auth:api","activityLog"]], function () {
+Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
     Route::apiResources([
         "tools" => ToolController::class,
         "saves" => SaveController::class,
         "invitation-link" => InvitationLinkController::class,
     ]);
 
+    Route::apiResource('settings', SettingController::class)->only(["index","show"]);
 
+    Route::apiResource('users.settings', UserSettingController::class);
+
+
+    Route::put("/contribution/{sharedSave}/accept", [SharedSaveController::class, "accept"]);
+    Route::put("/contribution/{sharedSave}/decline", [SharedSaveController::class, "decline"]);
     // contributors
     Route::apiResource("contribution", SharedSaveController::class, [
         "except" => ["store"]
     ])->parameter("contribution", "sharedSave");
-    Route::put("/contribution/{sharedSave}/accept", [SharedSaveController::class, "accept"]);
-    Route::put("/contribution/{sharedSave}/decline", [SharedSaveController::class, "decline"]);
+
 
     Route::get("/saves/{save}/contributors", [SharedSaveController::class, "indexSave"])->name("contributions.index.save");
     Route::get("/users/{user}/contributions", [SharedSaveController::class, "indexUser"])->name("contributions.index.user");
@@ -56,7 +64,7 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
 
 
     // Users
-    Route::get('users/{user}/saves', 'App\Http\Controllers\UserSavesController@index');
+    Route::get('users/{user}/saves', [\App\Http\Controllers\UserSavesController::class,'index']);
 
     Route::apiResource('users', UserController::class)->except('store');
 
@@ -65,15 +73,4 @@ Route::group(["middleware" => ["auth:api","activityLog"]], function () {
     Route::get('invitation-link/{token}/accept', 'App\Http\Controllers\InvitationLinkController@acceptInvite');
 
 
-});
-
-// DEBUG
-Route::get('password-template', function () {
-    return view('password-reset', ['token' => 'TEST_TOKEN']);
-});
-Route::get('email-template', function () {
-    return view('email-verification', ['token' => 'TEST_TOKEN']);
-});
-Route::get('invitation-template', function () {
-    return view('save-invitation', ['invite_user' => 'Tester', 'token' => 'TEST_TOKEN']);
 });
