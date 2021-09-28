@@ -17,7 +17,6 @@ use Illuminate\Support\Carbon;
  * @property string $name Name des Tools
  * @property Carbon|null $created_at Zeitpunkt an dem das Tool erstellt wurde
  * @property Carbon|null $updated_at Zeitpunkt an dem das Tool das letzte Mal geändert wurde.
- *
  * @method static Builder|Tool newModelQuery()
  * @method static Builder|Tool newQuery()
  * @method static Builder|Tool query()
@@ -25,10 +24,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Tool whereId($value)
  * @method static Builder|Tool whereName($value)
  * @method static Builder|Tool whereUpdatedAt($value)
- *
  * @property-read Collection|Save[] $saves Alle Speicherstände, die zu diesem Tool gehören
- *
  * @mixin Eloquent
+ * @property-read int|null $saves_count
  */
 class Tool extends Model
 {

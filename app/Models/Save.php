@@ -30,7 +30,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at Timestamp des Zeitpunktes der Erstellung
  * @property Carbon|null $updated_at Timestamp des Zeitpunktes der letzten Änderung
  * @property Carbon|null $deleted_at Timestamp des Zeitpunktes der Löschung
- *
  * @property-read Collection|User[] $contributors
  * @property-read int|null $contributors_count
  * @property-read Collection|InvitationLink[] $invitationLinks
@@ -44,11 +43,9 @@ use Illuminate\Support\Carbon;
  * @property-read Tool $tool
  * @property-read Collection|SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
- *
  * @method static Builder|Save newModelQuery()
  * @method static Builder|Save newQuery()
  * @method static Builder|Save query()
- *
  * @method static Builder|Save whereCreatedAt($value)
  * @method static Builder|Save whereData($value)
  * @method static Builder|Save whereId($value)
@@ -61,7 +58,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Save whereDeletedAt($value)
  * @method static Builder|Save whereName($value)
  * @method static Builder|Save whereDescription($value)
- *
  * @method static SaveFactory factory(...$parameters)
  * @method static \Illuminate\Database\Query\Builder|Save withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Save withoutTrashed()

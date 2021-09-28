@@ -52,19 +52,27 @@ use Laravel\Passport\Token;
  * @method static Builder|User whereLastActivity($value)
  * @method static Builder|User whereAnonymous($value)
  * @method static Builder|User whereDeletedAt($value)
- *
  * @mixin Eloquent
- *
  * @property-read Collection|Save[] $accessibleShares alle geteilten Speicherstände, auf die der User Zugriff hat
  * @property-read EmailVerification|null $emailVerification die zum User gehörenden EmailVerification einträge
  * @property-read Collection|SharedSave[] $invitations
  * @property-read Collection|Save[] $invitedSaves alle geteilten Speicherstände, welche noch nicht revoked sind und noch nicht angenommen
  * @property-read Collection|Save[] $isLocking alle Speicherstände die von diesem User gesperrt werden
  * @property-read Collection|Save[] $saves alle Speicherstände die diesem User gehören
- *
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
+ * @property int $anonym
+ * @property-read Collection|Client[] $clients
+ * @property-read int|null $clients_count
+ * @property-read int|null $invitations_count
+ * @property-read int|null $invited_saves_count
+ * @property-read int|null $is_locking_count
+ * @property-read int|null $saves_count
+ * @property-read Collection|\App\Models\SharedSave[] $sharedSaves
+ * @property-read int|null $shared_saves_count
+ * @property-read Collection|Token[] $tokens
+ * @property-read int|null $tokens_count
  */
 class User extends Authenticatable
 {

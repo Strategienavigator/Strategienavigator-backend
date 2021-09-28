@@ -11,7 +11,6 @@ use Illuminate\Support\Carbon;
 /**
  * Verknüpft Nutzer und Speicherstände
  *
- *
  * @property int $id Id des SharedSaves Eintrags
  * @property int $user_id id des Users
  * @property int $save_id id des Speicherstandes
@@ -21,10 +20,8 @@ use Illuminate\Support\Carbon;
  * @property int $declined Ob der User die Einladung abgelehnt hat
  * @property Carbon|null $created_at Timestamp an dem der Eintrag erstellt wurde
  * @property Carbon|null $updated_at Timestamp an dem der Eintrag das letzte Mal geändert wurde
- *
  * @property-read Save $safe Speicherstand
  * @property-read User $user User
- *
  * @method static Builder|SharedSave whereAccepted($value)
  * @method static Builder|SharedSave whereCreatedAt($value)
  * @method static Builder|SharedSave whereId($value)
@@ -34,11 +31,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|SharedSave whereUserId($value)
  * @method static Builder|SharedSave whereDeclined($value)
  * @method static Builder|SharedSave whereRevoked($value)
- *
  * @method static Builder|SharedSave newModelQuery()
  * @method static Builder|SharedSave newQuery()
  * @method static Builder|SharedSave query()
- *
  * @mixin Eloquent
  */
 class SharedSave extends Pivot
