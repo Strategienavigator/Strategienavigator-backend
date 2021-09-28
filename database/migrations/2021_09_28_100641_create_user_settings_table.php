@@ -17,6 +17,7 @@ class CreateUserSettingsTable extends Migration
             $table->id();
             $table->foreignId('setting_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->unique(["setting_id", "user_id"]);
             $table->jsonb('value');
         });
     }

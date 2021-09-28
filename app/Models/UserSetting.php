@@ -2,17 +2,39 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * App\Models\UserSetting
  *
- * @method static \Illuminate\Database\Eloquent\Builder|UserSetting newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserSetting newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserSetting query()
+ * @property int $user_id id des Users
+ * @property int $setting_id id der Einstellung
+ * @method static Builder|UserSetting newModelQuery()
+ * @method static Builder|UserSetting newQuery()
+ * @method static Builder|UserSetting query()
  * @mixin \Eloquent
+ * @property-read \App\Models\Setting $setting
+ * @property-read \App\Models\User $user
  */
 class UserSetting extends Pivot
 {
-    //
+
+    protected $table = "user_settings";
+    public $timestamps = false;
+
+    protected $fillable = [
+        "value"
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function setting(): BelongsTo
+    {
+        return $this->belongsTo(Setting::class);
+    }
 }

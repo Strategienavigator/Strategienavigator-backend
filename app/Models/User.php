@@ -218,5 +218,19 @@ class User extends Authenticatable
         return $q;
     }
 
+    public function settings($setting_id = -1): BelongsToMany
+    {
+        $q = $this->belongsToMany(Setting::class, 'user_settings')->withPivot(['id','value']);
+        if($setting_id !== -1){
+            $q->where('setting_id' , $setting_id);
+        }
+
+        return $q;
+    }
+
+    public function getSetting($setting_id){
+        return $this->hasMany(UserSetting::class);
+    }
+
 
 }

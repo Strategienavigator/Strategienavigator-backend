@@ -9,18 +9,22 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\Setting
  *
- *
  * @mixin \Eloquent
- * @property int $id id der Einstellungen
- * @property mixed|null $extras
- * @property string $type
- * @property string $description
- * @property string $name
+ * @property int $id identifikations nummber
+ * @property mixed|null $extras optionale Datenfelder um typspezifische Daten zu speichern
+ * @property string $type den Typ der Einstellung
+ * @property string $description Eine Beschreibung der Einstellung
+ * @property string $name name der Einstellung
  * @method static Builder|Setting whereDescription($value)
  * @method static Builder|Setting whereExtras($value)
  * @method static Builder|Setting whereId($value)
  * @method static Builder|Setting whereName($value)
  * @method static Builder|Setting whereType($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
+ * @method static Builder|Setting newModelQuery()
+ * @method static Builder|Setting newQuery()
+ * @method static Builder|Setting query()
  */
 class Setting extends Model
 {
@@ -28,5 +32,11 @@ class Setting extends Model
 
 
     public $timestamps = false;
+
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'user_settings');
+    }
 
 }
