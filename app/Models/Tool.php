@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Limitable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -30,7 +31,7 @@ use Illuminate\Support\Carbon;
  */
 class Tool extends Model
 {
-    use HasFactory;
+    use HasFactory, Limitable;
 
     /**
      * Attribute, welche Massen zuweisbar sind

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Limitable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,6 +39,7 @@ use Illuminate\Support\Carbon;
  */
 class SharedSave extends Pivot
 {
+    use Limitable;
 
     public $incrementing = true;
 

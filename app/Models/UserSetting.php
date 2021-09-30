@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Limitable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class UserSetting extends Pivot
 {
+
+    use Limitable;
 
     protected $table = "user_settings";
     public $timestamps = false;

@@ -16,3 +16,4 @@ yarn-error.log
 .rnd
 /phpDocumentor.phar
 /.phpdoc/
+/.env.prod
