@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Limitable;
 use Database\Factories\UserFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,11 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
@@ -76,7 +73,7 @@ use Laravel\Passport\Token;
  */
 class User extends Authenticatable
 {
-    use HasFactory, HasApiTokens, SoftDeletes;
+    use HasFactory, HasApiTokens, SoftDeletes, Limitable;
 
     /**
      * Attribute, welche Massen zuweisbar sind

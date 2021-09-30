@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helper\PermissionHelper;
+use App\Traits\Limitable;
 use Database\Factories\SaveFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,7 +67,7 @@ use Illuminate\Support\Carbon;
  */
 class Save extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes,Limitable;
 
     /**
      * Attribute, welche Massen zuweisbar sind

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Limitable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,7 +35,7 @@ use Illuminate\Support\Carbon;
  */
 class InvitationLink extends Model
 {
-    use HasFactory;
+    use HasFactory,Limitable;
 
     /**
      * Attribute, welche Massen zuweisbar sind
