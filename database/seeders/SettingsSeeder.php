@@ -22,6 +22,7 @@ class SettingsSeeder extends Seeder
                 "description" => "Ändert das Aussehen der Oberfläche. Der Dark Mode ist bei einer dunklen Umgebung am Besten geeignet",
                 "type" => "toggle",
                 "extras" => null,
+                "default" => "false"
             ]
         ]);
     }
