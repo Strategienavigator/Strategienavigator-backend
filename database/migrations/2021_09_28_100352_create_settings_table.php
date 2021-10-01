@@ -19,6 +19,7 @@ class CreateSettingsTable extends Migration
             $table->string('type');
             $table->string('description');
             $table->string('name');
+            $table->string('default');
         });
     }
 

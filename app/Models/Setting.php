@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type den Typ der Einstellung
  * @property string $description Eine Beschreibung der Einstellung
  * @property string $name name der Einstellung
+ * @property string $default default value
  * @method static Builder|Setting whereDescription($value)
  * @method static Builder|Setting whereExtras($value)
  * @method static Builder|Setting whereId($value)

@@ -20,6 +20,7 @@ class SettingResource extends JsonResource
             "description" => $this->description,
             "type" => $this->type,
             "extras" => $this->extras,
+            "default" => $this->default
         ];
     }
 }
