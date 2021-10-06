@@ -44,9 +44,7 @@ class AppServiceProvider extends ServiceProvider
                 ['Location' => route($route_name . '.show', $model->id, false)]);
         });
 
-        DB::listen(function ($querry) {
-            Log::info($querry->sql . "\t" . $querry->time, $querry->bindings);
-        });
+
 
     }
 }
