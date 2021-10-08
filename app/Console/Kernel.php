@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('purge:deleted')->weekly();
+        $schedule->command('purge:anonymous')->weekly();
+        $schedule->command('passport:purge')->monthly();
     }
 
     /**
