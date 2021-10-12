@@ -11,6 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 
 /**
@@ -35,12 +36,12 @@ class SaveController extends Controller
 
     /** Erstellt einen neuen Speicherstand
      * @param Request $request Die aktuelle Request instanz
-     * @return Response Code 201, wenn der Speicherstand erfolgreich erstellt wurde
+     * @return JsonResponse Code 201, wenn der Speicherstand erfolgreich erstellt wurde
      * @throws AuthorizationException Wenn der User keine Berechtigung zum Erstellen von Speicherständen hat
      * @see Save
      * @see SavePolicy
      */
-    public function store(Request $request): Response
+    public function store(Request $request): JsonResponse
     {
 
         $this->authorize("create", Save::class);
@@ -56,7 +57,8 @@ class SaveController extends Controller
         $s->tool_id = $validate["tool_id"];
         $s->owner_id = $request->user()->id;
         $s->save();
-        return response()->created('saves', $s);
+//        return response()->created('saves', $s);
+        return response()->json(new SaveResource($s), 201);
     }
 
     /**
