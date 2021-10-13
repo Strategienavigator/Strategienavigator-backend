@@ -27,7 +27,7 @@
     <br/>
     <br/>
     Mit freundlichen Grüßen<br/>
-    Das Strategietool-Team
+    Das {{config('app.name')}}-Team
 </div>
 </body>
 </html>

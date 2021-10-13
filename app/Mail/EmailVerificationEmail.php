@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
  * Zeigt den token und username in der Email an.
  * Die E-Mails werden immer gequeueed.
  */
-class EmailVerificationEmail extends Mailable implements ShouldQueue
+class EmailVerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 

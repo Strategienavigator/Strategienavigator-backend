@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
  * Enthält den Token des Passwort Resets und den Benutzernamen.
  * Wird immer gequeued
  */
-class PasswordResetEmail extends Mailable implements ShouldQueue
+class PasswordResetEmail extends Mailable
 {
     use Queueable, SerializesModels;
 

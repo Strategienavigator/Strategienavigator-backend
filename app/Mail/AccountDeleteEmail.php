@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 /**
  * E-Mail, die den Nutzer darüber benachrichtigt, dass das Konto innerhalb kurzer Zeit gelöscht wird.
  */
-class AccountDeleteEmail extends Mailable implements ShouldQueue
+class AccountDeleteEmail extends Mailable
 {
     use Queueable, SerializesModels;
 

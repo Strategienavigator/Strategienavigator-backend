@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
  * E-Mail, welche versand wird, wenn ein User einen anderen dazu einlädt an einem Speicherstand mitzuarbeiten
  * @package App\Mail
  */
-class SaveInvitationEmail extends Mailable implements ShouldQueue
+class SaveInvitationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
