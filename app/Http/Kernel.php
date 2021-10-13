@@ -54,13 +54,13 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            EncryptCookies::class,
-            AddQueuedCookiesToResponse::class,
-            StartSession::class,
+            // EncryptCookies::class,
+            // AddQueuedCookiesToResponse::class,
+            // StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            ShareErrorsFromSession::class,
-            VerifyCsrfToken::class,
-            SubstituteBindings::class,
+            // ShareErrorsFromSession::class,
+            // VerifyCsrfToken::class,
+            // SubstituteBindings::class,
         ],
 
         'api' => [
