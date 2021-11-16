@@ -31,7 +31,7 @@ class SimpleSaveResource extends JsonResource
             "owner" => $this->owner->username,
             "tool_id" => $this->tool_id,
             "updated_at" => $this->updated_at,
-            "create_at" => $this->created_at,
+            "created_at" => $this->created_at,
             /*"contributors" => $this->contributors->map(function ($c) {
                 return $c->id;
             })->toArray()*/
