@@ -36,7 +36,6 @@ use Laravel\Passport\Token;
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
- * @method static Builder whereAnonym($value)
  * @method static Builder|User whereCreatedAt($value)
  * @method static Builder|User whereEmail($value)
  * @method static Builder|User whereEmailVerifiedAt($value)
@@ -59,7 +58,6 @@ use Laravel\Passport\Token;
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
- * @property int $anonym
  * @property-read Collection|Client[] $clients
  * @property-read int|null $clients_count
  * @property-read int|null $invitations_count
