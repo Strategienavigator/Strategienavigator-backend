@@ -81,7 +81,7 @@ cp .env.example .env
 
 Welche Einstellungen in der .env Datei getroffen werden müssen, ist [hier](ENV.md) dokumentiert.   
 Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
-Nun muss in der Datenbank die Tabelle `toolbox` erstellt werden. Am leichtesten geht dies
+Nun muss eine Datenbank mit dem Namen `toolbox` erstellt werden. Am leichtesten geht dies
 mit [phpmyadmin:link:](http://localhost/phpmyadmin)
 
 Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden:

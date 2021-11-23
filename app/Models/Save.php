@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helper\PermissionHelper;
+use App\Models\Scopes\SortingScope;
 use App\Traits\Limitable;
 use Database\Factories\SaveFactory;
 use Eloquent;
@@ -91,6 +92,12 @@ class Save extends Model
         'last_locked' => 'datetime',
         'last_opened' => 'datetime'
     ];
+
+    protected static function booted()
+    {
+        parent::booted();
+        static::addGlobalScope(new SortingScope());
+    }
 
 
     /**
