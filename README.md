@@ -1,5 +1,8 @@
 # Strategietools-Backend
 
+
+![](https://img.shields.io/github/v/release/ricom/toolbox-backend?style=flat-square) ![](https://img.shields.io/github/license/ricom/toolbox-backend?style=flat-square)
+
 Das Projekt Strategietools basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools
 sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesondere ist der Einsatz in der Hochschule
 geplant. Aber auch allen Interessierten stehen die Werkzeuge zur Verfügung.
