@@ -60,7 +60,7 @@ class PurgeAnonymousUsersCommand extends Command
      */
     public function handle()
     {
-        $count = User::whereAnonym(true)->where('last_activity', '<', static::getUserPurgedBeforeTime())->forceDelete();
+        $count = User::whereAnonymous(true)->where('last_activity', '<', static::getUserPurgedBeforeTime())->forceDelete();
         $this->output->success("Deleted " . $count . " rows!");
     }
 }
