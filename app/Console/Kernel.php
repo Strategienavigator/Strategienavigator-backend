@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('purge:deleted')->weekly();
         $schedule->command('purge:anonymous')->weekly();
         $schedule->command('passport:purge')->monthly();
+        $schedule->command('notify:userCount')->daily();
     }
 
     /**
