@@ -18,7 +18,7 @@ class UserCountAlertCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'notify:userCount';
+    protected $signature = 'notify:userCount {--no-mail}';
 
     /**
      * The console command description.
@@ -67,21 +67,29 @@ class UserCountAlertCommand extends Command
             $userOverallThreshold < $userCountOverall ||
             $saveOverallThreshold < $saveCountOverall;
 
-        if ($sendAlertEmail) {
-            Mail::to(config("mail.from.address"))
-                ->send(new AlertUserCountEmail($userCountOverall, $userCountLastWeek, $saveCountOverall, $saveCountLastWeek));
-            $this->output->info("Send Email with User Count notification.");
-            Log::alert("Suspicious User/Save count detected, did send Email to Admin.
-            Usercount: $userCountOverall
-            Usercount last week: $userCountLastWeek
-            Savecount: $saveCountOverall
-            Savecount last week: $saveCountLastWeek");
+        $shouldSendEmail = !$this->option("no-mail");
 
-        }else{
+        if ($sendAlertEmail) {
+            $notifyMessage = [
+                "Suspicious User/Save count detected:",
+                "Usercount: $userCountOverall",
+                "Usercount last week: $userCountLastWeek",
+                "Savecount: $saveCountOverall",
+                "Savecount last week: $saveCountLastWeek"];
+
+            $this->output->info($notifyMessage);
+            Log::alert(implode("\n",$notifyMessage));
+
+            if ($shouldSendEmail) {
+                Mail::to(config("mail.from.address"))
+                    ->send(new AlertUserCountEmail($userCountOverall, $userCountLastWeek, $saveCountOverall, $saveCountLastWeek));
+                $this->output->info("Send Email with User Count notification.");
+            }
+
+        } else {
             $this->output->info("User Count doesn't look suspicious.");
 
         }
-
 
         return 0;
     }
