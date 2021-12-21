@@ -6,6 +6,7 @@ use App\Http\Resources\SaveResource;
 use App\Http\Resources\SimpleSaveResource;
 use App\Models\Save;
 use App\Policies\SavePolicy;
+use App\Services\SaveService;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
@@ -20,6 +22,14 @@ use Illuminate\Http\Response;
  */
 class SaveController extends Controller
 {
+
+    private $saveService;
+    public function __construct(SaveService $saveService)
+    {
+        $this->saveService = $saveService;
+    }
+
+
     /**
      * Zeigt alle Speicherstände an
      * @return AnonymousResourceCollection Speicherstände als ResourceCollection
@@ -77,6 +87,10 @@ class SaveController extends Controller
     {
         $this->authorize("view", $save);
         $save->last_opened = Carbon::now();
+        if(Auth::getUser()->id !== $save->locked_by_id){
+            // prevent issues which occur if the user tries to save after doing nothing for a while
+            $this->saveService->fix_locked_by($save);
+        }
         $save->save();
         return new SaveResource($save);
     }
@@ -99,6 +113,9 @@ class SaveController extends Controller
     {
         $this->authorize("update", $save);
         $user = $request->user();
+        if($user->id !== $save->locked_by_id){
+            $this->saveService->fix_locked_by($save);
+        }
 
         if ($request->has("lock")) {
 
