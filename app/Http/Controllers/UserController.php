@@ -159,6 +159,7 @@ class UserController extends Controller
     public function destroy(User $user): Response
     {
         $this->authorize("delete", $user);
+        // Info: for development this should probably be disabled, since no email can be sent, at least this was throwing errors because of that
         Mail::to($user->email)->send(new AccountDeleteEmail($user->username));
         $user->delete();
         return response()->noContent(Response::HTTP_OK);
