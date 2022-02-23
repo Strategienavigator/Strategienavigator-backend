@@ -29,6 +29,7 @@ class SimpleSaveResource extends JsonResource
             "last_locked" => $this->last_locked,
             "owner_id" => $this->owner_id,
             "owner" => $this->owner->username,
+            "owner_deleting" => $this->owner->trashed(),
             "tool_id" => $this->tool_id,
             "updated_at" => $this->updated_at,
             "created_at" => $this->created_at,

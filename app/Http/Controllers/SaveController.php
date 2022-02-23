@@ -146,8 +146,7 @@ class SaveController extends Controller
      * @return Response code 200, wenn der Speicherstand gelöscht wurde
      * @throws AuthorizationException Wenn der User keine Berechtigung besitzt den Speicherstand zu löschen
      */
-    public
-    function destroy(Save $save): Response
+    public function destroy(Save $save): Response
     {
         $this->authorize("delete", $save);
         $save->delete();
