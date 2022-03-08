@@ -11,7 +11,7 @@ use App\Policies\UserPolicy;
 use App\Rules\EmailBlockList;
 use App\Services\EmailService;
 use App\Services\UserService;
-use Carbon\Carbon;
+use Egulias\EmailValidator\EmailValidator;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -20,9 +20,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
-use Laravel\Passport\Bridge\AccessTokenRepository;
-use Laravel\Passport\Bridge\ClientRepository;
-use League\OAuth2\Server\AuthorizationServer;
 use Validator;
 
 /**
@@ -179,7 +176,7 @@ class UserController extends Controller
         $available = $userService->checkUsername($validated["username"]);
         return response()->json(["data" => [
             "available" => $available,
-            "reason" => $available? "": "taken"
+            "reason" => $available ? "" : "taken"
         ]]);
 
     }
@@ -199,16 +196,23 @@ class UserController extends Controller
         ]);
         $reason = "";
 
-        $allowed = $emailService->checkBlockLists($validated["email"]);
-        $available = false;
-        if ($allowed) {
-            $available = $userService->checkEmail($validated["email"]);
-            if (!$available) {
-                $reason = "taken";
+        $validEmail = filter_var($validated["email"], FILTER_VALIDATE_EMAIL);
+        if ($validEmail !== false) {
+            $allowed = $emailService->checkBlockLists($validated["email"]);
+            $available = false;
+            if ($allowed) {
+                $available = $userService->checkEmail($validated["email"]);
+                if (!$available) {
+                    $reason = "taken";
+                }
+            } else {
+                $reason = "blocked";
             }
         } else {
-            $reason = "blocked";
+            $available = false;
+            $reason = "invalid";
         }
+
 
         return response()->json(["data" => [
             "available" => $available,
