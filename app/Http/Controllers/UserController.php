@@ -8,6 +8,7 @@ use App\Mail\AccountDeleteEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Policies\UserPolicy;
+use App\Rules\EmailBlockList;
 use App\Services\EmailService;
 use App\Services\UserService;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ class UserController extends Controller
 {
 
     /**
-     * Das regex, welches Benutzt wird um sicherzustellen, dass das User Password
+     * Das regex, welches Benutzt wird um sicherzustellen, dass das User Password valide ist
      * @var string
      */
     public static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
@@ -66,18 +67,17 @@ class UserController extends Controller
         $validated = Validator::validate($request->all(), [
             "username" => ["required", "string", "unique:users"],
             "password" => ["required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
-            "email" => ["required", "email", "unique:users,email", "unique:" . EmailVerification::class . ",email"],
+            "email" => ["required", "email", new EmailBlockList($emailService), "unique:users,email", "unique:" . EmailVerification::class . ",email"],
             "anonymous_id" => ["integer", "exists:users,id"],
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
 
 
-        $u = null;
         if (array_key_exists("anonymous_id", $validated)) {
             $u = User::find($validated["anonymous_id"]);
-            if($u->anonymous){
-                $userService->upgradeAnonymousUser($u,$validated,$emailService);
+            if ($u->anonymous) {
+                $userService->upgradeAnonymousUser($u, $validated, $emailService);
             }
 
         } else {
@@ -142,7 +142,7 @@ class UserController extends Controller
         $validated = Validator::validate($request->all(), [
             "username" => ["string", "unique:users"],
             "password" => ["string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
-            // "email" => ["email", "unique:users,email", "unique:" . EmailVerification::class . ",email"]
+            // "email" => ["email", "unique:users,email", new EmailBlockList($emailService), "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
@@ -190,7 +190,7 @@ class UserController extends Controller
      * @param UserService $userService Dependency Injection
      * @return JsonResponse Body enthält available attribut, welches angibt, ob die E-Mail bereits benutzt wird
      */
-    public function checkEmail(Request $request, UserService $userService): JsonResponse
+    public function checkEmail(Request $request, UserService $userService, EmailService $emailService): JsonResponse
     {
         $validated = $request->validate([
             "email" => ["string", "required"]
