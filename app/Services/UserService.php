@@ -38,8 +38,7 @@ class UserService
      */
     public function checkEmail(string $email): bool
     {
-        return $this->emailService->checkBlockLists($email) &&
-            !(
+        return !(
                 User::whereEmail($email)->exists() ||
                 EmailVerification::whereEmail($email)->exists()
             );

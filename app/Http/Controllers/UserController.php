@@ -176,8 +176,10 @@ class UserController extends Controller
         $validated = $request->validate([
             "username" => ["string", "required"]
         ]);
+        $available = $userService->checkUsername($validated["username"]);
         return response()->json(["data" => [
-            "available" => $userService->checkUsername($validated["username"])
+            "available" => $available,
+            "reason" => $available? "": "taken"
         ]]);
 
     }
@@ -193,10 +195,24 @@ class UserController extends Controller
     public function checkEmail(Request $request, UserService $userService, EmailService $emailService): JsonResponse
     {
         $validated = $request->validate([
-            "email" => ["string", "required", new EmailBlockList($emailService)]
+            "email" => ["string", "required"]
         ]);
+        $reason = "";
+
+        $allowed = $emailService->checkBlockLists($validated["email"]);
+        $available = false;
+        if ($allowed) {
+            $available = $userService->checkEmail($validated["email"]);
+            if (!$available) {
+                $reason = "taken";
+            }
+        } else {
+            $reason = "blocked";
+        }
+
         return response()->json(["data" => [
-            "available" => $userService->checkEmail($validated["email"])
+            "available" => $available,
+            "reason" => $reason,
         ]]);
 
     }
