@@ -193,7 +193,7 @@ class UserController extends Controller
     public function checkEmail(Request $request, UserService $userService, EmailService $emailService): JsonResponse
     {
         $validated = $request->validate([
-            "email" => ["string", "required"]
+            "email" => ["string", "required", new EmailBlockList($emailService)]
         ]);
         return response()->json(["data" => [
             "available" => $userService->checkEmail($validated["email"])
