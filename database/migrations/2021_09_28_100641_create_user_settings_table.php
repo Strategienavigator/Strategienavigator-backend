@@ -15,8 +15,8 @@ class CreateUserSettingsTable extends Migration
     {
         Schema::create('user_settings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('setting_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('setting_id')->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
+            $table->foreignId('user_id')->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
             $table->unique(["setting_id", "user_id"]);
             $table->jsonb('value');
         });
