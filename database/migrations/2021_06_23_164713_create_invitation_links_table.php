@@ -18,7 +18,7 @@ class CreateInvitationLinksTable extends Migration
             $table->string("token")->unique()->index();
             $table->timestamp("expiry_date")->nullable();
             $table->integer("permission");
-            $table->foreignId("save_id")->constrained();
+            $table->foreignId("save_id")->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
             $table->timestamps();
         });
     }

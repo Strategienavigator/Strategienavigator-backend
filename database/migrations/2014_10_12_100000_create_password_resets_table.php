@@ -15,7 +15,7 @@ class CreatePasswordResetsTable extends Migration
     {
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('token')->primary();
-            $table->foreignId("user_id")->constrained();
+            $table->foreignId("user_id")->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
             $table->timestamp("expiry_date")->nullable();
             $table->boolean('password_changed');
             $table->timestamp('created_at')->nullable();

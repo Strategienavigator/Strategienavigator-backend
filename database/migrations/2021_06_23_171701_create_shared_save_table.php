@@ -15,8 +15,8 @@ class CreateSharedSaveTable extends Migration
     {
         Schema::create('shared_save', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained();
-            $table->foreignId("save_id")->constrained();
+            $table->foreignId("user_id")->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
+            $table->foreignId("save_id")->constrained(); // onDelete and onUpdate added in `add_on_delete_cascade` migration
             $table->unique(["user_id", "save_id"]);
 
             $table->integer("permission");

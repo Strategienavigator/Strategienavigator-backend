@@ -29,8 +29,8 @@ Für den Anfang sind folgende Strategietools geplant:
 ## Versionen
 
 - Composer: min Composer 2.0 ([Download:link:](https://getcomposer.org/download/))
-- PHP: 7.0
-- Laravel: 8.x
+- PHP: 8.0.2
+- Laravel: 9.x
 - MySQL: min 5.7.X
 
 ## Einrichtung

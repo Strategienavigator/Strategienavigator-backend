@@ -12,6 +12,13 @@ use Carbon\Carbon;
 class UserService
 {
 
+    private EmailService $emailService;
+
+    public function __construct(EmailService $emailService)
+    {
+        $this->emailService = $emailService;
+    }
+
 
     /** Überprüft ob der Username bereits verwendet wird
      * @param string $username Der zu überprüfende Username
@@ -23,7 +30,7 @@ class UserService
     }
 
     /**
-     * Überprüft ob die E-Mail bereits verwendet wird
+     * Überprüft ob die E-Mail bereits verwendet wird und ob sie von der white oder blacklist geblockt wird
      *
      * zu verifizierende E-Mail-Adressen gelten auch als verwendet
      * @param string $email Zu überprüfende E-Mail
@@ -31,8 +38,10 @@ class UserService
      */
     public function checkEmail(string $email): bool
     {
-        return !(User::whereEmail($email)->exists() ||
-            EmailVerification::whereEmail($email)->exists());
+        return !(
+                User::whereEmail($email)->exists() ||
+                EmailVerification::whereEmail($email)->exists()
+            );
     }
 
     /**
@@ -98,7 +107,7 @@ class UserService
             $emailService->requestEmailChangeOfUser($u, $data["email"]);
             $u->save();
             return true;
-        }else{
+        } else {
             return false;
         }
     }
