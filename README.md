@@ -29,7 +29,7 @@ Für den Anfang sind folgende Strategietools geplant:
 ## Versionen
 
 - Composer: min Composer 2.0 ([Download:link:](https://getcomposer.org/download/))
-- PHP: 8.0.2
+- PHP: >= 8.0.2
 - Laravel: 9.x
 - MySQL: min 5.7.X
 
@@ -174,6 +174,10 @@ php artisan ide-helper:models -W
 
 Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository
 erstellen.
+
+## Testen
+
+Um einfach testen zu können, kann durch die env variable `EMAIL_FILTER_DISABLED` der E-Mail Filter ausgestellt werden. 
 
 ## Lizenz
 

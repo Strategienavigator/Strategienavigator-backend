@@ -21,5 +21,10 @@ return [
      * Regex is supported.
      */
     "email_blacklist" => [
-    ]
+    ],
+
+    /*
+     * if set to true, the email filter is enabled. Otherwise the filters are ignored
+     */
+    "disable_filter" => env("EMAIL_FILTER_DISABLED", false)
 ];
