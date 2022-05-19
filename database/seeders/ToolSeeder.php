@@ -36,6 +36,18 @@ class ToolSeeder extends Seeder
                 "created_at" => $now,
                 "updated_at" => $now
             ],
+            [
+                "id" => 4,
+                "name" => "Portfolio-Analyse",
+                "created_at" => $now,
+                "updated_at" => $now
+            ],
+            [
+                "id" => 5,
+                "name" => "ABC-Analyse",
+                "created_at" => $now,
+                "updated_at" => $now
+            ]
         ]);
     }
 }
