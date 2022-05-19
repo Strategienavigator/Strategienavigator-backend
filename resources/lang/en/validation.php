@@ -124,7 +124,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
 
     // custom
-    'email_block_list' => 'The :attribute :value is blocked by a white and/or blacklist',
+    'email_block_list' => 'The :attribute is blocked by a white and/or blacklist',
 
     /*
     |--------------------------------------------------------------------------

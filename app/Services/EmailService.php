@@ -55,6 +55,9 @@ class EmailService
      */
     public function checkBlockLists(string $email): bool
     {
+        if(config("accounts.disable_filter") === true){
+            return true;
+        }
         $whitelist = config("accounts.email_whitelist");
         $blacklist = config("accounts.email_blacklist");
         foreach ($whitelist as $allowedRegex) {
