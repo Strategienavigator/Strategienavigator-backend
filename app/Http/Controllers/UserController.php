@@ -18,6 +18,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Validator;
@@ -125,24 +126,29 @@ class UserController extends Controller
      * @param User $user Der in der Url definierte User
      * @param EmailService $emailService Dependency Injection
      * @param UserService $userService Dependency Injection
-     * @return Response Code 200, wenn der User aktualisiert wurde
+     * @return JsonResponse|Response
      * @throws AuthorizationException Wenn der aktuelle User keine Berechtigung hat den ausgewählten User zu verändern
      * @throws ValidationException Wenn die Eingabeparameter nicht valide sind
      * @see User
      * @see UserPolicy::update()
      * @see UserResource
      */
-    public function update(Request $request, User $user, EmailService $emailService, UserService $userService): Response
+    public function update(Request $request, User $user, EmailService $emailService, UserService $userService)
     {
         $this->authorize("update", $user);
 
         $validated = Validator::validate($request->all(), [
             "username" => ["string", "unique:users"],
             "password" => ["string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
+            "current_password" => ["required", "string"]
             // "email" => ["email", "unique:users,email", new EmailBlockList($emailService), "unique:" . EmailVerification::class . ",email"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
+
+        if (!Hash::check($validated["current_password"], $user->password)) {
+            return \response()->json(["msg" => "current_password is wrong"], 401);
+        }
 
         $userService->updateUser($user, $validated, $emailService);
         return response()->noContent(Response::HTTP_OK);
