@@ -148,11 +148,9 @@ class InvitationLinkController extends Controller
             if (is_null($existingContribution)) {
                 $save->contributors()->attach($user, ["permission" => $invitationLink->permission]);
             } else {
-                $permission = $existingContribution->permission;
+                $this->authorize('acceptDecline', $existingContribution);
 
-                if ($existingContribution->revoked) {
-                    return \response(null, Response::HTTP_CONFLICT);
-                }
+                $permission = $existingContribution->permission;
 
                 $existingContribution->accept();
                 // check if new permission is equal or higher than old permission
