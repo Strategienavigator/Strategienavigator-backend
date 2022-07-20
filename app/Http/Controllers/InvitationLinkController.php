@@ -48,7 +48,7 @@ class InvitationLinkController extends Controller
     public function store(Request $request, TokenService $tokenService): \Illuminate\Http\RedirectResponse
     {
         $validate = $request->validate([
-            "expiry_date" => "nullable|required|date",
+            "expiry_date" => "nullable|date",
             "permission" => "required|numeric|min:0|max:1",
             "save_id" => "required|exists:saves,id"
         ]);
