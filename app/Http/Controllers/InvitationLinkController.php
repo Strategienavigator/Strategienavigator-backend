@@ -154,11 +154,7 @@ class InvitationLinkController extends Controller
                     return \response(null, Response::HTTP_CONFLICT);
                 }
 
-                if($existingContribution->declined){
-                    $existingContribution->declined = false;
-                    $existingContribution->accepted = true;
-                }
-
+                $existingContribution->accept();
                 // check if new permission is equal or higher than old permission
                 if (PermissionHelper::isAtLeastPermission($permission, $invitationLink->permission)) {
                     $existingContribution->permission = $permission;
