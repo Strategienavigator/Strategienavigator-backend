@@ -48,7 +48,7 @@ class InvitationLinkController extends Controller
     {
         $validate = $request->validate([
             "expiry_date" => "required|date",
-            "permission" => "required|numeric|min:0|max:2",
+            "permission" => "required|numeric|min:0|max:1",
             "save_id" => "required|exists:saves,id"
         ]);
         $save = Save::findOrFail($validate["save_id"]);
@@ -96,7 +96,7 @@ class InvitationLinkController extends Controller
 
         $validate = $request->validate([
             "expiry_date" => "date",
-            "permission" => "numeric|min:0|max:2"
+            "permission" => "numeric|min:0|max:1"
         ]);
 
         $invitation_link->fill($validate);
