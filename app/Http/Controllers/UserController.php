@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Mail\AccountDeleteEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
+use App\OpenApi\Parameters\LimitableParameters;
+use App\OpenApi\RequestBodies\StoreUserRequestBody;
+use App\OpenApi\RequestBodies\UpdateUserRequestBody;
+use App\OpenApi\Responses\NotFoundResponse;
+use App\OpenApi\Responses\UnauthorizedResponse;
 use App\Policies\UserPolicy;
 use App\Rules\EmailBlockList;
 use App\Services\EmailService;
 use App\Services\UserService;
-use Egulias\EmailValidator\EmailValidator;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -22,11 +25,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Validator;
+use Vyuldashev\LaravelOpenApi\Attributes\Operation;
+use Vyuldashev\LaravelOpenApi\Attributes\Parameters;
+use Vyuldashev\LaravelOpenApi\Attributes\PathItem;
+use Vyuldashev\LaravelOpenApi\Attributes\RequestBody;
 
 /**
  * Controller, welcher Routen zum Verwalten von Usern implementiert
  * @package App\Http\Controllers
+ *
  */
+#[PathItem]
 class UserController extends Controller
 {
 
@@ -39,12 +48,17 @@ class UserController extends Controller
 
     /**
      * Zeigt alle User an
+     *
      * @return AnonymousResourceCollection Alle User als ResourceCollection
      * @throws AuthorizationException Wenn der User keine Berechtigung zum Ansehen aller User besitzt
      * @see User
      * @see UserPolicy::viewAny()
      * @see UserResource
      */
+    #[Operation(tags: ['user'])]
+    #[Parameters(LimitableParameters::class)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 401)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 200)]
     public function index(): AnonymousResourceCollection
     {
         $this->authorize("viewAny", User::class);
@@ -60,6 +74,8 @@ class UserController extends Controller
      * @return Response Code 201, wenn ein User erstellt wurde
      * @throws ValidationException Wenn die Eingabedaten nicht valide sind
      */
+    #[Operation(tags: ['user'])]
+    #[RequestBody(StoreUserRequestBody::class)]
     public function store(Request $request, EmailService $emailService, UserService $userService): Response
     {
         $validated = Validator::validate($request->all(), [
@@ -95,6 +111,7 @@ class UserController extends Controller
      * @return Response Code 201, wenn das erstellten erfolgreich war. Response enthält username und password im Body
      * @throws Exception Wenn es ein Problem beim Erstellen des Users gab
      */
+    #[Operation(tags: ['user'])]
     public function storeAnonymous(UserService $userService): Response
     {
         $password = md5(microtime());
@@ -113,6 +130,9 @@ class UserController extends Controller
      * @see UserPolicy::view()
      * @see UserResource
      */
+    #[Operation(tags: ['user'])]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(NotFoundResponse::class, statusCode: 404)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 401)]
     public function show(User $user): UserResource
     {
         $this->authorize("view", $user);
@@ -121,7 +141,7 @@ class UserController extends Controller
     }
 
     /**
-     * Ändert eines ausgewählten Nutzers zu den übergebenen Attributen
+     * Ändert die Attribute eines ausgewählten Nutzers zu den übergebenen
      * @param Request $request Die aktuelle Request Instanz
      * @param User $user Der in der Url definierte User
      * @param EmailService $emailService Dependency Injection
@@ -133,6 +153,8 @@ class UserController extends Controller
      * @see UserPolicy::update()
      * @see UserResource
      */
+    #[Operation(id: "test", tags: ['user'])]
+    #[RequestBody(UpdateUserRequestBody::class)]
     public function update(Request $request, User $user, EmailService $emailService, UserService $userService)
     {
         $this->authorize("update", $user);
@@ -159,6 +181,7 @@ class UserController extends Controller
      * @return Response Code 200, wenn das Löschen erfolgreich war
      * @throws AuthorizationException Wenn der User keine Berechtigung besitzt den
      */
+    #[Operation(tags: ['user'])]
     public function destroy(User $user): Response
     {
         $this->authorize("delete", $user);
@@ -174,6 +197,7 @@ class UserController extends Controller
      * @param UserService $userService Dependency Injection
      * @return JsonResponse Body enthält available attribut, welches angibt ob der Username bereits benutzt wird
      */
+    #[Operation(tags: ['user'])]
     public function checkUsername(Request $request, UserService $userService): JsonResponse
     {
         $validated = $request->validate([
@@ -195,6 +219,7 @@ class UserController extends Controller
      * @param UserService $userService Dependency Injection
      * @return JsonResponse Body enthält available attribut, welches angibt, ob die E-Mail bereits benutzt wird
      */
+    #[Operation(tags: ['user'])]
     public function checkEmail(Request $request, UserService $userService, EmailService $emailService): JsonResponse
     {
         $validated = $request->validate([
