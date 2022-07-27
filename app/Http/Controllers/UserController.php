@@ -236,16 +236,23 @@ class UserController extends Controller
      */
     public function searchUser(Request $request): AnonymousResourceCollection
     {
+
+
         $validated = $request->validate([
             "name" => ["required", "string"]
         ]);
 
+
         $name = $validated["name"];
+
+        $this->authorize('searchAny', [User::class, $name]);
 
         $mailUsers = User::whereEmail($name)->limit(1)->get();
 
         if ($mailUsers->count() > 0) {
             return UserSearchResultResource::collection($mailUsers);
+        } else if ($request->user()->anonymous === true) {
+            return UserSearchResultResource::collection([]);
         }
 
         $usernameUsers = User::where('username', 'LIKE', '%' . $name . '%')->limit(5)->get();
