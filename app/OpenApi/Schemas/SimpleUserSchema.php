@@ -18,8 +18,9 @@ class SimpleUserSchema extends SchemaFactory implements Reusable
      */
     public function build(): SchemaContract
     {
-        return Schema::object('SimpleUser')
-            ->description('')
+        return Schema::object('simple_user')
+            ->description('Dieses Schema wird zurück gegeben, wenn der aktuelle Nutzer nicht genug' .
+                'Rechte hat um private informationen über den Nutzer zu sehen')
             ->properties(
                 Schema::integer('id')->example(1)
                     ->description('Id des Nutzers'),

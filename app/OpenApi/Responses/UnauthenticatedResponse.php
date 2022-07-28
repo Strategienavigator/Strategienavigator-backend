@@ -8,16 +8,16 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use Vyuldashev\LaravelOpenApi\Contracts\Reusable;
 use Vyuldashev\LaravelOpenApi\Factories\ResponseFactory;
 
-class UnauthorizedResponse extends ResponseFactory implements Reusable
+class UnauthenticatedResponse extends ResponseFactory implements Reusable
 {
     public function build(): Response
     {
-        return Response::forbidden('unauthorized')->content(
+        return Response::unauthorized('unauthenticated')->content(
             MediaType::json()->schema(
                 Schema::object()->properties(
-                    Schema::string('message')->default('This action is unauthorized.'),
+                    Schema::string('message')->default('Unauthenticated'),
                 )
             )
-        )->description('The current user isn\'t authorized to do this action');
+        )->description('The current user isn\'t authenticated');
     }
 }

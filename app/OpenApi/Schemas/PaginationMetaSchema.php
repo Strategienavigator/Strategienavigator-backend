@@ -18,30 +18,32 @@ class PaginationMetaSchema extends SchemaFactory implements Reusable
      */
     public function build(): SchemaContract
     {
-        return Schema::object('Pagination')
+        return Schema::object('pagination')
             ->properties(
                 Schema::object('links')->properties(
                     Schema::string('first')
-                        ->description('link to first page of pagination'),
+                        ->description('Link zur ersten Seite'),
                     Schema::string('last')
-                        ->description('link to last page of pagination'),
+                        ->description('Link zur letzen Seite'),
                     Schema::string('prev')->nullable()
-                        ->description('link to previous page of pagination'),
+                        ->description('Link zur vorherigen Seite'),
                     Schema::string('next')->nullable()
-                        ->description('link to next page of pagination')
+                        ->description('Link zur nächsten Seite')
                 ),
                 Schema::object('meta')->properties(
                     Schema::integer('current_page')
                         ->example(2),
                     Schema::integer('from')->example(15)
-                        ->description('index of first entry of this page'),
+                        ->description('Position des ersten Eintrags dieser Seite von allen Einträgen'),
                     Schema::integer('last_page')->example(3),
                     Schema::integer('path')
-                        ->description('link to base page of this pagination'),
+                        ->description('link zur Startseite dieser Pagination'),
                     Schema::integer('per_page')->example(15)
-                        ->description('Anzahl der ')
-
-
+                        ->description('Anzahl der Einträge pro Seite'),
+                    Schema::integer('to')->example(29)
+                        ->description('Position des letzen Eintrags dieser Seite von allen Einträgen'),
+                    Schema::integer('total')->example(38)
+                        ->description('Anzahl aller Einträge über alle Seiten')
                 )
             );
     }

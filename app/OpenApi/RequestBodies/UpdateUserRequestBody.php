@@ -12,7 +12,7 @@ class UpdateUserRequestBody extends RequestBodyFactory
 {
     public function build(): RequestBody
     {
-        return RequestBody::create('UserCreate')
+        return RequestBody::create('user_update')
             ->description('Nutzerdaten')
             ->content(
                 MediaType::json()->schema(

@@ -10,7 +10,7 @@ return [
                 'title' => config('app.name'),
                 'description' => null,
                 'version' => '1.0.0',
-                'licence' => [
+                'license' => [
                     "name" => "GPL-3.0",
                     "url" => "https://www.gnu.org/licenses/gpl-3.0.de.html"
                 ],
@@ -22,20 +22,25 @@ return [
             'servers' => [
                 [
                     'url' => env('APP_URL'),
-                    'description' => null,
+                    'description' => "Lokaler Entwicklungsserver",
                     'variables' => [],
                 ],
+                [
+                    'url' => 'https://strategie-navigator.jade-hs.de',
+                    'description' => 'Production Server',
+                    'variables' => []
+                ]
             ],
 
             'tags' => [
                 [
-                    "name" => "user",
-                    "description" => "Users"
+                    "name" => "users",
+                    "description" => "User"
                 ]
             ],
 
             'security' => [
-                // GoldSpecDigital\ObjectOrientedOAS\Objects\SecurityRequirement::create()->securityScheme('JWT'),
+                GoldSpecDigital\ObjectOrientedOAS\Objects\SecurityRequirement::create()->securityScheme('BearerToken'),
             ],
 
             // Route for exposing specification.
