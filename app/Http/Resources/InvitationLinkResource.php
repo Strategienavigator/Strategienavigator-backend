@@ -24,7 +24,14 @@ class InvitationLinkResource extends JsonResource
             "id" => $this->id,
             "expiry_date" => $this->expiry_date,
             "permission" => $this->permission,
-            "save_id" => $this->save_id,
+            "save" => [
+                "id" => $this->save_id,
+                "name"=>$this->safe->name,
+                "tool"=>[
+                    "id"=>$this->safe->tool->id,
+                    "name"=>$this->safe->tool->name
+                ]
+            ],
             "created_at" => $this->created_at,
         ];
     }
