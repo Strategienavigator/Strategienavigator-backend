@@ -35,7 +35,15 @@ return [
             'tags' => [
                 [
                     "name" => "users",
-                    "description" => "User"
+                    "description" => "Nutzer"
+                ],
+                [
+                    "name" => "email",
+                    "description" => "E-Mail"
+                ],
+                [
+                    "name" => "invitation-links",
+                    "description" => "Einladungslinks"
                 ]
             ],
 

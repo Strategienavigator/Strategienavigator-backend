@@ -5,6 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
 use App\Models\Save;
+use App\OpenApi\RequestBodies\StoreInvitationLinkRequestBody;
+use App\OpenApi\Responses\InvitationLinkCreatedResponse;
+use App\OpenApi\Responses\InvitationLinkListResponse;
+use App\OpenApi\Responses\InvitationLinkResponse;
+use App\OpenApi\Responses\NotFoundResponse;
+use App\OpenApi\Responses\OkResponse;
+use App\OpenApi\Responses\UnauthenticatedResponse;
+use App\OpenApi\Responses\UnauthorizedResponse;
+use App\OpenApi\Responses\UserCreatedResponse;
+use App\OpenApi\Responses\ValidationFailedResponse;
 use App\Policies\InvitationLinkPolicy;
 use App\Policies\SavePolicy;
 use App\Services\TokenService;
@@ -15,10 +25,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Vyuldashev\LaravelOpenApi\Attributes\Operation;
+use Vyuldashev\LaravelOpenApi\Attributes\PathItem;
+use Vyuldashev\LaravelOpenApi\Attributes\RequestBody;
 
 /**
  * Controller welche funktionen für die Einladungslink Routen implementiert
  */
+#[PathItem]
 class InvitationLinkController extends Controller
 {
 
@@ -28,6 +42,10 @@ class InvitationLinkController extends Controller
      * @throws AuthorizationException Wenn der User keine Berechtigung zum Abrufen aller Einladungslinks hat
      * @see InvitationLinkPolicy
      */
+    #[Operation(tags: ['invitation-links'])]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(InvitationLinkListResponse::class, statusCode: 200)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthenticatedResponse::class, statusCode: 401)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 403)]
     public function index(): AnonymousResourceCollection
     {
         $this->authorize("viewAny", InvitationLink::class);
@@ -44,6 +62,13 @@ class InvitationLinkController extends Controller
      * @see InvitationLink
      * @see InvitationLinkPolicy
      */
+    #[Operation(tags: ['invitation-links'])]
+    #[RequestBody(StoreInvitationLinkRequestBody::class)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(InvitationLinkCreatedResponse::class, statusCode: 201)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthenticatedResponse::class, statusCode: 401)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 403)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(NotFoundResponse::class, statusCode: 404)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(ValidationFailedResponse::class, statusCode: 422)]
     public function store(Request $request, TokenService $tokenService): Response
     {
         $validate = $request->validate([
@@ -72,6 +97,11 @@ class InvitationLinkController extends Controller
      * @see InvitationLinkResource
      * @see InvitationLinkPolicy
      */
+    #[Operation(tags: ['invitation-links'])]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(InvitationLinkResponse::class, statusCode: 200)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthenticatedResponse::class, statusCode: 401)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(UnauthorizedResponse::class, statusCode: 403)]
+    #[\Vyuldashev\LaravelOpenApi\Attributes\Response(NotFoundResponse::class, statusCode: 404)]
     public function show(InvitationLink $invitation_link): InvitationLinkResource
     {
         $this->authorize("view", $invitation_link);

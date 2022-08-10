@@ -13,7 +13,7 @@ class AuthTokenController extends Controller
 {
 
     /**
-     * Löscht die
+     * Löscht den gegebenen Access token und alle zugehörigen refreshtoken aus der datenbank
      *
      * @param string $token_id id des Token
      * @param TokenRepository $tokenRepository Dependency Injection
