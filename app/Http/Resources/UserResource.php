@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             "email" => $this->when($isSameUser, $this->email),
             "created_at" => $this->created_at,
             "owned_saves" => $this->when($isSameUser, $this->saves->map(function ($s) {
-                return ["id" => $s->id, "name" => $s->name, "tool" => new ToolResource($s->tool)];
+                return new SimplerSaveResource($s);
             })->toArray()),
             "shared_saves" => $this->when($isSameUser, SharedSaveUserResource::collection($this->accessibleShares)),
             "invitations" => $this->when($isSameUser, SharedSaveUserResource::collection($this->invitedSaves))

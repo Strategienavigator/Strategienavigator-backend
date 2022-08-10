@@ -17,8 +17,7 @@ class SimplerSaveResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "owner_id" => $this->owner->id,
-            "owner" => $this->owner->username,
+            "owner" => new SimpletsUserResource($this->owner),
             "tool" => new ToolResource($this->tool)
         ];
     }

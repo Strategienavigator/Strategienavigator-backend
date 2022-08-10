@@ -22,10 +22,10 @@ class SaveResource extends JsonResource
         return array_merge_recursive($simpleResource->toArray($request), [
             "data" => $this->data,
             "contributors" => $this->contributors->map(function ($c) {
-                return ["id" => $c->id, "name" => $c->username];
+                return new SimpletsUserResource($c);
             })->toArray(),
             "invited" => $this->invited->map(function ($c) {
-                return ["id" => $c->id, "name" => $c->username];
+                return new SimpletsUserResource($c);
             })->toArray(),
         ]);
     }
