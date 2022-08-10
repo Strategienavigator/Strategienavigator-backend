@@ -26,11 +26,8 @@ class InvitationLinkResource extends JsonResource
             "permission" => $this->permission,
             "save" => [
                 "id" => $this->save_id,
-                "name"=>$this->safe->name,
-                "tool"=>[
-                    "id"=>$this->safe->tool->id,
-                    "name"=>$this->safe->tool->name
-                ]
+                "name" => $this->safe->name,
+                "tool" => new ToolResource($this->safe->tool)
             ],
             "created_at" => $this->created_at,
         ];

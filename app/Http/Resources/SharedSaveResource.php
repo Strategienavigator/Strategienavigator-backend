@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\SharedSave;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 /**
  * Klasse, welche eine SharedSave instanz in ein Array umwandelt
  */
@@ -22,14 +23,11 @@ class SharedSaveResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "user" => $this->user_id,
+            "user" => ["id" => $this->user_id, "username" => $this->user->name],
             "save" => [
                 "id" => $this->save_id,
-                "name"=>$this->safe->name,
-                "tool"=>[
-                    "id"=>$this->safe->tool->id,
-                    "name"=>$this->safe->tool->name
-                ]
+                "name" => $this->safe->name,
+                "tool" => new ToolResource($this->safe->tool)
             ],
             "permission" => $this->permission,
             "accepted" => $this->accepted,
