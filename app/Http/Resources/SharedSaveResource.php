@@ -24,11 +24,7 @@ class SharedSaveResource extends JsonResource
         return [
             "id" => $this->id,
             "user" => ["id" => $this->user_id, "username" => $this->user->username],
-            "save" => [
-                "id" => $this->save_id,
-                "name" => $this->safe->name,
-                "tool" => new ToolResource($this->safe->tool)
-            ],
+            "save" => new SimplerSaveResource($this->safe),
             "permission" => $this->permission,
             "accepted" => $this->accepted,
             "declined" => $this->declined,
