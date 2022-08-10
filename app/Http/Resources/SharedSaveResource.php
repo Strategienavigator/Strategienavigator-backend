@@ -23,7 +23,7 @@ class SharedSaveResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "user" => new SimpletsUserResource($this->user),
+            "user" => new SimplestUserResource($this->user),
             "save" => new SimplerSaveResource($this->safe),
             "permission" => $this->permission,
             "accepted" => $this->accepted,

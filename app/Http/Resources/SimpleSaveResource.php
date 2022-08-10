@@ -27,7 +27,7 @@ class SimpleSaveResource extends JsonResource
             "name" => $this->name,
             "description" => $this->description,
             "last_locked" => $this->last_locked,
-            "owner" => new SimpletsUserResource($this->owner),
+            "owner" => new SimplestUserResource($this->owner),
             "owner_deleting" => $this->owner->trashed(),
             "tool_id" => $this->tool_id,
             "updated_at" => $this->updated_at,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
-use App\Http\Resources\SimpletsUserResource;
+use App\Http\Resources\SimplestUserResource;
 use App\Mail\AccountDeleteEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
@@ -250,13 +250,13 @@ class UserController extends Controller
         $mailUsers = User::whereEmail($name)->limit(1)->get();
 
         if ($mailUsers->count() > 0) {
-            return SimpletsUserResource::collection($mailUsers);
+            return SimplestUserResource::collection($mailUsers);
         } else if ($request->user()->anonymous === true) {
-            return SimpletsUserResource::collection([]);
+            return SimplestUserResource::collection([]);
         }
 
         $usernameUsers = User::where('username', 'LIKE', '%' . $name . '%')->limit(5)->get();
 
-        return SimpletsUserResource::collection($usernameUsers);
+        return SimplestUserResource::collection($usernameUsers);
     }
 }
