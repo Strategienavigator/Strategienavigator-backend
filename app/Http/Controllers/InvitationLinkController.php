@@ -121,7 +121,7 @@ class InvitationLinkController extends Controller
         $this->authorize("view", $save);
 
 
-        return InvitationLinkResource::collection($save->invitationLinks()->paginate());
+        return InvitationLinkResource::collection($save->invitationLinks()->get());
     }
 
     /**

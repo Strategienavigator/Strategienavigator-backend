@@ -50,7 +50,7 @@ class SharedSaveController extends Controller
     public function indexSave(Save $save): AnonymousResourceCollection
     {
         $this->authorize("viewOfSave", [SharedSave::class, $save]);
-        return SharedSaveResource::collection($save->sharedSaves()->paginate());
+        return SharedSaveResource::collection($save->sharedSaves()->get());
     }
 
 
@@ -67,7 +67,7 @@ class SharedSaveController extends Controller
     public function indexUser(User $user): AnonymousResourceCollection
     {
         $this->authorize("viewOfUser", [SharedSave::class, $user]);
-        return SharedSaveResource::collection($user->sharedSaves()->paginate());
+        return SharedSaveResource::collection($user->sharedSaves()->get());
     }
 
     /**
