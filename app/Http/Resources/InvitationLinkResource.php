@@ -25,7 +25,7 @@ class InvitationLinkResource extends JsonResource
         return [
             "expiry_date" => $this->expiry_date,
             "permission" => $this->permission,
-            "save_id" => $this->save_id,
+            "save" => new SimplerSaveResource($this->safe),
             "created_at" => $this->created_at,
             "token" => $this->when($this->safe->hasAtLeasPermission(Auth::user(), PermissionHelper::$PERMISSION_ADMIN), $this->token)
         ];

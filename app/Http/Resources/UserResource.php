@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 /**
  * Klasse, welche eine User instanz in ein Array umwandelt
  */
@@ -26,7 +27,7 @@ class UserResource extends JsonResource
             "email" => $this->when($isSameUser, $this->email),
             "created_at" => $this->created_at,
             "owned_saves" => $this->when($isSameUser, $this->saves->map(function ($s) {
-                return $s->id;
+                return new SimplerSaveResource($s);
             })->toArray()),
             "shared_saves" => $this->when($isSameUser, SharedSaveUserResource::collection($this->accessibleShares)),
             "invitations" => $this->when($isSameUser, SharedSaveUserResource::collection($this->invitedSaves))

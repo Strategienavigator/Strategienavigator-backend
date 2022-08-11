@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserSearchResultResource extends JsonResource
+class SimplerSaveResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,9 @@ class UserSearchResultResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "username" => $this->username
+            "name" => $this->name,
+            "owner" => new SimplestUserResource($this->owner),
+            "tool" => new ToolResource($this->tool)
         ];
     }
 }
