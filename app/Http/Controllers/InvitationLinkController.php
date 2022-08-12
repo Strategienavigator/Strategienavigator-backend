@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\PermissionHelper;
 use App\Http\Resources\InvitationLinkResource;
 use App\Models\InvitationLink;
 use App\Models\Save;
@@ -72,7 +73,7 @@ class InvitationLinkController extends Controller
     public function store(Request $request, TokenService $tokenService): Response
     {
         $validate = $request->validate([
-            "expiry_date" => "required|date",
+            "expiry_date" => "nullable|date",
             "permission" => "required|numeric|min:0|max:1",
             "save_id" => "required|exists:saves,id"
         ]);
@@ -125,7 +126,7 @@ class InvitationLinkController extends Controller
         $this->authorize("update", $invitation_link);
 
         $validate = $request->validate([
-            "expiry_date" => "date",
+            "expiry_date" => "nullable|date",
             "permission" => "numeric|min:0|max:1"
         ]);
 
@@ -151,7 +152,7 @@ class InvitationLinkController extends Controller
         $this->authorize("view", $save);
 
 
-        return InvitationLinkResource::collection($save->invitationLinks()->paginate());
+        return InvitationLinkResource::collection($save->invitationLinks);
     }
 
     /**
@@ -168,11 +169,26 @@ class InvitationLinkController extends Controller
         $user = $request->user();
         $invitationLink = InvitationLink::whereToken($token)->firstOrFail();
 
-        if (Carbon::now() < $invitationLink->expiry_date) {
+        if (is_null($invitationLink->expiry_date) || Carbon::now() < $invitationLink->expiry_date) {
 
             $save = $invitationLink->safe;
 
-            $save->contributors()->attach($user, ["permission" => $invitationLink->permission]);
+            $existingContribution = $save->sharedSaves()->where('user_id', '=', $user->id)->first();
+
+            if (is_null($existingContribution)) {
+                $save->contributors()->attach($user, ["permission" => $invitationLink->permission]);
+            } else {
+                $this->authorize('acceptDecline', $existingContribution);
+
+                $permission = $existingContribution->permission;
+
+                $existingContribution->accept();
+                // check if new permission is equal or higher than old permission
+                if (PermissionHelper::isAtLeastPermission($permission, $invitationLink->permission)) {
+                    $existingContribution->permission = $permission;
+                    $existingContribution->save();
+                }
+            }
 
             return response()->noContent(Response::HTTP_OK);
         } else {
