@@ -2,7 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\CompleteUserSchema;
+use App\OpenApi\Schemas\UserSchema;
 use App\OpenApi\Schemas\InvitationLinkSchema;
 use App\OpenApi\Schemas\PaginationMetaSchema;
 use App\OpenApi\Schemas\SimpleUserSchema;
@@ -17,7 +17,7 @@ class InvitationLinkListResponse extends ResponseFactory
 {
     public function build(): Response
     {
-        return Response::ok()->description('Successful response')->content(
+        return Response::ok()->description('Erfolgreich')->content(
             MediaType::json()->schema(
                 Schema::object()->properties(
                     AllOf::create()->schemas(

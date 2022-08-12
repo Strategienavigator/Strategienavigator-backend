@@ -11,7 +11,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use Vyuldashev\LaravelOpenApi\Contracts\Reusable;
 use Vyuldashev\LaravelOpenApi\Factories\SchemaFactory;
 
-class CompleteUserSchema extends SchemaFactory implements Reusable
+class UserSchema extends SchemaFactory implements Reusable
 {
     /**
      * @return AllOf|OneOf|AnyOf|Not|Schema
@@ -26,10 +26,9 @@ class CompleteUserSchema extends SchemaFactory implements Reusable
                     ->properties(
                         Schema::string('email')->nullable()
                             ->description('Email des Nutzers'),
-                        Schema::array('owned_saves')->items(Schema::integer())
-                            ->description('Id der Speicherstände, welche dieser Nutzer besitzt'),
-
-                        Schema::array('schared_saves')->items(SharedSaveOfUserSchema::ref())
+                        Schema::array('owned_saves')->items(SimplerSaveSchema::ref())
+                            ->description('Speicherstände die dieser Nutzer besitzt'),
+                        Schema::array('shared_saves')->items(SharedSaveOfUserSchema::ref())
                             ->description('Id der Speicherstände, welchem diesem Nutzer geteilt wurden und die dieser angenommen hat'),
                         Schema::array('invitations')->items(SharedSaveOfUserSchema::ref())
                             ->description('Id der Speicherstände, zu denen dieser Nutzer eingeladen wurde und die noch nicht angenommen wurden'),

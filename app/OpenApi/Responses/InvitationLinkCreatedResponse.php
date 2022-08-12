@@ -2,7 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\CompleteUserSchema;
+use App\OpenApi\Schemas\UserSchema;
 use App\OpenApi\Schemas\InvitationLinkSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Header;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Link;
@@ -16,7 +16,7 @@ class InvitationLinkCreatedResponse extends ResponseFactory
     public function build(): Response
     {
         return Response::created('invitation_link_created')
-            ->description('Successful response')
+            ->description('Erfolgreich')
             ->headers(
                 Header::create('Location')
                     ->description('Relativer Link zu der erstellen Ressource')

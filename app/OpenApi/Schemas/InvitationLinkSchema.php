@@ -18,10 +18,16 @@ class InvitationLinkSchema extends SchemaFactory implements Reusable
      */
     public function build(): SchemaContract
     {
-        // TODO
         return Schema::object('invitation_link')
             ->properties(
-                Schema::string('foo')
+                Schema::string('expiry_date')->format(Schema::FORMAT_DATE)->nullable()
+                    ->description('Datum an dem der Link abläuft. Null wenn er nie abläuft'),
+                Schema::integer('permission')->enum(0, 1, 2)
+                    ->description('Rechte die die geteilte person besitzt. 0: Leserechte \t 1: Schreib- und Leserechte \t 2: Adminrechte'),
+                SimplerSaveSchema::ref('save'),
+                Schema::string('created_at')->format(Schema::FORMAT_DATE)
+                    ->description('Zeitpunkt an dem dieser Speicherstand erstellt wurde'),
+                Schema::string('Token der diesen Link indentifiziert')
             );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\CompleteUserSchema;
+use App\OpenApi\Schemas\UserSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Header;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Link;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
@@ -15,7 +15,7 @@ class UserCreatedResponse extends ResponseFactory
     public function build(): Response
     {
         return Response::created('user_created')
-            ->description('Successful response')
+            ->description('Erfolgreich')
             ->headers(
                 Header::create('Location')
                     ->description('Relativer Link zu der erstellen Ressource')
@@ -28,7 +28,7 @@ class UserCreatedResponse extends ResponseFactory
             )
             ->content(
                 MediaType::json()->schema(Schema::object()->properties(
-                    CompleteUserSchema::ref('data')
+                    UserSchema::ref('data')
                 ))
             );
     }

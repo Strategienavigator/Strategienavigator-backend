@@ -9,6 +9,6 @@ class OkResponse extends ResponseFactory
 {
     public function build(): Response
     {
-        return Response::ok()->description('Successful response');
+        return Response::ok()->description('Erfolgreich');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\CompleteUserSchema;
+use App\OpenApi\Schemas\UserSchema;
 use App\OpenApi\Schemas\SimpleUserSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
@@ -14,12 +14,12 @@ class UserResponse extends ResponseFactory
 {
     public function build(): Response
     {
-        return Response::ok()->description('Successful response')
+        return Response::ok()->description('Erfolgreich')
             ->content(
                 MediaType::json()->schema(
                     Schema::object()->properties(
                         OneOf::create('data')->schemas(
-                            CompleteUserSchema::ref(),
+                            UserSchema::ref(),
                             SimpleUserSchema::ref()
                         )
                     )

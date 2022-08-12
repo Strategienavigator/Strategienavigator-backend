@@ -12,7 +12,7 @@ class AnonymousCreatedResponse extends ResponseFactory
 {
     public function build(): Response
     {
-        return Response::created()->description('Successful response')
+        return Response::created()->description('Erfolgreich')
             ->headers(
                 Header::create('Location')
                     ->description('Relativer Link zu der erstellen Ressource')

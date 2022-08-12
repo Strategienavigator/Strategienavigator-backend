@@ -2,7 +2,7 @@
 
 namespace App\OpenApi\Responses;
 
-use App\OpenApi\Schemas\CompleteUserSchema;
+use App\OpenApi\Schemas\UserSchema;
 use App\OpenApi\Schemas\PaginationMetaSchema;
 use App\OpenApi\Schemas\SimpleUserSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\AllOf;
@@ -16,7 +16,7 @@ class UserListResponse extends ResponseFactory
 {
     public function build(): Response
     {
-        return Response::ok()->description('Successful response')
+        return Response::ok()->description('Erfolgreich')
             ->content(
                 MediaType::json()->schema(
                     AllOf::create()->schemas(
@@ -25,7 +25,7 @@ class UserListResponse extends ResponseFactory
                             Schema::array('data')->items(
                                 OneOf::create()->schemas(
                                     SimpleUserSchema::ref(),
-                                    CompleteUserSchema::ref()
+                                    UserSchema::ref()
                                 )
                             )
                         )

@@ -29,9 +29,10 @@ class SimpleSaveResource extends JsonResource
             "last_locked" => $this->last_locked,
             "owner" => new SimplestUserResource($this->owner),
             "owner_deleting" => $this->owner->trashed(),
-            "tool_id" => $this->tool_id,
+            "tool" => new ToolResource($this->tool),
             "updated_at" => $this->updated_at,
             "created_at" => $this->created_at,
+            "deleted_at" => $this->deleted_at,
             /*"contributors" => $this->contributors->map(function ($c) {
                 return $c->id;
             })->toArray()*/
