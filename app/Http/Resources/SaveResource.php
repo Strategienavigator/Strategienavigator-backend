@@ -18,15 +18,11 @@ class SaveResource extends JsonResource
      */
     public function toArray($request)
     {
-        $simpleResource = new SimpleSaveResource($this->resource);
-        return array_merge_recursive($simpleResource->toArray($request), [
+        return [
+            $this->merge(new SimpleSaveResource($this->resource)),
             "data" => $this->data,
-            "contributors" => $this->contributors->map(function ($c) {
-                return new SimplestUserResource($c);
-            })->toArray(),
-            "invited" => $this->invited->map(function ($c) {
-                return new SimplestUserResource($c);
-            })->toArray(),
-        ]);
+            "contributors" => SimplestUserResource::collection($this->contributors),
+            "invited" => SimplestUserResource::collection($this->invited),
+        ];
     }
 }

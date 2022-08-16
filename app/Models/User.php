@@ -195,7 +195,7 @@ class User extends Authenticatable
      * @param bool $withPivot Ob die Pivot Tabelle mitgeladen werden soll
      * @return BelongsToMany
      */
-    public function accessibleShares(bool $withPivot = true): BelongsToMany
+    public function accessibleShares(bool|array $withPivot = true): BelongsToMany
     {
         $q = $this->belongsToMany(Save::class, 'shared_save')->using(SharedSave::class)
             ->withPivotValue("accepted", true)
@@ -215,15 +215,16 @@ class User extends Authenticatable
 
     public function settings($setting_id = -1): BelongsToMany
     {
-        $q = $this->belongsToMany(Setting::class, 'user_settings')->withPivot(['id','value']);
-        if($setting_id !== -1){
-            $q->where('setting_id' , $setting_id);
+        $q = $this->belongsToMany(Setting::class, 'user_settings')->withPivot(['id', 'value']);
+        if ($setting_id !== -1) {
+            $q->where('setting_id', $setting_id);
         }
 
         return $q;
     }
 
-    public function getSetting($setting_id){
+    public function getSetting($setting_id)
+    {
         return $this->hasMany(UserSetting::class);
     }
 

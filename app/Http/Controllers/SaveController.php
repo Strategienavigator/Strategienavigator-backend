@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
@@ -48,7 +49,7 @@ class SaveController extends Controller
 
         $validate = $request->validate([
             "name" => "required|string",
-            "description"=>"string",
+            "description" => "string",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id"
         ]);
@@ -73,11 +74,16 @@ class SaveController extends Controller
      * @see SavePolicy
      * @see Save::$last_opened
      */
-    public function show(Save $save): SaveResource
+    public function show(Request $request, Save $save): SaveResource
     {
+        $user = $request->user();
         $this->authorize("view", $save);
         $save->last_opened = Carbon::now();
+        if ($save->isContributor($user)) {
+            $save->setRelation('pivot', $user->sharedSaves()->where('save_id', $save->id)->first());
+        }
         $save->save();
+
         return new SaveResource($save);
     }
 
@@ -106,7 +112,7 @@ class SaveController extends Controller
                 "lock" => "required|boolean",
                 "data" => "prohibited",
                 "name" => "prohibited",
-                "description"=>"prohibited"
+                "description" => "prohibited"
             ]);
 
             if (is_null($save->locked_by_id) || $save->owner_id === $user->id) {

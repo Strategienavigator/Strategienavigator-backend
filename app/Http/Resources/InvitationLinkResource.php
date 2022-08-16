@@ -23,10 +23,9 @@ class InvitationLinkResource extends JsonResource
     public function toArray($request)
     {
         return [
+            $this->merge(new PermissionResource($this->resource)),
             "expiry_date" => $this->expiry_date,
-            "permission" => $this->permission,
             "save" => new SimplerSaveResource($this->safe),
-            "created_at" => $this->created_at,
             "token" => $this->when($this->safe->hasAtLeasPermission(Auth::user(), PermissionHelper::$PERMISSION_ADMIN), $this->token)
         ];
     }
