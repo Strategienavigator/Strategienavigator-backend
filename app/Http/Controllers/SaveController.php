@@ -109,7 +109,7 @@ class SaveController extends Controller
                 "description"=>"prohibited"
             ]);
 
-            if (is_null($save->locked_by_id) || $save->owner_id === $user->id) {
+            if (is_null($save->locked_by_id) || $save->locked_by_id === $user->id || $save->owner_id === $user->id) {
                 if ($validated["lock"]) {
                     $save->locked_by_id = $user->id;
                     $save->last_locked = Carbon::now();
