@@ -114,19 +114,15 @@ class SaveController extends Controller
                 "description" => "prohibited"
             ]);
 
-            if (is_null($save->locked_by_id) || $save->locked_by_id === $user->id || $save->owner_id === $user->id) {
-                if ($validated["lock"]) {
-                    $save->locked_by_id = $user->id;
-                    $save->last_locked = Carbon::now();
-                } else {
-                    $save->locked_by_id = null;
-                }
-
-                $save->save();
-                return response()->noContent(Response::HTTP_OK);
+            if ($validated["lock"]) {
+                $save->locked_by_id = $user->id;
+                $save->last_locked = Carbon::now();
             } else {
-                return response(["message" => "The save needs to get locked in advance"], Response::HTTP_FAILED_DEPENDENCY);
+                $save->locked_by_id = null;
             }
+
+            $save->save();
+            return response()->noContent(Response::HTTP_OK);
         } else {
             $validated = $request->validate([
                 "data" => "nullable|json",
