@@ -125,7 +125,7 @@ class SharedSaveController extends Controller
     {
         $this->authorize("update", $sharedSave);
         $validated = $request->validate([
-            "permission" => ["integer", "min:0", "min:2"],
+            "permission" => ["integer", "min:0", "max:2"],
             "revoked" => ["boolean"],
         ]);
         $sharedSave->fill($validated);

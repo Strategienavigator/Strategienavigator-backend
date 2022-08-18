@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 /**
  * Klasse, welche eine Beziehung von einem Speicherstand zu einem User darstellt.
  *
@@ -22,8 +23,8 @@ class SharedSaveUserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "save_id" => $this->id,
-            "permission" => $this->pivot->permission,
+            "save" => new SimplerSaveResource($this->resource),
+            $this->merge(new PermissionResource($this->pivot))
         ];
     }
 }

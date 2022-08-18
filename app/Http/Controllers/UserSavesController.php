@@ -12,6 +12,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Controller, eine Route zum Anzeigen aller Speicherstände eins zugehörigen Users
@@ -44,7 +45,7 @@ class UserSavesController extends Controller
         }
 
         $savesQuerry = $user->saves();
-        $contributorSavesQuery = $user->accessibleShares(false);
+        $contributorSavesQuery = $user->accessibleShares(true);
 
         $where = function ($query) use ($validated) {
             if (key_exists("tool_id", $validated)) {
@@ -55,19 +56,36 @@ class UserSavesController extends Controller
                 $query->where("name", "Like", "%" . $validated["name"] . "%");
             }
             if (key_exists("description", $validated)) {
-                if($validated["search_both"]){
+                if ($validated["search_both"]) {
                     $query->where("description", "Like", "%" . $validated["description"] . "%");
-                }else{
+                } else {
                     $query->orWhere("description", "Like", "%" . $validated["description"] . "%");
                 }
             }
         };
 
         $savesQuerry->where($where);
+        // add because of missing pivot table data which would make the union fail
+        $savesQuerry->select([
+            "saves.*",
+            'pivot_user_id' => DB::raw("NULL"),
+            'pivot_save_id' => DB::raw("NULL"),
+            'pivot_permission' => DB::raw("NULL"),
+            'pivot_created_at' => DB::raw("NULL"),
+            'pivot_updated_at' => DB::raw("NULL")
+        ]);
         $contributorSavesQuery->where($where);
 
 
-        $saves = $savesQuerry->union($contributorSavesQuery->getBaseQuery())->paginate();
+        $saves = $contributorSavesQuery->union($savesQuerry->getBaseQuery())->paginate(null, []/* empty array to prevent duplicate "saves.*" select*/);
+
+        // remove previously added null pivot columns
+        foreach ($saves->items() as $save) {
+            if ($save->pivot->permission == null) {
+                $save->unsetRelation('pivot');
+            }
+        }
+
         return SimpleSaveResource::collection($saves);
     }
 }

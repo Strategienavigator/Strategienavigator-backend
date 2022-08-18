@@ -30,6 +30,9 @@ class SimpleSaveResource extends JsonResource
             "owner" => new SimplestUserResource($this->owner),
             "owner_deleting" => $this->owner->trashed(),
             "tool_id" => $this->tool_id,
+            "permission" => $this->whenPivotLoaded('shared_save', function () {
+                return new PermissionResource($this->pivot);
+            }),
             "updated_at" => $this->updated_at,
             "created_at" => $this->created_at,
             /*"contributors" => $this->contributors->map(function ($c) {

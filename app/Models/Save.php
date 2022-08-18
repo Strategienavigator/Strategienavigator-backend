@@ -68,7 +68,7 @@ use Illuminate\Support\Carbon;
  */
 class Save extends Model
 {
-    use HasFactory, SoftDeletes,Limitable;
+    use HasFactory, SoftDeletes, Limitable;
 
     /**
      * Attribute, welche Massen zuweisbar sind
@@ -147,7 +147,7 @@ class Save extends Model
         return $this->belongsToMany(User::class, 'shared_save')->using(SharedSave::class)
             ->withPivot(["permission", "accepted", "declined", "revoked"])
             ->withPivotValue("accepted", false)
-            ->withPivotValue("revoked",false)
+            ->withPivotValue("revoked", false)
             ->withTimestamps();
     }
 
@@ -187,6 +187,12 @@ class Save extends Model
             ->withTimestamps();
     }
 
+    public function isContributor(User|int $user)
+    {
+        $id = is_int($user) ? $user : $user->id;
+        return $this->contributors->firstWhere('id', $id) !== null;
+    }
+
     /**
      * Prüft, ob der übergebene User mindestens die angegebene Berechtigung bei diesem Speicherstand besitzt
      * @param User $user Der zu überprüfende User
@@ -197,7 +203,7 @@ class Save extends Model
     {
         if ($user->id === $this->owner_id) {
             return true;
-        } else if (($contributor = $this->contributors()->firstWhere('user_id', '=', $user->id)) !== null) {
+        } else if (($contributor = $this->contributors->firstWhere('id', '=', $user->id)) !== null) {
             $hasPermission = $contributor->pivot->permission;
             if (PermissionHelper::isAtLeastPermission($hasPermission, $permission)) {
                 return true;
