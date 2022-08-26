@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Broadcasting\SaveChannel;
 use App\Helper\PermissionHelper;
 use App\Models\Save;
 use App\Models\User;
@@ -80,6 +81,17 @@ class SavePolicy
     {
         //TODO
         return false;
+    }
+
+    /**
+     * Wenn der User broadcasten darf
+     *
+     * @param User $user Der aktuelle authentifizierte User
+     * @param Save $save Der Speicherstand
+     * @return bool
+     */
+    public function broadcast(User $user, Save $save): bool {
+        return (new SaveChannel())->join($user, $save) !== false;
     }
 
     /**
