@@ -66,6 +66,7 @@ Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
     // Users
     Route::get('users/{user}/saves', [\App\Http\Controllers\UserSavesController::class, 'index']);
     Route::get('users/search', [UserController::class, 'searchUser']);
+    Route::post('/user/port', [UserController::class, 'portAnonymousUser']);
     Route::apiResource('users', UserController::class)->except('store');
 
     // InvitationLink

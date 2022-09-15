@@ -54,6 +54,7 @@ class SettingPolicy
     public function update(User $user, Setting $setting)
     {
         return false;
+        return $setting->users()->find($user->id) !== null;
     }
 
     /**

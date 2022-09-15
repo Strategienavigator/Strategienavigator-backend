@@ -53,10 +53,10 @@ class UserService
      * @param array $data array with the new data
      * @param EmailService $emailService the email service
      */
-    public function updateUser(User $u, array $data, EmailService $emailService)
+    public function updateUser(User &$u, array $data, EmailService $emailService)
     {
-
         $u->fill($data);
+
         if (is_null($u->last_activity))
             $u->last_activity = Carbon::now();
         if (key_exists("password", $data)) {

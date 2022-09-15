@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Mail\EmailVerificationEmail;
 use App\Models\EmailVerification;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -31,16 +32,13 @@ class EmailService
      * @param User $user Der betroffene User
      * @param string $email Die neue Email
      */
-    public function requestEmailChangeOfUser(User $user, string $email)
+    public function requestEmailChangeOfUser(User &$user, string $email)
     {
         $emailVerification = new EmailVerification();
         $emailVerification->email = $email;
-
         $emailVerification->token = $this->tokenService->createToken();
 
-
         $user->emailVerification()->save($emailVerification);
-
 
         // is queued because of the ShouldQueue interface of EmailVerificationEmail
         Mail::to($emailVerification->email)->send(new EmailVerificationEmail($emailVerification->token, $user->username));
