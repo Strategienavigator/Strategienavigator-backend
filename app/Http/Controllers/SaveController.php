@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LiveSaveUpdate;
 use App\Http\Resources\SaveResource;
 use App\Http\Resources\SimpleSaveResource;
 use App\Models\Save;
@@ -84,6 +85,22 @@ class SaveController extends Controller
         $save->save();
 
         return new SaveResource($save);
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function broadcastPatches(Request $request, Save $save): Response
+    {
+        $this->authorize("broadcast", $save);
+        $validate = $request->validate([
+            "data" => "required|string",
+        ]);
+        $patches = $validate["data"];
+
+        broadcast(new LiveSaveUpdate($request->user(), $save, $patches))->toOthers();
+
+        return response()->noContent(Response::HTTP_OK);
     }
 
     /** Aktualisiert den ausgewählten Speicherstand mit den übergebenen Daten

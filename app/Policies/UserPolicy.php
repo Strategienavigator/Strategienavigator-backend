@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+
 class UserPolicy
 {
     use HandlesAuthorization;
@@ -78,5 +79,14 @@ class UserPolicy
     public function searchAny(User $user, string $searchString): bool
     {
         return true;
+    }
+
+    /**
+     * Prüft ob der User anonym ist und sich porten darf
+     * @param User $user
+     * @return bool
+     */
+    public function anonport(User $user): bool {
+        return $user->anonymous;
     }
 }

@@ -30,11 +30,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Setting extends Model
 {
-    use HasFactory,Limitable;
-
+    use HasFactory, Limitable;
 
     public $timestamps = false;
 
+    protected $fillable = [
+
+    ];
 
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

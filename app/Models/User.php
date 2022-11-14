@@ -223,9 +223,9 @@ class User extends Authenticatable
         return $q;
     }
 
-    public function getSetting($setting_id)
+    public function getUserSetting(int $setting_id): \Illuminate\Database\Eloquent\Model|HasMany
     {
-        return $this->hasMany(UserSetting::class);
+        return $this->hasMany(UserSetting::class)->where("setting_id", "=", $setting_id)->firstOrFail();
     }
 
 
