@@ -44,12 +44,11 @@ class SaveController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-
         $this->authorize("create", Save::class);
 
         $validate = $request->validate([
-            "name" => "required|string",
-            "description" => "string",
+            "name" => "required|string|max:255",
+            "description" => "string|max:300",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id"
         ]);
@@ -143,8 +142,8 @@ class SaveController extends Controller
         } else {
             $validated = $request->validate([
                 "data" => "nullable|json",
-                "name" => "string",
-                "description" => "string",
+                "name" => "string|max:255",
+                "description" => "string|max:300",
                 "lock" => "prohibited"
             ]);
 
