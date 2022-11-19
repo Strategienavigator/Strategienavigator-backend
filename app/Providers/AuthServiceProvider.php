@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Http\Controllers\AuthTokenController;
+use App\Models\UserSetting;
 use App\Policies\AuthTokenPolicy;
+use App\Policies\UserSettingPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;

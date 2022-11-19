@@ -14,7 +14,7 @@ class AddDescriptionToSave extends Migration
     public function up()
     {
         Schema::table('saves', function (Blueprint $table) {
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
         });
     }
 

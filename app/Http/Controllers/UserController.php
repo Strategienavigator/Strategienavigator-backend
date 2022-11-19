@@ -29,13 +29,11 @@ use Validator;
  */
 class UserController extends Controller
 {
-
     /**
      * Das regex, welches Benutzt wird um sicherzustellen, dass das User Password valide ist
      * @var string
      */
     public static $passwordRegex = "/^(?=.*[a-zäöüß])(?=.*[A-ZÄÖÜ])(?=.*\d)(?=.*[$&§+,:;=?@#|'<>.^*()%!_-])[A-Za-zäöüßÄÖÜ\d$&§+,:;=?@#|'<>.^*()%!_-].+$/";
-
 
     /**
      * Zeigt alle User an
@@ -153,6 +151,35 @@ class UserController extends Controller
         }
 
         $userService->updateUser($user, $validated, $emailService);
+        return response()->noContent(Response::HTTP_OK);
+    }
+
+    /**
+     * Portiert einen anonymen Benutzer in einen vollwertigen Benutzer
+     *
+     * @param Request $request
+     * @param EmailService $emailService
+     * @param UserService $userService
+     * @return Response
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function portAnonymousUser(Request $request, EmailService $emailService, UserService $userService)
+    {
+        $user = \Auth::user();
+        $this->authorize("anonport", $user);
+
+        $validated = Validator::validate($request->all(), [
+            "email" => ["email", "unique:users,email"],
+            "username" => ["string", "unique:users"],
+            "password" => ["string", "min:8", "max:120", "regex:" . UserController::$passwordRegex]
+        ], [
+            "password.regex" => __("passwords.invalid_regex")
+        ]);
+
+        $user->anonymous = false;
+        $userService->updateUser($user, $validated, $emailService);
+
         return response()->noContent(Response::HTTP_OK);
     }
 

@@ -23,7 +23,7 @@ class UserSettingController extends Controller
     public function store(Request $request, User $user): Response
     {
 
-        $this->authorize("create",[UserSetting::class,$user]);
+        $this->authorize("create", [UserSetting::class, $user]);
 
         $validated = $request->validate([
             "setting" => ["required","exists:settings,id"],
@@ -39,22 +39,23 @@ class UserSettingController extends Controller
 
     public function show(User $user, Setting $setting): UserSettingResource
     {
-        $m = $user->settings($setting->id)->firstOrFail();
-        $this->authorize("view",$m);
-        return new UserSettingResource($m);
+        $userSetting = $user->getUserSetting($setting->id);
+        $this->authorize("view", [UserSetting::class, $userSetting]);
+        return new UserSettingResource($userSetting);
     }
 
     public function update(Request $request, User $user, Setting $setting)
     {
+        $userSetting = $user->getUserSetting($setting->id);
 
+         $this->authorize("update", [UserSetting::class, $userSetting]);
 
-        $m = $user->getSetting($setting->id)->firstOrFail();
-        $this->authorize("update",$m);
         $validated = $request->validate([
             "value" => ["json"]
         ]);
-        $m->fill($validated);
-        $m->save();
+        $userSetting->fill($validated);
+        $userSetting->save();
+
         return \response()->noContent(Response::HTTP_OK);
     }
 

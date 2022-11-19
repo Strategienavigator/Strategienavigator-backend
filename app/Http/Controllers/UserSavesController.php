@@ -37,6 +37,7 @@ class UserSavesController extends Controller
             "tool_id" => ["integer", "exists:tools,id"],
             "name" => ["string"],
             "description" => ["string"],
+            "deleted" => ["sometimes", "boolean"],
             "search_both" => ["boolean"]
         ]);
 
@@ -51,7 +52,9 @@ class UserSavesController extends Controller
             if (key_exists("tool_id", $validated)) {
                 $query->where("tool_id", $validated["tool_id"]);
             }
-
+            if (!key_exists("deleted", $validated)) {
+                $query->where("deleted_at", null);
+            }
             if (key_exists("name", $validated)) {
                 $query->where("name", "Like", "%" . $validated["name"] . "%");
             }
