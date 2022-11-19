@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function storeAnonymous(Request $request, UserService $userService, CaptchaService $captchaService): Response
     {
-        $captchaService->checkRequest($request);
+//        $captchaService->checkRequest($request);
         $password = md5(microtime());
         $u = $userService->createAnonymousUser($password);
         $u->save();
