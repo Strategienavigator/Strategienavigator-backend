@@ -95,8 +95,9 @@ class UserController extends Controller
      * @return Response Code 201, wenn das erstellten erfolgreich war. Response enthält username und password im Body
      * @throws Exception Wenn es ein Problem beim Erstellen des Users gab
      */
-    public function storeAnonymous(UserService $userService): Response
+    public function storeAnonymous(Request $request, UserService $userService, CaptchaService $captchaService): Response
     {
+        $captchaService->checkRequest($request);
         $password = md5(microtime());
         $u = $userService->createAnonymousUser($password);
         $u->save();
@@ -164,10 +165,11 @@ class UserController extends Controller
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function portAnonymousUser(Request $request, EmailService $emailService, UserService $userService)
+    public function portAnonymousUser(Request $request, EmailService $emailService, UserService $userService, CaptchaService $captchaService)
     {
         $user = \Auth::user();
         $this->authorize("anonport", $user);
+        $captchaService->checkRequest($request);
 
         $validated = Validator::validate($request->all(), [
             "email" => ["email", "unique:users,email"],
