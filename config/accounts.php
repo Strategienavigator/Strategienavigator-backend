@@ -11,7 +11,6 @@ return [
      *
      */
     "email_whitelist" => [
-        "^.*jade-hs.de$"
     ],
 
     /*
