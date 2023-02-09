@@ -9,6 +9,7 @@ use App\Models\EmailVerification;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Rules\EmailBlockList;
+use App\Services\CaptchaService;
 use App\Services\EmailService;
 use App\Services\UserService;
 use Exception;
@@ -57,16 +58,18 @@ class UserController extends Controller
      * @return Response Code 201, wenn ein User erstellt wurde
      * @throws ValidationException Wenn die Eingabedaten nicht valide sind
      */
-    public function store(Request $request, EmailService $emailService, UserService $userService): Response
+    public function store(Request $request, EmailService $emailService, UserService $userService, CaptchaService $captchaService): Response
     {
         $validated = Validator::validate($request->all(), [
             "username" => ["required", "string", "unique:users"],
             "password" => ["required", "string", "min:8", "max:120", "regex:" . UserController::$passwordRegex],
             "email" => ["required", "email", new EmailBlockList($emailService), "unique:users,email", "unique:" . EmailVerification::class . ",email"],
-            "anonymous_id" => ["integer", "exists:users,id"],
+            "anonymous_id" => ["integer", "exists:users,id"]
         ], [
             "password.regex" => __("passwords.invalid_regex")
         ]);
+
+        $captchaService->checkRequest($request);
 
 
         if (array_key_exists("anonymous_id", $validated)) {
@@ -92,8 +95,9 @@ class UserController extends Controller
      * @return Response Code 201, wenn das erstellten erfolgreich war. Response enthält username und password im Body
      * @throws Exception Wenn es ein Problem beim Erstellen des Users gab
      */
-    public function storeAnonymous(UserService $userService): Response
+    public function storeAnonymous(Request $request, UserService $userService, CaptchaService $captchaService): Response
     {
+//        $captchaService->checkRequest($request);
         $password = md5(microtime());
         $u = $userService->createAnonymousUser($password);
         $u->save();
@@ -161,10 +165,11 @@ class UserController extends Controller
      * @throws AuthorizationException
      * @throws ValidationException
      */
-    public function portAnonymousUser(Request $request, EmailService $emailService, UserService $userService)
+    public function portAnonymousUser(Request $request, EmailService $emailService, UserService $userService, CaptchaService $captchaService)
     {
         $user = \Auth::user();
         $this->authorize("anonport", $user);
+        $captchaService->checkRequest($request);
 
         $validated = Validator::validate($request->all(), [
             "email" => ["email", "unique:users,email"],
