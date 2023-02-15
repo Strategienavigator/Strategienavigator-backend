@@ -1,26 +1,27 @@
-# Strategietools-Backend
+# Strategienavigator-Backend
 
+![](https://img.shields.io/github/v/release/ricom/toolbox-backend?style=flat-square) 
+![](https://img.shields.io/github/license/ricom/toolbox-backend?style=flat-square)
 
-![](https://img.shields.io/github/v/release/ricom/toolbox-backend?style=flat-square) ![](https://img.shields.io/github/license/ricom/toolbox-backend?style=flat-square)
-
-Das Projekt Strategietools basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools
+Das Projekt [Strategienavigator](https://strategie-navigator.jade-hs.de/) basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools
 sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesondere ist der Einsatz in der Hochschule
 geplant. Aber auch allen Interessierten stehen die Werkzeuge zur Verfügung.
 
 Das Projekt wird an der Jade Hochschule in Wilhelmshaven
 am [Fachbereich Management Information Technologie:link:](https://www.jade-hs.de/mit/) entwickelt.
 
-### Werkzeuge
+## Werkzeuge
 
-Für den Anfang sind folgende Strategietools geplant:
+Folgende Strategietools sind geplant bzw. umgesetzt:
 
-- Paarweiser Vergleich (CG)
-- Nutzwertanalyse (CG)
-- Portfolioanalyse (CG)
-- SWOT-Analyse (CG)
-- ABC-Analyse ([Geist5000](https://github.com/Geist5000))
-- Sensitivitätsanalyse (HJP)
-- AHP-Analyse (MS/RM)
+- [x] Paarweiser Vergleich (2022 CG)
+- [x] Nutzwertanalyse (2022 CG)
+- [x] Portfolioanalyse (2022 CG)
+- [x] SWOT-Analyse (2021 CG)
+- [ ] Persona (2023 CG/RM)
+- [ ] ABC-Analyse ([Geist5000](https://github.com/Geist5000))
+- [ ] Sensitivitätsanalyse (HJP/RM)
+- [ ] AHP-Analyse (MS/RM)
 
 ### Weitere Informationen
 
