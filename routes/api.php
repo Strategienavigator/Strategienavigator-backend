@@ -47,6 +47,7 @@ Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
 
     // Save
     Route::post("/saves/{save}/broadcast", [SaveController::class, "broadcastPatches"]);
+    Route::get("/saves/index/last", [SaveController::class, "indexLast"]);
 
     // Settings
     Route::apiResource('settings', SettingController::class)->only(["index", "show"]);

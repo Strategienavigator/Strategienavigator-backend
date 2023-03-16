@@ -35,6 +35,17 @@ class SaveController extends Controller
         return SimpleSaveResource::collection(Save::with("contributors")->paginate());
     }
 
+    /**
+     * @return AnonymousResourceCollection
+     * @throws AuthorizationException
+     * @see Save
+     */
+    public function indexLast(): AnonymousResourceCollection {
+        $this->authorize("viewAny", Save::class);
+
+        return SimpleSaveResource::collection(Save::orderBy("last_opened", "DESC")->limit(4)->get());
+    }
+
     /** Erstellt einen neuen Speicherstand
      * @param Request $request Die aktuelle Request instanz
      * @return JsonResponse Code 201, wenn der Speicherstand erfolgreich erstellt wurde
