@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\frontend\FrontendController;
+use App\Websockets\Controller\TestWebsocketController;
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::fallback([FrontendController::class,"index"]);
+
+

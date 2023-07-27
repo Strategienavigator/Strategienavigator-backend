@@ -9,6 +9,8 @@ use App\Http\Controllers\SharedSaveController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingController;
+use App\Websockets\Controller\TestWebsocketController;
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,3 +76,5 @@ Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
     Route::get('saves/{save}/invitation-links', [InvitationLinkController::class, "saveIndex"]);
     Route::put('invitation-link/{token}/accept', [InvitationLinkController::class, "acceptInvite"]);
 });
+
+WebSocketsRouter::webSocket("/test", TestWebsocketController::class);
