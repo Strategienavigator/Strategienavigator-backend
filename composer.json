@@ -13,10 +13,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
+        "laravel/octane": "^1.5",
         "laravel/passport": "^10.3",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "^7.0",
-        "mews/captcha": "^3.2"
+        "mews/captcha": "^3.2",
+        "pusher/pusher-php-server": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
