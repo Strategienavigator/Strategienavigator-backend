@@ -45,7 +45,9 @@ Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
         "saves" => SaveController::class,
         "invitation-link" => InvitationLinkController::class,
     ]);
-    Route::apiResource("saves.resources", SaveResourceController::class)->shallow();
+    Route::apiResource("saves.resources", SaveResourceController::class)
+        ->shallow()
+        ->only(["store","show","destroy"]);
 
     Route::get("saves/{save}/resources/{fileName}", [SaveResourceController::class, "showByName"]);
 

@@ -13,16 +13,6 @@ use Response;
 
 class SaveResourceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Save $save)
-    {
-        abort(404);
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -77,11 +67,13 @@ class SaveResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\SaveResource $saveResource
+     * @param \App\Models\SaveResource $resource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SaveResource $saveResource)
+    public function destroy(SaveResource $resource)
     {
-        abort(404);
+        $this->authorize("delete", $resource->safe);
+        $resource->delete();
+        return response()->noContent(\Illuminate\Http\Response::HTTP_OK);
     }
 }
