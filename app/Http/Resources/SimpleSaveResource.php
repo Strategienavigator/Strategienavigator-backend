@@ -39,6 +39,7 @@ class SimpleSaveResource extends JsonResource
             /*"contributors" => $this->contributors->map(function ($c) {
                 return $c->id;
             })->toArray()*/
+            "resources" => SaveResourceDescriptorResource::collection($this->saveResources)
         ];
     }
 }

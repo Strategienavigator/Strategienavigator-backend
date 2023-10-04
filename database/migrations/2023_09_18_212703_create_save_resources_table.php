@@ -18,12 +18,13 @@ return new class extends Migration {
                 ->onDelete("CASCADE")->onUpdate("CASCADE");
             $table->string("file_name")->nullable(false);
             $table->string("file_type")->nullable(false);
-            $table->binary("contents")->nullable(false);
             $table->string("contents_hash")->nullable(false);
             $table->string("hash_function")->nullable(false);
             $table->unique(["file_name", "save_id"]);
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE save_resources ADD contents MEDIUMBLOB NOT NULL");
     }
 
     /**

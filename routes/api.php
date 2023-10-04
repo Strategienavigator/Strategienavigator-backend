@@ -4,6 +4,7 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\InvitationLinkController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SaveController;
+use App\Http\Controllers\SaveResourceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SharedSaveController;
 use App\Http\Controllers\ToolController;
@@ -44,6 +45,9 @@ Route::group(["middleware" => ["auth:api", "activityLog"]], function () {
         "saves" => SaveController::class,
         "invitation-link" => InvitationLinkController::class,
     ]);
+    Route::apiResource("saves.resources", SaveResourceController::class)->shallow();
+
+    Route::get("saves/{save}/resources/{fileName}", [SaveResourceController::class, "showByName"]);
 
     // Save
     Route::post("/saves/{save}/broadcast", [SaveController::class, "broadcastPatches"]);

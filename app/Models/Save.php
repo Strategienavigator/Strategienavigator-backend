@@ -187,6 +187,12 @@ class Save extends Model
             ->withTimestamps();
     }
 
+    public function saveResources(): HasMany
+    {
+        return $this->hasMany(SaveResource::class);
+    }
+
+
     public function isContributor(User|int $user)
     {
         $id = is_int($user) ? $user : $user->id;

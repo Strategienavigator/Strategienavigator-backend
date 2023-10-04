@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $file_type mime type of the file
  * @property mixed $contents binary data of the file
  * @property string $contents_hash hash value of the contents of the file
- * @property string $hash_functions hash function used to compute the hash
+ * @property string $hash_function hash function used to compute the hash
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property Save|null $safe associated save
@@ -43,6 +44,14 @@ class SaveResource extends Model
      */
     public function safe()
     {
-        return $this->belongsTo(Save::class);
+        return $this->belongsTo(Save::class,"save_id");
+    }
+
+
+    protected function file_name(): Attribute
+    {
+        return Attribute::make(
+            set: fn(string $value) => strtolower($value)
+        );
     }
 }

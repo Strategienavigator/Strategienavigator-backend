@@ -7,13 +7,15 @@ use App\Http\Resources\SaveResource;
 use App\Http\Resources\SimpleSaveResource;
 use App\Models\Save;
 use App\Policies\SavePolicy;
+use App\Services\SaveResourceService;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\File;
 
 /**
  * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
@@ -21,6 +23,24 @@ use Illuminate\Http\Response;
  */
 class SaveController extends Controller
 {
+    const ALLOWED_MIMETYPES = ["image/*",
+        "application/json",
+        "application/pdf",
+        "text/plain",
+        "text/csv",
+        "text/html",
+        "text/plain",
+        "application/vnd.oasis.opendocument.spreadsheet",
+        "application/vnd.oasis.opendocument.text",
+        "application/vnd.oasis.opendocument.presentation"];
+    const FILE_MAX_KILOBYTES = 5 * 1024;
+
+    public function __construct(private SaveResourceService $resourceService)
+    {
+
+    }
+
+
     /**
      * Zeigt alle Speicherstände an
      * @return AnonymousResourceCollection Speicherstände als ResourceCollection
@@ -40,7 +60,8 @@ class SaveController extends Controller
      * @throws AuthorizationException
      * @see Save
      */
-    public function indexLast(): AnonymousResourceCollection {
+    public function indexLast(): AnonymousResourceCollection
+    {
         $this->authorize("viewAny", Save::class);
 
         return SimpleSaveResource::collection(Save::orderBy("last_opened", "DESC")->limit(4)->get());
@@ -61,14 +82,25 @@ class SaveController extends Controller
             "name" => "required|string|max:255",
             "description" => "string|max:300",
             "data" => "nullable|json",
-            "tool_id" => "required|exists:tools,id"
+            "tool_id" => "required|exists:tools,id",
+            "resources.*" => [
+                File::types(self::ALLOWED_MIMETYPES)
+                    ->max(self::FILE_MAX_KILOBYTES)
+            ]
         ]);
+        $s = DB::transaction(function () use ($request, $validate) {
+            $s = new Save($validate);
+            $s->tool_id = $validate["tool_id"];
+            $s->owner_id = $request->user()->id;
+            $s->save();
 
-        $s = new Save($validate);
-        $s->tool_id = $validate["tool_id"];
-        $s->owner_id = $request->user()->id;
-        $s->save();
-//        return response()->created('saves', $s);
+            if (array_key_exists("resources", $validate)) {
+                $this->resourceService->saveResources($s, $validate["resources"]);
+            }
+            return $s;
+        });
+
+
         return response()->json(new SaveResource($s), 201);
     }
 
@@ -155,16 +187,27 @@ class SaveController extends Controller
                 "data" => "nullable|json",
                 "name" => "string|max:255",
                 "description" => "string|max:300",
+                "resources.*" => [
+                    File::types(self::ALLOWED_MIMETYPES)
+                        ->max(self::FILE_MAX_KILOBYTES)
+                ],
                 "lock" => "prohibited"
             ]);
 
-            if ($save->locked_by_id === $user->id) {
-                $save->fill($validated);
-                $save->save();
-                return response()->noContent(Response::HTTP_OK);
-            } else {
-                return response()->noContent(Response::HTTP_LOCKED);
-            }
+            return DB::transaction(function () use ($validated, $save, $user) {
+                if ($save->locked_by_id === $user->id) {
+                    $save->fill($validated);
+                    $save->save();
+
+                    if (array_key_exists("resources", $validated)) {
+                        $this->resourceService->saveResources($save, $validated["resources"]);
+                    }
+                    return response()->noContent(Response::HTTP_OK);
+                } else {
+                    return response()->noContent(Response::HTTP_LOCKED);
+                }
+            });
+
         }
     }
 
