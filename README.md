@@ -1,9 +1,9 @@
 # Strategienavigator-Backend
 
-![](https://img.shields.io/github/v/release/ricom/strategienavigator-backend?style=flat-square) 
-![](https://img.shields.io/github/license/ricom/strategienavigator-backend?style=flat-square)
+![](https://img.shields.io/github/v/release/ricom/Strategienavigator-backend?style=flat-square) 
+![](https://img.shields.io/github/license/ricom/Strategienavigator-backend?style=flat-square)
 
-Das Projekt [Strategienavigator](https://strategie-navigator.jade-hs.de/) basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools
+Das Projekt [Strategienavigator](https://strategie-navigator.jade-hs.de/) basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Der Strategienavigator
 sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesondere ist der Einsatz in der Hochschule
 geplant. Aber auch allen Interessierten stehen die Werkzeuge zur Verfügung.
 
@@ -55,8 +55,8 @@ Dieses Projekt muss in das web-root Verzeichnis des Webservers geladen werden (b
 Verzeichnis `htdocs`):
 
 ```shell
-git clone https://github.com/ricom/strategienavigator-backend.git
-cd strategienavigator-backend
+git clone https://github.com/ricom/Strategienavigator-backend.git
+cd Strategienavigator-backend
 ```
 
 Die folgenden Kommandos müssen alle in dem von Git erstellten Ordner ausgeführt werden.
@@ -126,7 +126,7 @@ php artisan queue:work
 Dieser läuft solange bis er gestoppt wird. Bei Änderungen im Quellcode oder in der [.env](ENV.md) Datei muss der Queue-Worker neu gestartet werden.
 
 Die Einrichtung ist nun abgeschlossen.  
-Zum Testen kann die [Webseite:link:](http://localhost/strategienavigator-backend/public/) lokal aufgerufen werden.
+Zum Testen kann die [Webseite:link:](http://localhost/Strategienavigator-backend/public/) lokal aufgerufen werden.
 
 ## Datenbank migrieren
 
@@ -173,7 +173,7 @@ php artisan ide-helper:models -W
 
 ## Bugs
 
-Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/strategienavigator-backend/issues) im Github Repository
+Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/Strategienavigator-backend/issues) im Github Repository
 erstellen.
 
 ## Testen
