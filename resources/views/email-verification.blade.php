@@ -18,7 +18,7 @@
 <div>
     Hallo {{$username}},<br/>
     <br/>
-    wir haben eine Anfrage zur Erstellung eines Benutzerkontos für die Strategietoolanwendung erhalten.<br/>
+    wir haben eine Anfrage zur Erstellung eines Benutzerkontos für den Strategienavigator erhalten.<br/>
     Bitte klicken Sie auf folgenden Link, um Ihre Registrierung abzuschließen:<br/>
     <a href={{ config('frontend.url').'/'.config('frontend.email_verify_page').'/'.$token}}>{{ config('frontend.url').'/'.config('frontend.email_verify_page').'/'.$token}}</a>
     <br/>

@@ -1,7 +1,7 @@
 # Strategienavigator-Backend
 
-![](https://img.shields.io/github/v/release/ricom/toolbox-backend?style=flat-square) 
-![](https://img.shields.io/github/license/ricom/toolbox-backend?style=flat-square)
+![](https://img.shields.io/github/v/release/ricom/strategienavigator-backend?style=flat-square) 
+![](https://img.shields.io/github/license/ricom/strategienavigator-backend?style=flat-square)
 
 Das Projekt [Strategienavigator](https://strategie-navigator.jade-hs.de/) basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Die Strategietools
 sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesondere ist der Einsatz in der Hochschule
@@ -55,8 +55,8 @@ Dieses Projekt muss in das web-root Verzeichnis des Webservers geladen werden (b
 Verzeichnis `htdocs`):
 
 ```shell
-git clone https://github.com/ricom/toolbox-backend.git
-cd toolbox-backend
+git clone https://github.com/ricom/strategienavigator-backend.git
+cd strategienavigator-backend
 ```
 
 Die folgenden Kommandos müssen alle in dem von Git erstellten Ordner ausgeführt werden.
@@ -85,7 +85,7 @@ cp .env.example .env
 
 Welche Einstellungen in der .env Datei getroffen werden müssen, ist [hier](ENV.md) dokumentiert.   
 Anschließend sollte Apache und MySQL von XAMPP aus gestartet werden.  
-Nun muss eine Datenbank mit dem Namen `toolbox` erstellt werden. Am leichtesten geht dies
+Nun muss eine Datenbank mit dem Namen `strategienavigator` erstellt werden. Am leichtesten geht dies
 mit [phpmyadmin:link:](http://localhost/phpmyadmin)
 
 Laravel benötigt einen privaten Schlüssel in der `.env` Datei. Dieser kann mit dem folgenden Kommando erstellt werden:
@@ -126,7 +126,7 @@ php artisan queue:work
 Dieser läuft solange bis er gestoppt wird. Bei Änderungen im Quellcode oder in der [.env](ENV.md) Datei muss der Queue-Worker neu gestartet werden.
 
 Die Einrichtung ist nun abgeschlossen.  
-Zum Testen kann die [Webseite:link:](http://localhost/toolbox-backend/public/) lokal aufgerufen werden.
+Zum Testen kann die [Webseite:link:](http://localhost/strategienavigator-backend/public/) lokal aufgerufen werden.
 
 ## Datenbank migrieren
 
@@ -173,7 +173,7 @@ php artisan ide-helper:models -W
 
 ## Bugs
 
-Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/toolbox-backend/issues) im Github Repository
+Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/strategienavigator-backend/issues) im Github Repository
 erstellen.
 
 ## Testen
@@ -187,5 +187,5 @@ Um einfach testen zu können, kann durch die env variable `EMAIL_FILTER_DISABLED
 ## Autoren
 
 - [Gesit](https://github.com/Geist5000)
-- [Rico Meiner](https://github.com/ricom)
+- [Rico Meiner](https://github.com/ricom)  
   Weiterhin kann auf die Liste der Projektteilnehmer in Github verwiesen werden.
