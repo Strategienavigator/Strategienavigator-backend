@@ -139,6 +139,11 @@ class InvitationLinkController extends Controller
         $user = $request->user();
         $invitationLink = InvitationLink::whereToken($token)->firstOrFail();
 
+        // prevent owner to be an contributor
+        if($user->id == $invitationLink->safe->owner_id){
+            return response()->noContent(Response::HTTP_FORBIDDEN);
+        }
+
         if (is_null($invitationLink->expiry_date) || Carbon::now() < $invitationLink->expiry_date) {
 
             $save = $invitationLink->safe;

@@ -76,13 +76,13 @@ class SharedSaveController extends Controller
      * @param Request $request Die aktuelle Request instanz
      * @param Save $save Der in der Url definierte Speicherstand
      * @param User $user Der in der Url definierte User
-     * @return Response Code 201, wenn die SharedSave Resource erstellt wurde
+     * @return \Illuminate\Http\JsonResponse|Response
      * @throws AuthorizationException Wenn der User keine Berechtigung besitzt um eine neue SharedSave Resource zu erstellen
      * @see SharedSave
      * @see SharedSavePolicy::create()
      * @see SharedSaveResource
      */
-    public function store(Request $request, Save $save, User $user): Response
+    public function store(Request $request, Save $save, User $user)
     {
         $validated = $request->validate([
             "permission" => ["required", "integer", "min:0", "max:2"]
@@ -91,6 +91,10 @@ class SharedSaveController extends Controller
         $shared_save = new SharedSave($validated);
         $shared_save->user_id = $user->id;
         $shared_save->accepted = false;
+        if ($save->sharedSaves()->where("user_id", "=", $user->id)->exists()
+            || $save->owner_id == $user->id) {
+            return \response()->json(["message" => "shared save with this user already exists"], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
         $save->invitations()->save($shared_save);
 
         Mail::to($user->email)->send(new SaveInvitationEmail($user->username, $save->name, $shared_save->id));
