@@ -16,6 +16,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\File;
+use phpDocumentor\Reflection\PseudoTypes\StringValue;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
@@ -154,7 +156,6 @@ class SaveController extends Controller
      *
      * @param Request $request Die aktuelle Request instanz
      * @param Save $save Der in der Url definierte Speicherstand
-     * @return Response Gibt einen passenden Response-Code zurück
      * @throws AuthorizationException Wenn der User keine Berechtigung hat den Speicherstand zu überschreiben
      * @see Save
      * @see SavePolicy
@@ -188,19 +189,22 @@ class SaveController extends Controller
                 "name" => "string|max:255",
                 "description" => "string|max:300",
                 "resources.*" => [
+                    "file",
                     File::types(self::ALLOWED_MIMETYPES)
                         ->max(self::FILE_MAX_KILOBYTES)
                 ],
                 "lock" => "prohibited"
             ]);
 
-            return DB::transaction(function () use ($validated, $save, $user) {
+            return DB::transaction(function () use ($validated, $request, $save, $user) {
                 if ($save->locked_by_id === $user->id) {
                     $save->fill($validated);
                     $save->save();
 
-                    if (array_key_exists("resources", $validated)) {
-                        $this->resourceService->saveResources($save, $validated["resources"]);
+                    if ($request->hasFile("resources")) {
+                        $this->resourceService->saveResources($save, $request->allFiles());
+                    } else {
+                        $this->resourceService->deleteResources($save);
                     }
                     return response()->noContent(Response::HTTP_OK);
                 } else {

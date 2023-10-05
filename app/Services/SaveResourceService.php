@@ -43,4 +43,8 @@ class SaveResourceService
         return $save->saveResources()->saveMany($saveResources);
     }
 
+    public function deleteResources(Save $save) {
+        $save->saveResources()->delete();
+    }
+
 }
