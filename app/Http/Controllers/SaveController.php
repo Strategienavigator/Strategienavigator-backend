@@ -16,8 +16,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\File;
-use phpDocumentor\Reflection\PseudoTypes\StringValue;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Controller, welcher Routen zum Verwalten von Speicherständen implementiert
@@ -25,7 +23,13 @@ use phpDocumentor\Reflection\Types\Boolean;
  */
 class SaveController extends Controller
 {
-    const ALLOWED_MIMETYPES = ["image/*",
+    const ALLOWED_MIMETYPES = [
+        // convertable image types by gd lib
+        "image/jpeg",
+        "image/png",
+        "image/bmp",
+        "image/vnd.wap.wbmp",
+        "image/webp",
         "application/json",
         "application/pdf",
         "text/plain",

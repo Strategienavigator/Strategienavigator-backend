@@ -16,7 +16,8 @@
         "laravel/passport": "^10.3",
         "laravel/tinker": "^2.5",
         "pusher/pusher-php-server": "^7.0",
-        "mews/captcha": "^3.2"
+        "mews/captcha": "^3.2",
+        "ext-gd": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
