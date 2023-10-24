@@ -30,6 +30,7 @@ class SaveController extends Controller
         "image/bmp",
         "image/vnd.wap.wbmp",
         "image/webp",
+        "image/svg+xml",
         "application/json",
         "application/pdf",
         "text/plain",
@@ -89,10 +90,12 @@ class SaveController extends Controller
             "description" => "string|max:300",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id",
-            "resources.*" => [
+            "resources" => ["required", "array"],
+            "resources.*.file" => [
                 File::types(self::ALLOWED_MIMETYPES)
                     ->max(self::FILE_MAX_KILOBYTES)
-            ]
+            ],
+            "resources.*.name" => ["required", "string"]
         ]);
         $s = DB::transaction(function () use ($request, $validate) {
             $s = new Save($validate);
@@ -101,7 +104,7 @@ class SaveController extends Controller
             $s->save();
 
             if (array_key_exists("resources", $validate)) {
-                $this->resourceService->saveResources($s, $validate["resources"]);
+                $this->resourceService->updateResources($s, $validate["resources"]);
             }
             return $s;
         });
@@ -160,6 +163,7 @@ class SaveController extends Controller
      *
      * @param Request $request Die aktuelle Request instanz
      * @param Save $save Der in der Url definierte Speicherstand
+     * @return Response Gibt einen passenden Response-Code zurück
      * @throws AuthorizationException Wenn der User keine Berechtigung hat den Speicherstand zu überschreiben
      * @see Save
      * @see SavePolicy
@@ -175,7 +179,8 @@ class SaveController extends Controller
                 "lock" => "required|boolean",
                 "data" => "prohibited",
                 "name" => "prohibited",
-                "description" => "prohibited"
+                "description" => "prohibited",
+                "resources" => "prohibited"
             ]);
 
             if ($validated["lock"]) {
@@ -192,23 +197,22 @@ class SaveController extends Controller
                 "data" => "nullable|json",
                 "name" => "string|max:255",
                 "description" => "string|max:300",
-                "resources.*" => [
-                    "file",
+                "resources" => ["required", "array"],
+                "resources.*.file" => [
                     File::types(self::ALLOWED_MIMETYPES)
                         ->max(self::FILE_MAX_KILOBYTES)
                 ],
+                "resources.*.name" => ["required", "name"],
                 "lock" => "prohibited"
             ]);
 
-            return DB::transaction(function () use ($validated, $request, $save, $user) {
+            return DB::transaction(function () use ($validated, $save, $user) {
                 if ($save->locked_by_id === $user->id) {
                     $save->fill($validated);
                     $save->save();
 
-                    if ($request->hasFile("resources")) {
-                        $this->resourceService->saveResources($save, $request->allFiles());
-                    } else {
-                        $this->resourceService->deleteResources($save);
+                    if (array_key_exists("resources", $validated)) {
+                        $this->resourceService->updateResources($save, $validated["resources"]);
                     }
                     return response()->noContent(Response::HTTP_OK);
                 } else {

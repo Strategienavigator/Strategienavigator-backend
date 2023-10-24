@@ -8,7 +8,8 @@ use Exception;
 use GdImage;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\UploadedFile;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Illuminate\Support\Collection;
+use Symfony\Component\HttpFoundation\Response;
 
 class SaveResourceService
 {
@@ -16,48 +17,42 @@ class SaveResourceService
 
     const HASH_FUNCTION = "sha256";
 
+
     /**
-     *
-     * saves the given uploaded files in the array to the database and converts images to a smaller jpeg.
-     * @param Save $save the save resources the files should be related to
-     * @param array $resources an array of UploadedFiles
-     * @return iterable the created SaveResources
-     * @throws FileNotFoundException when no uploaded file is found
-     * @throws Exception if anything went wrong file image conversion
+     * @throws FileNotFoundException
      */
-    public function saveResources(Save $save, array $resources): iterable
+    public function updateResources(Save $save, array $toUpdateArray)
     {
+        $toUpdateCollection = collect($toUpdateArray);
+        $resourceNames = $toUpdateCollection->pluck("name");
+        $uniqueNames = $resourceNames->unique();
 
-        $saveResources = [];
-        $names = [];
-        /** @var $resource UploadedFile */
-        foreach ($resources as $resource) {
-            /** @var $saveResource SaveResource */
-            $saveResource = $save->saveResources()->make();
-            $name = $resource->getClientOriginalName();
-
-            $saveResource->file_name = pathinfo($name, PATHINFO_FILENAME);
-
-            if (in_array($saveResource->file_name, $names)) {
-                abort(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, "duplicated file name");
-            }
-
-            $contents = $resource->get();
-            if (str_starts_with($resource->getMimeType(), "image")) {
-                $contents = $this->convertToSmallerImage($contents);
-            }
-            $saveResource->contents = $contents;
-            $saveResource->file_type = "image/jpeg";
-            $saveResource->contents_hash = \hash(self::HASH_FUNCTION, $saveResource->contents);
-            $saveResource->hash_function = self::HASH_FUNCTION;
-
-            $names[] = $saveResource->file_name;
-            $saveResources[] = $saveResource;
+        if ($resourceNames->count() != $uniqueNames->count()) {
+            abort(Response::HTTP_UNPROCESSABLE_ENTITY, "duplicated file name");
         }
+        $save->saveResources()->whereNotIn("file_name", $resourceNames)->delete();
 
-        $save->saveResources()->whereIn("file_name", $names)->delete();
-
-        return $save->saveResources()->saveMany($saveResources);
+        $resources = $save->saveResources;
+        $toSave = [];
+        foreach ($toUpdateArray as $toCheckResource) {
+            /** @var SaveResource|null $existingResource */
+            $existingResource = $resources->where("file_name", $toCheckResource["name"])->first();
+            $isNew = false;
+            if (is_null($existingResource)) {
+                $isNew = true;
+                /** @var SaveResource $existingResource */
+                $existingResource = $save->saveResources()->make();
+                $existingResource->file_name = $toCheckResource["name"];
+            }
+            if (array_key_exists("file", $toCheckResource)) {
+                $this->setFileData($existingResource, $toCheckResource["file"]);
+                $toSave[] = $existingResource;
+            } elseif ($isNew) {
+                abort(Response::HTTP_UNPROCESSABLE_ENTITY, "No file was given even though no database entry was present");
+            }
+        }
+        $save->saveResources()->saveMany($toSave);
+        $save->refresh();
     }
 
 
@@ -96,9 +91,33 @@ class SaveResourceService
         return ob_get_clean();
     }
 
-    public function deleteResources(Save $save)
+    public function deleteResources(Collection $resources)
     {
-        $save->saveResources()->delete();
+        foreach ($resources as $resource) {
+            $resource->delete();
+        }
+    }
+
+    /**
+     * Sets the saveResource attributes to fit the given file
+     *
+     * @param UploadedFile $resource
+     * @param SaveResource $saveResource
+     * @return void
+     * @throws FileNotFoundException
+     */
+    private function setFileData(SaveResource $saveResource, UploadedFile $resource): void
+    {
+        $contents = $resource->get();
+        $mimetype = $resource->getMimeType();
+        if (str_starts_with($mimetype, "image")
+            && $mimetype != "image/svg+xml") {
+            $contents = $this->convertToSmallerImage($contents);
+        }
+        $saveResource->contents = $contents;
+        $saveResource->file_type = "image/jpeg";
+        $saveResource->contents_hash = \hash(self::HASH_FUNCTION, $saveResource->contents);
+        $saveResource->hash_function = self::HASH_FUNCTION;
     }
 
 }
