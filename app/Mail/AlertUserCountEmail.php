@@ -27,6 +27,14 @@ class AlertUserCountEmail extends Mailable
      * @var int Anzahl aller Speicherstände, welche innerhalb der letzten Woche erstellt wurde
      */
     public $saveLastWeekCount;
+    /**
+     * @var int Amount of characters saved as save data in the database.
+     */
+    public $saveCharacterCount;
+    /**
+     * @var int total amount of save resource blob size.
+     */
+    public $saveResourceSize;
 
     /**
      * Erstellt eine neue Instanz
@@ -36,15 +44,15 @@ class AlertUserCountEmail extends Mailable
      * @param int $saveCount Anzahl aller Speicherstände
      * @param int $saveLastWeekCount Anzahl aller Speicherstände, welche innerhalb der letzten Woche erstellt wurde
      */
-    public function __construct(int $userCount, int $userLastWeekCount, int $saveCount, int $saveLastWeekCount)
+    public function __construct(int $userCount, int $userLastWeekCount, int $saveCount, int $saveLastWeekCount, int $saveCharacterCount, int $saveResourceSize)
     {
         $this->userCount = $userCount;
         $this->userLastWeekCount = $userLastWeekCount;
         $this->saveCount = $saveCount;
         $this->saveLastWeekCount = $saveLastWeekCount;
+        $this->saveCharacterCount = $saveCharacterCount;
+        $this->saveResourceSize = $saveResourceSize;
     }
-
-
 
 
     /**

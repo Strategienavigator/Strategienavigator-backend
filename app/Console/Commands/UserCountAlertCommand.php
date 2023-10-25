@@ -4,10 +4,12 @@ namespace App\Console\Commands;
 
 use App\Mail\AlertUserCountEmail;
 use App\Models\Save;
+use App\Models\SaveResource;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\Exceptions\BadComparisonUnitException;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -54,6 +56,9 @@ class UserCountAlertCommand extends Command
 
         $saveCountOverall = Save::withTrashed()->count();
 
+        $saveDataCharacterCount = intval(DB::table((new Save())->getTable(), "s")->select(DB::raw("SUM(OCTET_LENGTH(s.data)) as size"))->first("size")->size);
+        $saveResourceSize = intval(DB::table((new SaveResource())->getTable(), "sr")->select(DB::raw("SUM(OCTET_LENGTH(sr.contents)) as size"))->first("size")->size);
+
 
         $userWeekThreshold = 50;
         $userOverallThreshold = 300;
@@ -61,33 +66,41 @@ class UserCountAlertCommand extends Command
         $saveWeekThreshold = 100;
         $saveOverallThreshold = 500;
 
+        $saveSizeThreshold = pow(1024, 3); // 1 GB
+        $saveResourceSizeThreshold = pow(1024, 3); // 1GB
+
         $sendAlertEmail =
             $userWeekThreshold < $userCountLastWeek ||
             $saveWeekThreshold < $saveCountLastWeek ||
             $userOverallThreshold < $userCountOverall ||
-            $saveOverallThreshold < $saveCountOverall;
+            $saveOverallThreshold < $saveCountOverall ||
+            $saveSizeThreshold < $saveDataCharacterCount ||
+            $saveResourceSizeThreshold < $saveResourceSize;
 
         $shouldSendEmail = !$this->option("no-mail");
 
+        $notifyMessage = [
+            "Raw data: ",
+            "User count: $userCountOverall",
+            "User count last week: $userCountLastWeek",
+            "Save count: $saveCountOverall",
+            "Save count last week: $saveCountLastWeek",
+            "Save data character count: $saveDataCharacterCount",
+            "Save Resource total size (Bytes): $saveResourceSize"];
         if ($sendAlertEmail) {
-            $notifyMessage = [
-                "Suspicious User/Save count detected:",
-                "Usercount: $userCountOverall",
-                "Usercount last week: $userCountLastWeek",
-                "Savecount: $saveCountOverall",
-                "Savecount last week: $saveCountLastWeek"];
 
-            $this->output->info($notifyMessage);
-            Log::alert(implode("\n",$notifyMessage));
+
+            $this->output->warning(array_merge(["Suspicious data found!"], $notifyMessage));
+            Log::alert(implode("\n", $notifyMessage));
 
             if ($shouldSendEmail) {
                 Mail::to(config("mail.from.address"))
-                    ->send(new AlertUserCountEmail($userCountOverall, $userCountLastWeek, $saveCountOverall, $saveCountLastWeek));
+                    ->send(new AlertUserCountEmail($userCountOverall, $userCountLastWeek, $saveCountOverall, $saveCountLastWeek, $saveDataCharacterCount, $saveResourceSize));
                 $this->output->info("Send Email with User Count notification.");
             }
 
         } else {
-            $this->output->info("User Count doesn't look suspicious.");
+            $this->output->info(array_merge(["No suspicious data found!"], $notifyMessage));
 
         }
 

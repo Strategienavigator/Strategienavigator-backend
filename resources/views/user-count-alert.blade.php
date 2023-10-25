@@ -18,8 +18,10 @@
 <div>
     Hallo Admin,<br/>
     <br/>
-    Dies ist eine Mitteilung, weil es ein ungewöhnlich hohes aufkommen an Benutzerkonten und/oder Speicherständen gibt.<br/>
-    Sie sollten den Sachverhalt wahrscheinlich überprüfen. Es folgen die genauen Zahlen, welche für diese Meldung gesorgt haben:
+    Dies ist eine Mitteilung, weil es ein ungewöhnlich hohes aufkommen an Benutzerkonten und/oder Speicherständen
+    gibt.<br/>
+    Sie sollten den Sachverhalt wahrscheinlich überprüfen. Es folgen die genauen Zahlen, welche für diese Meldung
+    gesorgt haben:
     <br/>
     <br/>
     <table>
@@ -45,6 +47,14 @@
         <tr>
             <td>Erstellte Speicherstände innerhalb der letzten Woche</td>
             <td>{{$saveLastWeekCount}}</td>
+        </tr>
+        <tr>
+            <td>Insgesamte anzahl an gespeicherten Zeichen der Speicherstand daten</td>
+            <td>{{$saveCharacterCount}}</td>
+        </tr>
+        <tr>
+            <td>Insgesamte größe aller Speicherstand Resourcen (Bytes)</td>
+            <td>{{$saveResourceSize}}</td>
         </tr>
         </tbody>
 
