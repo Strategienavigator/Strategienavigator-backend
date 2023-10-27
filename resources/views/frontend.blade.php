@@ -14,7 +14,7 @@
 <main>
     <p>
         <strong>Ups... da ist dem Admin wohl ein Fehler unterlaufen. Bitte kontaktiere <a
-                href="mailto:{{config("mail.from.address")}}?subject=Fehlendes%20Frontend&body=Sehr%20geehrtes%20Strategienavigator-Team,%0A%0Aich%20muss%20ihnen%20leider%20mitteilen,%20dass%20sie%20auf%20Ihrer%20Website%20kein%20Frontend%20hochgeladen%20haben.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0A%0Aein%20Besucher">{{config("mail.from.address")}}</a>
+                href="mailto:{{config("mail.from.address")}}?subject=Fehlendes%20Frontend&body=Sehr%20geehrtes%20{{config("app.name")}}-Team,%0A%0Aich%20muss%20ihnen%20leider%20mitteilen,%20dass%20sie%20auf%20Ihrer%20Website%20kein%20Frontend%20hochgeladen%20haben.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0A%0Aein%20Besucher">{{config("mail.from.address")}}</a>
             damit der Fehler möglichst schnell behoben wird.</strong>
     </p>
 
