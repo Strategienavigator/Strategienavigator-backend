@@ -115,7 +115,7 @@ class SaveResourceService
             $contents = $this->convertToSmallerImage($contents);
         }
         $saveResource->contents = $contents;
-        $saveResource->file_type = "image/jpeg";
+        $saveResource->file_type = $mimetype;
         $saveResource->contents_hash = \hash(self::HASH_FUNCTION, $saveResource->contents);
         $saveResource->hash_function = self::HASH_FUNCTION;
     }

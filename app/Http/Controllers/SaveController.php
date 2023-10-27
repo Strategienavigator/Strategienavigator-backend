@@ -38,6 +38,7 @@ class SaveController extends Controller
         "text/html",
         "text/plain",
         "application/vnd.oasis.opendocument.spreadsheet",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.oasis.opendocument.text",
         "application/vnd.oasis.opendocument.presentation"];
     const FILE_MAX_KILOBYTES = 5 * 1024;
@@ -90,12 +91,14 @@ class SaveController extends Controller
             "description" => "string|max:300",
             "data" => "nullable|json",
             "tool_id" => "required|exists:tools,id",
-            "resources" => ["required", "array"],
+            "resources" => ["sometimes", "array"],
             "resources.*.file" => [
                 File::types(self::ALLOWED_MIMETYPES)
                     ->max(self::FILE_MAX_KILOBYTES)
             ],
-            "resources.*.name" => ["required", "string"]
+            "resources.*.name" => [
+                "string"
+            ]
         ]);
         $s = DB::transaction(function () use ($request, $validate) {
             $s = new Save($validate);
@@ -108,7 +111,6 @@ class SaveController extends Controller
             }
             return $s;
         });
-
 
         return response()->json(new SaveResource($s), 201);
     }
@@ -197,12 +199,12 @@ class SaveController extends Controller
                 "data" => "nullable|json",
                 "name" => "string|max:255",
                 "description" => "string|max:300",
-                "resources" => ["required", "array"],
+                "resources" => ["sometimes", "required", "array"],
                 "resources.*.file" => [
                     File::types(self::ALLOWED_MIMETYPES)
                         ->max(self::FILE_MAX_KILOBYTES)
                 ],
-                "resources.*.name" => ["required", "name"],
+                "resources.*.name" => ["sometimes", "required", "string"],
                 "lock" => "prohibited"
             ]);
 
