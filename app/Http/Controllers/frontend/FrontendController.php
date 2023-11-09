@@ -12,8 +12,8 @@ class FrontendController extends Controller
 
     const FRONTEND_BETA_VIEW = "frontend-beta";
     const FRONTEND_VIEW = 'frontend';
-    const MANIFEST_FILE = "manifest.json";
-    const MANIFEST_BETA_FILE = 'manifest-backend.json';
+    const MANIFEST_FILE = "asset-manifest.json";
+    const MANIFEST_BETA_FILE = 'asset-manifest-backend.json';
     static int $BETA_SETTING_ID = 3;
 
     public function index(Request $request): View
@@ -30,25 +30,28 @@ class FrontendController extends Controller
 
     public function manifest(Request $request)
     {
-        $manifestPath = resource_path("app" . DIRECTORY_SEPARATOR . self::MANIFEST_FILE);
+        $manifestPath = resource_path("json" . DIRECTORY_SEPARATOR . self::MANIFEST_FILE);
         if ($this->showBeta($request)) {
-            $manifestPath = resource_path("app" . DIRECTORY_SEPARATOR . self::MANIFEST_BETA_FILE);
+            $manifestPath = $this->getBetaManifestPath();
         }
 
-        return response()->json(file_get_contents($manifestPath));
+        return response()->json(json_decode(file_get_contents($manifestPath)));
+    }
+
+    private function getBetaManifestPath(){
+        return resource_path("json" . DIRECTORY_SEPARATOR . self::MANIFEST_BETA_FILE);
     }
 
     private
     function showBeta(Request $request)
     {
-        if (view()->exists(self::FRONTEND_BETA_VIEW)) {
+        if (view()->exists(self::FRONTEND_BETA_VIEW) && file_exists($this->getBetaManifestPath())) {
             /** @var User $user */
             $user = $request->user();
             if (!is_null($user)) {
                 $userSetting = $user->getUserSetting(self::$BETA_SETTING_ID, false);
                 if (!is_null($userSetting)) {
                     $beta = json_decode($userSetting->value);
-
                     if ($beta) {
                         return true;
                     }
