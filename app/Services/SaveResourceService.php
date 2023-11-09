@@ -61,7 +61,7 @@ class SaveResourceService
      * @return string
      * @throws Exception
      */
-    private function convertToSmallerImage(string $data, int $width = 200): string
+    private function convertToSmallerImage(string $data, int $width = 500): string
     {
         /**
          * @throws Exception
@@ -74,14 +74,17 @@ class SaveResourceService
         if (!$image) {
             call_user_func($throwError);
         }
-        $scaledImage = imagescale($image, $width);
-        imagedestroy($image);
+        if(imagesx($image) > $width){
+            $scaledImage = imagescale($image, $width);
+            imagedestroy($image);
+        }
+
         if (!$scaledImage) {
             call_user_func($throwError);
         }
 
         ob_start(null, 0, PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
-        $saveResult = imagejpeg($scaledImage, null, 70);
+        $saveResult = imagejpeg($scaledImage, null, 85);
         imagedestroy($scaledImage);
         if (!$saveResult) {
             ob_end_clean();
