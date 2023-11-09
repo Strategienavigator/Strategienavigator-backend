@@ -8,6 +8,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -223,9 +224,20 @@ class User extends Authenticatable
         return $q;
     }
 
-    public function getUserSetting(int $setting_id): \Illuminate\Database\Eloquent\Model|HasMany
+    /**
+     * Returns the {@link UserSetting} of this user of the given UserSetting
+     * @param int $setting_id the id of the setting to retrieve
+     * @param bool $shouldFail if the method should throw an exception if no setting value for the given user is found
+     * @return Model
+     */
+    public function getUserSetting(int $setting_id, bool $shouldFail = true): UserSetting|null
     {
-        return $this->hasMany(UserSetting::class)->where("setting_id", "=", $setting_id)->firstOrFail();
+        $query = $this->hasMany(UserSetting::class)->where("setting_id", "=", $setting_id);
+        if ($shouldFail) {
+            return $query->firstOrFail();
+        }
+
+        return $query->first();
     }
 
 
