@@ -50,7 +50,7 @@ def main(argv):
             print("The given resource zip contains files which are already currently installed")
             sys.exit()
         delete_old_files(target, beta)
-        copy_new_files(source_zip, target)
+        copy_new_files(source_zip, target, beta)
         copy_into_template(source_zip, target, beta)
 
     else:
@@ -87,9 +87,11 @@ def delete_old_files(dest: Path, beta = False):
             os.remove(p)
 
 
-def copy_new_files(archive: ZipFile, dest: Path):
+def copy_new_files(archive: ZipFile, dest: Path, beta = False):
     to_copy = basic_files
     for f in to_copy:
+        if (beta and f == "manifest.json"):
+            continue # keep main manifest.json
         archive.extract(f, dest)
     with archive.open(manifest_file_name) as f:
         manifest = json.load(f)
