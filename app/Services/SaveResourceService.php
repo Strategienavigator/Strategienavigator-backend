@@ -74,6 +74,7 @@ class SaveResourceService
         if (!$image) {
             call_user_func($throwError);
         }
+        $scaledImage = true;
         if(imagesx($image) > $width){
             $scaledImage = imagescale($image, $width);
             imagedestroy($image);
