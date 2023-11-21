@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class Authenticate extends Middleware
 {
     /**
-     * Führt die Weiterleitung durch, wenn kein User angemeldeted ist
+     * Führt die Weiterleitung durch, wenn kein User angemeldet ist
      *
      * @param Request $request
      * @return string|null
@@ -20,7 +20,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            return route('login');
+            return config("frontend.url");
         }
     }
 }
