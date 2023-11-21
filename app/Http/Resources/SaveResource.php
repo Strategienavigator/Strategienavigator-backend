@@ -22,7 +22,7 @@ class SaveResource extends JsonResource
             $this->merge(new SimpleSaveResource($this->resource)),
             "data" => $this->data,
             "contributors" => SimplestUserResource::collection($this->contributors),
-            "invited" => SimplestUserResource::collection($this->invited),
+            "invited" => SimplestUserResource::collection($this->invited)
         ];
     }
 }

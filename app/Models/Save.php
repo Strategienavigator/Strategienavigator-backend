@@ -45,6 +45,7 @@ use Illuminate\Support\Carbon;
  * @property-read Tool $tool
  * @property-read Collection|SharedSave[] $sharedSaves
  * @property-read int|null $shared_saves_count
+ * @property-read Collection|SaveResource[] $saveResources
  * @method static Builder|Save newModelQuery()
  * @method static Builder|Save newQuery()
  * @method static Builder|Save query()
@@ -186,6 +187,12 @@ class Save extends Model
             ->withPivotValue("revoked", false)
             ->withTimestamps();
     }
+
+    public function saveResources(): HasMany
+    {
+        return $this->hasMany(SaveResource::class);
+    }
+
 
     public function isContributor(User|int $user)
     {

@@ -112,7 +112,7 @@ class User extends Authenticatable
      */
     public function findForPassport(string $username)
     {
-        //TODO User nicht als return type hinzufügen, da querry null returnen könnte und dann eine exception geworfen wird, die passport nicht erwartet
+        //TODO User nicht als return type hinzufügen, da query null returnen könnte und dann eine exception geworfen wird, die passport nicht erwartet
         return $this->withTrashed()->where('email', $username)->where('anonymous', false)
             ->orWhere('username', $username)->where('anonymous', true)
             ->first();

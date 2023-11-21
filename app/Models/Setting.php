@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Setting newModelQuery()
  * @method static Builder|Setting newQuery()
  * @method static Builder|Setting query()
+ * @method static Builder|Setting whereDefault($value)
  */
 class Setting extends Model
 {
