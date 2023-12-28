@@ -1,7 +1,7 @@
 # Strategienavigator-Backend
 
-![](https://img.shields.io/github/v/release/ricom/Strategienavigator-backend?style=flat-square) 
-![](https://img.shields.io/github/license/ricom/Strategienavigator-backend?style=flat-square)
+![](https://img.shields.io/github/v/release/Strategienavigator/Strategienavigator-backend?style=flat-square) 
+![](https://img.shields.io/github/license/Strategienavigator/Strategienavigator-backend?style=flat-square)
 
 Das Projekt [Strategienavigator](https://strategie-navigator.jade-hs.de/) basiert auf einer Idee aus der Software CRM-Navigator aus dem Jahre 2007. Der Strategienavigator
 sollen jedem einen einfachen Zugang zu strategischen Werkzeugen bieten. Insbesondere ist der Einsatz in der Hochschule
@@ -55,7 +55,7 @@ Dieses Projekt muss in das web-root Verzeichnis des Webservers geladen werden (b
 Verzeichnis `htdocs`):
 
 ```shell
-git clone https://github.com/ricom/Strategienavigator-backend.git
+git clone https://github.com/Strategienavigator/Strategienavigator-backend.git
 cd Strategienavigator-backend
 ```
 
@@ -173,7 +173,7 @@ php artisan ide-helper:models -W
 
 ## Bugs
 
-Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/ricom/Strategienavigator-backend/issues) im Github Repository
+Wenn ein Fehler gefunden wurde bitte als [Issue](https://github.com/Strategienavigator/Strategienavigator-backend/issues) im Github Repository
 erstellen.
 
 ## Testen
