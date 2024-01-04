@@ -78,8 +78,8 @@ def delete_old_files(dest: Path, beta = False):
                         break
                     else:
                         p.rmdir()
-    to_delete = basic_files
-    to_delete += "asset-manifest.json" # make sure old versions of format delete asset-manifest.json
+    to_delete = list(basic_files) # copy list so its contents stay the same
+    to_delete += ["asset-manifest.json"] # make sure old versions of format delete asset-manifest.json
 
     for f in to_delete:
         p = dest.joinpath(f)
