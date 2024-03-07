@@ -31,7 +31,15 @@ class SettingsSeeder extends Seeder
                 "type" => "portfolio-quadrants",
                 "extras" => null,
                 "default" => '{"toggled":false,"quadrants":[{"value":"Oben Links","header":"Oben Links"},{"value":"Oben Rechts","header":"Oben Rechts"},{"value":"Unten Links","header":"Unten Links"},{"value":"Unten Rechts","header":"Unten Rechts"}]}'
-            ]
+            ],
+            [
+                "id" => 3,
+                "name" => "Beta version",
+                "description" => "Teste direkt die neusten Features. (Website muss neu geladen werden, um die Änderung zu übernehmen)",
+                "type" => "toggle",
+                "extras" => null,
+                "default" => "false"
+            ],
         ]);
     }
 }

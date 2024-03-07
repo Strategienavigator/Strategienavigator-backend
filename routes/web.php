@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::fallback([FrontendController::class,"index"]);
+Route::fallback([FrontendController::class, "index"]);
+Route::get("asset-manifest.json",[FrontendController::class, "manifest"]);
