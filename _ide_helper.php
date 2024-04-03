@@ -17048,7 +17048,7 @@ namespace Illuminate\Http {
      *
      */
     class Request
-    {
+    {public mixed $name;public mixed $description;
         /**
          *
          *

@@ -228,5 +228,9 @@ class User extends Authenticatable
         return $this->hasMany(UserSetting::class)->where("setting_id", "=", $setting_id)->firstOrFail();
     }
 
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 
 }
