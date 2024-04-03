@@ -10,22 +10,15 @@
 </head>
 <body>
 <div class="container">
-    <form action={{ route('roles.store') }} method="post">
-        @csrf
-        <div class="mb-3">
-            <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="id" name="id" placeholder="{{$counter}}" disabled>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">ID: {{$user->id}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Benutzername: {{$user->useranme}}</h6>
+            <p class="card-text">Email: {{$user->email}}</p>
+            <p class="card-text">Role: {{$user->role->name}}</p>
+            <a href="{{route('users.index')}}" class="card-link">back</a>
         </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name"  name="name" placeholder="role name">
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Beschreibung</label>
-            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-info" >Erstellen</button>
-    </form>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

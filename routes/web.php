@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\User2Controller;
 use Illuminate\Support\Facades\Route;
 use \App\Models\User;
 
@@ -26,6 +27,18 @@ Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('roles.edi
 Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
 Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
 // ---------- // Role // ------------
+
+// ---------- Benutzer -----------------
+Route::get('/users', [User2Controller::class, 'index'])->name('users.index');
+Route::get('/users/create', [User2Controller::class, 'create'])->name('users.create');
+Route::post('/users', [User2Controller::class, 'store'])->name('users.store');
+Route::get('/users/{id}', [User2Controller::class, 'show'])->name('users.show');
+Route::get('/users/{id}/edit', [User2Controller::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [User2Controller::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [User2Controller::class, 'destroy'])->name('users.destroy');
+// ---------- // Benutzer // ------------
+
+
 
 Route::get('/', function () {
     return view('welcome');
