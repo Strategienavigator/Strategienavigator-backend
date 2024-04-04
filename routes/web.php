@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Tool2Controller;
 use App\Http\Controllers\User2Controller;
 use Illuminate\Support\Facades\Route;
 use \App\Models\User;
@@ -17,7 +18,7 @@ use \App\Models\User;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::prefix('admin')->group(function () {
 // ---------- Role -----------------
 Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
 Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
@@ -37,6 +38,15 @@ Route::get('/users/{id}/edit', [User2Controller::class, 'edit'])->name('users.ed
 Route::put('/users/{id}', [User2Controller::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [User2Controller::class, 'destroy'])->name('users.destroy');
 // ---------- // Benutzer // ------------
+
+Route::get('/tools', [Tool2Controller::class, 'index'])->name('tools.index');
+Route::get('/tools/create', [Tool2Controller::class, 'create'])->name('tools.create');
+Route::post('/tools', [Tool2Controller::class, 'store'])->name('tools.store');
+Route::get('/tools/{id}', [Tool2Controller::class, 'show'])->name('tools.show');
+Route::get('/tools/{id}/edit', [Tool2Controller::class, 'edit'])->name('tools.edit');
+Route::put('/tools/{id}', [Tool2Controller::class, 'update'])->name('tools.update');
+Route::delete('/tools/{id}', [Tool2Controller::class, 'destroy'])->name('tools.destroy');
+});
 
 
 
