@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Tool2Controller;
 use App\Http\Controllers\User2Controller;
+use \App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 use \App\Models\User;
 
@@ -46,13 +47,17 @@ Route::get('/tools/{id}', [Tool2Controller::class, 'show'])->name('tools.show');
 Route::get('/tools/{id}/edit', [Tool2Controller::class, 'edit'])->name('tools.edit');
 Route::put('/tools/{id}', [Tool2Controller::class, 'update'])->name('tools.update');
 Route::delete('/tools/{id}', [Tool2Controller::class, 'destroy'])->name('tools.destroy');
+
+// ---------- Statistik -----------------
+Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
+// ---------- // Statistik // ------------
+});
+
+Route::get('/', function (){
+    return view('layouts.layout');
 });
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
