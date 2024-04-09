@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.5",
         "pusher/pusher-php-server": "^7.0",
         "mews/captcha": "^3.2",
-        "ext-gd": "*"
+        "ext-gd": "*",
+      "ext-http": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
