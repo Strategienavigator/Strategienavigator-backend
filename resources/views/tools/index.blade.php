@@ -3,7 +3,7 @@
 @section('title', 'Index')
 
 @section('content')
-    <h1 class="text-center">Tools akti- und deaktivieren, infotexten bearbeiten </h1>
+    <h1 class="text-center">Tools, Infotexten bearbeiten </h1>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

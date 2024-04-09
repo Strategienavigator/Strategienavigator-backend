@@ -11,13 +11,14 @@
     @endif
     <div class="container">
         <a href="{{route('roles.create')}}" type="button" class="btn btn-primary">create</a>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Beschreibung</th>
                 <th scope="col">Aktionen</th>
+                <th colspan="3"></th>
             </tr>
             </thead>
             <tbody>

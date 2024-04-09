@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Save;
 use App\Models\SharedSave;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
@@ -19,7 +16,7 @@ class StatisticController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
 
         // Tools statistics

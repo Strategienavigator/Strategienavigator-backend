@@ -9,17 +9,18 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="container">
-        <a href="{{route('users.create')}}" type="button" class="btn btn-primary">Erstellen</a>
-        <table class="table">
+    <div class="container d-flex align-items-center justify-content-center ">
+
+        <table class="table table-hover">
+            <caption style="caption-side: top;"><a href="{{route('users.create')}}" type="button" class="btn btn-primary">Erstellen</a></caption>
             <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Benutzername</th>
-                <th scope="col">Email</th>
-                <th scope="col">Rolle</th>
-                <th scope="col">Aktionen</th>
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Benutzername</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rolle</th>
+                    <th colspan="3">Aktionen</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($users as $user)

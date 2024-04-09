@@ -3,11 +3,12 @@
 @section('title', 'Statistics')
 
 @section('content')
-    <div class="container text-center">
+    <h1 class="text-center">Datenbank Statistiken</h1>
+    <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card" style="width: 30rem;">
-                    <canvas id="myChart" style="width:100%;max-width:400px"></canvas>
+                <div class="card" style="width: 71.4rem; margin-bottom: 10px;">
+                    <canvas id="myChart" style="width:100%;max-width:600px; margin:auto"></canvas>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Anzahl Analysen: {{$anzahlAnalysen}}</li>
                         <li class="list-group-item">Davon geteilt: {{$davonGeteilt}}</li>
@@ -15,17 +16,18 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card" style="width: 30rem;">
-                    <canvas id="myChart2" style="width:100%;max-width:400px"></canvas>
+                <div class="card" style="width: 71.4rem">
+                    <canvas id="myChart2" style="width:100%;max-width:600px; margin:auto"></canvas>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Anzahl Analysen: {{$anzahlAnalysenVomLetztenMonat}}</li>
                         <li class="list-group-item">Davon geteilt: {{$davonGeteiltVomLetztenMonat}}</li>
                     </ul>
                 </div>
             </div>
+
             <div class="col">
-                <div class="card" style="width: 30rem;">
-                    <canvas id="myChart3" style="width:100%;max-width:600px; height: 300px"></canvas>
+                <div class="card" style="width: 71.4rem; margin-top: 10px">
+                    <canvas id="myChart3" style="width:100%;max-width:600px; height: 300px; margin:auto" ></canvas>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Anzahl Benutzer mit Konto: {{$anzahlBenutzerMitKonto}}</li>
                         <li class="list-group-item">Anzahl Anonyme benutzer: {{$anzahlAnonymeBenutzer}}</li>
@@ -156,8 +158,6 @@
                 }
             }
         });
-
-
     </script>
 @endsection
 
