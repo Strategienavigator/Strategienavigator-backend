@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Mail\ExampleMail;
+use App\Mail\SendeMail;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -58,7 +58,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($adminUsers as $adminUser){
-                Mail::to($adminUser->email)->send(new ExampleMail($email_data));
+                Mail::to($adminUser->email)->send(new SendeMail($email_data));
             }
 
         }elseif ($request->group == 'normal'){
@@ -67,7 +67,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($normalUsers as $normalUser){
-                Mail::to($normalUser->email)->send(new ExampleMail($email_data));
+                Mail::to($normalUser->email)->send(new SendeMail($email_data));
             }
 
         }elseif($request->group == 'anonym'){
@@ -76,7 +76,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($anonymUsers as $anonymUser){
-                Mail::to($anonymUser->email)->send(new ExampleMail($email_data));
+                Mail::to($anonymUser->email)->send(new SendeMail($email_data));
             }
         }
         return redirect()->back()->with('success', 'Email sent!');
