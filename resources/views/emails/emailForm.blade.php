@@ -19,7 +19,7 @@
                 </div>
             @endif
             <div class="mb-3">
-                <label for="subject" class="form-label">Subject</label>
+                <label for="subject" class="form-label">Betreff</label>
                 <input type="text" class="form-control" id="subject"  name="subject" placeholder="">
             </div>
             <div class="mb-3">

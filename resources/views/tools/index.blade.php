@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="text-center">Tools, Infotexten bearbeiten </h1>
     @if(session('success'))
-        <div class="alert alert-success">
+        <div id="flash-message" class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
@@ -55,5 +55,14 @@
             </tbody>
         </table>
     </div>
+    <script>
+        // Flash-Nachrichten nach 5 Sekunden ausblenden
+        setTimeout(function() {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                flashMessage.style.display = 'none';
+            }
+        }, 5000); // 5000 Millisekunden = 5 Sekunden
+    </script>
 @endsection
 

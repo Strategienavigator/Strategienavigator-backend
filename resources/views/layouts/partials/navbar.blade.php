@@ -11,6 +11,6 @@
     <a href="{{route('email.form')}}"><i class="fa-solid fa-envelope"></i> Rundmail senden</a>
     <a href="{{route('statistics.index')}}"><i class="fa-solid fa-chart-column"></i> Datenbank Statistik anzeigen</a>
     <a href="{{route('tools.index')}}"><i class="fa-solid fa-gear"></i> Tools verwalten</a>
-    <a href="#"><i class="fa-solid fa-toggle-off"></i> Watungsmodus an/aus</a>
+    <a href="{{route('maintenance.mode')}}"><i class="fa-solid fa-toggle-off"></i> Watungsmodus an/aus</a>
 </div>
 

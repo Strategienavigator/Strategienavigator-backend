@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\Email2Controller;
+use App\Http\Controllers\MaintenanceModeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Tool2Controller;
 use App\Http\Controllers\User2Controller;
 use \App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 
-use App\Mail\ExampleMail;
+
+
 use Illuminate\Support\Facades\Mail;
 
 
@@ -23,10 +24,6 @@ use Illuminate\Support\Facades\Mail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function (){
-    return view('layouts.layout');
-});
 
 
 Route::prefix('admin')->group(function () {
@@ -66,7 +63,14 @@ Route::get('/statistics', [StatisticController::class, 'index'])->name('statisti
 Route::get('/emails/create', [Email2Controller::class, 'create'])->name('email.form');
 Route::post('/emails', [Email2Controller::class, 'store'])->name('send.email');
 // ---------- // send Emails // ------------
+
+// ---------- Maintenance Mode ------------------
+Route::get('/toggle-maintenance-mode', [MaintenanceModeController::class, 'index'])->name('maintenance.mode');
+Route::post('/toggle-maintenance-mode', [MaintenanceModeController::class, 'toggleMaintenanceMode'])->name('maintenance.mode');
+// ---------- //Maintenance Mode// --------------
 });
+
+
 
 
 
@@ -83,3 +87,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
