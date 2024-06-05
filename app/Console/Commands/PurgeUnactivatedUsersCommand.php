@@ -20,7 +20,7 @@ class PurgeUnactivatedUsersCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Deletes all user accounts which haven't activated their accounts for a long time';
+    protected $description = 'Deletes all user accounts which haven\'t activated their accounts for a long time';
 
     /**
      * Setzt Zeitpunkt fest vor den inaktiven User gelöscht werden.
