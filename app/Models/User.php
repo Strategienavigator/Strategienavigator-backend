@@ -71,7 +71,7 @@ use Laravel\Passport\Token;
  */
 class User extends Authenticatable
 {
-    use HasFactory, HasApiTokens, SoftDeletes, Limitable;
+    use HasFactory, HasApiTokens, SoftDeletes, Limitable ;
 
     /**
      * Attribute, welche Massen zuweisbar sind
@@ -80,7 +80,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        'description'
+        'description',
+        'email',
+        'password'
     ];
 
     /**

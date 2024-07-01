@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center" style="font-size: 30px">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <i class="fa-solid fa-chart-pie text-primary"></i>
                     </a>
                 </div>
 
@@ -16,7 +16,42 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-            </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex mt-3">
+                    <div class="relative">
+                        <x-nav-link class="dropdown-btn flex items-center">
+                            <i class="fa-solid fa-user-pen"></i> Benutzer verwalten
+                            <i class="fa fa-caret-down ml-2"></i>
+                        </x-nav-link>
+                        <div class="dropdown-container absolute hidden bg-white shadow-lg">
+                            <x-nav-link :href="route('users.index')">
+                                <i class="fa-solid fa-arrow-right"></i> Benutzer verwalten
+                            </x-nav-link>
+                            <x-nav-link :href="route('roles.index')">
+                                <i class="fa-solid fa-arrow-right"></i> Rollen verwalten
+                            </x-nav-link>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('email.form')" :active="request()->routeIs('email.form')">
+                        <i class="fa-solid fa-envelope"></i>{{ __('Rundmail senden') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('statistics.index')" :active="request()->routeIs('statistics.index')">
+                        <i class="fa-solid fa-chart-column"></i>{{ __('Datenbank Statistik anzeigen') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('tools.index')" :active="request()->routeIs('tools.index')">
+                        <i class="fa-solid fa-gear"></i>{{ __('Tools verwalten') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('maintenance.mode')" :active="request()->routeIs('maintenance.mode')">
+                        <i class="fa-solid fa-toggle-off"></i>{{ __('Watungsmodus an/aus') }}
+                    </x-nav-link>
+                </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -34,10 +69,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

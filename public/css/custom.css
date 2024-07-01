@@ -13,6 +13,7 @@ body {
     background-color: #111;
     overflow-x: hidden;
     padding-top: 20px;
+    margin-top: 70px;
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -43,17 +44,17 @@ main {
 }
 
 /* Add an active class to the active dropdown button */
-.active {
+/*.active {
     background-color: green;
     color: white;
-}
+}*/
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
+/*.dropdown-container {
     display: none;
     background-color: #262626;
     padding-left: 8px;
-}
+}*/
 
 /* Optional: Style the caret down icon */
 .fa-caret-down {

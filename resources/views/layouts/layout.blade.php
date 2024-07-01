@@ -28,7 +28,6 @@
 
 <footer>
     <!-- Footer -->
-
     <!-- //Footer// -->
 </footer>
 

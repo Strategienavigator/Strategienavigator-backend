@@ -1,15 +1,48 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title', 'Maintenance Mode')
 
+@section('header')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
+                <div class="p-6 text-gray-900">
+                    <h1> {{ __("Wartungsmodus") }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('content')
-    <h1 class="text-center">Wartungsmodus</h1>
     <div class="container">
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="maintenanceSwitch" name="maintenanceSwitch" {{$checked ? 'checked': null}}>
+            <input class="form-check-input" type="checkbox" role="switch" id="maintenanceSwitch" name="maintenanceSwitch" {{$checked ? 'checked': ''}}>
             <label class="form-check-label" for="maintenanceSwitch">Wartungsmodus aktivieren</label>
         </div>
     </div>
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">username</th>
+                    <th scope="col">action</th>
+                    <th scope="col">action_time</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($switch_logs as $switch_log)
+                <tr>
+                    <td>{{$switch_log->getUserNameAttribute()}}</td>
+                    <td>{{$switch_log->action}}</td>
+                    <td>{{$switch_log->action_time}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
 
     <script>
         const maintenanceSwitch = document.getElementById('maintenanceSwitch');

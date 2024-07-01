@@ -35,7 +35,12 @@ class RoleController extends Controller
         $count = DB::table('roles')->count();
         $role = Role::all();
 
-        $counter = $role[$count-1]->id +1;
+        if ($count != 0 ){
+            $counter = $role[$count-1]->id +1;
+        }
+        else{
+            $counter = 0;
+        }
 
         return view('roles.create', ['counter' =>$counter]);
     }
