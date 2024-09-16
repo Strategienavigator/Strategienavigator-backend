@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property mixed|null $default
  * @property int $user_id id des Users
  * @property int $setting_id id der Einstellung
+ * @property string $value aktueller wert der Einstellung
  * @method static Builder|UserSetting newModelQuery()
  * @method static Builder|UserSetting newQuery()
  * @method static Builder|UserSetting query()
