@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('switch_logs', function (Blueprint $table) {
-            $table->string('action')->after('user_id'); // Add the action column
+            $table->string('action')->default('')->after('user_id');
         });
     }
 
