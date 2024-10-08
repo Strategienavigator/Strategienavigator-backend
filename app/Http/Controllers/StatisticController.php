@@ -22,7 +22,7 @@ class StatisticController extends Controller
 
         // Tools statistics
         $anzahlAnalysen = Save::count();
-        $davonGeteilt = SharedSave::count();
+        $davonGeteilt = SharedSave::select('save_id')->distinct()->count();
         $davonNutzwertanalyse = Save::where('tool_id', '=', 1)->count();
         $davonSwotAnalyse = Save::where('tool_id', '=', 2)->count();
         $davonPaarweiserVergleich = Save::where('tool_id', '=', '3')->count();
@@ -30,15 +30,20 @@ class StatisticController extends Controller
 
         // Tools statistics from last Month
         $anzahlAnalysenVomLetztenMonat = Save::where('created_at', '>=', now()->subMonth())->count();
-        $davonGeteiltVomLetztenMonat = SharedSave::where('created_at', '>=', now()->subMonth())->count();
+        $davonGeteiltVomLetztenMonat = SharedSave::where('created_at', '>=', now()->subMonth())
+            ->select('save_id')->distinct()->count();
         $davonNutzwertanalyseVomLetztenMonat = Save::where('tool_id', 1)->where('created_at', '>=', now()->subMonth())->count();
         $davonSwotAnalyseVomLetztenMonat = Save::where('tool_id', 2)->where('created_at', '>=', now()->subMonth())->count();
         $davonPaarweiserVergleichVomLetztenMonat = Save::where('tool_id', 3)->where('created_at', '>=', now()->subMonth())->count();
         $davonPortfolioAnalyseVomLetztenMonat = Save::where('tool_id', 4)->where('created_at', '>=', now()->subMonth())->count();
 
         //User statistics
-        $anzahlBenutzerMitKonto = User::where('anonymous', 0)->count();
-        $anzahlAnonymeBenutzer = User::where('anonymous', 1)->count();
+        $anzahlBenutzerMitKonto = User::whereHas('roles', function ($query) {
+            $query->where('name', '!=', 'anonym');
+        })->count();
+        $anzahlAnonymeBenutzer = User::whereHas('roles', function ($query) {
+            $query->where('name', 'anonym');
+        })->count();
         $anzahlBenutzerOhneJadeHsAdressen = User::where('email', 'NOT LIKE', '%jade-hs.de%')->count();
         $anzahlNeuerBenutzerMitKontoSeitLetztemMonat = User::where('created_at', '>=', now()->subMonth())->count();
         $anzahlNeuerAnonymenBenutzerSeitLetztemMonat = User::where('anonymous', 1)->where('created_at', '>=', now()->subMonth())->count();
