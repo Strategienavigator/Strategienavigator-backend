@@ -31,7 +31,7 @@
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" aria-label="Default select example" name="status">
                     <option selected value="1">An</option>
-                    <option selected value="0">Aus</option>
+                    <option value="0">Aus</option>
                 </select>
             </div>
             <div class="mb-3">

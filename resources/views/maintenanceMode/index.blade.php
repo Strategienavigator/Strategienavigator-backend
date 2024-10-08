@@ -41,6 +41,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $switch_logs->links() }}
     </div>
 
 

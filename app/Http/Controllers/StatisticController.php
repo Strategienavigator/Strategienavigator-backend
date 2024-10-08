@@ -37,7 +37,7 @@ class StatisticController extends Controller
         $davonPortfolioAnalyseVomLetztenMonat = Save::where('tool_id', 4)->where('created_at', '>=', now()->subMonth())->count();
 
         //User statistics
-        $anzahlBenutzerMitKonto= User::where('anonymous', 0)->count();
+        $anzahlBenutzerMitKonto = User::where('anonymous', 0)->count();
         $anzahlAnonymeBenutzer = User::where('anonymous', 1)->count();
         $anzahlBenutzerOhneJadeHsAdressen = User::where('email', 'NOT LIKE', '%jade-hs.de%')->count();
         $anzahlNeuerBenutzerMitKontoSeitLetztemMonat = User::where('created_at', '>=', now()->subMonth())->count();
@@ -52,85 +52,18 @@ class StatisticController extends Controller
             'davonSwotAnalyse' => $davonSwotAnalyse,
             'davonPaarweiserVergleich' => $davonPaarweiserVergleich,
             'davonPortfolioAnalyse' => $davonPortfolioAnalyse,
-            'anzahlAnalysenVomLetztenMonat' =>$anzahlAnalysenVomLetztenMonat,
-            'davonGeteiltVomLetztenMonat' =>$davonGeteiltVomLetztenMonat,
-            'davonNutzwertanalyseVomLetztenMonat'=>$davonNutzwertanalyseVomLetztenMonat,
-            'davonSwotAnalyseVomLetztenMonat'=>$davonSwotAnalyseVomLetztenMonat,
-            'davonPaarweiserVergleichVomLetztenMonat'=>$davonPaarweiserVergleichVomLetztenMonat,
-            'davonPortfolioAnalyseVomLetztenMonat'=>$davonPortfolioAnalyseVomLetztenMonat,
-            'anzahlBenutzerMitKonto'=>$anzahlBenutzerMitKonto,
-            'anzahlAnonymeBenutzer'=>$anzahlAnonymeBenutzer,
-            'anzahlBenutzerOhneJadeHsAdressen'=>$anzahlBenutzerOhneJadeHsAdressen,
+            'anzahlAnalysenVomLetztenMonat' => $anzahlAnalysenVomLetztenMonat,
+            'davonGeteiltVomLetztenMonat' => $davonGeteiltVomLetztenMonat,
+            'davonNutzwertanalyseVomLetztenMonat' => $davonNutzwertanalyseVomLetztenMonat,
+            'davonSwotAnalyseVomLetztenMonat' => $davonSwotAnalyseVomLetztenMonat,
+            'davonPaarweiserVergleichVomLetztenMonat' => $davonPaarweiserVergleichVomLetztenMonat,
+            'davonPortfolioAnalyseVomLetztenMonat' => $davonPortfolioAnalyseVomLetztenMonat,
+            'anzahlBenutzerMitKonto' => $anzahlBenutzerMitKonto,
+            'anzahlAnonymeBenutzer' => $anzahlAnonymeBenutzer,
+            'anzahlBenutzerOhneJadeHsAdressen' => $anzahlBenutzerOhneJadeHsAdressen,
             'anzahlNeuerBenutzerMitKontoSeitLetztemMonat' => $anzahlNeuerBenutzerMitKontoSeitLetztemMonat,
             'anzahlNeuerAnonymenBenutzerSeitLetztemMonat' => $anzahlNeuerAnonymenBenutzerSeitLetztemMonat,
             'anzahlBenutzerOhneJadeHsAdressenSeitLetztemMonat' => $anzahlBenutzerOhneJadeHsAdressenSeitLetztemMonat
         ]);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

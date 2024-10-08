@@ -59,6 +59,10 @@
             </tbody>
         </table>
     </div>
+    <div class="container">
+        {{ $users->links() }}
+    </div>
+    
     <script>
         // Flash-Nachrichten nach 5 Sekunden ausblenden
         setTimeout(function() {

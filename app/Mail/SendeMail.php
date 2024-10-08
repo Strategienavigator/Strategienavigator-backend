@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use PhpParser\Node\Scalar\String_;
 
-class SendeMail extends Mailable
+class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,6 @@ class SendeMail extends Mailable
     {
         $this->subj = $email_data['subj'];
         $this->body = $email_data['body'];
-
     }
 
     /**

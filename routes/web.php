@@ -20,12 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('admin')->group(function () {
-// ---------- Role -----------------
+    // ---------- Role -----------------
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
@@ -33,9 +29,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('roles.edit');
     Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
     Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
-// ---------- // Role // ------------
+    // ---------- // Role // ------------
 
-// ---------- Benutzer -----------------
+    // ---------- Benutzer -----------------
     Route::get('/users', [User2Controller::class, 'index'])->name('users.index');
     Route::get('/users/create', [User2Controller::class, 'create'])->name('users.create');
     Route::post('/users', [User2Controller::class, 'store'])->name('users.store');
@@ -43,7 +39,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/users/{id}/edit', [User2Controller::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [User2Controller::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [User2Controller::class, 'destroy'])->name('users.destroy');
-// ---------- // Benutzer // ------------
+    // ---------- // Benutzer // ------------
 
     Route::get('/tools', [Tool2Controller::class, 'index'])->name('tools.index');
     Route::get('/tools/create', [Tool2Controller::class, 'create'])->name('tools.create');
@@ -53,19 +49,19 @@ Route::prefix('admin')->group(function () {
     Route::put('/tools/{id}', [Tool2Controller::class, 'update'])->name('tools.update');
     Route::delete('/tools/{id}', [Tool2Controller::class, 'destroy'])->name('tools.destroy');
 
-// --------------Statistik -----------------
+    // --------------Statistik -----------------
     Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
-// ---------- // Statistik // --------------
+    // ---------- // Statistik // --------------
 
-// ---------- send Emails ------------------
+    // ---------- send Emails ------------------
     Route::get('/emails/create', [Email2Controller::class, 'create'])->name('email.form');
     Route::post('/emails', [Email2Controller::class, 'store'])->name('send.email');
-// ---------- // send Emails // ------------
+    // ---------- // send Emails // ------------
 
-// ---------- Maintenance Mode ------------------
+    // ---------- Maintenance Mode ------------------
     Route::get('/toggle-maintenance-mode', [MaintenanceModeController::class, 'index'])->name('maintenance.mode');
     Route::post('/toggle-maintenance-mode', [MaintenanceModeController::class, 'toggleMaintenanceMode'])->name('maintenance.mode');
-// ---------- //Maintenance Mode// --------------
+    // ---------- //Maintenance Mode// --------------
 });
 
 Route::get('/dashboard', function () {
@@ -78,4 +74,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -37,8 +37,8 @@
                 <label for="status" class="form-label">Gruppe auswählen</label>
                 <select class="form-select" aria-label="Default select example" name="group">
                     <option selected value="admin">Admin</option>
-                    <option selected value="normal">Normal</option>
-                    <option selected value="anonym">Anonym</option>
+                    <option value="normal">Normal</option>
+                    <option value="anonym">Anonym</option>
                 </select>
             </div>
             <div class="mb-3">

@@ -26,17 +26,17 @@ class MaintenanceModeController extends Controller
     public function index(): View|Factory|Application
     {
 
-        $switch_logs = SwitchLog::all();
+        $switch_logs = SwitchLog::paginate(5);
 
-        if(App::isDownForMaintenance()){
+        if (App::isDownForMaintenance()) {
             $checked = true;
-        }else{
+        } else {
             $checked = false;
         }
         return view('maintenanceMode.index', [
-            'checked' =>$checked,
-            'switch_logs'=> $switch_logs
-            ]);
+            'checked' => $checked,
+            'switch_logs' => $switch_logs
+        ]);
     }
 
     /**
@@ -47,7 +47,9 @@ class MaintenanceModeController extends Controller
      */
     public function toggleMaintenanceMode(Request $request): JsonResponse
     {
-
+        $request->validate([
+            'isActive' => 'required|boolean',
+        ]);
 
         try {
             $isActive = $request->input('isActive');
@@ -87,9 +89,8 @@ class MaintenanceModeController extends Controller
             return response()->json(['message' => $message], 200);
         } catch (\Exception $e) {
             // Log the error for debugging
-            \Log::error('Error toggling maintenance mode: '.$e->getMessage());
+            \Log::error('Error toggling maintenance mode: ' . $e->getMessage());
             return response()->json(['message' => 'An error occurred'], 500);
         }
     }
-
 }

@@ -21,7 +21,7 @@ class User2Controller extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);;
         return view('users.index', ['users' => $users]);
     }
 
@@ -32,13 +32,8 @@ class User2Controller extends Controller
      */
     public function create()
     {
-        $max_id= User::max('id');
-        $counter = $max_id +1;
-
         $roles = Role::all();
-
-
-        return view('users.create', ['counter' =>$counter, 'roles' => $roles]);
+        return view('users.create', ['roles' => $roles]);
     }
 
     /**
@@ -50,9 +45,9 @@ class User2Controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'role' => 'required'
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'role' => 'required|string|max:50',
         ]);
         $user = new User();
         $user->username = $request->name;
@@ -98,12 +93,10 @@ class User2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'role' => 'required'
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'role' => 'required|string|max:50',
         ]);
         $user = User::find($id);
         $user->username = $request->name;

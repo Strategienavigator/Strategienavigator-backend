@@ -32,13 +32,7 @@ class Tool2Controller extends Controller
      */
     public function create(): View|Factory|Application
     {
-        $max_id= Tool::max('id');
-        $counter = $max_id +1;
-
-        $tools = Tool::all();
-
-
-        return view('tools.create', ['counter' =>$counter, 'tools' => $tools]);
+        return view('tools.create');
     }
 
     /**

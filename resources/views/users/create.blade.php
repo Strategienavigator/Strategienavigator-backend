@@ -7,7 +7,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    <h1> {{ __("Benutzer rstellen") }}</h1>
+                    <h1> {{ __("Benutzer erstellen") }}</h1>
                 </div>
             </div>
         </div>
@@ -18,10 +18,6 @@
     <div class="container">
         <form action={{ route('users.store') }} method="post">
             @csrf
-            <div class="mb-3">
-                <label for="id" class="form-label">ID</label>
-                <input type="text" class="form-control" id="id" name="id" value="{{$counter}}" disabled>
-            </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Benutzername</label>
                 <input type="text" class="form-control" id="name"  name="name" placeholder="">
@@ -36,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Rolle</label>
-                <select class="form-select" aria-label="Default select example" name="role">
+                <select class="form-select" select example" name="role">
                     @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                     @endforeach

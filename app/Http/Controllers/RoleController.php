@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -32,17 +33,7 @@ class RoleController extends Controller
      */
     public function create(): View|Factory|Application
     {
-        $count = DB::table('roles')->count();
-        $role = Role::all();
-
-        if ($count != 0 ){
-            $counter = $role[$count-1]->id +1;
-        }
-        else{
-            $counter = 0;
-        }
-
-        return view('roles.create', ['counter' =>$counter]);
+        return view('roles.create');
     }
 
     /**
@@ -55,8 +46,8 @@ class RoleController extends Controller
     {
 
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|min:3|max:50',
+            'description' => 'required|string|min:10|max:255',
         ]);
         $role = new Role();
         $role->name = $request->name;
@@ -64,7 +55,6 @@ class RoleController extends Controller
         $role->save();
         return redirect()->route('roles.index')
             ->with('success', 'role created successfully.');
-
     }
 
     /**
@@ -77,7 +67,6 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         return view('roles.show', ['role' => $role]);
-
     }
 
     /**
@@ -90,7 +79,6 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         return view('roles.edit', ['role' => $role]);
-
     }
 
     /**
@@ -103,8 +91,8 @@ class RoleController extends Controller
     public function update(Request $request, int $id)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|min:3|max:50',
+            'description' => 'required|string|min:10|max:255',
         ]);
         $role = Role::find($id);
         $role->update($request->all());
@@ -120,8 +108,8 @@ class RoleController extends Controller
      */
     public function destroy(int $id): string
     {
-            Role::destroy($id);
-             return redirect()->route('roles.index')
+        Role::destroy($id);
+        return redirect()->route('roles.index')
             ->with('success', 'role deleted successfully.');
     }
 }

@@ -12,19 +12,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
+use App\Constants\UserRoles;
 
 class Email2Controller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function index(): View|Factory|Application
-    {
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -44,87 +35,41 @@ class Email2Controller extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'subject' => 'required',
-            'body' => 'required'
+            'subject' => 'required|string|min:5|max:100',
+            'body' => 'required|string|min:10|max:1000',
+            'group' => 'required|string|in:' . implode(',', [UserRoles::ADMIN, UserRoles::NORMAL, UserRoles::ANONYM])
         ]);
 
-       $email_data = [
+        $email_data = [
             'subj' => $request->subject,
             'body' => $request->body
         ];
 
-        if ($request->group == 'admin'){
+        if ($request->group === UserRoles::ADMIN) {
             $adminUsers = User::whereHas('role', function ($query) {
-                $query->where('name', 'admin');
+                $query->where('name', UserRoles::ADMIN);
             })->get();
 
-            foreach ($adminUsers as $adminUser){
+            foreach ($adminUsers as $adminUser) {
                 Mail::to($adminUser->email)->send(new SendeMail($email_data));
             }
-
-        }elseif ($request->group == 'normal'){
+        } elseif ($request->group === UserRoles::NORMAL) {
             $normalUsers = User::whereHas('role', function ($query) {
-                $query->where('name', 'normal');
+                $query->where('name', UserRoles::NORMAL);
             })->get();
 
-            foreach ($normalUsers as $normalUser){
+            foreach ($normalUsers as $normalUser) {
                 Mail::to($normalUser->email)->send(new SendeMail($email_data));
             }
-
-        }elseif($request->group == 'anonym'){
+        } elseif ($request->group === UserRoles::ANONYM) {
             $anonymUsers = User::whereHas('role', function ($query) {
-                $query->where('name', 'anonym');
+                $query->where('name', UserRoles::ANONYM);
             })->get();
 
-            foreach ($anonymUsers as $anonymUser){
+            foreach ($anonymUsers as $anonymUser) {
                 Mail::to($anonymUser->email)->send(new SendeMail($email_data));
             }
         }
         return redirect()->back()->with('success', 'Email sent!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function show(int $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

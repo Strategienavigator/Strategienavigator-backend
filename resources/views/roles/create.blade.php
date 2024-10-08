@@ -21,10 +21,6 @@
         <form action={{ route('roles.store') }} method="post">
             @csrf
             <div class="mb-3">
-                <label for="id" class="form-label">ID</label>
-                <input type="text" class="form-control" id="id" name="id" placeholder="{{$counter}}" disabled>
-            </div>
-            <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name"  name="name" placeholder="role name">
             </div>
