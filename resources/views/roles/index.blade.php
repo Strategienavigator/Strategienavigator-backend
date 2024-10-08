@@ -2,7 +2,6 @@
 
 @section('title', 'Index')
 
-
 @section('header')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -22,7 +21,7 @@
         </div>
     @endif
     <div class="container">
-        <a href="{{route('roles.create')}}" type="button" class="btn btn-primary">create</a>
+        <a href="{{route('roles.create')}}" type="button" class="btn btn-primary">Erstellen</a>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -41,13 +40,13 @@
                     <td>{{$role->description}}</td>
 
                     <td class="mr-1">
-                        <a href="roles/{{$role->id}}" class="btn btn-warning">Anzeigen</a>
+                        <a href="{{ route('roles.show', $role->id) }}" class="btn btn-warning">Anzeigen</a>
                     </td>
                     <td>
-                        <a href="roles/{{$role->id}}/edit" class="btn btn-success">Bearbeiten</a>
+                        <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success">Bearbeiten</a>
                     </td>
                     <td>
-                        <form action="roles/{{$role->id}}" method="post">
+                        <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick=" return confirm('Sind Sie sicher, dass Sie diese Rolle {{$role->name}} löschen möchten ?');">Löschen</button>
@@ -57,6 +56,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $roles->links() }}
     </div>
     <script>
         // Flash-Nachrichten nach 5 Sekunden ausblenden

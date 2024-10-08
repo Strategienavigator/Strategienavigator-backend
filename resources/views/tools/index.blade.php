@@ -7,7 +7,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    <h1> {{ __("Tools, Infotexten bearbeiten") }}</h1>
+                    <h1> {{ __("Tools und Infotexte bearbeiten") }}</h1>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
         </div>
     @endif
     <div class="container">
-        <a href="{{route('tools.create')}}" type="button" class="btn btn-primary">create</a>
+        <a href="{{route('tools.create')}}" type="button" class="btn btn-primary">Erstellen</a>
         <table class="table">
             <thead>
             <tr>
@@ -49,13 +49,13 @@
                     <td>{{$tool->tutorial}}</td>
 
                     <td class="mr-1">
-                        <a href="tools/{{$tool->id}}" class="btn btn-warning">Anzeigen</a>
+                        <a href="{{ route('tools.show', $tool->id) }}" class="btn btn-warning">Anzeigen</a>
                     </td>
                     <td>
-                        <a href="tools/{{$tool->id}}/edit" class="btn btn-success">Bearbeiten</a>
+                        <a href="{{ route('tools.edit', $tool->id) }}" class="btn btn-success">Bearbeiten</a>
                     </td>
                     <td>
-                        <form action="tools/{{$tool->id}}" method="post">
+                        <form aaction="{{ route('tools.destroy', $tool->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick=" return confirm('Sind Sie sicher, dass Sie diesen Tool {{$tool->name}} löschen möchten ?');">Löschen</button>
@@ -65,6 +65,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $tools->links() }}
     </div>
     <script>
         // Flash-Nachrichten nach 5 Sekunden ausblenden

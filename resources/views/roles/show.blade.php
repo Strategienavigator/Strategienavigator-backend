@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Show')4
+@section('title', 'Anzeigen')
 
 @section('header')
     <div class="py-12">
@@ -21,7 +21,7 @@
                 <h5 class="card-title">ID: {{$role->id}}</h5>
                 <p class="card-text">Name: {{$role->name}}</p>
                 <p class="card-text">Beschreibung: {{$role->description}}</p>
-                <a href="{{route('roles.index')}}" class="card-link">back</a>
+                <a href="{{route('roles.index')}}" class="card-link">Zurück</a>
             </div>
         </div>
     </div>

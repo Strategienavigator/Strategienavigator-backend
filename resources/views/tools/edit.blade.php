@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit')
+@section('title', 'Bearbeiten')
 
 @section('header')
     <div class="py-12">
@@ -38,7 +38,7 @@
                 <label for="tutorial" class="form-label">Tutorial</label>
                 <textarea class="form-control" id="tutorial" name="tutorial" rows="3">{{$tool->tutorial}}</textarea>
             </div>
-            <button type="submit" class="btn btn-info" >update</button>
+            <button type="submit" class="btn btn-info" >Aktualisieren</button>
         </form>
     </div>
 @endsection

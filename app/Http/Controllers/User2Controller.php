@@ -21,7 +21,7 @@ class User2Controller extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);;
+        $users = User::paginate(5);
         return view('users.index', ['users' => $users]);
     }
 
