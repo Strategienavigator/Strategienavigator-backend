@@ -2,8 +2,8 @@
 <footer style="" class="bg-body-tertiary text-center text-lg-start">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: white">
-        © 2020 Copyright:
-        <a class="text-body" href="https://mdbootstrap.com/">strategienavigator</a>
+        © 2024 Copyright:
+        <a class="text-body" href="{{ route('dashboard') }}">Strategienavigator</a>
     </div>
     <!-- Copyright -->
 </footer>

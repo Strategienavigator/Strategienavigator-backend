@@ -31,11 +31,11 @@
             @endif
             <div class="mb-3">
                 <label for="subject" class="form-label">Betreff</label>
-                <input type="text" class="form-control" id="subject"  name="subject" placeholder="">
+                <input type="text" class="form-control" id="subject"  name="subject" placeholder="Geben Sie den Betreff ein" required>
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Gruppe auswählen</label>
-                <select class="form-select" aria-label="Default select example" name="group">
+                <select class="form-select" aria-label="Default select example" name="group" required>
                     <option selected value="admin">Admin</option>
                     <option value="normal">Normal</option>
                     <option value="anonym">Anonym</option>
@@ -43,7 +43,7 @@
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Nachricht</label>
-                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                <textarea class="form-control" id="body" name="body" rows="3" placeholder="Geben Sie Ihre Nachricht ein" required></textarea>
             </div>
             <button type="submit" class="btn btn-info" >senden</button>
         </form>

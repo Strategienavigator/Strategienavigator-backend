@@ -52,11 +52,10 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/chart.min.js') }}"></script>
     <script>
-
         //Tools Statistiken Chart
         let xValues = [
-
             "Davon Nutzwert Analyse",
             "Davon SWOT Analyse",
             "Davon PaarweiserVergleich",
@@ -68,7 +67,6 @@
             {{$davonPaarweiserVergleich}},
             {{$davonPortfolioAnalyse}}
         ];
-
 
         let barColors = [
             "#b91d47",

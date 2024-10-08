@@ -26,9 +26,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">username</th>
-                    <th scope="col">action</th>
-                    <th scope="col">action_time</th>
+                    <th scope="col">Benutzername</th>
+                    <th scope="col">Aktion</th>
+                    <th scope="col">Aktionszeit</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +43,6 @@
         </table>
         {{ $switch_logs->links() }}
     </div>
-
 
     <script>
         const maintenanceSwitch = document.getElementById('maintenanceSwitch');

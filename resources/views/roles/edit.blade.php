@@ -2,7 +2,6 @@
 
 @section('title', 'Edit')
 
-
 @section('header')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -29,10 +28,10 @@
                 <input type="text" class="form-control" id="name"  name="name" placeholder="{{$role->name}}">
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Beschreibung</label>
                 <textarea class="form-control" id="description" name="description" rows="3">{{$role->description}}</textarea>
             </div>
-            <button type="submit" class="btn btn-info" >update</button>
+            <button type="submit" class="btn btn-info" >Aktualisieren</button>
         </form>
     </div>
 @endsection
