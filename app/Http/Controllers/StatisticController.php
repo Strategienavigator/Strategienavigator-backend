@@ -38,10 +38,10 @@ class StatisticController extends Controller
         $davonPortfolioAnalyseVomLetztenMonat = Save::where('tool_id', 4)->where('created_at', '>=', now()->subMonth())->count();
 
         //User statistics
-        $anzahlBenutzerMitKonto = User::whereHas('roles', function ($query) {
+        $anzahlBenutzerMitKonto = User::whereHas('role', function ($query) {
             $query->where('name', '!=', 'anonym');
         })->count();
-        $anzahlAnonymeBenutzer = User::whereHas('roles', function ($query) {
+        $anzahlAnonymeBenutzer = User::whereHas('role', function ($query) {
             $query->where('name', 'anonym');
         })->count();
         $anzahlBenutzerOhneJadeHsAdressen = User::where('email', 'NOT LIKE', '%jade-hs.de%')->count();

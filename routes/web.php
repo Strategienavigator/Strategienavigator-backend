@@ -7,7 +7,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\Tool2Controller;
 use App\Http\Controllers\User2Controller;
+use App\Http\Controllers\frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\CustomAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +23,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->group(function () {
+//Route::fallback([FrontendController::class, "index"]);
+
+Route::get('Unauthorized', function () {
+    return view('Unauthorized');
+});
+
+Route::prefix('admin')->middleware(['verified', 'admin'])->group(function () {
+
+    // Dashboard route
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
     // ---------- Role -----------------
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
@@ -62,16 +77,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/toggle-maintenance-mode', [MaintenanceModeController::class, 'index'])->name('maintenance.mode');
     Route::post('/toggle-maintenance-mode', [MaintenanceModeController::class, 'toggleMaintenanceMode'])->name('maintenance.mode');
     // ---------- //Maintenance Mode// --------------
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [CustomAuthController::class, 'login']);
+Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-require __DIR__ . '/auth.php';
+
+//require __DIR__ . '/auth.php';

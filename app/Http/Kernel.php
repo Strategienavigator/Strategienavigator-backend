@@ -90,5 +90,6 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'activityLog' => UserLastActivityLog::class,
+        'admin' => \App\Http\Middleware\CheckAdmin::class,
     ];
 }
