@@ -84,6 +84,3 @@ Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('logi
 Route::post('/login', [CustomAuthController::class, 'login']);
 Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-
-
-//require __DIR__ . '/auth.php';
