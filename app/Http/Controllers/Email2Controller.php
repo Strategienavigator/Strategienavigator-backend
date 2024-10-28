@@ -51,7 +51,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($adminUsers as $adminUser) {
-                Mail::to($adminUser->email)->send(new SendeMail($email_data));
+                Mail::to($adminUser->email)->queue(new SendEmail($email_data));
             }
         } elseif ($request->group === UserRoles::NORMAL) {
             $normalUsers = User::whereHas('role', function ($query) {
@@ -59,7 +59,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($normalUsers as $normalUser) {
-                Mail::to($normalUser->email)->send(new SendeMail($email_data));
+                Mail::to($normalUser->email)->queue(new SendEmail($email_data));
             }
         } elseif ($request->group === UserRoles::ANONYM) {
             $anonymUsers = User::whereHas('role', function ($query) {
@@ -67,7 +67,7 @@ class Email2Controller extends Controller
             })->get();
 
             foreach ($anonymUsers as $anonymUser) {
-                Mail::to($anonymUser->email)->send(new SendeMail($email_data));
+                Mail::to($anonymUser->email)->queue(new SendEmail($email_data));
             }
         }
         return redirect()->back()->with('success', 'Email sent!');

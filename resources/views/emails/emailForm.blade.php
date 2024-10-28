@@ -42,7 +42,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="message" class="form-label">Nachricht</label>
+                <label for="body" class="form-label">Nachricht</label>
                 <textarea class="form-control" id="body" name="body" rows="3" placeholder="Geben Sie Ihre Nachricht ein" required></textarea>
             </div>
             <button type="submit" class="btn btn-info" >senden</button>
