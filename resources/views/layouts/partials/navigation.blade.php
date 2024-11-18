@@ -13,10 +13,11 @@
         <ul class="navbar-nav">
             <!-- Dashboard Link -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                     {{ __('Dashboard') }}
                 </a>
             </li>
+
 
             <!-- User Management Dropdown -->
             <li class="nav-item dropdown">
@@ -31,28 +32,28 @@
 
             <!-- Rundmail Link -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('email.form') }}" :active="request()->routeIs('email.form')">
+                <a class="nav-link {{ request()->routeIs('email.form') ? 'active' : '' }}" href="{{ route('email.form') }}">
                     <i class="fa-solid fa-envelope"></i> {{ __('Rundmail senden') }}
                 </a>
             </li>
 
             <!-- Statistics Link -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('statistics.index') }}" :active="request()->routeIs('statistics.index')">
+                <a class="nav-link {{ request()->routeIs('statistics.index') ? 'active' : '' }}" href="{{ route('statistics.index') }}">
                     <i class="fa-solid fa-chart-column"></i> {{ __('Datenbank Statistik anzeigen') }}
                 </a>
             </li>
 
             <!-- Tools Link -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('tools.index') }}" :active="request()->routeIs('tools.index')">
+                <a class="nav-link {{ request()->routeIs('tools.index') ? 'active' : '' }}" href="{{ route('tools.index') }}">
                     <i class="fa-solid fa-gear"></i> {{ __('Tools verwalten') }}
                 </a>
             </li>
 
             <!-- Maintenance Mode Link -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('maintenance.mode') }}" :active="request()->routeIs('maintenance.mode')">
+                <a class="nav-link {{ request()->routeIs('maintenance.mode') ? 'active' : '' }}" href="{{ route('maintenance.mode') }}">
                     <i class="fa-solid fa-toggle-off"></i> {{ __('Wartungsmodus an/aus') }}
                 </a>
             </li>
@@ -61,9 +62,9 @@
 
     <!-- Authentication Dropdown (aligned right) -->
     <div class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
+        <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ Auth::user()->name }}
+                {{ Auth::user()->email }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="authDropdown">
                 <li>
@@ -75,6 +76,6 @@
                     </form>
                 </li>
             </ul>
-        </li>
+        </div>
     </div>
 </nav>
