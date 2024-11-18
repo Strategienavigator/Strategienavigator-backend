@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckMaintenanceMode;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\UserLastActivityLog;
@@ -90,6 +91,6 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'activityLog' => UserLastActivityLog::class,
-        'admin' => \App\Http\Middleware\CheckAdmin::class,
+        'role' => RoleMiddleware::class,
     ];
 }

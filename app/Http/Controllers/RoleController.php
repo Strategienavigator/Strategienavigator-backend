@@ -22,7 +22,7 @@ class RoleController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $roles = Role::paginate(5);
+        $roles = Role::paginate(20);
         return view('roles.index', ['roles' => $roles]);
     }
 

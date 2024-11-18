@@ -77,10 +77,19 @@
             // Page is visible, set a timeout to hide the flash message
             setTimeout(hideFlashMessage, 5000); // 5000 milliseconds = 5 seconds
 
-            // Event listener for visibility change
-            document.addEventListener('visibilitychange', onVisibilityChange);
         }
 
+        // Initialisierung - beim Laden prüfen, ob die Seite sichtbar ist
+        if (!document.hidden) {
+            // Wenn die Seite beim Laden sichtbar ist, Timeout sofort setzen
+            setTimeout(hideFlashMessage, 5000);
+        }
+
+        // Register the event listener for visibility change only once
+        document.addEventListener('visibilitychange', onVisibilityChange);
+
+
         onVisibilityChange();
+
     </script>
 @endsection
