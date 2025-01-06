@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamp('action_time')->useCurrent();
-            $table->foreign('user_id')->references('id')->on('set null');
+            $table->foreign('user_id')->references('id')->onDelete('set null');
             $table->timestamps();
         });
     }

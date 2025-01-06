@@ -34,6 +34,6 @@ class RoleMiddleware
         }
 
         // Redirect or return an error response if not an admin
-        return redirect('/admin/login')->with('error', 'You do not have admin access.');
+        return redirect()->route('admin.login')->with('error', 'You do not have admin access.');
     }
 }

@@ -17046,7 +17046,7 @@ namespace Illuminate\Http {
     /**
      *
      *
-     */
+     *@property mixed $role*/
     class Request
     {public mixed $name;public mixed $description;public mixed $password;public mixed $email;
         /**

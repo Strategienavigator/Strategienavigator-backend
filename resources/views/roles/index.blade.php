@@ -79,12 +79,6 @@
 
         }
 
-        // Initialisierung - beim Laden prüfen, ob die Seite sichtbar ist
-        if (!document.hidden) {
-            // Wenn die Seite beim Laden sichtbar ist, Timeout sofort setzen
-            setTimeout(hideFlashMessage, 5000);
-        }
-
         // Register the event listener for visibility change only once
         document.addEventListener('visibilitychange', onVisibilityChange);
 
