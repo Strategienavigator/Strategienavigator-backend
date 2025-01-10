@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             ToolSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            SettingsSeeder::class,
+            //SettingsSeeder::class,
         ]);
     }
 }
