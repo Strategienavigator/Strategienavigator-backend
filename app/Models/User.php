@@ -74,6 +74,10 @@ class User extends Authenticatable
     use HasFactory, HasApiTokens, SoftDeletes, Limitable;
 
     /**
+     * @var \Illuminate\Support\HigherOrderCollectionProxy|mixed
+     */
+
+    /**
      * Attribute, welche Massen zuweisbar sind
      *
      * @var array

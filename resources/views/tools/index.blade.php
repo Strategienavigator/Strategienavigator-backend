@@ -55,7 +55,7 @@
                             <a href="{{ route('tools.edit', $tool->id) }}" class="btn btn-success">Bearbeiten</a>
                         </td>
                         <td>
-                            <form aaction="{{ route('tools.destroy', $tool->id) }}" method="post">
+                            <form action="{{ route('tools.destroy', $tool->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"

@@ -26,7 +26,7 @@ class MaintenanceModeController extends Controller
     public function index(): View|Factory|Application
     {
 
-        $switch_logs = SwitchLog::paginate(5);
+        $switch_logs = SwitchLog::paginate(20);
 
         if (App::isDownForMaintenance()) {
             $checked = true;

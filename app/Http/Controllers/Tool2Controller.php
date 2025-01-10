@@ -21,7 +21,7 @@ class Tool2Controller extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $tools = Tool::paginate(5);
+        $tools = Tool::paginate(20);
         return view('tools.index', ['tools' => $tools]);
     }
 
