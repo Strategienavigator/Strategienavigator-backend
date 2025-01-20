@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Role</label>
-                <select class="form-select" select example" name="role">
+                <select class="form-select" name="role">
                     @foreach($roles as $role)
                         @if($role->id == $user->role_id)
                             <option selected value="{{$role->id}}">{{$role->name}}</option>

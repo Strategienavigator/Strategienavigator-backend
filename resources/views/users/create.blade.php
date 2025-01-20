@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Rolle</label>
-                <select class="form-select" select example" name="role">
+                <select class="form-select" name="role">
                     @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                     @endforeach
