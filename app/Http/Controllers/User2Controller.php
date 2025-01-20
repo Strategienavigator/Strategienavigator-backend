@@ -53,7 +53,7 @@ class User2Controller extends Controller
         $user->password = $request->password;
         $user->role_id = $request->role;
         $user->save();
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User created successfully.');
     }
 
@@ -103,7 +103,7 @@ class User2Controller extends Controller
         $user->role_id = $request->role;
         $user->save();
 
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User updated successfully.');
     }
 
@@ -116,7 +116,7 @@ class User2Controller extends Controller
     public function destroy(int $id): RedirectResponse
     {
         User::destroy($id);
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User deleted successfully.');
     }
 }

@@ -52,22 +52,22 @@ Route::prefix('admin')->group(function () {
         // ---------- // Role // ------------
 
         // ---------- Benutzer -----------------
-        Route::get('/users', [User2Controller::class, 'index'])->name('users.index');
-        Route::get('/users/create', [User2Controller::class, 'create'])->name('users.create');
-        Route::post('/users', [User2Controller::class, 'store'])->name('users.store');
-        Route::get('/users/{id}', [User2Controller::class, 'show'])->name('users.show');
-        Route::get('/users/{id}/edit', [User2Controller::class, 'edit'])->name('users.edit');
-        Route::put('/users/{id}', [User2Controller::class, 'update'])->name('users.update');
-        Route::delete('/users/{id}', [User2Controller::class, 'destroy'])->name('users.destroy');
+        Route::get('/users', [User2Controller::class, 'index'])->name('admin.users.index');
+        Route::get('/users/create', [User2Controller::class, 'create'])->name('admin.users.create');
+        Route::post('/users', [User2Controller::class, 'store'])->name('admin.users.store');
+        Route::get('/users/{id}', [User2Controller::class, 'show'])->name('admin.users.show');
+        Route::get('/users/{id}/edit', [User2Controller::class, 'edit'])->name('admin.users.edit');
+        Route::put('/users/{id}', [User2Controller::class, 'update'])->name('admin.users.update');
+        Route::delete('/users/{id}', [User2Controller::class, 'destroy'])->name('admin.users.destroy');
         // ---------- // Benutzer // ------------
 
-        Route::get('/tools', [Tool2Controller::class, 'index'])->name('tools.index');
-        Route::get('/tools/create', [Tool2Controller::class, 'create'])->name('tools.create');
-        Route::post('/tools', [Tool2Controller::class, 'store'])->name('tools.store');
-        Route::get('/tools/{id}', [Tool2Controller::class, 'show'])->name('tools.show');
-        Route::get('/tools/{id}/edit', [Tool2Controller::class, 'edit'])->name('tools.edit');
-        Route::put('/tools/{id}', [Tool2Controller::class, 'update'])->name('tools.update');
-        Route::delete('/tools/{id}', [Tool2Controller::class, 'destroy'])->name('tools.destroy');
+        Route::get('/tools', [Tool2Controller::class, 'index'])->name('admin.tools.index');
+        Route::get('/tools/create', [Tool2Controller::class, 'create'])->name('admin.tools.create');
+        Route::post('/tools', [Tool2Controller::class, 'store'])->name('admin.tools.store');
+        Route::get('/tools/{id}', [Tool2Controller::class, 'show'])->name('admin.tools.show');
+        Route::get('/tools/{id}/edit', [Tool2Controller::class, 'edit'])->name('admin.tools.edit');
+        Route::put('/tools/{id}', [Tool2Controller::class, 'update'])->name('admin.tools.update');
+        Route::delete('/tools/{id}', [Tool2Controller::class, 'destroy'])->name('admin.tools.destroy');
 
         // --------------Statistik -----------------
         Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
@@ -79,8 +79,8 @@ Route::prefix('admin')->group(function () {
         // ---------- // send Emails // ------------
 
         // ---------- Maintenance Mode ------------------
-        Route::get('/toggle-maintenance-mode', [MaintenanceModeController::class, 'index'])->name('maintenance.mode');
-        Route::post('/toggle-maintenance-mode', [MaintenanceModeController::class, 'toggleMaintenanceMode'])->name('maintenance.mode');
+        Route::get('/toggle-maintenance-mode', [MaintenanceModeController::class, 'index'])->name('maintenance-mode.index');
+        Route::post('/toggle-maintenance-mode', [MaintenanceModeController::class, 'toggleMaintenanceMode'])->name('maintenance-mode.toggle');
         // ---------- //Maintenance Mode// --------------
     });
 

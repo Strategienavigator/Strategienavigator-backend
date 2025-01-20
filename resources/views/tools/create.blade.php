@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="container">
-        <form action={{ route('tools.store') }} method="post">
+        <form action={{ route('admin.tools.store') }} method="post">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>

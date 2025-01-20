@@ -21,7 +21,7 @@
         </div>
     @endif
     <div class="container">
-        <a href="{{ route('tools.create') }}" type="button" class="btn btn-primary">Erstellen</a>
+        <a href="{{ route('admin.tools.create') }}" type="button" class="btn btn-primary">Erstellen</a>
         <table class="table">
             <thead>
                 <tr>
@@ -49,13 +49,13 @@
                         <td>{{ $tool->tutorial }}</td>
 
                         <td class="mr-1">
-                            <a href="{{ route('tools.show', $tool->id) }}" class="btn btn-warning">Anzeigen</a>
+                            <a href="{{ route('admin.tools.show', $tool->id) }}" class="btn btn-warning">Anzeigen</a>
                         </td>
                         <td>
-                            <a href="{{ route('tools.edit', $tool->id) }}" class="btn btn-success">Bearbeiten</a>
+                            <a href="{{ route('admin.tools.edit', $tool->id) }}" class="btn btn-success">Bearbeiten</a>
                         </td>
                         <td>
-                            <form action="{{ route('tools.destroy', $tool->id) }}" method="post">
+                            <form action="{{ route('admin.tools.destroy', $tool->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"

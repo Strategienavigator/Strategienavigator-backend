@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="container">
-        <form action={{ route('users.update', $user->id) }} method="post">
+        <form action={{ route('admin.users.update', $user->id) }} method="post">
             @csrf
             @method('PUT')
             <div class="mb-3">

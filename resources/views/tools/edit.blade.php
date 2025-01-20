@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="container">
-        <form action={{ route('tools.update', $tool->id) }} method="post">
+        <form action={{ route('admin.tools.update', $tool->id) }} method="post">
             @csrf
             @method('PUT')
             <div class="mb-3">

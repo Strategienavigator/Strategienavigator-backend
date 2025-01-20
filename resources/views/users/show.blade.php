@@ -22,7 +22,7 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">Benutzername: {{$user->username}}</h6>
                 <p class="card-text">Email: {{$user->email}}</p>
                 <p class="card-text">Role: {{$user->role->name}}</p>
-                <a href="{{route('users.index')}}" class="card-link">Zurück</a>
+                <a href="{{route('admin.users.index')}}" class="card-link">Zurück</a>
             </div>
         </div>
     </div>
