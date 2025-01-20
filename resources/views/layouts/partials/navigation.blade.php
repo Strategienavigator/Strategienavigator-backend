@@ -53,7 +53,7 @@
 
             <!-- Maintenance Mode Link -->
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('maintenance-mode.index') ? 'active' : '' }}" href="{{ route('maintenance.mode') }}">
+                <a class="nav-link {{ request()->routeIs('maintenance-mode.index') ? 'active' : '' }}" href="{{ route('maintenance-mode.index') }}">
                     <i class="fa-solid fa-toggle-off"></i> {{ __('Wartungsmodus an/aus') }}
                 </a>
             </li>
