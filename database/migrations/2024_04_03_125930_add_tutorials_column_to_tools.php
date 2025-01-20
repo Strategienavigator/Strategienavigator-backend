@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tools', function (Blueprint $table) {
-            $table->text('tutorial')->default('');
+            $table->text('tutorial')->nullable(); // cannot have default value, beacause mysql doesn't support default values on text type collumns
         });
     }
 

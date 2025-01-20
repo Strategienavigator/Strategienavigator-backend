@@ -44,9 +44,9 @@ class Tool2Controller extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
-            'tutorial' => 'required'
+            'name' => 'required|string|max:255|min:3',
+            'status' => 'required|boolean',
+            'tutorial' => 'required|string'
         ]);
 
         $tool = new Tool();
@@ -92,9 +92,9 @@ class Tool2Controller extends Controller
     public function update(Request $request, int $id): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
-            'tutorial' => 'required'
+            'name' => 'required|string|max:255|min:3',
+            'status' => 'required|boolean',
+            'tutorial' => 'required|string'
         ]);
 
 
