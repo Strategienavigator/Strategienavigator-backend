@@ -46,7 +46,7 @@ class Tool2Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:255|min:3',
             'status' => 'required|boolean',
-            'tutorial' => 'required|string'
+            'tutorial' => 'nullable|string'
         ]);
 
         $tool = new Tool();
@@ -94,7 +94,7 @@ class Tool2Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:255|min:3',
             'status' => 'required|boolean',
-            'tutorial' => 'required|string'
+            'tutorial' => 'nullable|string'
         ]);
 
 

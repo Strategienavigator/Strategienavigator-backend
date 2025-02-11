@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(): Factory|View|Application
     {
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): Redirector|RedirectResponse|Application
     {
         // Validate the request
         $request->validate([
@@ -42,7 +47,7 @@ class CustomAuthController extends Controller
 
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): Redirector|Application|RedirectResponse
     {
         Auth::logout(); // Log the user out
 
