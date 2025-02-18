@@ -34,6 +34,7 @@
                 <textarea class="form-control" id="tutorial" name="tutorial" rows="3">Info Text</textarea>
             </div>
             <button type="submit" class="btn btn-info" >Erstellen</button>
+            <a href="{{ route('admin.tools.index') }}" class="btn btn-warning">Zurück</a>
         </form>
     </div>
 @endsection
