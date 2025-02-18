@@ -16,6 +16,15 @@
 
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action={{ route('admin.users.store') }} method="post">
             @csrf
             <div class="mb-3">
@@ -29,6 +38,10 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Passwort</label>
                 <input type="password" class="form-control" id="email"  name="password" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Passwort wiederholen</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="">
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Rolle</label>
