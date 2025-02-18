@@ -43,6 +43,15 @@
                     @endforeach
                 </select>
             </div>
+            <!-- Password fields: New additions for password change -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Neues Passwort</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Neues Passwort">
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Passwort bestätigen</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Passwort bestätigen">
+            </div>
 
             <button type="submit" class="btn btn-info" >update</button>
         </form>
