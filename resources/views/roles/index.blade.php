@@ -46,12 +46,16 @@
                             <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-success">Bearbeiten</a>
                         </td>
                         <td>
+                            @if ($role->name == 'admin') <!-- Check if the role name is Admin -->
+                            <button class="btn btn-danger" disabled>Wichtig - Löschen deaktiviert</button>
+                            @else
                             <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
                                     onclick=" return confirm('Sind Sie sicher, dass Sie diese Rolle {{ $role->name }} löschen möchten ?');">Löschen</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
