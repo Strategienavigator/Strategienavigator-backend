@@ -1,5 +1,5 @@
 
-<footer style="" class="bg-body-tertiary text-center text-lg-start">
+<footer style="" class="bg-body-tertiary text-center text-lg-start fixed-bottom">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: white">
         © 2024 Copyright:
