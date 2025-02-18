@@ -31,6 +31,10 @@
                 <input type="password" class="form-control" id="email"  name="password" placeholder="">
             </div>
             <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Passwort wiederholen</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="">
+            </div>
+            <div class="mb-3">
                 <label for="name" class="form-label">Rolle</label>
                 <select class="form-select" name="role">
                     @foreach($roles as $role)

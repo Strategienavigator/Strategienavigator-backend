@@ -46,6 +46,7 @@ class User2Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8|confirmed',
             'role' => 'required|integer|exists:roles,id',
         ]);
         $user = new User();
