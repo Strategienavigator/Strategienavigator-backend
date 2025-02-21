@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('last_activity')->default(now())->change();
+            $table->timestamp('last_activity')->default(now())->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('last_activity')->nullable(false)->default(null)->change();
+            $table->timestamp('last_activity')->nullable(false)->default(null)->change();
         });
     }
 };
