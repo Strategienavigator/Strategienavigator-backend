@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -54,6 +55,7 @@ class User2Controller extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->role_id = $request->role;
+        $user->last_activity = Carbon::now();
         $user->save();
         return redirect()->route('admin.users.index')
             ->with('success', 'User created successfully.');
