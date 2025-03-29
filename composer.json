@@ -9,16 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-gd": "*",
         "beyondcode/laravel-websockets": "^1.13",
+        "doctrine/dbal": "^3.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
         "laravel/passport": "^10.3",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "^7.0",
-        "mews/captcha": "^3.2",
-        "ext-gd": "*",
-      "ext-http": "*"
+        "mews/captcha": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",

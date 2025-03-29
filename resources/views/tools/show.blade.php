@@ -22,7 +22,7 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">Name: {{$tool->name}}</h6>
                 <p class="card-text">Status:  @if($tool->status == 1) An  @else Aus @endif</p>
                 <p class="card-text">Tutorial: {{$tool->tutorial}}</p>
-                <a href="{{route('tools.index')}}" class="card-link">Zurück</a>
+                <a href="{{route('admin.tools.index')}}" class="card-link">Zurück</a>
             </div>
         </div>
     </div>

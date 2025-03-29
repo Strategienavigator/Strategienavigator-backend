@@ -25,7 +25,7 @@
                     <i class="fa-solid fa-user-pen"></i> Benutzer verwalten
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{ route('users.index') }}"><i class="fa-solid fa-arrow-right"></i> Benutzer verwalten</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.users.index') }}"><i class="fa-solid fa-arrow-right"></i> Benutzer verwalten</a></li>
                     <li><a class="dropdown-item" href="{{ route('roles.index') }}"><i class="fa-solid fa-arrow-right"></i> Rollen verwalten</a></li>
                 </ul>
             </li>
@@ -46,14 +46,14 @@
 
             <!-- Tools Link -->
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('tools.index') ? 'active' : '' }}" href="{{ route('tools.index') }}">
+                <a class="nav-link {{ request()->routeIs('admin.tools.index') ? 'active' : '' }}" href="{{ route('admin.tools.index') }}">
                     <i class="fa-solid fa-gear"></i> {{ __('Tools verwalten') }}
                 </a>
             </li>
 
             <!-- Maintenance Mode Link -->
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('maintenance.mode') ? 'active' : '' }}" href="{{ route('maintenance.mode') }}">
+                <a class="nav-link {{ request()->routeIs('maintenance-mode.index') ? 'active' : '' }}" href="{{ route('maintenance-mode.index') }}">
                     <i class="fa-solid fa-toggle-off"></i> {{ __('Wartungsmodus an/aus') }}
                 </a>
             </li>

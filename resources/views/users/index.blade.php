@@ -23,7 +23,7 @@
     <div class="container d-flex align-items-center justify-content-center ">
 
         <table class="table table-hover">
-            <caption style="caption-side: top;"><a href="{{ route('users.create') }}" type="button"
+            <caption style="caption-side: top;"><a href="{{ route('admin.users.create') }}" type="button"
                     class="btn btn-primary">Erstellen</a></caption>
             <thead>
                 <tr>

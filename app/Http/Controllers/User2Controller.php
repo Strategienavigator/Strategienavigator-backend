@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class User2Controller extends Controller
 {
@@ -45,6 +47,7 @@ class User2Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8|confirmed',
             'role' => 'required|integer|exists:roles,id',
         ]);
         $user = new User();
@@ -52,8 +55,9 @@ class User2Controller extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->role_id = $request->role;
+        $user->last_activity = Carbon::now();
         $user->save();
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User created successfully.');
     }
 
@@ -91,19 +95,26 @@ class User2Controller extends Controller
      */
     public function update(Request $request, int $id): RedirectResponse
     {
-        $request->validate([
+        $validated  = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'role' => 'required|integer|exists:roles,id',
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         $user = User::find($id);
         $user->username = $request->name;
         $user->email = $request->email;
         $user->role_id = $request->role;
+
+        // If a password is provided, hash it and update it
+        if ($request->filled('password')) { // If password is provided, update it
+            $user->password = $validated['password'];
+        }
+
         $user->save();
 
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User updated successfully.');
     }
 
@@ -116,7 +127,7 @@ class User2Controller extends Controller
     public function destroy(int $id): RedirectResponse
     {
         User::destroy($id);
-        return redirect()->route('users.index')
+        return redirect()->route('admin.users.index')
             ->with('success', 'User deleted successfully.');
     }
 }

@@ -44,9 +44,9 @@ class Tool2Controller extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
-            'tutorial' => 'required'
+            'name' => 'required|string|max:255|min:3',
+            'status' => 'required|boolean',
+            'tutorial' => 'nullable|string'
         ]);
 
         $tool = new Tool();
@@ -54,7 +54,7 @@ class Tool2Controller extends Controller
         $tool->status = $request->status;
         $tool->tutorial = $request->tutorial;
         $tool->save();
-        return redirect()->route('tools.index')
+        return redirect()->route('admin.tools.index')
             ->with('success', 'Tool created successfully.');
     }
 
@@ -92,9 +92,9 @@ class Tool2Controller extends Controller
     public function update(Request $request, int $id): RedirectResponse
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required',
-            'tutorial' => 'required'
+            'name' => 'required|string|max:255|min:3',
+            'status' => 'required|boolean',
+            'tutorial' => 'nullable|string'
         ]);
 
 
@@ -103,7 +103,7 @@ class Tool2Controller extends Controller
         $tool->status = $request->status;
         $tool->tutorial = $request->tutorial;
         $tool->save();
-        return redirect()->route('tools.index')
+        return redirect()->route('admin.tools.index')
             ->with('success', 'Tool updated successfully.');
     }
 
@@ -116,7 +116,7 @@ class Tool2Controller extends Controller
     public function destroy(int $id): RedirectResponse
     {
         Tool::destroy($id);
-        return redirect()->route('tools.index')
+        return redirect()->route('admin.tools.index')
             ->with('success', 'Tool deleted successfully.');
     }
 }

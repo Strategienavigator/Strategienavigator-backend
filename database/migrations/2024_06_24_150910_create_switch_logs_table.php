@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('switch_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamp('action_time')->useCurrent();
-            $table->foreign('user_id')->references('id')->onDelete('set null');
             $table->timestamps();
         });
     }

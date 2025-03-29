@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="container">
-        <form action={{ route('tools.update', $tool->id) }} method="post">
+        <form action={{ route('admin.tools.update', $tool->id) }} method="post">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -30,8 +30,8 @@
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" aria-label="Default select example" name="status">
-                    <option selected value="1">An</option>
-                    <option value="0">Aus</option>
+                    <option value="1" {{ $tool->status == 1 ? 'selected' : '' }}>An</option>
+                    <option value="0" {{ $tool->status ==0 ? 'selected' : '' }}>Aus</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -39,6 +39,7 @@
                 <textarea class="form-control" id="tutorial" name="tutorial" rows="3">{{$tool->tutorial}}</textarea>
             </div>
             <button type="submit" class="btn btn-info" >Aktualisieren</button>
+            <a href="{{ route('admin.tools.index') }}" class="btn btn-warning">Zurück</a>
         </form>
     </div>
 @endsection
